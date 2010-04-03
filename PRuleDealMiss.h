@@ -27,12 +27,11 @@ public:
 	enum { IDD = IDD_RULE_DEALMISS };
 	BOOL	m_bDM_AllPoint;
 	BOOL	m_bDM_Only10;
-	BOOL	m_bDM_JokerIsPoint;
 	BOOL	m_bDM_JokerIsReversePoint;
-	BOOL	m_bDM_MightyIsPoint;
 	BOOL	m_bDM_NoPoint;
 	BOOL	m_bDM_OneEyedJack;
 	BOOL	m_bDM_OnlyMighty;
+	BOOL	m_bDM_OnlyOne;
 	//}}AFX_DATA
 
 

@@ -67,7 +67,7 @@ struct MIGHTY_EXPORT CState
 	CRule* pRule;
 	// 지금까지의 게임 회수
 	int nGameNum;
-	// 모든 플레이어들 ( 최대 6명=MAX_PLAYERS )
+	// 모든 플레이어들 ( 최대 7명=MAX_PLAYERS )
 	CPlayer* apAllPlayers[MAX_PLAYERS];
 	// 덱
 	CCardList& lDeck;
@@ -78,13 +78,13 @@ struct MIGHTY_EXPORT CState
 
 	// 판 범위
 
-	// 실제로 게임을 하는 플레이어들 ( 최대 6명 )
+	// 실제로 게임을 하는 플레이어들 ( 최대 7명 )
 	CPlayer* apPlayers[MAX_PLAYERS];
 	// 실제로 게임을 하는 플레이어들의 수
 	int nPlayers;
 	// 각 플레이어의 선거 기권 여부
 	bool abGiveup[MAX_PLAYERS];
-	// 6 마에서 죽는 카드 불렀을 때 실패한 카드들
+	// 6,7 마에서 죽는 카드 불렀을 때 실패한 카드들
 	CCardList& lDead;
 	// 주공 ( 또는 주공 예정자 )
 	int nMaster;
@@ -92,6 +92,8 @@ struct MIGHTY_EXPORT CState
 	int nFriend;
 	// 6 마 탈락자ID ( 아직 아무도 탈락 안됐을때 -1 )
 	int nDeadID;
+	// 7 마 탈락자ID ( 아직 아무도 탈락 안됐을때 -1 )
+	int nDeadID2;
 	// 프랜드가 밝혀졌는가
 	bool bFriendRevealed;
 	// 현재 목표

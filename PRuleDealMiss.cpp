@@ -24,12 +24,11 @@ PRuleDealMiss::PRuleDealMiss(CRule* pRule,bool bReadOnly) : CPropertyPage(PRuleD
 	//{{AFX_DATA_INIT(PRuleDealMiss)
 	m_bDM_AllPoint = m_pRule->bDM_AllPoint;
 	m_bDM_Only10 = m_pRule->bDM_Only10;
-	m_bDM_JokerIsPoint = m_pRule->bDM_JokerIsPoint;
 	m_bDM_JokerIsReversePoint = m_pRule->bDM_JokerIsReversePoint;
-	m_bDM_MightyIsPoint = m_pRule->bDM_MightyIsPoint;
 	m_bDM_NoPoint = m_pRule->bDM_NoPoint;
 	m_bDM_OneEyedJack = m_pRule->bDM_OneEyedJack;
 	m_bDM_OnlyMighty = m_pRule->bDM_OnlyMighty;
+	m_bDM_OnlyOne = m_pRule->bDM_OnlyOne;
 	//}}AFX_DATA_INIT
 }
 
@@ -43,23 +42,21 @@ void PRuleDealMiss::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(PRuleDealMiss)
 	DDX_Check(pDX, IDC_DM_ALLPOINT, m_bDM_AllPoint);
 	DDX_Check(pDX, IDC_DM_ONLY10, m_bDM_Only10);
-	DDX_Check(pDX, IDC_DM_JOKERISPOINT, m_bDM_JokerIsPoint);
 	DDX_Check(pDX, IDC_DM_JOKERISREVERSEPOINT, m_bDM_JokerIsReversePoint);
-	DDX_Check(pDX, IDC_DM_MIGHTYISPOINT, m_bDM_MightyIsPoint);
 	DDX_Check(pDX, IDC_DM_NOPOINT, m_bDM_NoPoint);
 	DDX_Check(pDX, IDC_DM_ONEEYEDJACK, m_bDM_OneEyedJack);
 	DDX_Check(pDX, IDC_DM_ONLYMIGHTY, m_bDM_OnlyMighty);
+	DDX_Check(pDX, IDC_DM_ONLYONE, m_bDM_OnlyOne);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
 		m_pRule->bDM_AllPoint = !!m_bDM_AllPoint;
 		m_pRule->bDM_Only10 = !!m_bDM_Only10;
-		m_pRule->bDM_JokerIsPoint = !!m_bDM_JokerIsPoint;
 		m_pRule->bDM_JokerIsReversePoint = !!m_bDM_JokerIsReversePoint;
-		m_pRule->bDM_MightyIsPoint = !!m_bDM_MightyIsPoint;
 		m_pRule->bDM_NoPoint = !!m_bDM_NoPoint;
 		m_pRule->bDM_OneEyedJack = !!m_bDM_OneEyedJack;
 		m_pRule->bDM_OnlyMighty = !!m_bDM_OnlyMighty;
+		m_pRule->bDM_OnlyOne = !!m_bDM_OnlyOne;
 	}
 }
 

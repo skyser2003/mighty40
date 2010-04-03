@@ -33,6 +33,8 @@ public:
 
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
+	virtual void OnKillOneFromSeven( CCard* pcCardToKill,
+		CCardList* plcFailedCardsTillNow, CEvent* );
 	virtual void OnElection( CGoal* pNewGoal, CEvent* );
 	virtual void OnElected( CGoal* pNewGoal, CCard acDrop[3], CEvent* );
 	virtual void OnTurn( CCard* pc, int* pe, CEvent* );
@@ -48,6 +50,10 @@ public:
 	// 주공이 다른 플레이어를 죽인다
 	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 	virtual void OnKillOneFromSix( CCard cKill,
+		bool bKilled, CEvent* e );
+	// 7마에서 주공이 다른 플레이어를 죽인다
+	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
+	virtual void OnKillOneFromSeven( CCard cKill,
 		bool bKilled, CEvent* e );
 	// 플레이어를 죽인 후 카드를 섞었다
 	virtual void OnSuffledForDead( CEvent* e );

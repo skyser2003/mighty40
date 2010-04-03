@@ -1222,7 +1222,7 @@ void DConnect::Chat( LPCTSTR sMsg, long uid, bool bUpdate )
 	// 각 라인을 추가한다
 	for ( i = 0; i < n; i++ ) {
 
-		_tcscpy( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
+		strcpy_s( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
 		m_acolChatData[m_nChatDataEnd % CHAT_LINES] =
 			uid == -1 ? s_colCyan
 			: uid == m_uid ? s_colYellow

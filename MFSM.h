@@ -120,7 +120,7 @@ public:
 	// 특히 CPlayerMAI 만 부르는 함수들
 
 	// AI 쓰레드에게, 자신의 함수를 호출하라고 요청한다
-	// nType : 0 OnElection 1 OnKillOneFromSix / 2 OnTurn
+	// nType : 0 OnElection / 1 OnKillOneFromSix / 2 OnTurn / 3 OnKillOneFromSeven
 	void RequestCallAIThread( CPlay* pPlay, int nType,
 				CEvent* pEvent, LPVOID arg1 = 0, LPVOID arg2 = 0 );
 
@@ -191,6 +191,8 @@ protected:
 
 	// 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다
 	void RebuildPlayerArray();
+	// 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다(7마)
+	void RebuildPlayerArray6();
 	// m_eNotify 이벤트를 처리
 	void ProcessNotifyEvents();
 	// 채팅 메시지를 처리

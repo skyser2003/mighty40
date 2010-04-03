@@ -313,7 +313,7 @@ BOOL CBoard::OnToolTipNeedText( UINT /*id*/, NMHDR * pNMHDR, LRESULT* /*pResult*
 
 	else return FALSE;
 
-	_tcscpy( s_sBuff, s );
+	strcpy_s( s_sBuff, s );
 	pTTT->lpszText=s_sBuff;
 	return TRUE;
 }

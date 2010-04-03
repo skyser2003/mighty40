@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Mighty"
-	ProjectGUID="{30C37266-C9E8-4018-BEA6-1A811400BC4A}"
+	ProjectGUID="{C722006F-A816-4FF2-8505-EFE52441C4E5}"
 	RootNamespace="Mighty"
 	Keyword="MFCProj"
 	TargetFrameworkVersion="0"
@@ -55,7 +55,7 @@
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="1"
 				PrecompiledHeaderThrough="stdafx.h"
 				PrecompiledHeaderFile=".\Release/Mighty.pch"
 				AssemblerListingLocation=".\Release/"
@@ -155,7 +155,7 @@
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
 				ProgramDataBaseFileName=".\Debug/"
-				WarningLevel="4"
+				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
 			/>
@@ -796,24 +796,8 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Mighty.rc"
+				RelativePath=".\Mighty.rc"
 				>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="MightyToolTip.cpp"
@@ -1276,6 +1260,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\PRuleSpecial.cpp"
+				>
+			</File>
+			<File
 				RelativePath="Rule.cpp"
 				>
 				<FileConfiguration
@@ -1569,6 +1557,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PRuleSpecial.h"
+				>
+			</File>
+			<File
 				RelativePath="Resource.h"
 				>
 			</File>
@@ -1607,18 +1599,6 @@
 			</File>
 			<File
 				RelativePath="res\Back11.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\Back12.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\Back13.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\Back14.bmp"
 				>
 			</File>
 			<File
@@ -1846,7 +1826,7 @@
 				>
 			</File>
 			<File
-				RelativePath="res\Mighty.rc2"
+				RelativePath=".\res\Mighty.rc2"
 				>
 			</File>
 			<File
@@ -1915,10 +1895,6 @@
 			</File>
 			<File
 				RelativePath="res\Spade.bmp"
-				>
-			</File>
-			<File
-				RelativePath="res\spade.ico"
 				>
 			</File>
 			<File
@@ -2008,5 +1984,9 @@
 		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="Mighty.rc"
+		/>
 	</Globals>
 </VisualStudioProject>

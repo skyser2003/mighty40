@@ -169,8 +169,9 @@ bool CMsg::PumpCardList( CCardList& lc )
 	if ( !PumpLong( nCount ) ) return false;
 
 	lc.RemoveAll();
-	int i = 0;
-	for ( ; i < nCount; i++ ) {
+
+	int i;
+	for ( i = 0; i < nCount; i++ ) {
 		long l;
 		if ( !PumpLong(l) ) break;
 		lc.AddTail( CCard(l) );

@@ -47,6 +47,7 @@ void POptionAI::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PLAYERNAME2, m_asPlayerName[2]);
 	DDX_Text(pDX, IDC_PLAYERNAME3, m_asPlayerName[3]);
 	DDX_Text(pDX, IDC_PLAYERNAME4, m_asPlayerName[4]);
+	DDX_Text(pDX, IDC_PLAYERNAME5, m_asPlayerName[5]);
 
 	if ( pDX->m_bSaveAndValidate )
 		for ( int i = 0; i < MAX_PLAYERS-1; i++ ) {
@@ -67,6 +68,7 @@ void POptionAI::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_AIPATH2, m_asFileName[2]);
 	DDX_Text(pDX, IDC_AIPATH3, m_asFileName[3]);
 	DDX_Text(pDX, IDC_AIPATH4, m_asFileName[4]);
+	DDX_Text(pDX, IDC_AIPATH5, m_asFileName[5]);
 }
 
 
@@ -74,8 +76,8 @@ BEGIN_MESSAGE_MAP(POptionAI, CPropertyPage)
 	//{{AFX_MSG_MAP(POptionAI)
 	ON_BN_CLICKED(IDC_RESETPATH, OnResetpath)
 	//}}AFX_MSG_MAP
-	ON_CONTROL_RANGE( BN_CLICKED, IDC_AIBROWSE0, IDC_AIBROWSE4, OnBrowse )
-	ON_CONTROL_RANGE( BN_CLICKED, IDC_AISETTING0, IDC_AISETTING4, OnSetting )
+	ON_CONTROL_RANGE( BN_CLICKED, IDC_AIBROWSE0, IDC_AIBROWSE5, OnBrowse )
+	ON_CONTROL_RANGE( BN_CLICKED, IDC_AISETTING0, IDC_AISETTING5, OnSetting )
 END_MESSAGE_MAP()
 
 

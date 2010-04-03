@@ -186,6 +186,18 @@ void CPlayerMai::OnKillOneFromSix( CCard* pcCardToKill,
 	Ib()->SetProgress( 0 );
 	e->SetEvent();
 }
+void CPlayerMai::OnKillOneFromSeven( CCard* pcCardToKill,
+	CCardList* plcFailedCardsTillNow, CEvent* e )
+{
+	CSandClock c(DELAY_KILL);
+
+	m_pMFSM->RequestCallAIThread( m_pPlay, 1, &m_eTemp, pcCardToKill, plcFailedCardsTillNow );
+
+	m_pMFSM->WaitEvent( &m_eTemp );
+
+	Ib()->SetProgress( 0 );
+	e->SetEvent();
+}
 
 void CPlayerMai::OnElection( CGoal* pNewGoal, CEvent* e )
 {

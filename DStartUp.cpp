@@ -114,9 +114,11 @@ void DStartUp::OnDraw(
 
 		PutText( pDC, _T("마이티 게임을 시작합니다 !!"), 2, 1, true,
 			s_colYellow, s_tdShade );
-		PutText( pDC, _T("Mighty Network Ver 3.2"), 3, 16, true,
+		PutText( pDC, _T("Mighty Network Ver 4.0"), 3, 16, true,
 			s_colCyan, s_tdShade );
 		PutText( pDC, _T("Copyright 1999 장문성"), 3, 17, true,
+			s_colCyan, s_tdShade );
+		PutText( pDC, _T("2010 Puzzlet & Yoshi-TS4"), 3, 18, true,
 			s_colCyan, s_tdShade );
 	}
 	else {

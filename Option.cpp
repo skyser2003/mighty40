@@ -128,7 +128,7 @@ void COption::Load()
 {
 	static LPCTSTR s_sPlayerName[] = {
 		_T(""),
-		_T("대중"), _T("영삼"), _T("태우"), _T("두환"), _T("정희") };
+		_T("무현"), _T("대중"), _T("영삼"), _T("태우"), _T("두환"), _T("정희") };
 
 	int i;
 	CString sSection;

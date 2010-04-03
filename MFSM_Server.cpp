@@ -44,8 +44,10 @@ lblMightyBegin:
 
 		// 카드를 나눠 준다
 		// 두장, 세장, 세장, 두장 의 순서
+		// 플레이어가 7명인 경우 두장, 세장, 두장의 순이다. (v4.0 : 2010.4.3 Yoshi-TS4)
 		{
-			int nCardsPerOnePlayer = pRule->nPlayerNum == 6 ? 8 : 10;
+			int nCardsPerOnePlayer = pRule->nPlayerNum == 7 ? 7 
+				: pRule->nPlayerNum == 6 ? 8 : 10;
 			int nAllCards = nCardsPerOnePlayer * nPlayers;
 			for ( i = 0; i < nAllCards; i++ ) {
 
@@ -57,7 +59,7 @@ lblMightyBegin:
 
 				// 두장, 세장, 세장, 두장 일 때 각 플레이어에게 알림
 				bool bShow = nHandCount == 2 || nHandCount == 5
-					|| nHandCount == 8 || nHandCount == 10;
+					|| nHandCount == 8 || nHandCount == nCardsPerOnePlayer;
 				if ( bShow ) NOTIFY_ALL( OnDeal( -1, nCurrentPlayer, 1, cCurrentCard, EVENT ) );
 			}
 		}
@@ -154,10 +156,10 @@ lblMightyBegin:
 
 			} while ( !bKilled );
 
-			// 죽은 플레이어의 카드를 나눠 가진다
-
 			CCardList* plcDead = apAllPlayers[nDeadID]->GetHand();
 			int nCards = plcDead->GetCount(); ASSERT( nCards == 8 );
+
+			// 죽은 플레이어의 카드를 나눠 가진다
 
 			// 회수단계
 			for ( i = 0; i < nCards; i++ ) {
@@ -193,6 +195,106 @@ lblMightyBegin:
 				NOTIFY_ALL( OnDeal( -1, nCurrentPlayer, 9, cCurrentCard, EVENT ) );
 			}
 		}	// if ( pRule->nPlayerNum == 6 ) 의 끝
+
+		else if ( pRule->nPlayerNum == 7 ) {
+
+			CCard cKill(0);
+			bool bKilled = false;
+			do {
+
+				cKill = CCard(0);
+				NOTIFY_TO( nMaster,
+					OnKillOneFromSeven( &cKill, &lDead, EVENT ) );
+
+				if ( cKill == CCard(0) ) {	// 잘못된 카드 값
+					ASSERT(0); cKill = CCard(SPADE,ACE);
+				}
+
+				bKilled = KillTest( nMaster, &cKill, &nDeadID );
+				if ( !bKilled ) lDead.AddTail( cKill );
+
+				NOTIFY_ALL( OnKillOneFromSeven( cKill, bKilled, EVENT ) );
+
+			} while ( !bKilled );
+
+			CCardList* plcDead = apAllPlayers[nDeadID]->GetHand();
+			int nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
+
+			// 죽은 플레이어의 카드를 나눠 가진다
+
+			// 회수단계
+			for ( i = 0; i < nCards; i++ ) {
+
+				nCurrentPlayer = (nBeginer+i)%nPlayers;
+				cCurrentCard = plcDead->RemoveTail();
+				lDeck.AddTail( cCurrentCard );
+				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
+			}
+
+			RebuildPlayerArray6();
+
+			// 가운데 모은 카드를 섞고 실제로 하나의 플레이어를 죽인다
+			lDeck.Suffle();
+			// 클라이언트인 경우 서버에서 다시 섞인 카드 배열을 얻어온다
+			if ( !IsServer() ) GetDeckFromServer();
+			// 각 플레이어에게 알린다
+			NOTIFY_ALL( OnSuffledForDead(EVENT) );
+
+			do {
+
+				cKill = CCard(0);
+				NOTIFY_TO( nMaster,
+					OnKillOneFromSix( &cKill, &lDead, EVENT ) );
+
+				if ( cKill == CCard(0) ) {	// 잘못된 카드 값
+					ASSERT(0); cKill = CCard(SPADE,ACE);
+				}
+
+				bKilled = KillTest( nMaster, &cKill, &nDeadID );
+				if ( !bKilled ) lDead.AddTail( cKill );
+
+				NOTIFY_ALL( OnKillOneFromSix( cKill, bKilled, EVENT ) );
+
+			} while ( !bKilled );
+			plcDead = apAllPlayers[nDeadID]->GetHand();
+			nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
+
+			// 죽은 플레이어의 카드를 나눠 가진다
+
+			// 회수단계
+			for ( i = 0; i < nCards; i++ ) {
+
+				nCurrentPlayer = (nBeginer+i)%6;
+				cCurrentCard = plcDead->RemoveTail();
+				lDeck.AddTail( cCurrentCard );
+				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
+			}
+
+			RebuildPlayerArray();
+
+			// 가운데 모은 카드를 섞고 실제로 하나의 플레이어를 죽인다
+			lDeck.Suffle();
+			// 클라이언트인 경우 서버에서 다시 섞인 카드 배열을 얻어온다
+			if ( !IsServer() ) GetDeckFromServer();
+			// 각 플레이어에게 알린다
+			NOTIFY_ALL( OnSuffledForDead(EVENT) );
+
+			// 모두에게 알린다
+			NOTIFY_ALL( OnDeal( -1, -1, 0, 0, EVENT ) );
+
+			nCards = 10;	// 이제 10 장을 나눠 준다
+			for ( i = 0; i < nCards; i++ ) {
+
+				nCurrentPlayer = (nBeginer+i)%nPlayers;
+				cCurrentCard = lDeck.RemoveTail();
+				CCardList* pHand = apPlayers[nCurrentPlayer]->GetHand();
+				pHand->AddTail( cCurrentCard );
+				if ( !Mo()->bNoSort )
+					pHand->Sort( Mo()->bLeftKiruda, Mo()->bLeftAce );
+
+				NOTIFY_ALL( OnDeal( -1, nCurrentPlayer, 9, cCurrentCard, EVENT ) );
+			}
+		}	// else if ( pRule->nPlayerNum == 7 ) 의 끝
 
 		// 주공은 나머지 카드를 가진다
 		{

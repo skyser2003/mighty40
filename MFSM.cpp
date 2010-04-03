@@ -122,6 +122,30 @@ void CMFSM::RebuildPlayerArray()
 	if ( nFriend > nDeadID ) nFriend--;
 	if ( nCurrentPlayer > nDeadID ) nCurrentPlayer--;
 }
+// 7마에서 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다
+void CMFSM::RebuildPlayerArray6()
+{
+	ASSERT( nDeadID != -1 && pRule->nPlayerNum == 7 );
+
+	for ( int i = 0, j = 0; i < pRule->nPlayerNum; i++ )
+		if ( nDeadID != i ) {
+			apPlayers[j] = apAllPlayers[i];
+			apPlayers[j]->SetPlayerNum(j);
+			j++;
+		}
+		else apAllPlayers[i]->SetPlayerNum(-1);
+
+	ASSERT( nPlayers == 7 );
+
+	apPlayers[6] = 0;
+	nPlayers = 6;	// 6 명이라는 확신이 있음
+
+	// 다른 값들을 재조정한다
+	if ( nMaster > nDeadID ) nMaster--;
+	if ( nBeginer > nDeadID ) nBeginer--;
+	if ( nFriend > nDeadID ) nFriend--;
+	if ( nCurrentPlayer > nDeadID ) nCurrentPlayer--;
+}
 
 // 모든 플레이어의 카드를 옵션에 따라 정렬한다
 void CMFSM::SortPlayerHand( bool bLeftKiruda, bool bLeftAce )
@@ -392,55 +416,68 @@ void CMFSM::GetReport(
 	// 먼저 이동된 돈을 구한다
 	int nMoved;		// 이동된 기본량 (돈은 아님)
 	{
-		// Mighty 2.0 호환 ( (목-기)*2+(득-목) vs (목-득) )
-		if ( pRule->bS_Use20 ) {
-			if ( bDefWin ) {	// 여당 승
+		//여당이 승리한 경우
+		if( bDefWin ) {
+			// 위험보상 2.0 ( (목-기)*2+(득-목) )
+			if ( pRule->bS_Use20 ) {
 				sCalcMethod.Format( _T("((%d-%d)x2+(%d-%d))"), m,b,s,m );
 				nMoved = (m-b)*2+(s-m);
-			} else {			// 여당 패
-				sCalcMethod.Format( _T("(%d-%d)"), m,s );
-				nMoved = (m-s);
 			}
-		}
-		// Eye for an Eye ( (득-목) vs (목-득) )
-		else if ( pRule->bS_Efe ) {
-			if ( bDefWin ) {	// 여당 승
+			// 위험보상 4.0 ( (목-기)*1.5+(득-목) )
+			else if ( pRule->bS_Use40 ) {
+				sCalcMethod.Format( _T("((%d-%d)x1.5+(%d-%d))"), m,b,s,m );
+				nMoved = (m-b)*3/2+(s-m);
+			}
+			// 부르는게 값 ( (목-기+1)*2 )
+			else if ( pRule->bS_Call ) {
+				sCalcMethod.Format( _T("((%d-%d+1)x2"), m,b );
+				nMoved = (m-b+1)*2;
+			}
+			// Eye for an Eye ( (득-목) )
+			else if ( pRule->bS_Efe ) {
 				sCalcMethod.Format( _T("(%d-%d)"), s,m );
 				nMoved = (s-m);
-			} else {			// 여당 패
-				sCalcMethod.Format( _T("(%d-%d)"), m,s );
-				nMoved = (m-s);
 			}
-		}
-		// Modified Eye for an Eye ( (득-목)+1 vs (목-득) )
-		else if ( pRule->bS_MEfe ) {
-			if ( bDefWin ) {	// 여당 승
+			// Modified Eye for an Eye ( (득-목)+1 )
+			else if ( pRule->bS_MEfe ) {
 				sCalcMethod.Format( _T("(%d-%d+1)"), s,m );
 				nMoved = (s-m)+1;
-			} else {			// 여당 패
-				sCalcMethod.Format( _T("(%d-%d)"), m,s );
-				nMoved = (m-s);
 			}
-		}
-		// Base Ten ( (득-10) vs (목-득) )
-		else if ( pRule->bS_Base10 ) {
-			if ( bDefWin ) {	// 여당 승
+			// Base Ten ( (득-10) )
+			else if ( pRule->bS_Base10 ) {
 				sCalcMethod.Format( _T("(%d-10)"), s );
 				nMoved = (s-10);
-			} else {			// 여당 패
-				sCalcMethod.Format( _T("(%d-%d)"), m,s );
-				nMoved = (m-s);
 			}
-		}
-		// Base Thirteen ( (득-기) vs (목-득) )
-		else { if ( !pRule->bS_Base13 ) ASSERT(0);
-			if ( bDefWin ) {	// 여당 승
+			// Base Thirteen ( (득-13) )
+			else if ( pRule->bS_Base13 ) {
+				sCalcMethod.Format( _T("(%d-13)"), s );
+				nMoved = (s-13);
+			}
+			// Base Min ( (득-기) )
+			else if ( pRule->bS_BaseM ) {
 				sCalcMethod.Format( _T("(%d-%d)"), s,b );
 				nMoved = (s-b);
-			} else {			// 여당 패
+			}
+			else ASSERT(0);
+		}
+		else {			// 여당 패
+			// Eye for an Eye ( (목-득) )
+			if ( pRule->bSS_Efe ) {
 				sCalcMethod.Format( _T("(%d-%d)"), m,s );
 				nMoved = (m-s);
 			}
+			// Tooth for an Tooth ( (목-득) or (목-13)+(13-득)*2 )
+			else if ( pRule->bSS_Tft ) {
+				if ( s >= b ) {
+					sCalcMethod.Format( _T("(%d-%d)"), m,s );
+					nMoved = (m-s);
+				}
+				else {
+					sCalcMethod.Format( _T("(%d-%d)+(%d-%d)x2"), m,b,b,s );
+					nMoved = (m-b+(b-s)*2);
+				}
+			}
+			else ASSERT(0);
 		}
 
 		// 2배 규칙
@@ -460,10 +497,19 @@ void CMFSM::GetReport(
 				nMoved *= 2;
 			}
 		}
-		if ( !bDefWin && nAttPointed >= goal.nMinScore
-			&& pRule->bS_DoubleForReverseRun ) {// 백런
+		if ( !bDefWin && pRule->bS_DoubleForReverseRun ) { // 백런 검사
+			if( pRule->bS_AGoalReverse && nAttPointed >= goal.nMinScore ) {
 				sResult += _T(" x2(빽런)");
 				nMoved *= 2;
+			}
+			else if( pRule->bS_A11Reverse && nAttPointed >= 11 ) {
+				sResult += _T(" x2(빽런)");
+				nMoved *= 2;
+			}
+			else if( pRule->bS_AMReverse && nAttPointed >= pRule->nMinScore) {
+				sResult += _T(" x2(빽런)");
+				nMoved *= 2;
+			}
 		}
 		if ( bDefWin && goal.nKiruda == 0 ) {	// 노기루다
 			sResult += _T(" x2(노기)");
@@ -471,8 +517,8 @@ void CMFSM::GetReport(
 		}
 		if ( pRule->bFriend	// 프랜드 제도가 있는가
 				&& bDefWin && goal.nFriend == 0 ) {	// 노프랜드
-			sResult += _T(" x2(노프)");
-			nMoved *= 2;
+			sResult += _T(" x1.5(노프)");
+			nMoved = nMoved * 3 / 2;
 		}
 	}
 
@@ -523,9 +569,9 @@ void CMFSM::GetReport(
 	{
 		if ( !pRule->bFriend
 			|| !goal.nFriend )	// 프랜드가 없는 경우
-			nMasterShare = 1, nFriendShare = 0;	// 1:0
+			nMasterShare = nPlayers - 1, nFriendShare = 0;	// 1:0
 		else if ( nPlayers-2 < 2 )	// 야당이 여당보다 적은 경우
-			nMasterShare = 1, nFriendShare = 0;	// 1:0
+			nMasterShare = 1, nFriendShare = 1;	// 1:1
 		else	// 정상적인 경우
 			// 프랜드가 1 명치를 갖고 주공이 나머지를 다 갖는다
 			nMasterShare = nPlayers - 3,
@@ -599,10 +645,10 @@ void CMFSM::GetReport(
 		}
 	}
 
-#ifdef _DEBUG	// 총 돈의 합계를 비교한다
+/*#ifdef _DEBUG	// 총 돈의 합계를 비교한다
 	int nAllDebugSum2 = 0;
-	for ( int debug = 0; debug < nPlayers; debug++ )
+	for ( debug = 0; debug < nPlayers; debug++ )
 		nAllDebugSum2 += anMoney[debug];
 	ASSERT( nAllDebugSum == nAllDebugSum2 );
-#endif
+#endif*/
 }

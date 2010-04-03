@@ -22,7 +22,7 @@ PRuleGeneral::PRuleGeneral(CRule* pRule,bool bReadOnly) : CPropertyPage(PRuleGen
 	m_bReadOnly = bReadOnly;
 
 	//{{AFX_DATA_INIT(PRuleGeneral)
-	m_nPlayerNum = m_pRule->nPlayerNum - 3;
+	m_nPlayerNum = m_pRule->nPlayerNum - 2;
 	m_bClockWise = m_pRule->bClockWise;
 	m_bHideScore = m_pRule->bHideScore;
 	m_bShowFriend = m_pRule->bShowFriend;
@@ -37,14 +37,14 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PRuleGeneral)
-	DDX_Radio(pDX, IDC_3MA, m_nPlayerNum);
+	DDX_Radio(pDX, IDC_2MA, m_nPlayerNum);
 	DDX_Check(pDX, IDC_CLOCKWISE, m_bClockWise);
 	DDX_Check(pDX, IDC_HIDESCORE, m_bHideScore);
 	DDX_Check(pDX, IDC_SHOWFRIEND, m_bShowFriend);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
-		m_pRule->nPlayerNum = m_nPlayerNum + 3;
+		m_pRule->nPlayerNum = m_nPlayerNum + 2;
 		m_pRule->bClockWise = m_bClockWise ? true : false;
 		m_pRule->bHideScore = m_bHideScore ? true : false;
 		m_pRule->bShowFriend = m_bShowFriend ? true : false;

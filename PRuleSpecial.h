@@ -1,38 +1,41 @@
-#if !defined(AFX_PRuleScore_H__E535DD66_509F_11D3_99D0_0000212035B8__INCLUDED_)
-#define AFX_PRuleScore_H__E535DD66_509F_11D3_99D0_0000212035B8__INCLUDED_
+#ifndef PRULESPECIAL_H
+#define PRULESPECIAL_H
 
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-// PRuleScore.h : header file
+// PRuleSpecial.h : header file (v4.0 : 2010.4.2 Yoshi-TS4)
 //
 
 /////////////////////////////////////////////////////////////////////////////
-// PRuleScore dialog
+// PRuleSpecial dialog
 
-class PRuleScore : public CPropertyPage
+class PRuleSpecial : public CPropertyPage
 {
-	DECLARE_DYNCREATE(PRuleScore)
+	DECLARE_DYNCREATE(PRuleSpecial)
 
 // Construction
 public:
-	PRuleScore(CRule* pRule = 0,bool bReadOnly=false);
-	~PRuleScore();
+	PRuleSpecial(CRule* pRule = 0,bool bReadOnly=false);
+	~PRuleSpecial();
 
 	CRule* m_pRule;
 	bool m_bReadOnly;
 
 // Dialog Data
-	//{{AFX_DATA(PRuleScore)
-	enum { IDD = IDD_RULE_SCORE };
-	int		m_nDMethod;			//여당 점수 계산 방식
-	int		m_nAMethod;			//야당 점수 계산 방식
+	//{{AFX_DATA(PRuleSpecial)
+	enum { IDD = IDD_RULE_SPECIAL };
+	int		m_nRun;
+	BOOL	m_bS_NoFriend;
+	BOOL	m_bS_NoKiruda;
+	BOOL	m_bS_ReverseRun;
+	int		m_nReverseRun;
 	//}}AFX_DATA
 
 
 // Overrides
 	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(PRuleScore)
+	//{{AFX_VIRTUAL(PRuleSpecial)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -40,7 +43,7 @@ public:
 // Implementation
 protected:
 	// Generated message map functions
-	//{{AFX_MSG(PRuleScore)
+	//{{AFX_MSG(PRuleSpecial)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -50,4 +53,4 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_PRuleScore_H__E535DD66_509F_11D3_99D0_0000212035B8__INCLUDED_)
+#endif // !defined(PRULESPECIAL_H)

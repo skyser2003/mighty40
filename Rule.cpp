@@ -16,17 +16,22 @@ static char THIS_FILE[]=__FILE__;
 
 static LPCTSTR asPreset[][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
-	{ _T("'1$1M&WG*7H'5#"), _T("표준 4마") },
-	{ _T("&/$1M&WC*7H'5#"), _T("표준 3마") },
-	{ _T(")0$1M&WO*7H'5#"), _T("표준 6마") },
-	{ _T(")0$1M@PP27X.=#"), _T("관악 6마") },
-	{ _T("(1$1M&R`2'X*]'"), _T("신촌 5마") },
-	{ _T("(/$1M@7Obb(']%"), _T("경기 5마") },
-	{ _T("'0$1M&PH27H*=#"), _T("부산 4마") },
-	{ _T("(/$1M&RP17H'=#"), _T("대구 5마") },
-	{ _T(")0$1M&P`27X*=#"), _T("대전 6마") },
-	{ _T("(/$1M&XP9(H'='"), _T("광주 5마") },
-	{ _T("&/$1M&7C27X*=#"), _T("제주 3마") },
+	{ _T("'1$1M&WG*7,%KG#"), _T("표준 4마") },
+	{ _T("&/$1M&WC*7,%KG#"), _T("표준 3마") },
+	{ _T(")0$1M&WO*7,%KG#"), _T("표준 6마") },
+	{ _T("*0$1M&WO*7,%KG#"), _T("표준 7마") },
+	{ _T("%*$1M&WC*7$&KG#"), _T("표준 2마") },
+	{ _T("(0$1M@`PB(R'K1$"), _T("SNUCSE 5마") },
+	{ _T(")1$1M@`PB(R'K1$"), _T("SNUCSE 6마") },
+	{ _T("*1$1M@`PB(R'K1$"), _T("SNUCSE 7마") },
+	{ _T(")0$1M@PP27`3KI#"), _T("관악 6마") },
+	{ _T("(1$1M&R`2'`%KQ+"), _T("신촌 5마") },
+	{ _T("(/$1M@7Obb$%KQ'"), _T("경기 5마") },
+	{ _T("'0$1M&PH27\\%KI#"), _T("부산 4마") },
+	{ _T("(/$1M&RP17,%KI#"), _T("대구 5마") },
+	{ _T(")0$1M&P`27`%KI#"), _T("대전 6마") },
+	{ _T("(/$1M&XP9(,%KI+"), _T("광주 5마") },
+	{ _T("&/$1M&7C27`%KI#"), _T("제주 3마") },
 };
 
 // 미리 정의된 표준 룰로 세트
@@ -77,11 +82,17 @@ LPCTSTR CRule::Preset( int nRule )
 	bDM_Only10 = false;
 	bDM_OneEyedJack = false;
 	bDM_OnlyMighty = false;
-	bS_Use20 = true;
+	bDM_OnlyOne = false;
+	bS_Use20 = false;
+	bs_Use40 = true;
+	bs_Call = false;
 	bS_Efe = false;
 	bS_MEfe = false;
 	bS_Base10 = false;
 	bS_Base13 = false;
+	bS_BaseM = false;
+	bSS_Efe = true;
+	bSS_Tft = false;
 	bS_DoubleForRun = true;
 	bS_DoubleForDeclaredRun = true;
 	bS_DoubleForReverseRun = false;
@@ -122,7 +133,7 @@ static void PushBool( TCHAR* p, int nPos, bool bValue )
 {
 	int np = (int)*p;
 	ASSERT( nPos >= 0 && nPos < 6 );
-	ASSERT( np >= BASE_CHAR && np < 99 );
+	ASSERT( np >= BASE_CHAR && np < 127 );	//v4.0
 	if ( bValue ) *p = (TCHAR)(((np-BASE_CHAR) | (1 << nPos)) + BASE_CHAR);
 	else *p = (TCHAR)(((np-BASE_CHAR) & ~(1 << nPos)) + BASE_CHAR);
 }
@@ -132,7 +143,7 @@ static void PopBool( const TCHAR* p, int nPos, bool& bValue )
 {
 	int np = (int)*p;
 	ASSERT( nPos >= 0 && nPos < 6 );
-	ASSERT( np >= BASE_CHAR && np < 99 );
+	ASSERT( np >= BASE_CHAR && np < 127 );	//v4.0
 	bValue = ( (np-BASE_CHAR) & (1 << nPos) ) ? true : false;
 }
 
@@ -182,23 +193,30 @@ CString CRule::Encode() const
 	SYNC_RULE_BOOL( bJokercallJokerEffect );
 	SYNC_RULE_BOOL( bDM_NoPoint );
 	SYNC_RULE_BOOL( bDM_AllPoint );
-	SYNC_RULE_BOOL( bDM_MightyIsPoint );
-	SYNC_RULE_BOOL( bDM_JokerIsPoint );
 	SYNC_RULE_BOOL( bDM_JokerIsReversePoint );
 	SYNC_RULE_BOOL( bDM_Only10 );
 	SYNC_RULE_BOOL( bDM_OneEyedJack );
 	SYNC_RULE_BOOL( bDM_OnlyMighty );
+	SYNC_RULE_BOOL( bDM_OnlyOne );
 	SYNC_RULE_BOOL( bS_Use20 );
+	SYNC_RULE_BOOL( bS_Use40 );
+	SYNC_RULE_BOOL( bS_Call );
 	SYNC_RULE_BOOL( bS_Efe );
 	SYNC_RULE_BOOL( bS_MEfe );
 	SYNC_RULE_BOOL( bS_Base10 );
 	SYNC_RULE_BOOL( bS_Base13 );
+	SYNC_RULE_BOOL( bS_BaseM );
+	SYNC_RULE_BOOL( bSS_Efe );
+	SYNC_RULE_BOOL( bSS_Tft );
 	SYNC_RULE_BOOL( bS_DoubleForRun );
 	SYNC_RULE_BOOL( bS_DoubleForDeclaredRun );
 	SYNC_RULE_BOOL( bS_DoubleForReverseRun );
 	SYNC_RULE_BOOL( bS_DoubleForNoKiruda );
 	SYNC_RULE_BOOL( bS_DoubleForNoFriend );
 	SYNC_RULE_BOOL( bS_StaticRun );
+	SYNC_RULE_BOOL( bS_AGoalReverse );
+	SYNC_RULE_BOOL( bS_A11Reverse );
+	SYNC_RULE_BOOL( bS_AMReverse );
 	SYNC_RULE_BOOL( bShowFriend );
 	SYNC_RULE_BOOL( bHideScore );
 
@@ -256,23 +274,30 @@ void CRule::Decode( LPCTSTR sRule )
 	SYNC_RULE_BOOL( bJokercallJokerEffect );
 	SYNC_RULE_BOOL( bDM_NoPoint );
 	SYNC_RULE_BOOL( bDM_AllPoint );
-	SYNC_RULE_BOOL( bDM_MightyIsPoint );
-	SYNC_RULE_BOOL( bDM_JokerIsPoint );
 	SYNC_RULE_BOOL( bDM_JokerIsReversePoint );
 	SYNC_RULE_BOOL( bDM_Only10 );
 	SYNC_RULE_BOOL( bDM_OneEyedJack );
 	SYNC_RULE_BOOL( bDM_OnlyMighty );
+	SYNC_RULE_BOOL( bDM_OnlyOne );
 	SYNC_RULE_BOOL( bS_Use20 );
+	SYNC_RULE_BOOL( bS_Use40 );
+	SYNC_RULE_BOOL( bS_Call );
 	SYNC_RULE_BOOL( bS_Efe );
 	SYNC_RULE_BOOL( bS_MEfe );
 	SYNC_RULE_BOOL( bS_Base10 );
 	SYNC_RULE_BOOL( bS_Base13 );
+	SYNC_RULE_BOOL( bS_BaseM );
+	SYNC_RULE_BOOL( bSS_Efe );
+	SYNC_RULE_BOOL( bSS_Tft );
 	SYNC_RULE_BOOL( bS_DoubleForRun );
 	SYNC_RULE_BOOL( bS_DoubleForDeclaredRun );
 	SYNC_RULE_BOOL( bS_DoubleForReverseRun );
 	SYNC_RULE_BOOL( bS_DoubleForNoKiruda );
 	SYNC_RULE_BOOL( bS_DoubleForNoFriend );
 	SYNC_RULE_BOOL( bS_StaticRun );
+	SYNC_RULE_BOOL( bS_AGoalReverse );
+	SYNC_RULE_BOOL( bS_A11Reverse );
+	SYNC_RULE_BOOL( bS_AMReverse );
 	SYNC_RULE_BOOL( bShowFriend );
 	SYNC_RULE_BOOL( bHideScore );
 }

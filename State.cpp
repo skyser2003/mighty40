@@ -253,7 +253,7 @@ bool CState::IsDealMiss( const CCardList* pl ) const
 	bool bHasJoker = pl->Find( CCard::GetJoker() ) ? true : false;
 	int nPoints = pl->GetPoint();
 
-	if ( pRule->bDM_JokerIsReversePoint ) nPoints--;
+	if ( pRule->bDM_JokerIsReversePoint && bHasJoker ) nPoints--;
 
 	// 오직 마이티 한 장
 	if ( pRule->bDM_OnlyMighty && bHasMighty && nPoints == 1 )
@@ -271,14 +271,9 @@ bool CState::IsDealMiss( const CCardList* pl ) const
 		while (posJ) if ( pl->GetNext(posJ).IsOneEyedJack() ) return true;
 	}
 
+	if ( pRule->bDM_OnlyOne && nPoints == 1 ) return true;
+
 	// 이제 전반적인 점수 카드의 수로 계산을 시작
-
-	// 조커를 점수카드로 계산
-	if ( bHasJoker )
-		if ( pRule->bDM_JokerIsPoint ) nPoints++;
-
-	// 마이티를 점수카드로 계산하지 않음
-	if ( bHasMighty && !pRule->bDM_MightyIsPoint ) nPoints--;
 
 	// 점수카드가 없을 때 딜미스
 	if ( nPoints <= 0 ) return true;

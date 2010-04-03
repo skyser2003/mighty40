@@ -153,8 +153,8 @@ CCardList& CCardList::operator=( const CCardList& cl )
 // nPlayers : 인원수 (5마 53 장, 4마 43 장, 3마 33 장)
 void CCardList::NewDeck( int nPlayers, CCard cJokercall, CCard cAlterJokercall )
 {
-	// 6마는 5마와 덱이 같다
-	if ( nPlayers == 6 ) nPlayers = 5;
+	// 2마와 6마 이상은 5마와 덱이 같다 : Yoshi-TS4
+	if ( nPlayers >= 6 || nPlayers == 2 ) nPlayers = 5;
 
 	ASSERT( nPlayers == 3 || nPlayers == 4 || nPlayers == 5 );
 
@@ -610,7 +610,7 @@ void CCardList::GetAvList(
 
 	// 아무것도 낼 게 없는 상황이 왔다 ??
 	if ( plResult->GetCount() == 0 ) {
-		ASSERT(0);
+//		ASSERT(0);
 		// 모든 카드가 기루다라든가..
 		// 이 경우 아무 카드나 낼 수 있는 특권을 준다 !
 		*plResult = *this;

@@ -31,7 +31,7 @@ static char THIS_FILE[]=__FILE__;
 // CPlayerHuman
 
 CPlayerHuman::CPlayerHuman(
-		int nID,		// 고유 번호 ( 6명의 플레이어중 순서 )
+		int nID,		// 고유 번호 ( 7명의 플레이어중 순서 )
 		LPCTSTR sName,	// 이름
 		CWnd* pCallback )// call-back window
 	: CPlayer( nID, sName, pCallback )
@@ -117,13 +117,12 @@ int CPlayerHuman::GetRecommendedFriend( const CCardList* plDeck )
 		c = CCard( i, ACE );
 		if ( !find_both( plHand, plDeck, c ) ) return c;
 	}
-	ASSERT(0);	// 설마!
 
-	// 노프랜드, 초구, 왼쪽 플레이어 중에서 고른다
-	int s = rand() % 3;
-	if ( s == 0 ) return 0;	// 노프랜드
-	else if ( s == 1 ) return 1;	// 초구
-	else return -GetState()->nPlayers;	// 왼쪽
+	// 기 Q
+	c = CCard( CCard::GetKiruda(), QUEEN );
+	if ( !find_both( plHand, plDeck, c ) ) return c;
+
+	return 1;	// 초구
 }
 
 // p 에 있는 카드를 뷰에서 선택한다
@@ -428,6 +427,62 @@ void CPlayerHuman::OnKillOneFromSix( CCard* pcCardToKill,
 // 주공이 다른 플레이어를 죽인다
 // bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 void CPlayerHuman::OnKillOneFromSix( CCard cKill,
+	bool bKilled, CEvent* e )
+{
+	const CState* pState = m_pMFSM->GetState();
+
+	// 일단 조커콜 소리를 낸다
+	PlaySound( IDW_JOKERCALL, true );
+
+	// DSB 를 표시
+	DDeadDecl* pDecl = new DDeadDecl( m_pBoard );
+	pDecl->Create(
+		pState->apAllPlayers[pState->nMaster]->GetName(),
+		(int)cKill, false, -1 );
+	m_pBoard->SetElectionDSB( pDecl );
+
+	// 실패 !!
+	if ( !bKilled ) {
+
+		// 잠시 지연
+		Sleep( DELAY_KILL_AND_EFFECT );
+
+		// 뽀록 소리를 낸다
+		PlaySound( IDW_GIVEUP, true );
+
+		// 실패 DSB 를 표시
+		DDeadDecl* pDecl = new DDeadDecl( m_pBoard );
+		pDecl->Create(
+			pState->apAllPlayers[pState->nMaster]->GetName(),
+			(int)cKill, true, -1 );
+		m_pBoard->SetElectionDSB( pDecl );
+
+		// 또다시 지연
+		Sleep( DELAY_KILL_AND_EFFECT );
+	}
+	e->SetEvent();
+}
+	// 7마에서 당선된 경우 두 사람을 죽여야 한다
+	// 이 함수는 그 중 하나만 죽이는 함수로,
+	// OnKillOneFromSix와 같다.
+	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
+	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
+	// 하나가 죽는다 !
+void CPlayerHuman::OnKillOneFromSeven( CCard* pcCardToKill,
+	CCardList* plcFailedCardsTillNow, CEvent* e )
+{
+	// 죽이기 DSB 를 표시
+	DKill* pDSB = new DKill(m_pBoard);
+	*(CCard*)pcCardToKill =
+		GetRecommendedKillCard(
+			(CCardList*)plcFailedCardsTillNow );
+	pDSB->Create( e, (CCard*)pcCardToKill,
+		(CCardList*)plcFailedCardsTillNow, GetHand() );
+}
+
+// 7마에서 주공이 다른 플레이어를 죽인다
+// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
+void CPlayerHuman::OnKillOneFromSeven( CCard cKill,
 	bool bKilled, CEvent* e )
 {
 	const CState* pState = m_pMFSM->GetState();

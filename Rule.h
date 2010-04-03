@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define STANDARD_RULE_STRING _T("(0$1M&WO*7H'5#")
+#define STANDARD_RULE_STRING _T("(0$1M&WO*7,%KG#")
 
 // 마이티 게임 규칙
 
@@ -32,14 +32,14 @@ struct CRule
 
 	// 마이티 인원
 
-	// 인원 ( 3-6 )
+	// 인원 ( 2-7 : v4.0 )
 	int nPlayerNum;
 	// 시계방향인가
 	bool bClockWise;
 
 	// 선거
 
-	// 최소 기본 점수 ( 5 - 18 )
+	// 최소 기본 점수 ( 4 - 18 )
 	int nMinScore;
 	// 노기루다일때 기본점수보다 1 적게 부를 수 있음
 	bool bNoKirudaAdvantage;
@@ -93,10 +93,6 @@ struct CRule
 	bool bDM_NoPoint;
 	// 모두 점수카드일때
 	bool bDM_AllPoint;
-	// 위의 두 경우 마이티를 점수카드로 계산
-	bool bDM_MightyIsPoint;
-	// 위의 두 경우 조커를 점수카드로 계산
-	bool bDM_JokerIsPoint;
 	// 조커를 역 점수카드로 계산
 	bool bDM_JokerIsReversePoint;
 	// 점수카드 10
@@ -105,19 +101,37 @@ struct CRule
 	bool bDM_OneEyedJack;
 	// 마이티 1장
 	bool bDM_OnlyMighty;
+	// 점수카드 1장
+	bool bDM_OnlyOne;
 
 	// 점수 (목:목표점수 기:기본점수 득:여당득점)
 
-	// Mighty 2.0 호환 ( (목-기)*2+(득-목) vs (목-득) )
+	// 여당
+	// 위험보상 2.0 호환 ( (목-기)*2+(득-목) )
 	bool bS_Use20;
-	// Eye for an Eye ( (득-목) vs (목-득) )
+	// 위험보상 4.0 호환 ( (목-기)*1.5+(득-목) )
+	bool bS_Use40;
+	// 부르는게 값 ( (목-기+1)*2 )
+	bool bS_Call;
+	// Eye for an Eye ( (득-목) )
 	bool bS_Efe;
-	// Modified Eye for an Eye ( (득-목)+1 vs (목-득) )
+	// Modified Eye for an Eye ( (득-목)+1 )
 	bool bS_MEfe;
-	// Base Ten ( (득-10) vs (목-득) )
+	// Base Ten ( (득-10) )
 	bool bS_Base10;
-	// Base Thirteen ( (득-기) vs (목-득) )
+	// Base Thirteen ( (득-13) )
 	bool bS_Base13;
+	// Base Min ( (득-기) )
+	bool bS_BaseM;
+
+	// 야당
+	// Eye for an Eye( (목-득) )
+	bool bSS_Efe;
+	// Tooth for an Tooth( (득>=기)?(목-득):(목-기)+2*(기-득) )
+	bool bSS_Tft;
+
+	// 특수 보상
+
 	// 런은 2배
 	bool bS_DoubleForRun;
 	// 선언된 런만 2배 ( bS_DoubleForRun 을 오버라이드함 )
@@ -126,11 +140,18 @@ struct CRule
 	bool bS_DoubleForReverseRun;
 	// 노기루다 2배
 	bool bS_DoubleForNoKiruda;
-	// 노프랜드 2배씩 더 주기 ( 실질적으로 5마에서 4배, 4마에서 6배가 됨 )
+	// 노프랜드 1.5배씩 더 주기 ( 실질적으로 5마에서 3배, 4마에서 4.5배가 됨 )
 	bool bS_DoubleForNoFriend;
 	// 런일때 고정액 있음 ( ..ForRun 을 오버라이드함 )
 	// 이 값은 20 으로 한다
 	bool bS_StaticRun;
+	// 백런조건
+	// 야당이 여당의 공약 이상을 땄을 때
+	bool bS_AGoalReverse;
+	// 야당이 11장 이상을 땄을 때
+	bool bS_A11Reverse;
+	// 야당이 기본 이상을 땄을 때
+	bool bS_AMReverse;
 
 	// 진행
 

@@ -216,6 +216,14 @@ public:
 	// 하나가 죽는다 !
 	virtual void OnKillOneFromSix(
 		CCard* pcCardToKill, CCardList* plcFailedCardsTillNow );
+	// 7마에서 당선된 경우 두 사람을 죽여야 한다
+	// 이 함수는 그 중 하나만 죽이는 함수로,
+	// OnKillOneFromSix와 같다.
+	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
+	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
+	// 하나가 죽는다 !
+	virtual void OnKillOneFromSeven(
+		CCard* pcCardToKill, CCardList* plcFailedCardsTillNow );
 
 	// 공약을 듣는다
 	// pNewGoal 과 state.goal 에 현재까지의 공약이 기록되어 있다
@@ -832,7 +840,7 @@ void CMaiBSWAlgo::Goal( int* pnKiruda, int* pnMinScore, CCard acDrop[3],
 		lc.AddTail( (CList<CCard,CCard>*)pDeck );
 
 	ASSERT( lc.GetCount() == 13 || lc.GetCount() == 8
-		|| lc.GetCount() == 10 );
+		|| lc.GetCount() == 7 || lc.GetCount() == 10 );	//v4.0에서 수정됨
 
 	m_pUpdate->SetProgress( 10 );	// 10 % 완료
 
@@ -955,17 +963,16 @@ int CMaiBSWAlgo::Friend( int nKiruda, const CCardList* pHand, const CCardList* p
 		}
 		if ( i <= CLOVER ) break;
 
+		// 기 Q
+		c = CCard( nKiruda, QUEEN );
+		if ( !pHand->Find(c) ) break;
+
 	} while(0);
 
 	if ( (int)c ) nFriend = (int)c;
 	else {
-		ASSERT(0);
-		// 카드 프랜드는 아니므로
-		// 노프랜드, 초구, 왼쪽 플레이어 중에서 고른다
-		int s = rand() % 3;	// 주사위 던지기
-		if ( s == 0 ) nFriend = 0;	// 노프랜드
-		else if ( s == 1 ) nFriend = 1;	// 초구
-		else nFriend = -CCard::GetState()->nPlayers;	// 왼쪽
+		// 초구프랜드로 한다.
+		nFriend = 1;
 	}
 
 	return nFriend;
@@ -1508,7 +1515,7 @@ CMaiBSWWrap::CMaiBSWWrap( LPCTSTR sOption, MAIDLL_UPDATE* pUpdate )
 	m_pUpdate = pUpdate;
 	m_pState = 0;
 
-	if ( !sOption || _stscanf( sOption, _T("%d %d %d"),
+	if ( !sOption || sscanf_s( sOption, _T("%d %d %d"),
 		&m_bGoalMode, &m_bUseSimulation, &m_nPrideFac ) != 3 ) {
 
 		m_nPrideFac = 5;
@@ -1538,7 +1545,7 @@ const CCardList* CMaiBSWWrap::GetHand() const
 void CMaiBSWWrap::SetOption( HWND hWnd )
 {
 	CMaiBSWSetting dlg( CWnd::FromHandle(hWnd) );
-	if ( _stscanf( m_sOption, _T("%d %d %d"),
+	if ( sscanf_s( m_sOption, _T("%d %d %d"),
 		&dlg.m_bGoalMode, &dlg.m_bUseSimulation, &dlg.m_nFactor )
 		!= 3 ) {
 		dlg.m_bGoalMode = m_bGoalMode ? TRUE : FALSE;
@@ -1548,7 +1555,7 @@ void CMaiBSWWrap::SetOption( HWND hWnd )
 
 	if ( dlg.DoModal() == IDOK ) {
 
-		_stprintf( m_sOption.GetBuffer(16), _T("%d %d %d"),
+		sprintf( m_sOption.GetBuffer(16), _T("%d %d %d"),
 			dlg.m_bGoalMode, dlg.m_bUseSimulation, dlg.m_nFactor );
 		m_sOption.ReleaseBuffer();
 
@@ -1580,8 +1587,8 @@ void CMaiBSWWrap::OnElection( CGoal* pNewGoal )
 	CCard acDrop[3];
 	m_pBSW->Goal( &nKiruda, &nMinScore, acDrop,
 		GetHand(), m_nPrideFac,
-		// 6 마의 경우 그 덱을 내가 가진다는 보장이 없다
-		m_pState->pRule->nPlayerNum == 6 ? 0 : &m_pState->lDeck );
+		// 6,7 마의 경우 그 덱을 내가 가진다는 보장이 없다
+		m_pState->pRule->nPlayerNum >= 6 ? 0 : &m_pState->lDeck );
 
 	pNewGoal->nFriend = 0;
 	pNewGoal->nKiruda = nKiruda;
@@ -1595,7 +1602,7 @@ void CMaiBSWWrap::OnElection( CGoal* pNewGoal )
 			? pNewGoal->nMinScore + 1 : m_pState->pRule->nMinScore;
 }
 
-// 6마에서 당선된 경우 한 사람을 죽여야 한다
+// 6 마에서 당선된 경우 한 명을 죽여야 한다
 // 죽일 카드를 지정하면 된다 - 단 이 함수는
 // 반복적으로 호출될 수 있다 - 이 경우
 // CCardList 에 지금까지 실패한 카드의 리스트가
@@ -1604,6 +1611,18 @@ void CMaiBSWWrap::OnElection( CGoal* pNewGoal )
 // 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
 // 하나가 죽는다 !
 void CMaiBSWWrap::OnKillOneFromSix(
+	CCard* pcCardToKill, CCardList* plcFailedCardsTillNow )
+{
+	*pcCardToKill = m_pBSW->Kill(
+		GetHand(), plcFailedCardsTillNow );
+}
+// 7마에서 당선된 경우 두 사람을 죽여야 한다
+// 이 함수는 그 중 하나만 죽이는 함수로,
+// OnKillOneFromSix와 같다.
+// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
+// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
+// 하나가 죽는다 !
+void CMaiBSWWrap::OnKillOneFromSeven(
 	CCard* pcCardToKill, CCardList* plcFailedCardsTillNow )
 {
 	*pcCardToKill = m_pBSW->Kill(

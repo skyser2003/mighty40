@@ -247,7 +247,7 @@ int CBoard::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// 커서 읽기
 	if ( !m_hArrow ) m_hArrow = AfxGetApp()->LoadStandardCursor( IDC_ARROW );
-	if ( !m_hHand ) m_hHand = AfxGetApp()->LoadCursor( IDC_HAND );
+	if ( !m_hHand ) m_hHand = AfxGetApp()->LoadCursor( IDC_FOCUS );
 
 	// 폰트 생성
 	CreateFont();

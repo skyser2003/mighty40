@@ -14,11 +14,11 @@
 
 // 변하지 않는 상수들
 #define LAST_TURN 9
-#define MAX_PLAYERS 6
+#define MAX_PLAYERS 7
 #define MAX_SCORE 20
 #define HIGHSCORE_MAXLIMIT 25
 #define DECK_SIZE 53
-#define MIGHTY_VERSION 31
+#define MIGHTY_VERSION 40
 
 #define BASE_MONEY 100	// 1 인당 기본 점수 단위
 #define MONEY_UNIT 10	// BASE_MONEY 1 당 실제 돈

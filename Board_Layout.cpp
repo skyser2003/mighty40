@@ -17,7 +17,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 // 플레이어번호를 매핑한다 - 아래쪽 플레이어부터
-// 시계 방향으로 0 ~ 5 의 표현 방법(절대값)을
+// 시계 방향으로 0 ~ 6(v4.0) 의 표현 방법(절대값)을
 // 실제 플레이어 번호(논리값)로 매핑하거나 역변환 한다
 int CBoard::MapAbsToLogic( int nAbsPlayer ) const
 {
@@ -243,7 +243,7 @@ void CBoard::CreateFont()
 	lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 	lf.lfQuality = DEFAULT_QUALITY;
 	lf.lfPitchAndFamily = DEFAULT_PITCH|FF_SWISS;
-	_tcscpy( lf.lfFaceName, _T("돋움") );
+	_tcscpy_s( lf.lfFaceName, _T("돋움") );
 
 	// 작은 글꼴
 	lf.lfHeight = -lfSmallHeight;
@@ -294,7 +294,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 #define GR_CENTEREDRECT( RC, X, Y, W, H ) RC( (X)-(W)/2, (Y)-(H)/2, (X)-(W)/2+(W), (Y)-(H)/2+(H) )
 
 	// 여기서 사용하는 플레이어 번호는 절대 좌표다
-	// 언제나 아래쪽 부터 시계방향으로 0 ~ 5 의 번호를 갖는다
+	// 언제나 아래쪽 부터 시계방향으로 0 ~ 6(v4.0) 의 번호를 갖는다
 	nPlayer = MapLogicToAbs(nPlayer);
 
 	// 플레이어 수와 플레이어 위치 정보
@@ -304,13 +304,14 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 	// 32(top) 64( top-vcenter) 128(vcenter)
 	//                  256(bottom-vcenter) 512(bottom)
 	static const int aanLocInfo[MAX_PLAYERS+1][MAX_PLAYERS] = {
-		{ 0, 0, 0, 0, 0, 0 },						// 0 명
-		{ 4+512, 0, 0, 0, 0, 0 },					// 1 명
-		{ 4+512, 4+32, 0, 0, 0, 0 },				// 2 명
-		{ 4+512, 1+64, 16+64, 0, 0, 0 },			// 3 명
-		{ 4+512, 1+128, 4+32, 16+128, 0, 0 },		// 4 명
-		{ 4+512, 1+256, 2+32, 8+32, 16+256, 0  },	// 5 명
-		{ 8+512, 2+512, 1+128, 2+32, 8+32, 16+128 },// 6 명
+		{ 0, 0, 0, 0, 0, 0, 0 },							// 0 명
+		{ 4+512, 0, 0, 0, 0, 0, 0 },						// 1 명
+		{ 4+512, 4+32, 0, 0, 0, 0, 0 },						// 2 명
+		{ 4+512, 1+64, 16+64, 0, 0, 0, 0 },					// 3 명
+		{ 4+512, 1+128, 4+32, 16+128, 0, 0, 0 },			// 4 명
+		{ 4+512, 1+256, 2+32, 8+32, 16+256, 0, 0  },		// 5 명
+		{ 8+512, 2+512, 1+128, 2+32, 8+32, 16+128, 0 },		// 6 명
+		{ 4+512, 1+256, 1+64, 2+32, 8+32, 16+64, 16+256 },	// 7 명
 	};
 
 
