@@ -1,0 +1,1621 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 18, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Mighty.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.kor\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Mighty.ico"
+IDI_IEX                 ICON    DISCARDABLE     "res\\iex.ico"
+IDI_MYCOM               ICON    DISCARDABLE     "res\\mycom.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "게임(&G)"
+    BEGIN
+        MENUITEM "점수판보기(&V)",              ID_APP_SCOREBOARD
+        MENUITEM "옵션(&O)...",                 ID_APP_OPTION
+        MENUITEM SEPARATOR
+        MENUITEM "초기메뉴로(&I)",              ID_GAME_EXIT
+        MENUITEM "종료(&X)",                    ID_APP_EXIT
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "도움말(&H)...\tF1",           ID_HELP
+        MENUITEM "Mighty 정보(&A)...",          ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,1
+ PRODUCTVERSION 3,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041203b5"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "마이티 네트워크 3.2\0"
+            VALUE "FileVersion", "3, 0, 0, 1\0"
+            VALUE "InternalName", "Mighty Network 3.2\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net)\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Mighty.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "마이티 네트워크 3.2\0"
+            VALUE "ProductVersion", "3, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 949
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDW_BEGIN               WAVE    DISCARDABLE     "res\\게임시작.wav"
+IDW_NOTIFY              WAVE    DISCARDABLE     "res\\공지.wav"
+IDW_SCORE               WAVE    DISCARDABLE     "res\\득점.wav"
+IDW_MIGHTY              WAVE    DISCARDABLE     "res\\마이티.wav"
+IDW_SUFFLE              WAVE    DISCARDABLE     "res\\섞기.wav"
+IDW_WIN                 WAVE    DISCARDABLE     "res\\승리.wav"
+IDW_JOKER               WAVE    DISCARDABLE     "res\\조커.wav"
+IDW_JOKERCALL           WAVE    DISCARDABLE     "res\\조커콜.wav"
+IDW_KILLEDJOKER         WAVE    DISCARDABLE     "res\\죽은조커.wav"
+IDW_KIRUDA              WAVE    DISCARDABLE     "res\\찍기.wav"
+IDW_CARD                WAVE    DISCARDABLE     "res\\카드.wav"
+IDW_GETCARD             WAVE    DISCARDABLE     "res\\카드받기.wav"
+IDW_LOSE                WAVE    DISCARDABLE     "res\\패배.wav"
+IDW_BEEP                WAVE    DISCARDABLE     "res\\삑.wav"
+IDW_GOAL                WAVE    DISCARDABLE     "res\\공약.wav"
+IDW_CHULK               WAVE    DISCARDABLE     "res\\철컥.wav"
+IDW_GIVEUP              WAVE    DISCARDABLE     "res\\포기.wav"
+IDW_CARDSET             WAVE    DISCARDABLE     "res\\카드셋.wav"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_HAND                CURSOR  DISCARDABLE     "res\\Hand.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_STOP                BITMAP  DISCARDABLE     "res\\Stop.bmp"
+IDB_BACK1               BITMAP  DISCARDABLE     "res\\Back1.bmp"
+IDB_BACK10              BITMAP  DISCARDABLE     "res\\Back10.bmp"
+IDB_BACK11              BITMAP  DISCARDABLE     "res\\Back11.bmp"
+IDB_BACK2               BITMAP  DISCARDABLE     "res\\Back2.bmp"
+IDB_BACK3               BITMAP  DISCARDABLE     "res\\Back3.bmp"
+IDB_BACK4               BITMAP  DISCARDABLE     "res\\Back4.bmp"
+IDB_BACK5               BITMAP  DISCARDABLE     "res\\Back5.bmp"
+IDB_BACK6               BITMAP  DISCARDABLE     "res\\Back6.bmp"
+IDB_BACK7               BITMAP  DISCARDABLE     "res\\Back7.bmp"
+IDB_BACK8               BITMAP  DISCARDABLE     "res\\Back8.bmp"
+IDB_BACK9               BITMAP  DISCARDABLE     "res\\Back9.bmp"
+IDB_C10                 BITMAP  DISCARDABLE     "res\\C10.bmp"
+IDB_C2                  BITMAP  DISCARDABLE     "res\\C2.bmp"
+IDB_C3                  BITMAP  DISCARDABLE     "res\\C3.bmp"
+IDB_C4                  BITMAP  DISCARDABLE     "res\\C4.bmp"
+IDB_C5                  BITMAP  DISCARDABLE     "res\\C5.bmp"
+IDB_C6                  BITMAP  DISCARDABLE     "res\\C6.bmp"
+IDB_C7                  BITMAP  DISCARDABLE     "res\\C7.bmp"
+IDB_C8                  BITMAP  DISCARDABLE     "res\\C8.bmp"
+IDB_CA                  BITMAP  DISCARDABLE     "res\\Ca.bmp"
+IDB_CJ                  BITMAP  DISCARDABLE     "res\\Cj.bmp"
+IDB_CK                  BITMAP  DISCARDABLE     "res\\Ck.bmp"
+IDB_CLOVER              BITMAP  DISCARDABLE     "res\\Clover.bmp"
+IDB_CQ                  BITMAP  DISCARDABLE     "res\\Cq.bmp"
+IDB_D10                 BITMAP  DISCARDABLE     "res\\D10.bmp"
+IDB_D2                  BITMAP  DISCARDABLE     "res\\D2.bmp"
+IDB_D3                  BITMAP  DISCARDABLE     "res\\D3.bmp"
+IDB_D4                  BITMAP  DISCARDABLE     "res\\D4.bmp"
+IDB_D5                  BITMAP  DISCARDABLE     "res\\D5.bmp"
+IDB_D6                  BITMAP  DISCARDABLE     "res\\D6.bmp"
+IDB_D7                  BITMAP  DISCARDABLE     "res\\D7.bmp"
+IDB_D8                  BITMAP  DISCARDABLE     "res\\D8.bmp"
+IDB_D9                  BITMAP  DISCARDABLE     "res\\D9.bmp"
+IDB_DA                  BITMAP  DISCARDABLE     "res\\Da.bmp"
+IDB_DIAMOND             BITMAP  DISCARDABLE     "res\\Diamond.bmp"
+IDB_DJ                  BITMAP  DISCARDABLE     "res\\Dj.bmp"
+IDB_DK                  BITMAP  DISCARDABLE     "res\\Dk.bmp"
+IDB_DQ                  BITMAP  DISCARDABLE     "res\\Dq.bmp"
+IDB_H10                 BITMAP  DISCARDABLE     "res\\H10.bmp"
+IDB_H2                  BITMAP  DISCARDABLE     "res\\H2.bmp"
+IDB_H3                  BITMAP  DISCARDABLE     "res\\H3.bmp"
+IDB_H4                  BITMAP  DISCARDABLE     "res\\H4.bmp"
+IDB_H5                  BITMAP  DISCARDABLE     "res\\H5.bmp"
+IDB_H6                  BITMAP  DISCARDABLE     "res\\H6.bmp"
+IDB_H7                  BITMAP  DISCARDABLE     "res\\H7.bmp"
+IDB_H9                  BITMAP  DISCARDABLE     "res\\H9.bmp"
+IDB_HA                  BITMAP  DISCARDABLE     "res\\Ha.bmp"
+IDB_HEART               BITMAP  DISCARDABLE     "res\\Heart.bmp"
+IDB_HJ                  BITMAP  DISCARDABLE     "res\\Hj.bmp"
+IDB_HK                  BITMAP  DISCARDABLE     "res\\Hk.bmp"
+IDB_HQ                  BITMAP  DISCARDABLE     "res\\Hq.bmp"
+IDB_JOKER               BITMAP  DISCARDABLE     "res\\Joker.bmp"
+IDB_NOTHING             BITMAP  DISCARDABLE     "res\\Nothing.bmp"
+IDB_S10                 BITMAP  DISCARDABLE     "res\\S10.bmp"
+IDB_S2                  BITMAP  DISCARDABLE     "res\\S2.bmp"
+IDB_S3                  BITMAP  DISCARDABLE     "res\\S3.bmp"
+IDB_S4                  BITMAP  DISCARDABLE     "res\\S4.bmp"
+IDB_S5                  BITMAP  DISCARDABLE     "res\\S5.bmp"
+IDB_S6                  BITMAP  DISCARDABLE     "res\\S6.bmp"
+IDB_S7                  BITMAP  DISCARDABLE     "res\\S7.bmp"
+IDB_S8                  BITMAP  DISCARDABLE     "res\\S8.bmp"
+IDB_S9                  BITMAP  DISCARDABLE     "res\\S9.bmp"
+IDB_SA                  BITMAP  DISCARDABLE     "res\\Sa.bmp"
+IDB_SJ                  BITMAP  DISCARDABLE     "res\\Sj.bmp"
+IDB_SK                  BITMAP  DISCARDABLE     "res\\Sk.bmp"
+IDB_SPADE               BITMAP  DISCARDABLE     "res\\Spade.bmp"
+IDB_SQ                  BITMAP  DISCARDABLE     "res\\Sq.bmp"
+IDB_H8                  BITMAP  DISCARDABLE     "res\\H8.bmp"
+IDB_C9                  BITMAP  DISCARDABLE     "res\\C9.bmp"
+IDB_GRAY                BITMAP  DISCARDABLE     "res\\gray.bmp"
+IDB_MIGHTY              BITMAP  DISCARDABLE     "res\\mighty.bmp"
+IDB_PERSON              BITMAP  DISCARDABLE     "res\\person.bmp"
+IDB_SHADE               BITMAP  DISCARDABLE     "res\\shade.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTION_GENERAL DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "일반"
+FONT 9, "굴림"
+BEGIN
+    EDITTEXT        IDC_HUMANNAME,7,65,76,14,ES_AUTOHSCROLL
+    ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
+    LTEXT           "Mighty Network 3.2\n마이티 네트워크 3.2\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)",
+                    IDC_STATIC,37,7,104,36
+    CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,90,83,10
+    CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,103,96,10
+    CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,116,100,10
+    LTEXT           "플레이어의 이름",IDC_STATIC,7,54,85,8
+    CONTROL         "정렬 없음(&N)",IDC_SORTMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,116,73,102,10
+    CONTROL         "기루다 왼쪽, A 왼쪽(&1)",IDC_SORTMODE1,"Button",
+                    BS_AUTORADIOBUTTON,116,83,102,10
+    CONTROL         "기루다 왼쪽, A 오른쪽(&2)",IDC_SORTMODE2,"Button",
+                    BS_AUTORADIOBUTTON,116,93,102,10
+    CONTROL         "기루다 오른쪽, A 왼쪽(&3)",IDC_SORTMODE3,"Button",
+                    BS_AUTORADIOBUTTON,116,103,102,10
+    CONTROL         "기루다 오른쪽, A 오른쪽(&4)",IDC_SORTMODE4,"Button",
+                    BS_AUTORADIOBUTTON,116,113,105,10
+    GROUPBOX        "카드 정렬",IDC_STATIC,110,62,114,66,WS_GROUP
+    LTEXT           "우측 위의 ? 버튼을 누른 다음 컨트롤을 클릭하면 간단한 도움말이 나타납니다",
+                    IDC_STATIC,143,7,81,36
+END
+
+IDD_RULE_CARD DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "카드"
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "보조 카드란 ?\n마이티, 조커콜과 같은 특별 카드들의 모양이 기루다로 선택된 경우 그 게임에서만 이들 특별 카드를 다른 카드로 바꾸어서 플레이 하는데, 이 대체 카드가 보조 카드가 되는 것입니다",
+                    IDC_STATIC,7,7,179,41
+    LTEXT           "기본 마이티",IDC_STATIC,23,63,58,8
+    COMBOBOX        IDC_CARD_MIGHTY,23,80,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "보조 마이티 (빨마)",IDC_STATIC,89,63,81,8
+    COMBOBOX        IDC_CARD_ALTMIGHTY,89,81,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "기본 조커콜",IDC_STATIC,23,108,54,8
+    COMBOBOX        IDC_CARD_JOKERCALL,23,125,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "보조 조커콜",IDC_STATIC,89,108,68,8
+    COMBOBOX        IDC_CARD_ALTJOKERCALL,89,125,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTION_BOSSKEY DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "보스키"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "임의(&R)",IDC_BOSSTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,64,77,10
+    CONTROL         "현재폴더가 가장 상위폴더입니다 (&1)",IDC_BOSSTYPE1,
+                    "Button",BS_AUTORADIOBUTTON,17,77,195,10
+    CONTROL         "지울수 없습니다:엑세스가 거부되었습니다 (&2)",
+                    IDC_BOSSTYPE2,"Button",BS_AUTORADIOBUTTON,17,90,196,10
+    CONTROL         "사이트를 찾을 수 없습니다 (&3)",IDC_BOSSTYPE3,"Button",
+                    BS_AUTORADIOBUTTON,17,103,196,10
+    CONTROL         "다운로드 완료 (&4)",IDC_BOSSTYPE4,"Button",
+                    BS_AUTORADIOBUTTON,17,116,170,10
+    GROUPBOX        "보스키가 작동중일 때 화면에 보일 가짜 모습",IDC_STATIC,
+                    7,48,217,90,WS_GROUP
+    LTEXT           "보스키란 ?\n게임을 하는 모습을 다른 사람이 보는 것을 원하지 않을 때\n순간적으로 게임 화면을 감추는 방법을 말합니다\n이 게임은 'Pause' 키가 보스키입니다",
+                    IDC_STATIC,7,7,217,33
+END
+
+IDD_OPTION_CARD DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "카드"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "카드 확대/축소 기능 사용(&Z)",IDC_ZOOMCARD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,63,120,10
+    CONTROL         "카드 도움말 사용(&H)",IDC_CARDHELP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,81,107,10
+    CONTROL         "카드 툴팁 사용(&T)",IDC_CARDTIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,97,94,10
+    CONTROL         "",IDC_SAMPLEBACK,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,
+                    155,33,41,64
+    PUSHBUTTON      "뒷면 그림 선택(&P)...",IDC_BACKSELECT,137,105,75,14
+    LTEXT           "현재 선택된 뒷면 그림",IDC_STATIC,138,18,86,8
+    CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,
+                    15,120,38
+END
+
+IDD_SELECTBACK DIALOG DISCARDABLE  0, 0, 279, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "카드 뒷면 그림 선택"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         770,IDC_BACKPIC1,"Static",SS_BITMAP | SS_NOTIFY,7,7,41,
+                    64
+    CONTROL         771,IDC_BACKPIC2,"Static",SS_BITMAP | SS_NOTIFY,52,7,41,
+                    64
+    CONTROL         772,IDC_BACKPIC3,"Static",SS_BITMAP | SS_NOTIFY,97,7,41,
+                    64
+    CONTROL         773,IDC_BACKPIC4,"Static",SS_BITMAP | SS_NOTIFY,142,7,41,
+                    64
+    CONTROL         774,IDC_BACKPIC5,"Static",SS_BITMAP | SS_NOTIFY,187,7,41,
+                    64
+    CONTROL         775,IDC_BACKPIC6,"Static",SS_BITMAP | SS_NOTIFY,232,7,41,
+                    64
+    CONTROL         776,IDC_BACKPIC7,"Static",SS_BITMAP | SS_NOTIFY,7,77,41,
+                    64
+    CONTROL         777,IDC_BACKPIC8,"Static",SS_BITMAP | SS_NOTIFY,52,77,41,
+                    64
+    CONTROL         778,IDC_BACKPIC9,"Static",SS_BITMAP | SS_NOTIFY,97,77,41,
+                    64
+    CONTROL         779,IDC_BACKPIC10,"Static",SS_BITMAP | SS_NOTIFY,142,77,
+                    41,64
+    CONTROL         780,IDC_BACKPIC11,"Static",SS_BITMAP | SS_NOTIFY,187,77,
+                    41,64
+    PUSHBUTTON      "찾아보기...",IDC_BACKBROWSE,232,107,40,14
+    PUSHBUTTON      "취소",IDCANCEL,232,126,40,14
+END
+
+IDD_OPTION_BACKGROUND DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "배경"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "배경 그림 사용(&G)",IDC_USEBACKGROUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,148,44,76,10
+    CONTROL         "가운데(&C)",IDC_BACKALIGN,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,154,74,62,10
+    CONTROL         "타일(&T)",IDC_BACKALIGN1,"Button",BS_AUTORADIOBUTTON,
+                    154,88,62,10
+    CONTROL         "화면에 맞춤(&F)",IDC_BACKALIGN2,"Button",
+                    BS_AUTORADIOBUTTON,154,102,62,10
+    GROUPBOX        "배경 그림",IDC_STATIC,148,61,76,77,WS_GROUP
+    PUSHBUTTON      "찾아보기(&W)...",IDC_BACKGROUNDBROWSE,164,118,54,14
+    CONTROL         "",IDC_SAMPLEBACKGROUND,"Static",SS_GRAYFRAME | NOT 
+                    WS_VISIBLE,7,7,130,111
+    PUSHBUTTON      "여당 색상(&D)...",IDC_DEFCOLSELECT,7,124,63,14
+    PUSHBUTTON      "야당 색상(&A)...",IDC_ATTCOLSELECT,74,124,63,14
+    PUSHBUTTON      "배경 색상(&B)...",IDC_BACKGROUNDCOLSELECT,148,7,76,14
+END
+
+IDD_OPTION_DSB DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "음영 상자"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,112,27,112,10
+    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",
+                    IDC_STATIC,106,95,118,43
+    CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,
+                    7,7,96,92
+    CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,54,76,10
+    CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",
+                    BS_AUTORADIOBUTTON,121,65,76,10
+    CONTROL         "어둡게(&A)",IDC_DSBSHADEMODE2,"Button",
+                    BS_AUTORADIOBUTTON,121,76,75,10
+    GROUPBOX        "음영 처리 방법",IDC_STATIC,111,42,113,49,WS_GROUP
+    PUSHBUTTON      "표준(&S)...",IDC_DSBTEXTCOLSELECT,7,107,50,14
+    PUSHBUTTON      "흐림(&D)...",IDC_DSBGRAYCOLSELECT,7,124,50,14
+    PUSHBUTTON      "강조&1...",IDC_DSBSTRONG1COLSELECT,60,107,43,14
+    PUSHBUTTON      "강조&2...",IDC_DSBSTRONG2COLSELECT,60,124,43,14
+    LTEXT           "음영 상자는 Windows의\n대화 상자와 같은 것입니다",
+                    IDC_STATIC,110,7,114,17
+END
+
+IDD_OPTION_SPEED DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "진행 속도"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,13,191,10
+    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",
+                    IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,
+                    25,211,10
+    GROUPBOX        "카드 속도",IDC_CARDSPEEDGROUP,7,40,103,47
+    LTEXT           "느리게",IDC_STATIC,13,50,36,8
+    RTEXT           "빠르게",IDC_STATIC,67,50,37,8
+    CONTROL         "Slider1",IDC_CARDSPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,13,59,90,21
+    GROUPBOX        "그려지는 프레임 수",IDC_CARDMOTIONGROUP,7,91,103,47
+    LTEXT           "부드럽게",IDC_STATIC,13,101,43,8
+    RTEXT           "거칠게",IDC_STATIC,68,101,36,8
+    CONTROL         "Slider1",IDC_CARDMOTION,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,13,110,90,21
+    GROUPBOX        "카드 한장에 대한 대기 시간",IDC_STATIC,121,40,103,47
+    LTEXT           "짧게",IDC_STATIC,127,50,30,8
+    RTEXT           "길게",IDC_STATIC,189,50,29,8
+    CONTROL         "Slider2",IDC_DELAYONECARD,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,59,90,21
+    GROUPBOX        "기타 여러가지 대기 시간",IDC_STATIC,121,91,103,47
+    LTEXT           "짧게",IDC_STATIC,127,101,30,8
+    RTEXT           "길게",IDC_STATIC,189,101,29,8
+    CONTROL         "Slider2",IDC_DELAYONETURN,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,110,90,21
+END
+
+IDD_OPTION_RULE DIALOGEX 0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "게임 규칙"
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",
+                    IDC_STATIC,14,13,210,35
+    LTEXT           "현재 선택된 기본 규칙",IDC_STATIC,17,59,115,8
+    COMBOBOX        IDC_RULEPRESET,17,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "자세히(&D)...",IDC_SHOWRULE,118,73,50,14
+    LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,17,99,
+                    148,8
+    EDITTEXT        IDC_RULESTRING,17,113,67,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+END
+
+IDD_OPTION_AI DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "인공지능"
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "1 :",IDC_STATIC,7,46,9,8
+    EDITTEXT        IDC_PLAYERNAME0,21,43,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH0,77,46,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE0,143,43,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING0,188,43,36,14
+    LTEXT           "2 :",IDC_STATIC,7,66,9,8
+    EDITTEXT        IDC_PLAYERNAME1,21,63,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH1,77,66,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE1,143,63,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING1,188,63,36,14
+    LTEXT           "3 :",IDC_STATIC,7,86,9,8
+    EDITTEXT        IDC_PLAYERNAME2,21,83,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH2,77,86,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE2,143,83,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING2,188,83,36,14
+    LTEXT           "4 :",IDC_STATIC,7,106,9,8
+    EDITTEXT        IDC_PLAYERNAME3,21,103,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH3,77,106,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE3,143,103,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING3,188,103,36,14
+    LTEXT           "5 :",IDC_STATIC,7,126,9,8
+    EDITTEXT        IDC_PLAYERNAME4,21,123,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH4,77,126,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE4,143,123,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING4,188,123,36,14
+    LTEXT           "이름",IDC_STATIC,25,27,35,8
+    LTEXT           "인공지능 확장 파일 (DLL)",IDC_STATIC,79,27,81,8
+    PUSHBUTTON      "DLL 경로 초기화",IDC_RESETPATH,164,7,60,14
+END
+
+IDD_MAIINFO DIALOG DISCARDABLE  0, 0, 207, 141
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AI 정보"
+FONT 9, "굴림"
+BEGIN
+    RTEXT           "파일명 :",IDC_STATIC,7,7,35,8
+    LTEXT           "filename",IDC_MAIINFO_FILENAME,47,7,153,8
+    RTEXT           "이름 :",IDC_STATIC,7,18,35,8
+    LTEXT           "name",IDC_MAIINFO_NAME,47,18,153,8
+    RTEXT           "설명 :",IDC_STATIC,7,29,35,8
+    LTEXT           "explain",IDC_MAIINFO_EXPLAIN,47,29,153,87
+    DEFPUSHBUTTON   "확인",IDOK,148,120,52,14
+    PUSHBUTTON      "이 플레이어에 대한 설정 변경(&S)...",IDC_CHANGEOPTION,7,
+                    120,136,14
+END
+
+IDD_OPTION_COMM DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "통신"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "다른 사람과의 게임 중에 카드 팁을 볼 수 있음",
+                    IDC_USEHINTINNETWORK,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,13,19,190,10
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",
+                    IDC_STATIC,13,39,189,8
+    EDITTEXT        IDC_PORT,14,50,86,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,13,71,108,8
+    EDITTEXT        IDC_ADDRESS,14,83,86,14,ES_AUTOHSCROLL
+    LTEXT           "Mighty.Net 기본 주소 :",IDC_STATIC,13,103,100,8,
+                    WS_DISABLED
+    EDITTEXT        IDC_MIGHTYNETADDRESS,14,117,86,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "네트워크 게임 전적",IDC_STATIC,130,67,79,8
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,113,81,44,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE,162,81,52,27
+    PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,139,113,50,14
+END
+
+IDD_OPTION_CHAT DIALOG DISCARDABLE  0, 0, 231, 145
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "채팅"
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "채팅창 버퍼 크기",IDC_STATIC,13,16,70,8
+    EDITTEXT        IDC_CHATBUFFERSIZE,14,31,40,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | ES_NUMBER
+    CONTROL         "Spin1",IDC_CHATBUFFERSIZESPIN,"msctls_updown32",
+                    UDS_WRAP | UDS_SETBUDDYINT | UDS_ALIGNRIGHT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,53,31,9,
+                    14
+    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,99,7,103,51
+    LTEXT           "짧게",IDC_STATIC,105,21,27,8
+    RTEXT           "길게",IDC_STATIC,172,21,24,8
+    CONTROL         "Slider2",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,105,30,90,21
+END
+
+IDD_RULE_GENERAL DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "일반"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "시계 방향으로 진행",IDC_CLOCKWISE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,15,125,10
+    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,31,165,10
+    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,141,10
+    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,13,87,79,10
+    CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,13,99,78,10
+    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,13,111,
+                    79,10
+    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,
+                    13,123,78,10
+    GROUPBOX        "플레이어 수",IDC_STATIC,7,75,94,65,WS_GROUP
+END
+
+IDD_RULE_ELECTION DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "선거"
+FONT 9, "굴림"
+BEGIN
+    RTEXT           "기본 목표 점수 :",IDC_STATIC,7,10,61,8
+    COMBOBOX        IDC_MINSCORE,72,7,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,139,10
+    CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,40,157,10
+    CONTROL         "노기루다일때 기본 점수보다 1 적게 부를 수 있음",
+                    IDC_NOKIRUDAADVANTAGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,53,179,10
+    CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",
+                    IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,66,151,10
+    CONTROL         "노기루다로 바꿀 때는 목표점수를 1 만 올림",
+                    IDC_RAISE1FORNOKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,79,161,10
+    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,92,106,10
+    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,105,132,10
+    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",
+                    IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,118,154,10
+    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",
+                    IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,131,163,10
+END
+
+IDD_RULE_CONSTRAIN DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "제약 조건"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "첫 턴에 마이티 낼 수 있음",IDC_INITMIGHTY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,125,10
+    CONTROL         "첫 턴에 나온 마이티 효력 있음",IDC_INITMIGHTYEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,18,138,10
+    CONTROL         "마지막 턴에 마이티 낼 수 있음",IDC_LASTMIGHTY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,146,10
+    CONTROL         "마지막 턴에 나온 마이티 효력 있음",IDC_LASTMIGHTYEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,40,155,10
+    CONTROL         "조커콜에 조커 대신 마이티를 낼 수 있음",
+                    IDC_OVERRIDEMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,51,163,10
+    CONTROL         "첫 턴에 조커 낼 수 있음",IDC_INITJOKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,62,110,10
+    CONTROL         "첫 턴에 나온 조커 효력 있음",IDC_INITJOKEREFFECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,73,123,10
+    CONTROL         "마지막 턴에 조커 낼 수 있음",IDC_LASTJOKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,84,129,10
+    CONTROL         "마지막 턴에 나온 조커 효력 있음",IDC_LASTJOKEREFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,95,139,10
+    CONTROL         "첫 턴에 선이 아닌 플레이어는 기루다 낼 수 있음",
+                    IDC_INITKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    106,179,10
+    CONTROL         "첫턴에 선도 기루다 낼 수 있음",IDC_INITBEGINKIRUDA,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,117,131,10
+    CONTROL         "첫 턴에 조커콜 효력 있음",IDC_INITJOKERCALLEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,128,120,10
+    CONTROL         "조커콜 당한 조커가 조커 효력 있음",
+                    IDC_JOKERCALLJOKEREFFECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,139,148,10
+END
+
+IDD_RULE_DEALMISS DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "딜 미스"
+FONT 9, "굴림"
+BEGIN
+    LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",
+                    IDC_STATIC,7,7,179,35
+    CONTROL         "점수 카드가 하나도 없으면 딜 미스",IDC_DM_NOPOINT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,152,10
+    CONTROL         "모든 카드가 점수카드면 딜 미스",IDC_DM_ALLPOINT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,147,10
+    CONTROL         "위의 두 경우 마이티를 점수 카드로 계산",
+                    IDC_DM_MIGHTYISPOINT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,73,156,10
+    CONTROL         "위의 두 경우 조커를 점수 카드로 계산",
+                    IDC_DM_JOKERISPOINT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,86,141,10
+    CONTROL         "조커가 있으면 점수 카드를 하나 제할 수 있음",
+                    IDC_DM_JOKERISREVERSEPOINT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,99,171,10
+    CONTROL         "점수카드가 10 한 장뿐인 경우 딜미스",IDC_DM_ONLY10,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,112,179,10
+    CONTROL         "점수카드가 애꾸눈 잭 한 장뿐인 경우 딜 미스",
+                    IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,125,170,10
+    CONTROL         "점수카드가 마이티 한 장 뿐인 경우 딜 미스",
+                    IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,138,167,10
+END
+
+IDD_RULE_SCORE DIALOG DISCARDABLE  0, 0, 193, 155
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "점수계산법"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "빽런은 2 배 줌",IDC_S_REVERSERUN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,105,45,81,10
+    CONTROL         "노프랜드는 2 배씩 줌",IDC_S_NOFRIEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,105,56,81,10
+    CONTROL         "노기루다는 2 배씩 줌",IDC_S_NOKIRUDA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,105,67,81,10
+    CONTROL         "위험 보상 (2.0 호환)",IDC_S_0,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,17,81,10
+    CONTROL         "눈에는 눈",IDC_S_1,"Button",BS_AUTORADIOBUTTON,13,28,84,
+                    10
+    CONTROL         "눈에는 눈 (변형)",IDC_S_2,"Button",BS_AUTORADIOBUTTON,
+                    13,39,81,10
+    CONTROL         "10 기준",IDC_S_3,"Button",BS_AUTORADIOBUTTON,13,50,81,
+                    10
+    CONTROL         "13 기준",IDC_S_4,"Button",BS_AUTORADIOBUTTON,13,61,81,
+                    10
+    GROUPBOX        "기본 점수 계산법",IDC_STATIC,7,7,94,69,WS_GROUP
+    CONTROL         "보상 없음",IDC_RUN,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,13,98,70,10
+    CONTROL         "2 배 줌",IDC_RUN1,"Button",BS_AUTORADIOBUTTON,13,109,69,
+                    10
+    CONTROL         "미리 런을 선언했을 경우만 2배 줌",IDC_RUN2,"Button",
+                    BS_AUTORADIOBUTTON,13,120,125,10
+    CONTROL         "고정액 줌 (20단위)",IDC_RUN3,"Button",
+                    BS_AUTORADIOBUTTON,13,131,112,10
+    GROUPBOX        "런(여당이 전부 따는 것)에 대한 보상",IDC_STATIC,7,86,
+                    136,62,WS_GROUP
+    LTEXT           "각 방법에 대한 자세한 설명은 오른쪽 위의 '?' 버튼을 눌러서 볼 수 있습니다",
+                    IDC_STATIC,104,7,82,34
+END
+
+IDD_SCOREBOARD DIALOGEX 0, 0, 78, 86
+STYLE WS_POPUP | WS_CAPTION | WS_HSCROLL | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "전적"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SB_0,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,16,
+                    19,8
+    CONTROL         "",IDC_SB_1,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,26,
+                    19,8
+    CONTROL         "",IDC_SB_2,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,36,
+                    19,8
+    CONTROL         "",IDC_SB_3,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,46,
+                    19,8
+    CONTROL         "",IDC_SB_4,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,56,
+                    19,8
+    CONTROL         "",IDC_SB_5,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,66,
+                    19,8
+    LTEXT           "name",IDC_SB_TAB,1,1,19,8,NOT WS_VISIBLE
+END
+
+IDD_SETTING DIALOG DISCARDABLE  0, 0, 187, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "설정 변경"
+FONT 9, "굴림"
+BEGIN
+    CONTROL         "확장 알고리즘 사용",IDC_USESIMULATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,14,75,10
+    CONTROL         "목표를 1 씩 올림",IDC_GOALMODE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,28,67,10
+    GROUPBOX        "주공이 되려는 경향성",IDC_STATIC,21,43,108,39
+    CONTROL         "Slider1",IDC_FACTOR,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_TOP | WS_TABSTOP,25,55,100,23
+    LTEXT           "주의: 확장 알고리즘은 CPU를 많이 소모하므로 펜티엄2 이상에서만 사용하세요",
+                    IDC_STATIC,19,89,149,20
+    DEFPUSHBUTTON   "확인",IDOK,74,116,50,14
+    PUSHBUTTON      "취소",IDCANCEL,130,116,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_OPTION_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_RULE_CARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_OPTION_BOSSKEY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_CARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_SELECTBACK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 140
+    END
+
+    IDD_OPTION_BACKGROUND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_DSB, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_SPEED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_RULE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_AI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_MAIINFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+
+    IDD_OPTION_COMM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_OPTION_CHAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_RULE_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_RULE_ELECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_RULE_CONSTRAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_RULE_DEALMISS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_RULE_SCORE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 186
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 148
+    END
+
+    IDD_SCOREBOARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 77
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 130
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_RULE_ELECTION DLGINIT
+BEGIN
+    IDC_MINSCORE, 0x403, 2, 0
+0x0035, 
+    IDC_MINSCORE, 0x403, 2, 0
+0x0036, 
+    IDC_MINSCORE, 0x403, 2, 0
+0x0037, 
+    IDC_MINSCORE, 0x403, 2, 0
+0x0038, 
+    IDC_MINSCORE, 0x403, 2, 0
+0x0039, 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3331, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3531, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3731, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3831, "\000" 
+    0
+END
+
+IDD_RULE_CARD DLGINIT
+BEGIN
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0041, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0032, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0033, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0034, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0035, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0036, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0037, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0038, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0039, 
+    IDC_CARD_MIGHTY, 0x403, 11, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004a, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0051, 
+    IDC_CARD_MIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004b, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0041, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0032, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0033, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0034, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0035, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0036, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0037, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0038, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0039, 
+    IDC_CARD_MIGHTY, 0x403, 13, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004a, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0051, 
+    IDC_CARD_MIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004b, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0041, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0032, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0033, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0034, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0035, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0036, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0037, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0038, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0039, 
+    IDC_CARD_MIGHTY, 0x403, 7, 0
+0xcfc7, 0xaec6, 0x3031, "\000" 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004a, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0051, 
+    IDC_CARD_MIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004b, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0041, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0032, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0033, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0034, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0035, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0036, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0037, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0038, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0039, 
+    IDC_CARD_MIGHTY, 0x403, 9, 0
+0xacc5, 0xceb7, 0xf6b9, 0x3031, "\000" 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004a, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0051, 
+    IDC_CARD_MIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004b, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0041, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0032, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0033, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0034, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0035, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0036, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0037, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0038, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0039, 
+    IDC_CARD_ALTMIGHTY, 0x403, 11, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004a, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0051, 
+    IDC_CARD_ALTMIGHTY, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004b, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0041, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0032, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0033, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0034, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0035, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0036, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0037, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0038, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0039, 
+    IDC_CARD_ALTMIGHTY, 0x403, 13, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004a, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0051, 
+    IDC_CARD_ALTMIGHTY, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004b, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0041, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0032, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0033, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0034, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0035, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0036, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0037, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0038, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0039, 
+    IDC_CARD_ALTMIGHTY, 0x403, 7, 0
+0xcfc7, 0xaec6, 0x3031, "\000" 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004a, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0051, 
+    IDC_CARD_ALTMIGHTY, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004b, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0041, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0032, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0033, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0034, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0035, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0036, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0037, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0038, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0039, 
+    IDC_CARD_ALTMIGHTY, 0x403, 9, 0
+0xacc5, 0xceb7, 0xf6b9, 0x3031, "\000" 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004a, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0051, 
+    IDC_CARD_ALTMIGHTY, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004b, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0041, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0032, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0033, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0034, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0035, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0036, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0037, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0038, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0039, 
+    IDC_CARD_JOKERCALL, 0x403, 11, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004a, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0051, 
+    IDC_CARD_JOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004b, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0041, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0032, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0033, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0034, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0035, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0036, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0037, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0038, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0039, 
+    IDC_CARD_JOKERCALL, 0x403, 13, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004a, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0051, 
+    IDC_CARD_JOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004b, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0041, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0032, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0033, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0034, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0035, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0036, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0037, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0038, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0039, 
+    IDC_CARD_JOKERCALL, 0x403, 7, 0
+0xcfc7, 0xaec6, 0x3031, "\000" 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004a, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0051, 
+    IDC_CARD_JOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004b, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0041, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0032, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0033, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0034, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0035, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0036, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0037, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0038, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0039, 
+    IDC_CARD_JOKERCALL, 0x403, 9, 0
+0xacc5, 0xceb7, 0xf6b9, 0x3031, "\000" 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004a, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0051, 
+    IDC_CARD_JOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004b, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0041, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0032, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0033, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0034, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0035, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0036, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0037, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0038, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0039, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 11, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004a, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x0051, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 10, 0
+0xbabd, 0xe4c6, 0xccc0, 0xe5b5, 0x004b, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0041, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0032, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0033, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0034, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0035, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0036, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0037, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0038, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0039, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 13, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x3031, "\000" 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004a, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x0051, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 12, 0
+0xd9b4, 0xccc0, 0xc6be, 0xf3b8, 0xe5b5, 0x004b, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0041, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0032, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0033, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0034, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0035, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0036, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0037, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0038, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0039, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 7, 0
+0xcfc7, 0xaec6, 0x3031, "\000" 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004a, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x0051, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 6, 0
+0xcfc7, 0xaec6, 0x004b, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0041, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0032, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0033, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0034, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0035, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0036, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0037, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0038, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0039, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 9, 0
+0xacc5, 0xceb7, 0xf6b9, 0x3031, "\000" 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004a, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x0051, 
+    IDC_CARD_ALTJOKERCALL, 0x403, 8, 0
+0xacc5, 0xceb7, 0xf6b9, 0x004b, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
+    IDR_MAINFRAME           "마이티 네트워크 3.2"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "마이티 네트워크 3.2"
+    AFX_IDS_IDLEMESSAGE     "마이티 네트워크 3.2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "마이티 정보를 표시합니다\n정보"
+    ID_APP_EXIT             "게임을 종료합니다\n종료"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
+    AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
+    AFX_IDS_SCMINIMIZE      "창을 아이콘으로 줄여서 표시합니다"
+    AFX_IDS_SCMAXIMIZE      "창을 최대 크기로 확장합니다"
+    AFX_IDS_SCCLOSE         "창을 닫고 게임을 종료합니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
+    ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
+    ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_USESOUND            "게임에서 소리를 사용할 것인가를 선택합니다"
+    IDC_USETERM             "'곱트(하트 17)', '기아(기루다A)'와 같은 마이티만의 '은어'를 사용할 것인가를 선택합니다 - 이러한 방식의 호칭에 익숙한 플레이어만 사용하십시오"
+    IDC_SORTMODE            "카드를 정렬하지 않습니다"
+    IDC_SORTMODE1           "기루다를 왼쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
+    IDC_SORTMODE2           "기루다를 왼쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
+    IDC_SORTMODE3           "기루다를 오른쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
+    IDC_SORTMODE4           "기루다를 오른쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_BACKSELECT          "다른 뒷면 그림을 선택하고 싶으면 이 버튼을 누릅니다"
+    IDC_SAMPLEBACK          "현재 선택되어 있는 뒷면 그림입니다 - 다른 그림을 선택하고 싶으면 아래쪽의 버튼을 누르세요"
+    IDC_ZOOMCARD            "화면이 카드를 표시하기에 너무 작을 때 카드를 축소해서 그려 줍니다, 또 화면이 충분히 크면 카드를 확대해서 그려줍니다"
+    IDC_CARDHELP            "마이티나 조커 콜과 같은 특수한 카드는 그 카드의 이름을 카드 표면에 써 줍니다"
+    IDC_CARDTIP             "툴팁과 비슷하게, 카드에 커서를 가만히 두고 있으면 그 카드에 대한 간략한 설명을 표시합니다 (그 카드의 명칭과, 그 모양의 카드 중 그 카드보다 높은 카드들을 표시합니다)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_SAMPLEBACKGROUND    "현재 배경 그림 설정을 나타냅니다"
+    IDC_DEFCOLSELECT        "여당의 이름을 어떤 색상으로 그릴지를 선택합니다"
+    IDC_ATTCOLSELECT        "야당의 이름을 어떤 색상으로 그릴지를 선택합니다"
+    IDC_BACKGROUNDCOLSELECT "바탕 화면을 어떤 색상으로 채운지를 선택합니다"
+    IDC_USEBACKGROUND       "배경 화면에 비트맵 파일을 지정할 수 있습니다"
+    IDC_BACKALIGN           "배경 그림을 한 가운데에 그립니다 - 남은 부분은 바탕 화면 색상으로 채웁니다"
+    IDC_BACKALIGN1          "배경 그림을 타일 형태로 배치합니다 - 배경 그림이 화면보다 큰 경우 반복적으로 채웁니다"
+    IDC_BACKALIGN2          "배경 그림을 늘리거나 줄여서 바탕 화면 크기에 맞춥니다"
+    IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
+    IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실재로는 이와 다소 다를 수 있습니다"
+    IDC_DSBSHADEMODE        "검은 점들을 이용해서 병치혼합을 하여 투명한 느낌을 줍니다 - 기본설정입니다"
+    IDC_DSBSHADEMODE1       "투명한 느낌 없이 음영 상자를 일정 색상으로 채웁니다"
+    IDC_DSBSHADEMODE2       "음영 상자 영역의 명암을 어둡게 하여 투명한 느낌을 줍니다 - 32768 색상 이상의 환경에서 사용할 수 있습니다 - 그러나 처리속도가 매우 늦기 때문에 자신의 시스템 성능을 잘 고려하여야 합니다"
+    IDC_CARDSPEED           "카드가 목적지까지 도달하는 전체 시간에 비례하는 값입니다 - 이 값이 작아지면 각 프레임간의 간격도 그만큼 작아집니다"
+    IDC_CARDMOTION          "카드 움직임의 부드러운 정도를 결정합니다 - 이 값은 목적지까지 카드가 이동할 때 그려주는 프레임 수에 비례합니다"
+    IDC_DELAYONECARD        "하나의 카드를 냈을 때 그 카드를 확인하도록 지연해 주는 시간입니다 - AI 들은 최소한 이 시간만큼 기다린 후에 다음 카드를 냅니다"
+    IDC_DELAYONETURN        "기본적으로, 한 턴에서 모든 사람이 카드를 냈을 때 결과를 판단할 수 있도록 대기해 주는 시간입니다 - 이 값은 여러가지 다른 대기 시간에서도 사용되므로 전체적인 게임 속도를 조절할 수 있습니다"
+    IDC_SHOWDEALING         "카드를 섞고 나눠주는 에니메이션을 보여줍니다"
+    IDC_RULEPRESET          "미리 정의된 표준 규칙들"
+    IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
+    IDC_SHOWRULE            "현재 선택된 규칙을 보거나 사용자 정의 규칙을 수정하려면 이 버튼을 누르십시오"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_RESETPATH           "현재 설정된 모든 AI DLL의 경로를 지우고 기본 설정값을 사용합니다"
+    IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
+    IDC_USEHINTINNETWORK    "다른 사람과의 게임에서도 카드 팁을 사용할지를 결정합니다"
+    IDC_MIGHTYNETADDRESS    "Mighty.Net 의 IP 주소를 설정합니다"
+    IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
+    IDC_RESETSCORE          "지금까지의 기록을 지웁니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_CHATBUFFERSIZE      "채팅창이 기억하고 있는 이전 내용의 줄 수를 정합니다"
+    IDC_3MA                 "세 사람이 하는 마이티입니다 - 프랜드 제도가 없는 것이 표준이고, 20 장의 카드 ('2','4','5','6','7') 를 제외한 덱을 사용합니다"
+    IDC_4MA                 "네 사람이 하는 마이티입니다 - 프랜드로 조커 프랜드를 부를 수 없는 것이 표준이고, 10 장의 카드 (조커콜을 제외한 '3' 두장과, '2', '4' 각 네장씩) 을 제외한 덱을 사용합니다"
+    IDC_5MA                 "다섯 사람이 하는 마이티로, 가장 표준적인 마이티입니다"
+    IDC_6MA                 "5 마 의 변형된 형태로, 선거는 여섯 사람이 시작하여, 주공으로 당선된 플레이어가 다른 한 사람을 탈락시키고 5 마로 진행하는 방식입니다"
+    IDC_CLOCKWISE           "카드를 내는 순서를 시계방향으로 진행합니다 (이른바 '고스톱 게임'의 반대 방향입니다)"
+    IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
+    IDC_HIDESCORE           "득점한 카드를 아무도 볼 수 없게 뒤집어 놓습니다 - 플레이어들은 득점한 카드를 보고는 지금까지 출현한 카드들에 대한 실마리를 잡을 수 없게 됩니다"
+    IDC_MINSCORE            "주공이 목표 점수로로 정할 수 있는 최소 기본 점수를 정합니다 - 목표 점수는 여당이 득점하겠다고 선언하는 점수 카드(10, J, Q, K, A) 의 개수입니다"
+    IDC_NOKIRUDAADVANTAGE   "노기루다로 공약을 세우는 경우 최소 기본 점수보다 하나 적게 목표 점수를 잡을 수 있습니다"
+    IDC_HIGHSCORE           "목표 점수를 20 을 넘게 잡을 수 있습니다 - 이 경우 여당이 모든 점수를 얻어야만 승리하는 것으로 하며, 다른 계산은 그대로 유지합니다, 그러나 최대한으로 올려도 25 를 넘을 수는 없습니다"
+    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
+    IDC_BEGINERPASS         "가장 먼저 공약을 부르는 플레이어 (딜러) 가 아무런 공약도 부르지 않고 패스를 할 수 있습니다 - 이 옵션이 세트되어 있지 않으면 딜러는 반드시 공약을 불러야 합니다"
+    IDC_RAISE2FORKIRUDACHANGE 
+                            "주공이 추가 카드를 받고 나서 기루다를 바꾸고 싶을 때 목표 점수를 2 만큼 올려야 합니다 - 이 옵션이 세트되어 있지 않으면 1 만큼 올려야 합니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_RAISE1FORNOKIRUDACHANGE 
+                            "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
+    IDC_FRIEND              "프랜드 제도가 있는가를 선택합니다 - 3 마에서는 프랜드 제도를 두지 않는 것이 표준입니다"
+    IDC_JOKERFRIEND         "조커를 프랜드로 부를 수 있는지 결정합니다 - 이 옵션이 세트되지 않으면 조커 프랜드를 부르는 것은 불가능합니다"
+    IDC_ATTSCORETHROWNPOINTS 
+                            "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
+    IDC_INITMIGHTY          "이 옵션을 세트 하면 첫 턴에 마이티를 낼 수 있습니다"
+    IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
+    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
+    IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
+    IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
+    IDC_INITJOKER           "이 옵션을 세트 하면 첫 턴에 조커를 낼 수 있습니다"
+    IDC_INITJOKEREFFECT     "첫 턴에 조커를 낸 경우 이 옵션을 해제하면 그 카드는 아무런 효력도 갖지 않습니다"
+    IDC_LASTJOKER           "이 옵션을 세트 하면 마지막 턴에 조커를 낼 수 있습니다"
+    IDC_LASTJOKEREFFECT     "마지막 턴에 조커를 낸 경우 이 옵션을 해제하면 그 카드는 아무런 효력도 갖지 않습니다"
+    IDC_INITKIRUDA          "이 옵션을 세트 하면 첫 턴에 선이 아닌 플레이어들은 기루다를 낼 수 있습니다"
+    IDC_INITBEGINKIRUDA     "이 옵션이 세트되어 있고 첫 턴에 선 이외의 플레이어들이 기루다를 낼 수 있다면 선도 기루다를 낼 수 있습니다"
+    IDC_INITJOKERCALLEFFECT "이 옵션을 세트 하면 첫 턴에 선이 조커콜을 내서 조커를 잡을 수 있습니다 - 비록 첫 턴에 조커를 낼 수 없는 규칙이 있어도 이 경우만은 예외가 됩니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_JOKERCALLJOKEREFFECT 
+                            "조커콜을 당한 조커가 조커의 효력을 가지고 있습니다 - 즉, 그 조커도 마이티를 제외한 모든 카드들 보다 높습니다"
+    IDC_DM_NOPOINT          "점수카드를 하나도 받지 못한 경우 딜 미스 조건이 됩니다"
+    IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
+    IDC_DM_MIGHTYISPOINT    "딜 미스 조건을 검사할 때 마이티를 점수 카드로 생각합니다 (원래 마이티는 점수 카드입니다 - 즉, 이 옵션을 해제하면 마이티를 점수 카드로 생각하지 않습니다)"
+    IDC_DM_JOKERISPOINT     "딜 미스 조건을 검사할 때 조커를 점수 카드로 생각합니다 - 즉, 조커가 있으면 비록 다른 점수 카드가 한 장도 없어도 점수 카드가 없는 딜 미스 조건에 해당하지 않게 됩니다"
+    IDC_DM_JOKERISREVERSEPOINT 
+                            "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
+    IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
+    IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
+    IDC_DM_ONLYMIGHTY       "점수 카드가 마이티 뿐인 경우 딜 미스 조건이 됩니다 - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
+    IDC_S_0                 "Mighty 2.0 호환으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)\n야당승: (목표수-여당득점)"
+    IDC_S_1                 "여당과 야당 모두 똑같은 방식으로 계산합니다\n여당승: (여당득점-목표수)\n야당승: (목표수-여당득점)"
+    IDC_S_2                 "눈에는 눈 계산법의 변형된 버전으로, 여당이 이기면 최소한 1점을 얻도록 합니다\n여당승: (여당득점-목표수+1)\n야당승: (목표수-여당득점)"
+    IDC_S_3                 "10 을 기준으로 하는 계산법입니다\n여당승: (여당득점-10)\n야당승: (목표수-여당득점)"
+    IDC_S_4                 "13 을 기준으로 하는 계산법입니다\n여당승: (여당득점-13)\n야당승: (목표수-여당득점)"
+    IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
+    IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
+    IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
+    IDC_S_REVERSERUN        "빽런 (야당이 오히려 여당의 목표점수 이상을 얻은 경우) 일 때 여당은 곱절의 점수를 물어줍니다"
+    IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 곱절을 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 곱절 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 4 배, 4 마에서 6 배의 점수를 더 얻게 됩니다"
+    IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
+    IDC_CARD_MIGHTY         "마이티 카드를 선택합니다 - 기본값은 스페이드A 이고, 바꾸지 않는 것이 좋습니다"
+    IDC_CARD_ALTMIGHTY      "기루다가 기본 마이티와 같은 모양이 되었을 때 마이티가 될 카드를 선택합니다 - 기본값은 다이아몬드A 이고, 바꾸지 않는 것이 좋습니다 - 이 카드는 일명 빨마(빨간마이티)라고 합니다"
+    IDC_CARD_JOKERCALL      "조커콜 카드를 선택합니다 - 기본값은 클로버3 이고, 바꾸지 않는 것이 좋습니다"
+    IDC_CARD_ALTJOKERCALL   "기루다가 기본 조커콜과 같은 모양이 되었을 때 조커콜이 될 카드를 선택합니다 - 기본값은 하트3 이고, 바꾸지 않는 것이 좋습니다"
+    IDC_HUMANNAME           "당신의 이름(별명)을 입력하세요 - 이 이름은 대부분의 상황에서 당신을 식별하는 기준이 됩니다"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 18, 1
+#pragma code_page(949)
+#endif //_WIN32
+#include "res\Mighty.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.kor\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
