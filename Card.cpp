@@ -153,7 +153,7 @@ CCardList& CCardList::operator=( const CCardList& cl )
 // nPlayers : 인원수 (5마 53 장, 4마 43 장, 3마 33 장)
 void CCardList::NewDeck( int nPlayers, CCard cJokercall, CCard cAlterJokercall )
 {
-	// 2마와 6마 이상은 5마와 덱이 같다 : Yoshi-TS4
+	// 2마와 6마 이상은 5마와 덱이 같다 (v4.0)
 	if ( nPlayers >= 6 || nPlayers == 2 ) nPlayers = 5;
 
 	ASSERT( nPlayers == 3 || nPlayers == 4 || nPlayers == 5 );

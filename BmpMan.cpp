@@ -64,12 +64,12 @@ bool CBmpMan::LoadAllCards( CDC* pDC, CFont* pFont )
 	CSize szCard = m_szCards = GetBitmapSize( IDB_SA );
 
 	CDC dc; dc.CreateCompatibleDC( pDC );
-	m_bmCards.CreateCompatibleBitmap( pDC, szCard.cx*54, szCard.cy );
+	m_bmCards.CreateCompatibleBitmap( pDC, szCard.cx*(52+3), szCard.cy );
 	dc.SelectObject( &m_bmCards );
 
 	CDC dcTemp; dcTemp.CreateCompatibleDC( pDC );
 
-	for ( int i = 0; i < 53; i++ ) {
+	for ( int i = 0; i < 52 + 2; i++ ) {
 
 		CBitmap bmCard; bmCard.LoadBitmap( IDB_SA + (unsigned)i );
 		CBitmap* pbmTempOld = dcTemp.SelectObject( &bmCard );
@@ -112,54 +112,19 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 {
 	ASSERT( m_bmCards.GetSafeHandle() );
 
-	// 이걸 안하면 흑백 카드가 빨갛게 그려진다 -_- ????
-	pDC->SetTextColor( RGB(0,0,0) );
-	pDC->SetBkColor( RGB(255,255,255) );
-
 	if ( nCard < 0 || nCard > 53 ) {
 		ASSERT(0); nCard = 0;
 	}
 
-	// 띄어서 그리기 시작하는 마진
-	int l = 1, r = 1, u = 1, d = 1;
-
-	// 테두리를 그린다
-	pDC->SelectStockObject( BLACK_PEN );
-
-	if ( xSrc == 0 ) {
-		// 카드의 가장 왼쪽이 그려지므로 왼쪽 선을 그려야 한다
-		pDC->MoveTo( xTgt, yTgt+max(0,2-ySrc) );
-		pDC->LineTo( xTgt, yTgt+min(cyTgt,cyTgt-ySrc-cySrc+m_szCards.cy-2) );
-	}
-	else l = 0; // 그리지 않는다 - 비트맵은 왼쪽 끝부터 바로 시작된다
-
-	if ( ySrc+cySrc == m_szCards.cy ) {
-		// 카드의 가장 아래쪽이 그려지므로 아래쪽 선을 그려야 한다
-		pDC->MoveTo( xTgt+max(0,2-xSrc), yTgt+cyTgt-1 );
-		pDC->LineTo( xTgt+min(cxTgt,cxTgt-xSrc-cxSrc+m_szCards.cx-2), yTgt+cyTgt-1 );
-	}
-	else d = 0; // 그리지 않는다 - 비트맵은 아래쪽 끝에서 바로 끝난다
-
-	if ( xSrc+cxSrc == m_szCards.cx ) {
-		// 카드의 가장 오른쪽이 그려지므로 오른쪽 선을 그려야 한다
-		pDC->MoveTo( xTgt+cxTgt-1, yTgt+min(cyTgt,cyTgt-ySrc-cySrc+m_szCards.cy-2)-1 );
-		pDC->LineTo( xTgt+cxTgt-1, yTgt+max(0,2-ySrc)-1 );
-	}
-	else r = 0; // 그리지 않는다 - 비트맵은 오른쪽 끝에서 바로 끝난다
-
-	if ( ySrc == 0 ) {
-		// 카드의 가장 위쪽이 그려지므로 위쪽 선을 그려야 한다
-		pDC->MoveTo( xTgt+min(cxTgt,cxTgt-xSrc-cxSrc+m_szCards.cx-2)-1, yTgt );
-		pDC->LineTo( xTgt+max(0,2-xSrc)-1, yTgt );
-	}
-	else u = 0; // 그리지 않는다 - 비트맵은 위쪽 끝부터 바로 시작된다
-
 	CDC dc; dc.CreateCompatibleDC( pDC );
 	dc.SelectObject( &m_bmCards );
 
-	pDC->StretchBlt( xTgt+l, yTgt+u, cxTgt-l-r, cyTgt-u-d,
-		&dc, xSrc+nCard*m_szCards.cx+l, ySrc+u, cxSrc-l-r, cySrc-u-d,
-		SRCCOPY );
+	pDC->StretchBlt( xTgt, yTgt, cxTgt, cyTgt,
+		&dc, xSrc+54*m_szCards.cx, ySrc, cxSrc, cySrc,
+		SRCPAINT );
+	pDC->StretchBlt( xTgt, yTgt, cxTgt, cyTgt,
+		&dc, xSrc+nCard*m_szCards.cx, ySrc, cxSrc, cySrc,
+		SRCAND );
 
 	// 글자를 쓴다
 	if ( Mo()->bCardHelp && CCard::GetState() ) {

@@ -89,6 +89,7 @@
 #define IDB_CQ                          760
 #define IDB_CK                          761
 #define IDB_JOKER                       762
+#define IDB_MASK                        763
 #define IDB_BACK1                       770
 #define IDB_BACK2                       771
 #define IDB_BACK3                       772

@@ -252,6 +252,7 @@ IDB_GRAY                BITMAP                  "res\\gray.bmp"
 IDB_MIGHTY              BITMAP                  "res\\mighty.bmp"
 IDB_PERSON              BITMAP                  "res\\person.bmp"
 IDB_SHADE               BITMAP                  "res\\shade.bmp"
+IDB_MASK                BITMAP                  "res\\mask.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -569,7 +570,7 @@ BEGIN
     LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",IDC_STATIC,7,7,225,35
     CONTROL         "점수 카드가 하나도 없으면 딜 미스",IDC_DM_NOPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,170,10
     CONTROL         "모든 카드가 점수카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,170,10
-    CONTROL         "점수 카드가 하나 뿐이고 조커가 있으면 딜미스",IDC_DM_JOKERISREVERSEPOINT,
+    CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",IDC_DM_JOKERISREVERSEPOINT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,170,10
     CONTROL         "점수카드가 10 한 장뿐인 경우 딜미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
     CONTROL         "점수카드가 애꾸눈 잭 한 장뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
