@@ -252,7 +252,7 @@ public:
 
 	// 플레이어에 붙어있는 세모 마크 위치를 얻는다
 	CPoint GetMarkPos( long uid ) const
-	{	return DSBtoDP( CPoint( 1, ( m_rule.nPlayerNum == MAX_PLAYERS ? 5 : 7 ) + uid*3 + 1 ) ); }
+	{	return DSBtoDP( CPoint( 1, ( m_rule.nPlayerNum == 6 ? 5 : m_rule.nPlayerNum == 7 ? 4 : 7 ) + uid*3 + 1 ) ); }
 	// m_pPopup 을 클리어한다
 	void ClearPopup() { m_pPopup = 0; }
 	// OnClick 을 호출한다

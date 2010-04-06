@@ -125,10 +125,10 @@ void CMFSM::RebuildPlayerArray()
 // 7마에서 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다
 void CMFSM::RebuildPlayerArray6()
 {
-	ASSERT( nDeadID != -1 && pRule->nPlayerNum == 7 );
+	ASSERT( nDeadID2 != -1 && pRule->nPlayerNum == 7 );
 
 	for ( int i = 0, j = 0; i < pRule->nPlayerNum; i++ )
-		if ( nDeadID != i ) {
+		if ( nDeadID2 != i ) {
 			apPlayers[j] = apAllPlayers[i];
 			apPlayers[j]->SetPlayerNum(j);
 			j++;
@@ -141,10 +141,10 @@ void CMFSM::RebuildPlayerArray6()
 	nPlayers = 6;	// 6 명이라는 확신이 있음
 
 	// 다른 값들을 재조정한다
-	if ( nMaster > nDeadID ) nMaster--;
-	if ( nBeginer > nDeadID ) nBeginer--;
-	if ( nFriend > nDeadID ) nFriend--;
-	if ( nCurrentPlayer > nDeadID ) nCurrentPlayer--;
+	if ( nMaster > nDeadID2 ) nMaster--;
+	if ( nBeginer > nDeadID2 ) nBeginer--;
+	if ( nFriend > nDeadID2 ) nFriend--;
+	if ( nCurrentPlayer > nDeadID2 ) nCurrentPlayer--;
 }
 
 // 모든 플레이어의 카드를 옵션에 따라 정렬한다

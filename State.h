@@ -11,7 +11,7 @@
 
 
 #ifndef MAX_PLAYERS
-#	define MAX_PLAYERS		6
+#	define MAX_PLAYERS		7
 #endif
 
 #ifndef MIGHTY_EXPORT

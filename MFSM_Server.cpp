@@ -210,14 +210,14 @@ lblMightyBegin:
 					ASSERT(0); cKill = CCard(SPADE,ACE);
 				}
 
-				bKilled = KillTest( nMaster, &cKill, &nDeadID );
+				bKilled = KillTest( nMaster, &cKill, &nDeadID2 );
 				if ( !bKilled ) lDead.AddTail( cKill );
 
 				NOTIFY_ALL( OnKillOneFromSeven( cKill, bKilled, EVENT ) );
 
 			} while ( !bKilled );
 
-			CCardList* plcDead = apAllPlayers[nDeadID]->GetHand();
+			CCardList* plcDead = apAllPlayers[nDeadID2]->GetHand();
 			int nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
 
 			// 죽은 플레이어의 카드를 나눠 가진다
@@ -228,7 +228,7 @@ lblMightyBegin:
 				nCurrentPlayer = (nBeginer+i)%nPlayers;
 				cCurrentCard = plcDead->RemoveTail();
 				lDeck.AddTail( cCurrentCard );
-				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
+				NOTIFY_ALL( OnDeal( nDeadID2, -1, 3, cCurrentCard, EVENT ) );
 			}
 
 			RebuildPlayerArray6();

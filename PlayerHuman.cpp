@@ -664,7 +664,7 @@ void CPlayerHuman::OnElectionEnd( CEvent* e )
 	m_pBoard->UpdatePlayer( -2 );
 	DMasterDecl* pDecl = new DMasterDecl(m_pBoard);
 	pDecl->Create( false,	// bTemp
-		GetState()->nDeadID != 0 && GetState()->nMaster == 0,
+		GetState()->nDeadID != 0 && GetState()->nDeadID2 != 0 && GetState()->nMaster == 0,
 		GetState()->pRule->nPlayerNum == 6,
 		GetState()->pRule->bFriend,
 		GetState()->pRule->nMinScore,

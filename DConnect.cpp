@@ -554,7 +554,8 @@ void DConnect::OnDraw(
 	PutText( pDC, m_sAddress,
 			-1, 1, true, s_colYellow, s_tdMidiumOutline );
 	// 참가자
-	int y = m_rule.nPlayerNum == MAX_PLAYERS ? 5 : 7;
+	int y = m_rule.nPlayerNum == 6 ? 5 
+		: m_rule.nPlayerNum == 6 ? 4 : 7;
 	PutText( pDC, _T("참가자 :"),
 			2, y - 2, true, s_colWhite, s_tdShade );
 	for ( int i = 0; i < m_rule.nPlayerNum; i++ ) {
@@ -712,7 +713,8 @@ void DConnect::RegisterOk()
 // 사람에 붙는 기호를 등록
 void DConnect::RegisterMarks()
 {
-	int y = m_rule.nPlayerNum == MAX_PLAYERS ? 5 : 7;
+	int y = m_rule.nPlayerNum == 6 ? 5 
+		: m_rule.nPlayerNum == 7 ? 4 : 7;
 	for ( int i = 0; i < m_rule.nPlayerNum; i++ )
 		RegisterHotspot(
 			1, y+i*3, -1, -1, true, 0, _T("▽"),
