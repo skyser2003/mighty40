@@ -128,7 +128,7 @@ void CMFSM::RebuildPlayerArray6()
 	ASSERT( nDeadID2 != -1 && pRule->nPlayerNum == 7 );
 
 	for ( int i = 0, j = 0; i < pRule->nPlayerNum; i++ )
-		if ( nDeadID2 != i ) {
+		if ( nDeadID2 != i && nDeadID != i) {
 			apPlayers[j] = apAllPlayers[i];
 			apPlayers[j]->SetPlayerNum(j);
 			j++;
@@ -137,8 +137,9 @@ void CMFSM::RebuildPlayerArray6()
 
 	ASSERT( nPlayers == 7 );
 
+	apPlayers[5] = 0;
 	apPlayers[6] = 0;
-	nPlayers = 6;	// 6 명이라는 확신이 있음
+	nPlayers = 5;	// 5 명이라는 확신이 있음
 
 	// 다른 값들을 재조정한다
 	if ( nMaster > nDeadID2 ) nMaster--;

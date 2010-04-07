@@ -136,6 +136,7 @@
 #define IDC_SORTMODE3                   1006
 #define IDC_SORTMODE4                   1007
 #define IDC_BOSSTYPE                    1008
+#define IDC_USETERM2                    1008
 #define IDC_BOSSTYPE1                   1009
 #define IDC_BOSSTYPE2                   1010
 #define IDC_BOSSTYPE3                   1011

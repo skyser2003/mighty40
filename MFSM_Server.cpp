@@ -211,7 +211,7 @@ lblMightyBegin:
 				}
 
 				bKilled = KillTest( nMaster, &cKill, &nDeadID2 );
-				if ( !bKilled ) lDead.AddTail( cKill );
+				lDead.AddTail( cKill );
 
 				NOTIFY_ALL( OnKillOneFromSeven( cKill, bKilled, EVENT ) );
 
@@ -219,8 +219,6 @@ lblMightyBegin:
 
 			CCardList* plcDead = apAllPlayers[nDeadID2]->GetHand();
 			int nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
-
-			// 죽은 플레이어의 카드를 나눠 가진다
 
 			// 회수단계
 			for ( i = 0; i < nCards; i++ ) {
@@ -231,14 +229,7 @@ lblMightyBegin:
 				NOTIFY_ALL( OnDeal( nDeadID2, -1, 3, cCurrentCard, EVENT ) );
 			}
 
-			RebuildPlayerArray6();
-
-			// 가운데 모은 카드를 섞고 실제로 하나의 플레이어를 죽인다
-			lDeck.Suffle();
-			// 클라이언트인 경우 서버에서 다시 섞인 카드 배열을 얻어온다
-			if ( !IsServer() ) GetDeckFromServer();
-			// 각 플레이어에게 알린다
-			NOTIFY_ALL( OnSuffledForDead(EVENT) );
+			nCurrentPlayer = nMaster;
 
 			do {
 
@@ -270,7 +261,7 @@ lblMightyBegin:
 				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
 			}
 
-			RebuildPlayerArray();
+			RebuildPlayerArray6();
 
 			// 가운데 모은 카드를 섞고 실제로 하나의 플레이어를 죽인다
 			lDeck.Suffle();
@@ -278,11 +269,12 @@ lblMightyBegin:
 			if ( !IsServer() ) GetDeckFromServer();
 			// 각 플레이어에게 알린다
 			NOTIFY_ALL( OnSuffledForDead(EVENT) );
+			NOTIFY_ALL( OnSuffledForDead(EVENT) );
 
 			// 모두에게 알린다
 			NOTIFY_ALL( OnDeal( -1, -1, 0, 0, EVENT ) );
 
-			nCards = 10;	// 이제 10 장을 나눠 준다
+			nCards = 15;	// 이제 15 장을 나눠 준다
 			for ( i = 0; i < nCards; i++ ) {
 
 				nCurrentPlayer = (nBeginer+i)%nPlayers;

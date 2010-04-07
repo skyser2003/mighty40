@@ -159,7 +159,7 @@ void CPlayerNetwork::OnKillOneFromSeven( CCard* pcCardToKill,
 	m_pMFSM->WaitEvent( &m_e );
 
 	long t, u, c;
-	if ( !pMsg->PumpLong( t ) || t != CMsg::mmGameKillOneFromSix
+	if ( !pMsg->PumpLong( t ) || t != CMsg::mmGameKillOneFromSeven
 					|| !pMsg->PumpLong( u ) || u != GetUID()
 					|| !pMsg->PumpLong( c ) )
 		Error(3);

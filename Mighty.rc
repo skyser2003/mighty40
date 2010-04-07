@@ -110,8 +110,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,5
- PRODUCTVERSION 4,0,0,5
+ FILEVERSION 0,0,0,7
+ PRODUCTVERSION 4,0,0,7
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "0.0.0.5"
+            VALUE "FileVersion", "0.0.0.7"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2009-2010 Puzzlet & Yoshi-TS4"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "0.0.0.5"
+            VALUE "ProductVersion", "0.0.0.7"
         END
     END
     BLOCK "VarFileInfo"
@@ -572,10 +572,10 @@ BEGIN
     CONTROL         "모든 카드가 점수카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,170,10
     CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",IDC_DM_JOKERISREVERSEPOINT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,170,10
-    CONTROL         "점수카드가 10 한 장뿐인 경우 딜미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
-    CONTROL         "점수카드가 애꾸눈 잭 한 장뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
+    CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
+    CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
     CONTROL         "점수카드가 마이티 한 장 뿐인 경우 딜 미스",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
-    CONTROL         "점수카드가 한 장 뿐인 경우 딜미스",IDC_DM_ONLYONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,170,10
+    CONTROL         "점수카드가 한 장 뿐인 경우 딜 미스",IDC_DM_ONLYONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,170,10
 END
 
 IDD_RULE_SCORE DIALOGEX 0, 0, 239, 179
@@ -1305,13 +1305,13 @@ END
 STRINGTABLE 
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0"
+    IDR_MAINFRAME           "마이티 네트워크 3.9"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "마이티 네트워크 4.0"
-    AFX_IDS_IDLEMESSAGE     "마이티 네트워크 4.0"
+    AFX_IDS_APP_TITLE       "마이티 네트워크 3.9"
+    AFX_IDS_IDLEMESSAGE     "마이티 네트워크 3.9"
 END
 
 STRINGTABLE 
@@ -1460,6 +1460,7 @@ END
 
 STRINGTABLE 
 BEGIN
+    IDC_DM_ONLYONE          "점수 카드가 한 장 뿐인 경우 딜 미스 조건이 됩니다 - 2 마의 기본값입니다."
     IDC_S_0                 "Mighty 2.0 방식의 점수 계산법으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)"
     IDC_S_1                 "기존의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: (목표수-기본수)*1.5+(여당득점-목표수)"
     IDC_S_2                 "여당이 승리하였을 때 얻은 점수와 상관 없이 목표수에 해당하는 만큼의 보상을 받는 방식입니다.\n여당승: (목표수-기본수+1)*2"
@@ -1494,6 +1495,11 @@ BEGIN
     IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 빽런이 됩니다."
     IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 빽런이 됩니다."
     IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 빽런이 됩니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션에 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
 END
 
 #endif    // Korean resources

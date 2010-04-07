@@ -404,8 +404,8 @@ DConnect::~DConnect()
 {
 	// 채팅창 핸들러를 클리어
 	Ib()->SetChatHandler( (DWORD)(LPVOID)this, 0 );
-
-	if ( m_pPopup ) m_pPopup->Destroy();
+	if ( m_pPopup )
+		m_pPopup->Destroy();
 	ASSERT( !m_pPopup );	// popup 이 스스로 지웠다
 
 	if ( m_pServerSocket ) {
@@ -777,7 +777,7 @@ CMsg* DConnect::CreateStateMsg()
 	for ( i = 0; i < m_rule.nPlayerNum; i++ )
 		sFormat += _T("sslllll");
 
-	return new CMsg( sFormat,
+	CMsg* k = new CMsg( sFormat,
 		CMsg::mmPrepare, Mo()->nPreset,
 		Mo()->nPreset ? m_sRule : m_rule.Encode(),
 		m_aInfo[0].sName, m_aInfo[0].sInfo, m_aInfo[0].bComputer ? 1 : 0,
@@ -791,7 +791,10 @@ CMsg* DConnect::CreateStateMsg()
 		m_aInfo[4].sName, m_aInfo[4].sInfo, m_aInfo[4].bComputer ? 1 : 0,
 			m_aInfo[4].dfa[0], m_aInfo[4].dfa[1], m_aInfo[4].dfa[2], m_aInfo[4].dfa[3],
 		m_aInfo[5].sName, m_aInfo[5].sInfo, m_aInfo[5].bComputer ? 1 : 0,
-			m_aInfo[5].dfa[0], m_aInfo[5].dfa[1], m_aInfo[5].dfa[2], m_aInfo[5].dfa[3] );
+			m_aInfo[5].dfa[0], m_aInfo[5].dfa[1], m_aInfo[5].dfa[2], m_aInfo[5].dfa[3],
+		m_aInfo[6].sName, m_aInfo[6].sInfo, m_aInfo[6].bComputer ? 1 : 0,
+			m_aInfo[6].dfa[0], m_aInfo[6].dfa[1], m_aInfo[6].dfa[2], m_aInfo[6].dfa[3] );
+	return k;
 }
 
 // m_aInfo 의 i 번째 플레이어에 대한 CMsg 객체를 생성(new)
