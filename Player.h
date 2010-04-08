@@ -40,7 +40,7 @@ struct GAME_RECORD {
 class CPlayer
 {
 public:
-	CPlayer( int nID,		// 고유 번호 ( 6명의 플레이어중 순서 )
+	CPlayer( int nID,		// 고유 번호 ( 7명의 플레이어중 순서 )
 		LPCTSTR sName,		// 이름
 		CWnd* pCallback );	// call-back window
 	virtual ~CPlayer() {}

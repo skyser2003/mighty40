@@ -462,12 +462,12 @@ void CPlayerHuman::OnKillOneFromSix( CCard cKill,
 	}
 	e->SetEvent();
 }
-	// 7마에서 당선된 경우 두 사람을 죽여야 한다
-	// 이 함수는 그 중 하나만 죽이는 함수로,
-	// OnKillOneFromSix와 같다.
-	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-	// 하나가 죽는다 !
+// 7마에서 당선된 경우 두 사람을 죽여야 한다
+// 이 함수는 그 중 하나만 죽이는 함수로,
+// OnKillOneFromSix와 같다.
+// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
+// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
+// 하나가 죽는다 !
 void CPlayerHuman::OnKillOneFromSeven( CCard* pcCardToKill,
 	CCardList* plcFailedCardsTillNow, CEvent* e )
 {

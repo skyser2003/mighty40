@@ -269,7 +269,6 @@ lblMightyBegin:
 			if ( !IsServer() ) GetDeckFromServer();
 			// 각 플레이어에게 알린다
 			NOTIFY_ALL( OnSuffledForDead(EVENT) );
-			NOTIFY_ALL( OnSuffledForDead(EVENT) );
 
 			// 모두에게 알린다
 			NOTIFY_ALL( OnDeal( -1, -1, 0, 0, EVENT ) );

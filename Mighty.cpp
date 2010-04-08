@@ -282,8 +282,8 @@ BOOL CMightyApp::PreTranslateMessage(MSG* pMsg)
 			pWnd->SetWindowText(_T("내 컴퓨터"));
 			pWnd->SetIcon( LoadIcon( IDI_MYCOM ), TRUE );
 			pWnd->MessageBox(
-				( nSelector % 2 ? _T("MIGHT.DLL을(를) 지울 수 없습니다: 공유 위반입니다.\n\n원본이나 대상 게임이 진행중인것 같습니다.")
-				: _T("현재 폴더가 가장 상위 폴더입니다.\n마이티 화면을 보려면 열려 있는 창을 아이콘 표시하십시오.") ),
+				( nSelector % 2 ? _T("msimg32.dll을(를) 지울 수 없습니다: 공유 위반입니다.\n\n원본이나 대상 프로그램이 실행중인것 같습니다.")
+				: _T("현재 폴더가 가장 상위 폴더입니다.\n바탕 화면을 보려면 열려 있는 창을 아이콘 표시하십시오.") ),
 				_T("내 컴퓨터"), MB_OK|MB_ICONSTOP|MB_SETFOREGROUND );
 		}
 		else {
