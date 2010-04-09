@@ -25,16 +25,12 @@ public:
 // Dialog Data
 	//{{AFX_DATA(PRuleElection)
 	enum { IDD = IDD_RULE_ELECTION };
-	BOOL	m_bAttScoreThrownPoints;
 	BOOL	m_bBeginerPass;
-	BOOL	m_bFriend;
-	BOOL	m_bFriendGetsBeginer;
 	BOOL	m_bHighScore;
-	BOOL	m_bJokerFriend;
 	int		m_nMinScore;
-	BOOL	m_bNoKirudaAdvantage;
-	BOOL	m_bRaise1ForNoKirudaChange;
 	BOOL	m_bRaise2ForKirudaChange;
+	BOOL	m_bPassAgain;
+	int		m_nNoKirudaAdvantage;
 	//}}AFX_DATA
 
 

@@ -303,6 +303,10 @@
 #define IDC_REVERSERUN                  2012
 #define IDC_REVERSERUN1                 2013
 #define IDC_REVERSERUN2                 2014
+#define IDC_NK                          2015
+#define IDC_NK1                         2016
+#define IDC_NK2                         2017
+#define IDC_PASSAGAIN                   2018
 #define IDD_SETTING                     10000
 #define IDC_FACTOR                      10000
 #define IDC_USESIMULATION               10001
@@ -318,7 +322,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        2001
 #define _APS_NEXT_COMMAND_VALUE         32774
-#define _APS_NEXT_CONTROL_VALUE         2013
+#define _APS_NEXT_CONTROL_VALUE         2018
 #define _APS_NEXT_SYMED_VALUE           2000
 #endif
 #endif

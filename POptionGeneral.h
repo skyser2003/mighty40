@@ -22,6 +22,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(POptionGeneral)
 	enum { IDD = IDD_OPTION_GENERAL };
+	BOOL	m_bClockwise;
 	BOOL	m_bUseTerm;
 	BOOL	m_bUseSound;
 	int		m_nSortMode;

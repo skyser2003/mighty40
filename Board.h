@@ -159,7 +159,7 @@ protected:
 	// pbVertical : 0 이 아니면 이 사각형이 세로로 긴 사각형인지를 리턴한다
 	// pbDirection: 0 이 아니면 방향을 리턴 ( true:위에서 아래,왼쪽에서 오른쪽 false:그 반대)
 	enum CR_TYPE { CR_CENTER, CR_SCORE, CR_HAND, CR_HIDDEN };
-	CRect CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
+	CRect CalcRect( int nPlayers, CR_TYPE type, int nPlayer, 
 		int nCardWidth, int nCardHeight,
 		int nIndex = -1, int nAll = 0,
 		bool* pbVertical = 0, bool* pbDirection = 0 ) const;

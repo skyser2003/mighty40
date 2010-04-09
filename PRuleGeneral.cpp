@@ -23,9 +23,12 @@ PRuleGeneral::PRuleGeneral(CRule* pRule,bool bReadOnly) : CPropertyPage(PRuleGen
 
 	//{{AFX_DATA_INIT(PRuleGeneral)
 	m_nPlayerNum = m_pRule->nPlayerNum - 2;
-	m_bClockWise = m_pRule->bClockWise;
-	m_bHideScore = m_pRule->bHideScore;
+	m_bFriend = m_pRule->bFriend;
+	m_bJokerFriend = m_pRule->bJokerFriend;
 	m_bShowFriend = m_pRule->bShowFriend;
+	m_bFriendGetsBeginer = m_pRule->bFriendGetsBeginer;
+	m_bAttScoreThrownPoints = m_pRule->bAttScoreThrownPoints;
+	m_bHideScore = m_pRule->bHideScore;
 	//}}AFX_DATA_INIT
 }
 
@@ -38,16 +41,22 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PRuleGeneral)
 	DDX_Radio(pDX, IDC_2MA, m_nPlayerNum);
-	DDX_Check(pDX, IDC_CLOCKWISE, m_bClockWise);
-	DDX_Check(pDX, IDC_HIDESCORE, m_bHideScore);
+	DDX_Check(pDX, IDC_FRIEND, m_bFriend);
+	DDX_Check(pDX, IDC_JOKERFRIEND, m_bJokerFriend);
 	DDX_Check(pDX, IDC_SHOWFRIEND, m_bShowFriend);
+	DDX_Check(pDX, IDC_FRIENDGETSBEGINER, m_bFriendGetsBeginer);
+	DDX_Check(pDX, IDC_ATTSCORETHROWNPOINTS, m_bAttScoreThrownPoints);
+	DDX_Check(pDX, IDC_HIDESCORE, m_bHideScore);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
 		m_pRule->nPlayerNum = m_nPlayerNum + 2;
-		m_pRule->bClockWise = m_bClockWise ? true : false;
-		m_pRule->bHideScore = m_bHideScore ? true : false;
+		m_pRule->bFriend = !!m_bFriend;
+		m_pRule->bJokerFriend = !!m_bJokerFriend;
 		m_pRule->bShowFriend = m_bShowFriend ? true : false;
+		m_pRule->bFriendGetsBeginer = !!m_bFriendGetsBeginer;
+		m_pRule->bAttScoreThrownPoints = !!m_bAttScoreThrownPoints;
+		m_pRule->bHideScore = m_bHideScore ? true : false;
 	}
 }
 

@@ -27,6 +27,7 @@ void COption::Save() const
 
 	sSection = _T("General");
 
+	SYNC_OPTION_B( _T("Clockwise"), bClockwise, true );
 	SYNC_OPTION_B( _T("Sound"), bUseSound, true );
 	SYNC_OPTION_B( _T("NoSort"), bNoSort, false );
 	SYNC_OPTION_B( _T("LeftKiruda"), bLeftKiruda, true );
@@ -96,7 +97,7 @@ void COption::Save() const
 		SYNC_OPTION_S( sEntry, asAddressBook[i], _T("") );
 	}
 	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
-	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
+//	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
 	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 
@@ -135,6 +136,7 @@ void COption::Load()
 
 	sSection = _T("General");
 
+	SYNC_OPTION_B( _T("Clockwise"), bClockwise, true );
 	SYNC_OPTION_B( _T("Sound"), bUseSound, true );
 	SYNC_OPTION_B( _T("NoSort"), bNoSort, false );
 	SYNC_OPTION_B( _T("LeftKiruda"), bLeftKiruda, true );
@@ -221,7 +223,7 @@ void COption::Load()
 	for ( ; j < ADDRESSBOOK_SIZE; j++ )
 		asAddressBook[j].Empty();
 	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
-	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
+//	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
 	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 

@@ -26,9 +26,12 @@ public:
 	//{{AFX_DATA(PRuleGeneral)
 	enum { IDD = IDD_RULE_GENERAL };
 	int		m_nPlayerNum;
-	BOOL	m_bClockWise;
-	BOOL	m_bHideScore;
+	BOOL	m_bFriend;
+	BOOL	m_bJokerFriend;
 	BOOL	m_bShowFriend;
+	BOOL	m_bFriendGetsBeginer;
+	BOOL	m_bAttScoreThrownPoints;
+	BOOL	m_bHideScore;
 	//}}AFX_DATA
 
 

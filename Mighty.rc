@@ -110,8 +110,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,8
- PRODUCTVERSION 4,0,0,8
+ FILEVERSION 0,0,0,9
+ PRODUCTVERSION 4,0,0,9
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "0.0.0.8"
+            VALUE "FileVersion", "0.0.0.9"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2007-2010 Puzzlet & Yoshi-TS4"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "0.0.0.8"
+            VALUE "ProductVersion", "0.0.0.9"
         END
     END
     BLOCK "VarFileInfo"
@@ -259,25 +259,26 @@ IDB_MASK                BITMAP                  "res\\mask.bmp"
 // Dialog
 //
 
-IDD_OPTION_GENERAL DIALOGEX 0, 0, 231, 145
+IDD_OPTION_GENERAL DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "일반"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    EDITTEXT        IDC_HUMANNAME,7,65,76,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HUMANNAME,7,69,80,14,ES_AUTOHSCROLL
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2009-2010 puzzlet & Yoshi-TS4",IDC_STATIC,37,7,104,36
-    CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,83,10
-    CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,103,96,10
-    CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,100,10
-    LTEXT           "플레이어의 이름",IDC_STATIC,7,54,85,8
-    CONTROL         "정렬 없음(&N)",IDC_SORTMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,116,73,102,10
-    CONTROL         "기루다 왼쪽, A 왼쪽(&1)",IDC_SORTMODE1,"Button",BS_AUTORADIOBUTTON,116,83,102,10
-    CONTROL         "기루다 왼쪽, A 오른쪽(&2)",IDC_SORTMODE2,"Button",BS_AUTORADIOBUTTON,116,93,102,10
-    CONTROL         "기루다 오른쪽, A 왼쪽(&3)",IDC_SORTMODE3,"Button",BS_AUTORADIOBUTTON,116,103,102,10
-    CONTROL         "기루다 오른쪽, A 오른쪽(&4)",IDC_SORTMODE4,"Button",BS_AUTORADIOBUTTON,116,113,105,10
-    GROUPBOX        "카드 정렬",IDC_STATIC,110,62,114,66,WS_GROUP
-    LTEXT           "우측 위의 ? 버튼을 누른 다음 컨트롤을 클릭하면 간단한 도움말이 나타납니다",IDC_STATIC,143,7,81,36
+    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2009-2010 puzzlet && Yoshi-TS4",IDC_STATIC,37,7,104,39
+    CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,96,10
+    CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
+    CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
+    LTEXT           "플레이어의 이름",IDC_STATIC,7,58,85,8
+    CONTROL         "정렬 없음(&N)",IDC_SORTMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,79,102,10
+    CONTROL         "기루다 왼쪽, A 왼쪽(&1)",IDC_SORTMODE1,"Button",BS_AUTORADIOBUTTON,121,91,102,10
+    CONTROL         "기루다 왼쪽, A 오른쪽(&2)",IDC_SORTMODE2,"Button",BS_AUTORADIOBUTTON,121,103,102,10
+    CONTROL         "기루다 오른쪽, A 왼쪽(&3)",IDC_SORTMODE3,"Button",BS_AUTORADIOBUTTON,121,115,102,10
+    CONTROL         "기루다 오른쪽, A 오른쪽(&4)",IDC_SORTMODE4,"Button",BS_AUTORADIOBUTTON,121,127,102,10
+    GROUPBOX        "카드 정렬",IDC_STATIC,116,66,116,79,WS_GROUP
+    LTEXT           "우측 위의 ? 버튼을 누른 다음 컨트롤을 클릭하면 간단한 도움말이 나타납니다",IDC_STATIC,159,7,73,41
+    CONTROL         "시계 방향으로 진행(&C)",IDC_CLOCKWISE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,91,96,10
 END
 
 IDD_RULE_CARD DIALOGEX 0, 0, 239, 179
@@ -296,32 +297,32 @@ BEGIN
     COMBOBOX        IDC_CARD_ALTJOKERCALL,89,125,57,161,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_OPTION_BOSSKEY DIALOG  0, 0, 231, 145
+IDD_OPTION_BOSSKEY DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "보스키"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "임의(&R)",IDC_BOSSTYPE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,17,64,77,10
-    CONTROL         "현재폴더가 가장 상위폴더입니다 (&1)",IDC_BOSSTYPE1,"Button",BS_AUTORADIOBUTTON,17,77,195,10
-    CONTROL         "지울수 없습니다:엑세스가 거부되었습니다 (&2)",IDC_BOSSTYPE2,"Button",BS_AUTORADIOBUTTON,17,90,196,10
-    CONTROL         "사이트를 찾을 수 없습니다 (&3)",IDC_BOSSTYPE3,"Button",BS_AUTORADIOBUTTON,17,103,196,10
-    CONTROL         "다운로드 완료 (&4)",IDC_BOSSTYPE4,"Button",BS_AUTORADIOBUTTON,17,116,170,10
-    GROUPBOX        "보스키가 작동중일 때 화면에 보일 가짜 모습",IDC_STATIC,7,48,217,90,WS_GROUP
-    LTEXT           "보스키란 ?\n게임을 하는 모습을 다른 사람이 보는 것을 원하지 않을 때\n순간적으로 게임 화면을 감추는 방법을 말합니다\n이 게임은 'Pause' 키가 보스키입니다",IDC_STATIC,7,7,217,33
+    CONTROL         "임의(&R)",IDC_BOSSTYPE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,17,69,77,10
+    CONTROL         "현재폴더가 가장 상위폴더입니다 (&1)",IDC_BOSSTYPE1,"Button",BS_AUTORADIOBUTTON,17,83,195,10
+    CONTROL         "지울수 없습니다:엑세스가 거부되었습니다 (&2)",IDC_BOSSTYPE2,"Button",BS_AUTORADIOBUTTON,17,97,196,10
+    CONTROL         "사이트를 찾을 수 없습니다 (&3)",IDC_BOSSTYPE3,"Button",BS_AUTORADIOBUTTON,17,111,196,10
+    CONTROL         "다운로드 완료 (&4)",IDC_BOSSTYPE4,"Button",BS_AUTORADIOBUTTON,17,125,170,10
+    GROUPBOX        "보스키가 작동중일 때 화면에 보일 가짜 모습",IDC_STATIC,7,56,225,96,WS_GROUP
+    LTEXT           "보스키란 ?\n게임을 하는 모습을 다른 사람이 보는 것을 원하지 않을 때\n순간적으로 게임 화면을 감추는 방법을 말합니다\n이 게임은 'Pause' 키가 보스키입니다",IDC_STATIC,8,8,225,33
 END
 
-IDD_OPTION_CARD DIALOG  0, 0, 231, 145
+IDD_OPTION_CARD DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "카드"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "카드 확대/축소 기능 사용(&Z)",IDC_ZOOMCARD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,63,120,10
-    CONTROL         "카드 도움말 사용(&H)",IDC_CARDHELP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,81,107,10
-    CONTROL         "카드 툴팁 사용(&T)",IDC_CARDTIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,97,94,10
-    CONTROL         "",IDC_SAMPLEBACK,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,155,33,41,64
-    PUSHBUTTON      "뒷면 그림 선택(&P)...",IDC_BACKSELECT,137,105,75,14
-    LTEXT           "현재 선택된 뒷면 그림",IDC_STATIC,138,18,86,8
-    CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,15,120,38
+    CONTROL         "카드 확대/축소 기능 사용(&Z)",IDC_ZOOMCARD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,71,120,10
+    CONTROL         "카드 도움말 사용(&H)",IDC_CARDHELP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,89,107,10
+    CONTROL         "카드 툴팁 사용(&T)",IDC_CARDTIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,107,94,10
+    CONTROL         "",IDC_SAMPLEBACK,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,159,36,41,64
+    PUSHBUTTON      "뒷면 그림 선택(&P)...",IDC_BACKSELECT,141,109,75,14
+    LTEXT           "현재 선택된 뒷면 그림",IDC_STATIC,144,18,86,8
+    CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,20,120,38
 END
 
 IDD_SELECTBACK DIALOG  0, 0, 279, 147
@@ -344,165 +345,164 @@ BEGIN
     PUSHBUTTON      "취소",IDCANCEL,232,126,40,14
 END
 
-IDD_OPTION_BACKGROUND DIALOG  0, 0, 231, 145
+IDD_OPTION_BACKGROUND DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "배경"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "배경 그림 사용(&G)",IDC_USEBACKGROUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,148,44,76,10
-    CONTROL         "가운데(&C)",IDC_BACKALIGN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,154,74,62,10
-    CONTROL         "타일(&T)",IDC_BACKALIGN1,"Button",BS_AUTORADIOBUTTON,154,88,62,10
-    CONTROL         "화면에 맞춤(&F)",IDC_BACKALIGN2,"Button",BS_AUTORADIOBUTTON,154,102,62,10
-    GROUPBOX        "배경 그림",IDC_STATIC,148,61,76,77,WS_GROUP
-    PUSHBUTTON      "찾아보기(&W)...",IDC_BACKGROUNDBROWSE,164,118,54,14
-    CONTROL         "",IDC_SAMPLEBACKGROUND,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,130,111
-    PUSHBUTTON      "여당 색상(&D)...",IDC_DEFCOLSELECT,7,124,63,14
-    PUSHBUTTON      "야당 색상(&A)...",IDC_ATTCOLSELECT,74,124,63,14
-    PUSHBUTTON      "배경 색상(&B)...",IDC_BACKGROUNDCOLSELECT,148,7,76,14
+    CONTROL         "배경 그림 사용(&G)",IDC_USEBACKGROUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,156,48,76,10
+    CONTROL         "가운데(&C)",IDC_BACKALIGN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,161,88,62,10
+    CONTROL         "타일(&T)",IDC_BACKALIGN1,"Button",BS_AUTORADIOBUTTON,161,102,62,10
+    CONTROL         "화면에 맞춤(&F)",IDC_BACKALIGN2,"Button",BS_AUTORADIOBUTTON,161,116,62,10
+    GROUPBOX        "배경 그림",IDC_STATIC,152,72,80,80,WS_GROUP
+    PUSHBUTTON      "찾아보기(&W)...",IDC_BACKGROUNDBROWSE,169,132,54,14
+    CONTROL         "",IDC_SAMPLEBACKGROUND,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,132,116
+    PUSHBUTTON      "여당 색상(&D)...",IDC_DEFCOLSELECT,7,134,63,14
+    PUSHBUTTON      "야당 색상(&A)...",IDC_ATTCOLSELECT,74,134,63,14
+    PUSHBUTTON      "배경 색상(&B)...",IDC_BACKGROUNDCOLSELECT,156,7,76,14
 END
 
-IDD_OPTION_DSB DIALOG  0, 0, 231, 145
+IDD_OPTION_DSB DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "음영 상자"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,112,27,112,10
-    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",IDC_STATIC,106,95,118,43
-    CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,96,92
-    CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,54,76,10
-    CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",BS_AUTORADIOBUTTON,121,65,76,10
-    CONTROL         "어둡게(&A)",IDC_DSBSHADEMODE2,"Button",BS_AUTORADIOBUTTON,121,76,75,10
-    GROUPBOX        "음영 처리 방법",IDC_STATIC,111,42,113,49,WS_GROUP
-    PUSHBUTTON      "표준(&S)...",IDC_DSBTEXTCOLSELECT,7,107,50,14
-    PUSHBUTTON      "흐림(&D)...",IDC_DSBGRAYCOLSELECT,7,124,50,14
-    PUSHBUTTON      "강조&1...",IDC_DSBSTRONG1COLSELECT,60,107,43,14
-    PUSHBUTTON      "강조&2...",IDC_DSBSTRONG2COLSELECT,60,124,43,14
-    LTEXT           "음영 상자는 Windows의\n대화 상자와 같은 것입니다",IDC_STATIC,110,7,114,17
+    CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,30,112,10
+    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",IDC_STATIC,117,109,115,43
+    CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,100,100
+    CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,129,60,76,10
+    CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",BS_AUTORADIOBUTTON,129,72,76,10
+    CONTROL         "어둡게(&A)",IDC_DSBSHADEMODE2,"Button",BS_AUTORADIOBUTTON,129,84,75,10
+    GROUPBOX        "음영 처리 방법",IDC_STATIC,119,48,113,54,WS_GROUP
+    PUSHBUTTON      "표준(&S)...",IDC_DSBTEXTCOLSELECT,7,120,51,14
+    PUSHBUTTON      "흐림(&D)...",IDC_DSBGRAYCOLSELECT,7,138,51,14
+    PUSHBUTTON      "강조&1...",IDC_DSBSTRONG1COLSELECT,63,120,44,14
+    PUSHBUTTON      "강조&2...",IDC_DSBSTRONG2COLSELECT,63,138,44,14
+    LTEXT           "음영 상자는 Windows의\n대화 상자와 같은 것입니다",IDC_STATIC,118,7,114,17
 END
 
-IDD_OPTION_SPEED DIALOG  0, 0, 231, 145
+IDD_OPTION_SPEED DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "진행 속도"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,13,191,10
-    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,25,211,10
-    GROUPBOX        "카드 속도",IDC_CARDSPEEDGROUP,7,40,103,47
-    LTEXT           "느리게",IDC_STATIC,13,50,36,8
-    RTEXT           "빠르게",IDC_STATIC,67,50,37,8
-    CONTROL         "Slider1",IDC_CARDSPEED,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,13,59,90,21
-    GROUPBOX        "그려지는 프레임 수",IDC_CARDMOTIONGROUP,7,91,103,47
-    LTEXT           "부드럽게",IDC_STATIC,13,101,43,8
-    RTEXT           "거칠게",IDC_STATIC,68,101,36,8
-    CONTROL         "Slider1",IDC_CARDMOTION,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,13,110,90,21
-    GROUPBOX        "카드 한장에 대한 대기 시간",IDC_STATIC,121,40,103,47
-    LTEXT           "짧게",IDC_STATIC,127,50,30,8
-    RTEXT           "길게",IDC_STATIC,189,50,29,8
-    CONTROL         "Slider2",IDC_DELAYONECARD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,59,90,21
-    GROUPBOX        "기타 여러가지 대기 시간",IDC_STATIC,121,91,103,47
-    LTEXT           "짧게",IDC_STATIC,127,101,30,8
-    RTEXT           "길게",IDC_STATIC,189,101,29,8
-    CONTROL         "Slider2",IDC_DELAYONETURN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,110,90,21
+    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,13,200,10
+    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,26,200,10
+    GROUPBOX        "카드 속도",IDC_CARDSPEEDGROUP,7,43,108,50
+    LTEXT           "느리게",IDC_STATIC,14,53,36,8
+    RTEXT           "빠르게",IDC_STATIC,68,53,37,8
+    CONTROL         "Slider1",IDC_CARDSPEED,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,62,90,21
+    GROUPBOX        "그려지는 프레임 수",IDC_CARDMOTIONGROUP,7,102,108,50
+    LTEXT           "부드럽게",IDC_STATIC,14,113,43,8
+    RTEXT           "거칠게",IDC_STATIC,69,113,36,8
+    CONTROL         "Slider1",IDC_CARDMOTION,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,122,90,21
+    GROUPBOX        "카드 한장에 대한 대기 시간",IDC_STATIC,124,43,108,50
+    LTEXT           "짧게",IDC_STATIC,132,53,30,8
+    RTEXT           "길게",IDC_STATIC,194,53,29,8
+    CONTROL         "Slider2",IDC_DELAYONECARD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,62,90,21
+    GROUPBOX        "기타 여러가지 대기 시간",IDC_STATIC,124,102,108,50
+    LTEXT           "짧게",IDC_STATIC,132,113,30,8
+    RTEXT           "길게",IDC_STATIC,194,113,29,8
+    CONTROL         "Slider2",IDC_DELAYONETURN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,122,90,21
 END
 
-IDD_OPTION_RULE DIALOGEX 0, 0, 231, 145
+IDD_OPTION_RULE DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "게임 규칙"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",IDC_STATIC,14,13,210,35
+    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",IDC_STATIC,22,13,210,35
     LTEXT           "현재 선택된 기본 규칙",IDC_STATIC,17,59,115,8
     COMBOBOX        IDC_RULEPRESET,17,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "자세히(&D)...",IDC_SHOWRULE,118,73,50,14
     LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,17,99,148,8
-    EDITTEXT        IDC_RULESTRING,17,113,72,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    EDITTEXT        IDC_RULESTRING,17,113,75,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
 END
 
-IDD_OPTION_AI DIALOGEX 0, 0, 231, 145
+IDD_OPTION_AI DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "인공지능"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    LTEXT           "이름",IDC_STATIC,25,23,35,8
-    LTEXT           "인공지능 확장 파일 (DLL)",IDC_STATIC,79,23,81,8
-    LTEXT           "1 :",IDC_STATIC,7,39,9,8
-    EDITTEXT        IDC_PLAYERNAME0,21,36,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH0,77,39,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE0,143,36,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING0,188,36,36,14
-    LTEXT           "2 :",IDC_STATIC,7,56,9,8
-    EDITTEXT        IDC_PLAYERNAME1,21,53,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH1,77,56,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE1,143,53,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING1,188,53,36,14
-    LTEXT           "3 :",IDC_STATIC,7,73,9,8
-    EDITTEXT        IDC_PLAYERNAME2,21,70,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH2,77,73,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE2,143,70,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING2,188,70,36,14
-    LTEXT           "4 :",IDC_STATIC,7,90,9,8
-    EDITTEXT        IDC_PLAYERNAME3,21,87,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH3,77,90,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE3,143,87,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING3,188,87,36,14
-    LTEXT           "5 :",IDC_STATIC,7,107,9,8
-    EDITTEXT        IDC_PLAYERNAME4,21,104,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH4,77,107,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE4,143,104,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING4,188,104,36,14
-    LTEXT           "6 :",IDC_STATIC,7,124,9,8
-    EDITTEXT        IDC_PLAYERNAME5,21,120,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH5,77,124,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE5,143,120,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING5,188,120,36,14
-    PUSHBUTTON      "DLL 경로 초기화",IDC_RESETPATH,164,7,60,14
+    LTEXT           "이름",IDC_STATIC,25,24,35,8
+    LTEXT           "인공지능 확장 파일 (DLL)",IDC_STATIC,79,24,81,8
+    LTEXT           "1 :",IDC_STATIC,7,42,9,8
+    EDITTEXT        IDC_PLAYERNAME0,21,39,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH0,77,42,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE0,143,39,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING0,196,39,36,14
+    LTEXT           "2 :",IDC_STATIC,7,60,9,8
+    EDITTEXT        IDC_PLAYERNAME1,21,57,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH1,77,60,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE1,143,57,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING1,196,57,36,14
+    LTEXT           "3 :",IDC_STATIC,7,78,9,8
+    EDITTEXT        IDC_PLAYERNAME2,21,75,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH2,77,78,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE2,143,75,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING2,196,75,36,14
+    LTEXT           "4 :",IDC_STATIC,7,96,9,8
+    EDITTEXT        IDC_PLAYERNAME3,21,93,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH3,77,96,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE3,143,93,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING3,196,93,36,14
+    LTEXT           "5 :",IDC_STATIC,7,114,9,8
+    EDITTEXT        IDC_PLAYERNAME4,21,111,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH4,77,114,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE4,143,111,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING4,196,111,36,14
+    LTEXT           "6 :",IDC_STATIC,7,132,9,8
+    EDITTEXT        IDC_PLAYERNAME5,21,129,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH5,77,132,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE5,143,129,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING5,196,129,36,14
+    PUSHBUTTON      "DLL 경로 초기화",IDC_RESETPATH,172,7,60,14
 END
 
-IDD_MAIINFO DIALOG  0, 0, 207, 141
+IDD_MAIINFO DIALOGEX 0, 0, 209, 149
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "AI 정보"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     RTEXT           "파일명 :",IDC_STATIC,7,7,35,8
-    LTEXT           "filename",IDC_MAIINFO_FILENAME,47,7,153,8
+    LTEXT           "filename",IDC_MAIINFO_FILENAME,49,7,153,8
     RTEXT           "이름 :",IDC_STATIC,7,18,35,8
-    LTEXT           "name",IDC_MAIINFO_NAME,47,18,153,8
+    LTEXT           "name",IDC_MAIINFO_NAME,49,18,153,8
     RTEXT           "설명 :",IDC_STATIC,7,29,35,8
-    LTEXT           "explain",IDC_MAIINFO_EXPLAIN,47,29,153,87
-    DEFPUSHBUTTON   "확인",IDOK,148,120,52,14
-    PUSHBUTTON      "이 플레이어에 대한 설정 변경(&S)...",IDC_CHANGEOPTION,7,120,136,14
+    LTEXT           "explain",IDC_MAIINFO_EXPLAIN,49,29,153,87
+    DEFPUSHBUTTON   "확인",IDOK,150,128,52,14
+    PUSHBUTTON      "이 플레이어에 대한 설정 변경(&S)...",IDC_CHANGEOPTION,7,128,136,14
 END
 
-IDD_OPTION_COMM DIALOGEX 0, 0, 231, 145
+IDD_OPTION_COMM DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "통신"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "다른 사람과의 게임 중에 카드 팁을 볼 수 있음",IDC_USEHINTINNETWORK,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,13,19,190,10
-    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,13,39,189,8
-    EDITTEXT        IDC_PORT,14,50,86,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,13,71,108,8
-    EDITTEXT        IDC_ADDRESS,14,83,86,14,ES_AUTOHSCROLL
-    LTEXT           "Mighty.Net 기본 주소 :",IDC_STATIC,13,103,100,8,WS_DISABLED
-    EDITTEXT        IDC_MIGHTYNETADDRESS,14,117,86,14,ES_AUTOHSCROLL | WS_DISABLED
-    LTEXT           "네트워크 게임 전적",IDC_STATIC,130,67,79,8
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,113,81,44,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE,162,81,52,27
-    PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,139,113,50,14
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,17,23,189,8
+    EDITTEXT        IDC_PORT,18,36,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,17,61,108,8
+    EDITTEXT        IDC_ADDRESS,18,74,90,14,ES_AUTOHSCROLL
+    LTEXT           "Mighty.Net 기본 주소 :",IDC_STATIC,17,99,100,8,WS_DISABLED
+    EDITTEXT        IDC_MIGHTYNETADDRESS,18,112,90,14,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "네트워크 게임 전적",IDC_STATIC,139,54,79,8
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,122,68,44,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE,171,68,52,27
+    PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,148,100,50,14
 END
 
-IDD_OPTION_CHAT DIALOG  0, 0, 231, 145
+IDD_OPTION_CHAT DIALOGEX 0, 0, 239, 159
 STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "채팅"
-FONT 9, "굴림"
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    LTEXT           "채팅창 버퍼 크기",IDC_STATIC,13,16,70,8
-    EDITTEXT        IDC_CHATBUFFERSIZE,14,31,40,14,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
-    CONTROL         "Spin1",IDC_CHATBUFFERSIZESPIN,"msctls_updown32",UDS_WRAP | UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,53,31,9,14
-    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,99,7,103,51
-    LTEXT           "짧게",IDC_STATIC,105,21,27,8
-    RTEXT           "길게",IDC_STATIC,172,21,24,8
-    CONTROL         "Slider2",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,105,30,90,21
+    LTEXT           "채팅창 버퍼 크기",IDC_STATIC,13,17,70,8
+    EDITTEXT        IDC_CHATBUFFERSIZE,14,33,40,14,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    CONTROL         "Spin1",IDC_CHATBUFFERSIZESPIN,"msctls_updown32",UDS_WRAP | UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,53,32,9,14
+    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,106,9,103,51
+    LTEXT           "짧게",IDC_STATIC,112,23,27,8
+    RTEXT           "길게",IDC_STATIC,179,23,24,8
+    CONTROL         "Slider2",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,112,32,90,21
 END
 
 IDD_RULE_GENERAL DIALOGEX 0, 0, 239, 179
@@ -510,16 +510,19 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "일반"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    CONTROL         "시계 방향으로 진행",IDC_CLOCKWISE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,16,125,10
-    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,32,165,10
-    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,141,10
-    GROUPBOX        "플레이어 수",IDC_STATIC,7,70,94,94,WS_GROUP
-    CONTROL         "2 마",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,84,78,10
-    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,13,96,79,10
-    CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,13,108,78,10
-    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,13,120,79,10
-    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,13,132,78,10
-    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,13,144,78,10
+    GROUPBOX        "플레이어 수",IDC_STATIC,8,8,130,80,WS_GROUP
+    CONTROL         "2 마",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,18,80,10
+    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,14,29,80,10
+    CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,14,40,80,10
+    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,51,80,10
+    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,14,62,80,10
+    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,14,73,80,10
+    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,93,160,10
+    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,105,160,10
+    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,117,160,10
+    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,129,160,10
+    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,141,160,10
+    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,153,160,10
 END
 
 IDD_RULE_ELECTION DIALOGEX 0, 0, 239, 179
@@ -527,19 +530,16 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "선거"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    RTEXT           "기본 목표 점수 :",IDC_STATIC,7,10,61,8
-    COMBOBOX        IDC_MINSCORE,72,7,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,27,139,10
-    CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,40,157,10
-    CONTROL         "노기루다일때 기본 점수보다 1 적게 부를 수 있음",IDC_NOKIRUDAADVANTAGE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,53,225,10
-    CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,151,10
-    CONTROL         "노기루다로 바꿀 때는 목표점수를 1 만 올림",IDC_RAISE1FORNOKIRUDACHANGE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,79,161,10
-    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,92,106,10
-    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,105,132,10
-    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,118,154,10
-    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,131,163,10
+    RTEXT           "기본 목표 점수 :",IDC_STATIC,9,10,61,8
+    COMBOBOX        IDC_MINSCORE,75,7,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,27,160,10
+    CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,41,160,10
+    CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,55,160,10
+    CONTROL         "한번 패스한 사람이 다시 부를 수 있음",IDC_PASSAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,69,160,10
+    GROUPBOX        "노기루다로 부를 때",IDC_STATIC,7,90,216,63
+    CONTROL         "기루다가 있는 경우와 동일",IDC_NK,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,104,100,10
+    CONTROL         "처음 부르는 경우 혹은 노기루다로 바꿀 때 1 적게 부를 수 있음",IDC_NK1,"Button",BS_AUTORADIOBUTTON,13,118,203,10
+    CONTROL         "항상 1 적게 부를 수 있음",IDC_NK2,"Button",BS_AUTORADIOBUTTON,13,132,203,10
 END
 
 IDD_RULE_CONSTRAIN DIALOGEX 0, 0, 239, 179
@@ -669,9 +669,9 @@ BEGIN
     IDD_OPTION_GENERAL, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_RULE_CARD, DIALOG
@@ -685,17 +685,17 @@ BEGIN
     IDD_OPTION_BOSSKEY, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_CARD, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_SELECTBACK, DIALOG
@@ -709,65 +709,65 @@ BEGIN
     IDD_OPTION_BACKGROUND, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_DSB, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_SPEED, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_RULE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_AI, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_MAIINFO, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 200
+        RIGHTMARGIN, 202
         TOPMARGIN, 7
-        BOTTOMMARGIN, 134
+        BOTTOMMARGIN, 142
     END
 
     IDD_OPTION_COMM, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_OPTION_CHAT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 224
+        RIGHTMARGIN, 232
         TOPMARGIN, 7
-        BOTTOMMARGIN, 138
+        BOTTOMMARGIN, 152
     END
 
     IDD_RULE_GENERAL, DIALOG
@@ -845,6 +845,8 @@ END
 IDD_RULE_ELECTION DLGINIT
 BEGIN
     IDC_MINSCORE, 0x403, 2, 0
+0x0034, 
+    IDC_MINSCORE, 0x403, 2, 0
 0x0035, 
     IDC_MINSCORE, 0x403, 2, 0
 0x0036, 
@@ -872,6 +874,10 @@ BEGIN
 0x3731, "\000" 
     IDC_MINSCORE, 0x403, 3, 0
 0x3831, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3931, "\000" 
+    IDC_MINSCORE, 0x403, 3, 0
+0x3032, "\000" 
     0
 END
 
@@ -1493,11 +1499,18 @@ BEGIN
     IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 빽런이 됩니다."
     IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 빽런이 됩니다."
     IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 빽런이 됩니다."
+    IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
 END
 
 STRINGTABLE 
 BEGIN
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션에 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
+    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 다음 사람은 17 이상을 불러야 합니다."
 END
 
 #endif    // Korean resources

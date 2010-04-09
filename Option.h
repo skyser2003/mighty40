@@ -23,6 +23,8 @@ struct COption
 
 	// 일반
 
+	// 시계 방향
+	bool bClockwise;
 	// 소리
 	bool bUseSound;
 	// 카드 정렬 안함

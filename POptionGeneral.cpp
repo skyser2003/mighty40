@@ -34,6 +34,7 @@ IMPLEMENT_DYNCREATE(POptionGeneral, CPropertyPage)
 POptionGeneral::POptionGeneral() : CPropertyPage(POptionGeneral::IDD)
 {
 	//{{AFX_DATA_INIT(POptionGeneral)
+	m_bClockwise = Mo()->bClockwise;
 	m_bUseTerm = Mo()->bUseTerm;
 	m_bUseSound = Mo()->bUseSound;
 	m_nSortMode = get_sort_mode( Mo()->bNoSort, Mo()->bLeftKiruda, Mo()->bLeftAce );
@@ -50,6 +51,7 @@ void POptionGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(POptionGeneral)
+	DDX_Check(pDX, IDC_CLOCKWISE, m_bClockwise);
 	DDX_Check(pDX, IDC_USETERM, m_bUseTerm);
 	DDX_Check(pDX, IDC_USESOUND, m_bUseSound);
 	DDX_Radio(pDX, IDC_SORTMODE, m_nSortMode);
@@ -61,6 +63,7 @@ void POptionGeneral::DoDataExchange(CDataExchange* pDX)
 	if ( pDX->m_bSaveAndValidate ) {
 		parse_sort_mode( Mo()->bNoSort, Mo()->bLeftKiruda,
 			Mo()->bLeftAce, m_nSortMode );
+		Mo()->bClockwise = !!m_bClockwise;
 		Mo()->bUseTerm = !!m_bUseTerm;
 		Mo()->bUseSound = !!m_bUseSound;
 		Mo()->aPlayer[0].sName = m_sHumanName;

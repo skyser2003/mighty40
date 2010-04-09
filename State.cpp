@@ -200,7 +200,7 @@ bool CState::IsValidNewGoal( int nNewKiruda, int nNewMinScore ) const
 
 		// 올려야 하는 점수
 		int nMinDiff;
-		if ( pRule->bRaise1ForNoKirudaChange
+		if ( pRule->bNoKirudaAdvantage
 				&& ( goal.nKiruda == 0 || nNewKiruda == 0 )
 			|| !pRule->bRaise2ForKirudaChange
 			|| bBlindKirudaChange )

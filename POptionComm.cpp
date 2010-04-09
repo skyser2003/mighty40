@@ -33,7 +33,6 @@ POptionComm::POptionComm() : CPropertyPage(POptionComm::IDD)
 	m_sMightyNetAddress = Mo()->sMightyNetAddress;
 	m_nPort = Mo()->nPort;
 	m_sAddress = Mo()->sAddress;
-	m_bUseHintInNetwork = Mo()->bUseHintInNetwork;
 	//}}AFX_DATA_INIT
 	format_state( &m_sScore );
 }
@@ -49,7 +48,6 @@ void POptionComm::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_MIGHTYNETADDRESS, m_sMightyNetAddress);
 	DDX_Text(pDX, IDC_PORT, m_nPort);
 	DDX_Text(pDX, IDC_ADDRESS, m_sAddress);
-	DDX_Check(pDX, IDC_USEHINTINNETWORK, m_bUseHintInNetwork);
 	DDX_Text(pDX, IDC_SCORE, m_sScore);
 	//}}AFX_DATA_MAP
 
@@ -59,7 +57,6 @@ void POptionComm::DoDataExchange(CDataExchange* pDX)
 		m_sAddress.TrimLeft();
 		m_sAddress.TrimRight();
 		Mo()->sAddress = m_sAddress;
-		Mo()->bUseHintInNetwork;	// = m_bUseHintInNetwork;
 	}
 }
 

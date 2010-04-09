@@ -16,22 +16,22 @@ static char THIS_FILE[]=__FILE__;
 
 static LPCTSTR asPreset[][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
-	{ _T("'1$1M&WG*7,%KG#"), _T("표준 4마") },
-	{ _T("&/$1M&WC*7,%KG#"), _T("표준 3마") },
-	{ _T(")0$1M&WO*7,%KG#"), _T("표준 6마") },
-	{ _T("*0$1M&WO*7,%KG#"), _T("표준 7마") },
-	{ _T("%*$1M&WC*7$&KG#"), _T("표준 2마") },
-	{ _T("(0$1M@`PB(R'K1$"), _T("SNUCSE 5마") },
-	{ _T(")1$1M@`PB(R'K1$"), _T("SNUCSE 6마") },
-	{ _T("*1$1M@`PB(R'K1$"), _T("SNUCSE 7마") },
-	{ _T(")0$1M@PP27`3KI#"), _T("관악 6마") },
-	{ _T("(1$1M&R`2'`%KQ+"), _T("신촌 5마") },
-	{ _T("(/$1M@7Obb$%KQ'"), _T("경기 5마") },
-	{ _T("'0$1M&PH27\\%KI#"), _T("부산 4마") },
-	{ _T("(/$1M&RP17,%KI#"), _T("대구 5마") },
-	{ _T(")0$1M&P`27`%KI#"), _T("대전 6마") },
-	{ _T("(/$1M&XP9(,%KI+"), _T("광주 5마") },
-	{ _T("&/$1M&7C27`%KI#"), _T("제주 3마") },
+	{ _T("'1$1M&%)2K5'3,$"), _T("표준 4마") },
+	{ _T("&/$1M&#)2K5'3,$"), _T("표준 3마") },
+	{ _T(")0$1M&))2K5'3,$"), _T("표준 6마") },
+	{ _T("*0$1M&))2K%'3,$"), _T("표준 7마") },
+	{ _T("%*$1M&#)2K5'3,$"), _T("표준 2마") },
+	{ _T("(0$1M@IYb-A(C@%"), _T("SNUCSE 5마") },
+	{ _T(")1$1M@IYb-1(C@%"), _T("SNUCSE 6마") },
+	{ _T("*1$1M@IYb-1(C@%"), _T("SNUCSE 7마") },
+	{ _T(")0$1M@I7BK]F30$"), _T("관악 6마") },
+	{ _T("(1$1M&Z8B+](3@$"), _T("신촌 5마") },
+	{ _T("(/$1M@1-bb&'3@$"), _T("경기 5마") },
+	{ _T("'0$1M&E7BKU(30$"), _T("부산 4마") },
+	{ _T("(/$1M&I8@K5'30$"), _T("대구 5마") },
+	{ _T(")0$1M&I7BK]*30$"), _T("대전 6마") },
+	{ _T("(/$1M&*9P-5'30$"), _T("광주 5마") },
+	{ _T("&/$1M&#%BK](30$"), _T("제주 3마") },
 };
 
 // 미리 정의된 표준 룰로 세트
@@ -49,18 +49,19 @@ LPCTSTR CRule::Preset( int nRule )
 	Decode( asPreset[nRule][0] );
 #else
 	nPlayerNum = 5;
-	bClockWise = true;
-	nMinScore = 13;
-	bNoKirudaAdvantage = false;
-	bHighScore = false;
-	bFriendGetsBeginer = false;
-	bBeginerPass = true;
-	bRaise2ForKirudaChange = true;
-	bRaise1ForNoKirudaChange = false;
-	bReserved = false;
+	bHideScore = false;
 	bFriend = true;
 	bJokerFriend = true;
+	bShowFriend = false;
 	bAttScoreThrownPoints = false;
+	bFriendGetsBeginer = false;
+	nMinScore = 13;
+	bHighScore = false;
+	bBeginerPass = true;
+	bRaise2ForKirudaChange = true;
+	bPassAgain = false;
+	bNoKirudaAdvantage = false;
+	bNoKirudaAlways = false;
 	bInitMighty = true;
 	bInitMightyEffect = true;
 	bLastMighty = true;
@@ -76,10 +77,8 @@ LPCTSTR CRule::Preset( int nRule )
 	bJokercallJokerEffect = false;
 	bDM_NoPoint = true;
 	bDM_AllPoint = false;
-	bDM_MightyIsPoint = true;
-	bDM_JokerIsPoint = false;
 	bDM_JokerIsReversePoint = false;
-	bDM_Only10 = false;
+	bDM_Only10 = true;
 	bDM_OneEyedJack = false;
 	bDM_OnlyMighty = false;
 	bDM_OnlyOne = false;
@@ -94,13 +93,14 @@ LPCTSTR CRule::Preset( int nRule )
 	bSS_Efe = true;
 	bSS_Tft = false;
 	bS_DoubleForRun = true;
-	bS_DoubleForDeclaredRun = true;
+	bS_DoubleForDeclaredRun = false;
 	bS_DoubleForReverseRun = false;
 	bS_DoubleForNoKiruda = true;
 	bS_DoubleForNoFriend = true;
 	bS_StaticRun = false;
-	bShowFriend = false;
-	bHideScore = false;
+	bS_AGoalReverse = true;
+	bS_A11Reverse = false;
+	bS_AMReverse = false;
 	nMighty = (int)CCard( SPADE, ACE);
 	nAlterMighty = (int)CCard( DIAMOND, ACE );
 	nJokercall = (int)CCard( CLOVER, 3 );
@@ -167,17 +167,18 @@ CString CRule::Encode() const
 	SYNC_RULE_INT( nAlterMighty );
 	SYNC_RULE_INT( nJokercall );
 	SYNC_RULE_INT( nAlterJokercall );
-	SYNC_RULE_BOOL( bNoKirudaAdvantage );
-	SYNC_RULE_BOOL( bHighScore );
-	SYNC_RULE_BOOL( bClockWise );
-	SYNC_RULE_BOOL( bFriendGetsBeginer );
-	SYNC_RULE_BOOL( bBeginerPass );
-	SYNC_RULE_BOOL( bRaise2ForKirudaChange );
-	SYNC_RULE_BOOL( bRaise1ForNoKirudaChange );
-	SYNC_RULE_BOOL( bReserved );
+	SYNC_RULE_BOOL( bHideScore );
 	SYNC_RULE_BOOL( bFriend );
 	SYNC_RULE_BOOL( bJokerFriend );
+	SYNC_RULE_BOOL( bShowFriend );
 	SYNC_RULE_BOOL( bAttScoreThrownPoints );
+	SYNC_RULE_BOOL( bFriendGetsBeginer );
+	SYNC_RULE_BOOL( bHighScore );
+	SYNC_RULE_BOOL( bBeginerPass );
+	SYNC_RULE_BOOL( bRaise2ForKirudaChange );
+	SYNC_RULE_BOOL( bPassAgain );
+	SYNC_RULE_BOOL( bNoKirudaAdvantage );
+	SYNC_RULE_BOOL( bNoKirudaAlways );
 	SYNC_RULE_BOOL( bInitMighty );
 	SYNC_RULE_BOOL( bInitMightyEffect );
 	SYNC_RULE_BOOL( bLastMighty );
@@ -217,8 +218,6 @@ CString CRule::Encode() const
 	SYNC_RULE_BOOL( bS_AGoalReverse );
 	SYNC_RULE_BOOL( bS_A11Reverse );
 	SYNC_RULE_BOOL( bS_AMReverse );
-	SYNC_RULE_BOOL( bShowFriend );
-	SYNC_RULE_BOOL( bHideScore );
 
 	if ( n == 0 ) *p = '\0';
 	else *(p+1) = '\0';
@@ -248,17 +247,18 @@ void CRule::Decode( LPCTSTR sRule )
 	SYNC_RULE_INT( nAlterMighty );
 	SYNC_RULE_INT( nJokercall );
 	SYNC_RULE_INT( nAlterJokercall );
-	SYNC_RULE_BOOL( bNoKirudaAdvantage );
-	SYNC_RULE_BOOL( bHighScore );
-	SYNC_RULE_BOOL( bClockWise );
-	SYNC_RULE_BOOL( bFriendGetsBeginer );
-	SYNC_RULE_BOOL( bBeginerPass );
-	SYNC_RULE_BOOL( bRaise2ForKirudaChange );
-	SYNC_RULE_BOOL( bRaise1ForNoKirudaChange );
-	SYNC_RULE_BOOL( bReserved );
+	SYNC_RULE_BOOL( bHideScore );
 	SYNC_RULE_BOOL( bFriend );
 	SYNC_RULE_BOOL( bJokerFriend );
+	SYNC_RULE_BOOL( bShowFriend );
 	SYNC_RULE_BOOL( bAttScoreThrownPoints );
+	SYNC_RULE_BOOL( bFriendGetsBeginer );
+	SYNC_RULE_BOOL( bHighScore );
+	SYNC_RULE_BOOL( bBeginerPass );
+	SYNC_RULE_BOOL( bRaise2ForKirudaChange );
+	SYNC_RULE_BOOL( bPassAgain );
+	SYNC_RULE_BOOL( bNoKirudaAdvantage );
+	SYNC_RULE_BOOL( bNoKirudaAlways );
 	SYNC_RULE_BOOL( bInitMighty );
 	SYNC_RULE_BOOL( bInitMightyEffect );
 	SYNC_RULE_BOOL( bLastMighty );
@@ -298,6 +298,4 @@ void CRule::Decode( LPCTSTR sRule )
 	SYNC_RULE_BOOL( bS_AGoalReverse );
 	SYNC_RULE_BOOL( bS_A11Reverse );
 	SYNC_RULE_BOOL( bS_AMReverse );
-	SYNC_RULE_BOOL( bShowFriend );
-	SYNC_RULE_BOOL( bHideScore );
 }

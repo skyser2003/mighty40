@@ -25,7 +25,6 @@ public:
 	CString	m_sMightyNetAddress;
 	UINT	m_nPort;
 	CString	m_sAddress;
-	BOOL	m_bUseHintInNetwork;
 	CString	m_sScore;
 	//}}AFX_DATA
 

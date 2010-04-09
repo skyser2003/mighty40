@@ -27,9 +27,7 @@ int CBoard::MapAbsToLogic( int nAbsPlayer ) const
 
 	if ( !pState ) return nAbsPlayer;
 
-	return pState->pRule->bClockWise
-		? nAbsPlayer
-		: nAbsPlayer ? pState->nPlayers - nAbsPlayer : 0;
+	return nAbsPlayer;
 }
 
 int CBoard::MapLogicToAbs( int nLogicalPlayer ) const
@@ -281,7 +279,7 @@ void CBoard::CreateFont()
 //                리턴한다, nIndex == -1 이면 전체 사각형을 리턴 
 // pbVertical : 0 이 아니면 이 사각형이 세로로 긴 사각형인지를 리턴한다
 // pbDirection: 0 이 아니면 방향을 리턴 ( true:위에서 아래,왼쪽에서 오른쪽 false:그 반대)
-CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
+CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer, 
 	int nCardWidth, int nCardHeight,
 	int nIndex, int nAll, bool* pbVertical, bool* pbDirection ) const
 {
@@ -303,16 +301,31 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 	// 1(left) 2(left-center) 4(center) 8(right-center) 16(right)
 	// 32(top) 64( top-vcenter) 128(vcenter)
 	//                  256(bottom-vcenter) 512(bottom)
-	static const int aanLocInfo[MAX_PLAYERS+1][MAX_PLAYERS] = {
-		{ 0, 0, 0, 0, 0, 0, 0 },							// 0 명
-		{ 4+512, 0, 0, 0, 0, 0, 0 },						// 1 명
-		{ 4+512, 4+32, 0, 0, 0, 0, 0 },						// 2 명
-		{ 4+512, 1+64, 16+64, 0, 0, 0, 0 },					// 3 명
-		{ 4+512, 1+128, 4+32, 16+128, 0, 0, 0 },			// 4 명
-		{ 4+512, 1+256, 2+32, 8+32, 16+256, 0, 0  },		// 5 명
-		{ 8+512, 2+512, 1+128, 2+32, 8+32, 16+128, 0 },		// 6 명
-		{ 4+512, 1+512, 1+64, 2+32, 8+32, 16+64, 16+512 },	// 7 명
+	static const int aanLocInfoTemp[MAX_PLAYERS+1][MAX_PLAYERS] = {
+			{ 0, 0, 0, 0, 0, 0, 0 },							// 0 명
+			{ 4+512, 0, 0, 0, 0, 0, 0 },						// 1 명
+			{ 4+512, 4+32, 0, 0, 0, 0, 0 },						// 2 명
+			{ 4+512, 1+64, 16+64, 0, 0, 0, 0 },					// 3 명
+			{ 4+512, 1+128, 4+32, 16+128, 0, 0, 0 },			// 4 명
+			{ 4+512, 1+256, 2+32, 8+32, 16+256, 0, 0  },		// 5 명
+			{ 8+512, 2+512, 1+128, 2+32, 8+32, 16+128, 0 },		// 6 명
+			{ 4+512, 1+512, 1+64, 2+32, 8+32, 16+64, 16+512 },	// 7 명
 	};
+	static int aanLocInfo[MAX_PLAYERS+1][MAX_PLAYERS];
+	if( Mo()->bClockwise ) {
+		for ( int i=0; i<MAX_PLAYERS+1; i++) {
+			for ( int j=0; j<i; j++) {
+				aanLocInfo[i][j]=aanLocInfoTemp[i][j];
+			}
+		}
+	}
+	else {
+		for ( int i=0; i<MAX_PLAYERS+1; i++) {
+			for ( int j=0; j<i; j++) {
+				aanLocInfo[i][j]=aanLocInfoTemp[i][j==0?0:i-j];
+			}
+		}
+	}
 
 	CRect rc; GetClientRect(&rc);
 	int xCenter = rc.left + rc.Width()/2;
