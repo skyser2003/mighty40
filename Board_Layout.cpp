@@ -271,7 +271,7 @@ void CBoard::CreateFont()
 }
 
 // 화면상의 각 사각형 좌표를 얻는다
-// nPlayers   : 플레이 하는 플레이어의 수 ( 1 ~ 6 )
+// nPlayers   : 플레이 하는 플레이어의 수 ( 1 ~ 7 )
 // type       : 0 가운데 1 점수영역 2 손에든 카드 3 따는곳
 // nPlayer    : 어떤 플레이어에 대한 영역인가 (nType!=0일때만 사용)
 // nCardWidth : 카드의 가로 크기
@@ -311,9 +311,8 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 		{ 4+512, 1+128, 4+32, 16+128, 0, 0, 0 },			// 4 명
 		{ 4+512, 1+256, 2+32, 8+32, 16+256, 0, 0  },		// 5 명
 		{ 8+512, 2+512, 1+128, 2+32, 8+32, 16+128, 0 },		// 6 명
-		{ 4+512, 1+256, 1+64, 2+32, 8+32, 16+64, 16+256 },	// 7 명
+		{ 4+512, 1+512, 1+64, 2+32, 8+32, 16+64, 16+512 },	// 7 명
 	};
-
 
 	CRect rc; GetClientRect(&rc);
 	int xCenter = rc.left + rc.Width()/2;
@@ -352,6 +351,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 		|| type == CR_HAND ) {	// 점수판 , 손에 든 카드
 
 		int loc = aanLocInfo[nPlayers][nPlayer];
+
 		CRect rcHand;
 		bool bVert = loc & 1+16 ? true : false;	// 양 끝쪽은 세로로 된 사각형이다
 		if ( pbVertical ) *pbVertical = bVert;
@@ -364,9 +364,9 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 
 		if ( type == CR_SCORE ) {
 			if ( bVert ) {
-				if ( rc.Height() < 5*nCardHeight+nCardHeight/2 )
-					rcHand.SetRect( -nCardWidth, -nCardHeight*2, 0, 0 );
-				else rcHand.SetRect( -nCardWidth, -( rc.Height()/2 - nCardHeight*3/4 ), 0, 0 );
+					if ( rc.Height() < 5*nCardHeight+nCardHeight/2 )
+						rcHand.SetRect( -nCardWidth, -nCardHeight*2, 0, 0 );
+					else rcHand.SetRect( -nCardWidth, -( rc.Height()/2 - nCardHeight*3/4 ), 0, 0 );
 
 				if ( rc.Width() < 4*nCardWidth+2*nCardHeight ) {
 						 if ( loc & 1 ) GR_SETRIGHT( rcHand, xCenter - nCardHeight - nCardWidth/2 );
@@ -379,6 +379,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 					 if ( loc & 64 ) GR_SETVCENTER( rcHand, yCenter - rcHand.Height()/7 );
 				else if ( loc & 128 ) GR_SETVCENTER( rcHand, yCenter );
 				else if ( loc & 256 ) GR_SETVCENTER( rcHand, yCenter + rcHand.Height()/7 );
+				else if ( loc & 512 ) GR_SETBOTTOM( rcHand, rc.bottom );
 			}
 			else {
 				if ( rc.Width() < 4*nCardWidth+2*nCardHeight )
@@ -386,7 +387,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 				else rcHand.SetRect(
 					-( (rc.Width()-4*nCardWidth-2*nCardHeight)/3 + nCardWidth*7/4 ), -nCardHeight, 0, 0 );
 
-					 if ( loc & 2 ) GR_SETRIGHT( rcHand, xCenter - ( xCenter - rc.left )/6 );
+					 if ( loc & 2 ) GR_SETRIGHT( rcHand, xCenter - ( xCenter - rc.left ) / 6 );
 				else if ( loc & 4 ) GR_SETHCENTER( rcHand, xCenter );
 				else if ( loc & 8 ) GR_SETLEFT( rcHand, xCenter + ( rc.right - xCenter ) /6 );
 
@@ -403,9 +404,16 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 		else {
 
 			if ( bVert ) {
-				if ( rc.Height() < 5*nCardHeight + nCardHeight/2 )
-					rcHand.SetRect( -nCardWidth, -nCardHeight*3, 0, 0 );
-				else rcHand.SetRect( -nCardWidth, -( rc.Height()/2 + nCardHeight/4 ), 0, 0 );
+				if ( nPlayers == 7 ) {	// 7마에서 왼쪽 오른쪽 플레이어는 nCardHeight/2만큼 크기를 줄인다 (v4.0 : 2010.4.9 Yoshi-TS4)
+					if ( rc.Height() < 5*nCardHeight+nCardHeight/2 )
+						rcHand.SetRect( -nCardWidth, -nCardHeight*5/2, 0, 0 );
+					else rcHand.SetRect( -nCardWidth, -( rc.Height()/2 - nCardHeight*1/4 ), 0, 0 );
+				}
+				else {
+					if ( rc.Height() < 5*nCardHeight + nCardHeight/2 )
+						rcHand.SetRect( -nCardWidth, -nCardHeight*3, 0, 0 );
+					else rcHand.SetRect( -nCardWidth, -( rc.Height()/2 + nCardHeight/4 ), 0, 0 );
+				}
 
 				if ( rc.Width() < 4*nCardWidth+2*nCardHeight ) {
 						 if ( loc & 1 ) GR_SETRIGHT( rcHand, xCenter - nCardHeight - nCardWidth );
@@ -418,16 +426,25 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 					 if ( loc & 64 ) GR_SETVCENTER( rcHand, yCenter - rcHand.Height()/7 );
 				else if ( loc & 128 ) GR_SETVCENTER( rcHand, yCenter );
 				else if ( loc & 256 ) GR_SETVCENTER( rcHand, yCenter + rcHand.Height()/7 );
+				else if ( loc & 512 ) GR_SETBOTTOM( rcHand, rc.bottom );
 			}
 			else {
-				if ( rc.Width() < 4*nCardWidth+2*nCardHeight )
-					rcHand.SetRect( -nCardWidth*3-nCardWidth/2, -nCardHeight, 0, 0 );
-				else rcHand.SetRect(
-					-( (rc.Width()-4*nCardWidth-2*nCardHeight)/2 + nCardWidth*3 + nCardWidth/2 ), -nCardHeight, 0, 0 );
+				if ( nPlayers == 6 ) {	// 6마에서 위 아래 플레이어는 nCardWidth/4만큼 크기를 줄인다 (v4.0 : 2010.4.9 Yoshi-TS4)
+					if ( rc.Width() < 4*nCardWidth+2*nCardHeight )
+						rcHand.SetRect( -nCardWidth*13/4, -nCardHeight, 0, 0 );
+					else rcHand.SetRect(
+						-( (rc.Width()-4*nCardWidth-2*nCardHeight)/2 + nCardWidth*13/4 ), -nCardHeight, 0, 0 );
+				}
+				else {
+					if ( rc.Width() < 4*nCardWidth+2*nCardHeight )
+						rcHand.SetRect( -nCardWidth*3-nCardWidth/2, -nCardHeight, 0, 0 );
+					else rcHand.SetRect(
+						-( (rc.Width()-4*nCardWidth-2*nCardHeight)/2 + nCardWidth*3 + nCardWidth/2 ), -nCardHeight, 0, 0 );
+				}
 
-					 if ( loc & 2 ) GR_SETRIGHT( rcHand, xCenter - ( xCenter - rc.left )/20 );
+					 if ( loc & 2 ) GR_SETRIGHT( rcHand, xCenter - ( xCenter - rc.left )/40 );
 				else if ( loc & 4 ) GR_SETHCENTER( rcHand, xCenter );
-				else if ( loc & 8 ) GR_SETLEFT( rcHand, xCenter + ( rc.right - xCenter )/20 );
+				else if ( loc & 8 ) GR_SETLEFT( rcHand, xCenter + ( rc.right - xCenter )/40 );
 				if ( rc.Height() < 5*nCardHeight + nCardHeight/2 ) {
 						 if ( loc & 32 ) GR_SETBOTTOM( rcHand, yCenter - nCardHeight*7/4 );
 					else if ( loc & 512 ) GR_SETTOP( rcHand, yCenter + nCardHeight*7/4 );

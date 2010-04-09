@@ -48,7 +48,7 @@ void DReport::Create( const CMFSM* pMFSM, bool* pbCont, CEvent* pEvent )
 
 	m_nRank = 1;
 	for ( i = 1; i < pState->pRule->nPlayerNum; i++ )
-		if ( pState->apPlayers[i] > pState->apPlayers[0] )
+		if ( pState->apAllPlayers[i]->GetMoney() > pState->apAllPlayers[0]->GetMoney() )
 			m_nRank++;
 
 	m_bNetworkGame = pState->IsNetworkGame();

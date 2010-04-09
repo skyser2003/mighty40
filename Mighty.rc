@@ -110,8 +110,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,7
- PRODUCTVERSION 4,0,0,7
+ FILEVERSION 0,0,0,8
+ PRODUCTVERSION 4,0,0,8
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "0.0.0.7"
+            VALUE "FileVersion", "0.0.0.8"
             VALUE "InternalName", "Mighty Network 4.0"
-            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2009-2010 Puzzlet & Yoshi-TS4"
+            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2007-2010 Puzzlet & Yoshi-TS4"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "0.0.0.7"
+            VALUE "ProductVersion", "0.0.0.8"
         END
     END
     BLOCK "VarFileInfo"
@@ -569,13 +569,13 @@ FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",IDC_STATIC,7,7,225,35
     CONTROL         "점수 카드가 하나도 없으면 딜 미스",IDC_DM_NOPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,170,10
-    CONTROL         "모든 카드가 점수카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,170,10
+    CONTROL         "모든 카드가 점수 카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,170,10
     CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",IDC_DM_JOKERISREVERSEPOINT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,170,10
-    CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
-    CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
-    CONTROL         "점수카드가 마이티 한 장 뿐인 경우 딜 미스",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
-    CONTROL         "점수카드가 한 장 뿐인 경우 딜 미스",IDC_DM_ONLYONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,170,10
+    CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
+    CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
+    CONTROL         "마이티는 점수 카드로 간주하지 않음",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
+    CONTROL         "점수카드가 한 장 이하인 경우 딜 미스",IDC_DM_ONLYONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,170,10
 END
 
 IDD_RULE_SCORE DIALOGEX 0, 0, 239, 179
@@ -1449,27 +1449,25 @@ BEGIN
                             "조커콜을 당한 조커가 조커의 효력을 가지고 있습니다 - 즉, 그 조커도 마이티를 제외한 모든 카드들 보다 높습니다"
     IDC_DM_NOPOINT          "점수카드를 하나도 받지 못한 경우 딜 미스 조건이 됩니다"
     IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
-    IDC_DM_MIGHTYISPOINT    "딜 미스 조건을 검사할 때 마이티를 점수 카드로 생각합니다 (원래 마이티는 점수 카드입니다 - 즉, 이 옵션을 해제하면 마이티를 점수 카드로 생각하지 않습니다)"
-    IDC_DM_JOKERISPOINT     "딜 미스 조건을 검사할 때 조커를 점수 카드로 생각합니다 - 즉, 조커가 있으면 비록 다른 점수 카드가 한 장도 없어도 점수 카드가 없는 딜 미스 조건에 해당하지 않게 됩니다"
     IDC_DM_JOKERISREVERSEPOINT 
                             "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
-    IDC_DM_ONLYMIGHTY       "점수 카드가 마이티 뿐인 경우 딜 미스 조건이 됩니다 - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
+    IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
 END
 
 STRINGTABLE 
 BEGIN
-    IDC_DM_ONLYONE          "점수 카드가 한 장 뿐인 경우 딜 미스 조건이 됩니다 - 2 마의 기본값입니다."
+    IDC_DM_ONLYONE          "점수 카드가 한 장 이하인 경우 딜 미스 조건이 됩니다 - 2 마의 기본값입니다."
     IDC_S_0                 "Mighty 2.0 방식의 점수 계산법으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)"
-    IDC_S_1                 "기존의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: (목표수-기본수)*1.5+(여당득점-목표수)"
+    IDC_S_1                 "기존의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: [(목표수-기본수)*1.5]+(여당득점-목표수)"
     IDC_S_2                 "여당이 승리하였을 때 얻은 점수와 상관 없이 목표수에 해당하는 만큼의 보상을 받는 방식입니다.\n여당승: (목표수-기본수+1)*2"
     IDC_S_3                 "목표수 보다 더 얻은 점수에 대해서만 보상하는 방식입니다\n여당승: (여당득점-목표수)"
     IDC_S_4                 "눈에는 눈 계산법의 변형된 버전으로, 여당이 이기면 최소한 1점을 얻도록 합니다\n여당승: (여당득점-목표수+1)"
     IDC_S_5                 "10 을 기준으로 하는 계산법입니다\n여당승: (여당득점-10)"
     IDC_S_6                 "13 을 기준으로 하는 계산법입니다\n여당승: (여당득점-13)"
     IDC_S_7                 "기본수를 기준으로 하는 계산법입니다\n여당승: (여당득점-기본수)"
-    IDC_SS_0                "목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
+    IDC_SS_0                "여당이 목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
     IDC_SS_1                "눈에는 눈 계산법의 변형된 버전으로, 여당이 기본 점수도 내지 못한 경우 더 큰 보상을 받는 방식입니다\n기본수 이상: (목표수-여당득점)\n기본수 미만: (목표수-기본수)+(기본수-여당득점)*2"
     IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
