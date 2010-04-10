@@ -232,7 +232,8 @@ bool CMFSM::CanBeEndOfElection( bool& bDealMiss, long& nNextID,
 		}
 	}
 	else {		// 출마
-		ASSERT( goalNew.nMinScore > goal.nMinScore );
+		ASSERT( goalNew.nMinScore > goal.nMinScore
+			|| ( pRule->bNoKirudaAlways && goalNew.nMinScore >= goal.nMinScore ));
 
 		// 풀로 올렸다면 즉시 당선
 		if ( pRule->bHighScore && goalNew.nMinScore >= HIGHSCORE_MAXLIMIT
@@ -415,6 +416,8 @@ void CMFSM::GetReport(
 	int m = goal.nMinScore,
 		b = pRule->nMinScore,
 		s = nDefPointed;
+
+	if ( pRule->bNoKirudaAdvantage ) b--;	// 노기루다로 1 적게 부를 수 있는 경우 기본을 1 감소시킴
 
 	CString& sCalcMethod = asCalcMethod[0];
 	CString& sResult = asCalcMethod[1];

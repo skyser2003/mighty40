@@ -110,8 +110,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,9
- PRODUCTVERSION 4,0,0,9
+ FILEVERSION 0,0,0,10
+ PRODUCTVERSION 4,0,0,10
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "0.0.0.9"
+            VALUE "FileVersion", "0.0.0.10"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2007-2010 Puzzlet & Yoshi-TS4"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "0.0.0.9"
+            VALUE "ProductVersion", "0.0.0.10"
         END
     END
     BLOCK "VarFileInfo"
@@ -535,7 +535,7 @@ BEGIN
     CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,27,160,10
     CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,41,160,10
     CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,55,160,10
-    CONTROL         "한번 패스한 사람이 다시 부를 수 있음",IDC_PASSAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,69,160,10
+    CONTROL         "포기한 사람이 다시 부를 수 있음",IDC_PASSAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,69,160,10
     GROUPBOX        "노기루다로 부를 때",IDC_STATIC,7,90,216,63
     CONTROL         "기루다가 있는 경우와 동일",IDC_NK,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,104,100,10
     CONTROL         "처음 부르는 경우 혹은 노기루다로 바꿀 때 1 적게 부를 수 있음",IDC_NK1,"Button",BS_AUTORADIOBUTTON,13,118,203,10

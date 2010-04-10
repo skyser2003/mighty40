@@ -112,15 +112,10 @@ CString CCard::GetGoalString( bool bUseTerm,
 		// 문제는 최소 점수가 11 보다 작거나 20보다 큰 경우이다
 		// 각각 "초" 을 붙이고 "풀" 을 붙인다
 		// 30 이상인 경우는 생각하지 않는다
-		if ( nMinScore == nDefaultMinScore
-				&& nKiruda == 0 )
-			sRet = _T("기노");
-		else {
-			if ( nMinScore <= 10 ) sRet = _T("초");
-			if ( nMinScore > 20 ) sRet = _T("풀");
-			sRet += s_aScoreTerm[(nMinScore+9)%10];
-			sRet += s_aShapeTerm[nKiruda][0];
-		}
+		if ( nMinScore <= 10 ) sRet = _T("초");
+		if ( nMinScore > 20 ) sRet = _T("풀");
+		sRet += s_aScoreTerm[(nMinScore+9)%10];
+		sRet += s_aShapeTerm[nKiruda][0];
 	}
 	return sRet;
 }

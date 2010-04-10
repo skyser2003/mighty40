@@ -157,7 +157,7 @@ bool CState::IsValidNewGoal( int nNewKiruda, int nNewMinScore ) const
 
 	// 딜 미스 여부를 판단
 	if ( nNewMinScore == -1 )
-		// 특권 상황이라면 포기 불가
+		// 특권 상황이라면 딜 미스 불가
 		if ( !bInElection )	return false;
 		else if ( IsDealMiss( apPlayers[nCurrentPlayer]->GetHand() ) )
 			return true;
@@ -189,8 +189,14 @@ bool CState::IsValidNewGoal( int nNewKiruda, int nNewMinScore ) const
 	if ( nMaxLimit < nNewMinScore ) return false;
 
 	// 이전 출마자 공약 제약 검사
-	if ( bInElection )
-		if ( nNewMinScore <= goal.nMinScore ) return false;
+	if ( bInElection ) {
+		int temp = goal.nMinScore;
+		if ( pRule->bNoKirudaAlways ) {		// 노기는 항상 1 적게 부르는 규칙일 때
+			if ( nNewKiruda == 0 ) temp--;					// 이 공약이 노기인 경우 temp를 1 감소시킴.
+			if ( goal.nKiruda == 0 && temp < 19 ) temp++;	// 이전 공약이 노기이면 노기인 경우 temp를 1 증가시킴. 단, 노기 19인 경우 기루 20 부를 수 있음
+		}
+		if ( nNewMinScore <= temp ) return false;
+	}
 
 	// 선거 중에는 더이상의 제약은 없음
 	if ( bInElection ) return true;

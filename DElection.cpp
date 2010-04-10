@@ -62,12 +62,32 @@ void DGoal::ChangeKiruda( int nShape )
 		m_aatdShape[i][1] = i == m_nKiruda ? s_tdOutline : TD_SUNKEN;
 	}
 
+	// 화살표 색상을 변경한다 (4.0)
+	for ( int i = 0; i < 2; i++ ) {
+		int nExpectedDiff = i == 0 ? 1 : -1;
+		if ( m_pState->IsValidNewGoal(
+				m_nKiruda, m_nMinScore+nExpectedDiff ) ) {
+			// 이 방향으로 변경 가능함
+			m_aacolArrow[i][0] = s_colCyan;
+			m_aacolArrow[i][1] = s_colCyan;
+			m_aatdArrow[i][0] = s_tdMidiumShade;
+			m_aatdArrow[i][1] = s_tdMidiumOutline;
+		}
+		else { // 불가능함 - disable 한다
+			m_aacolArrow[i][0] = s_colGray;
+			m_aacolArrow[i][1] = s_colGray;
+			m_aatdArrow[i][0] = s_tdMidium;
+			m_aatdArrow[i][1] = s_tdMidium;
+		}
+	}
+
 	// 마이티 용어 사용시 표시될 스트링을 재작성 해야한다
 	if ( Mo()->bUseTerm )
 		m_sMinScore = CCard::GetGoalString(
 			Mo()->bUseTerm, m_nKiruda, m_nMinScore,
 			m_pState->pRule->nMinScore );
 
+	// 갱신
 	CRect rc; GetRect( &rc );
 	m_pBoard->UpdateDSB( &rc );
 }
@@ -263,12 +283,17 @@ void DGoal::OnInit()
 	else {
 
 		RegisterHotspot(
-			8, y+6, -1, -1, true, 0, _T("딜미스 !!"),
-			&s_colYellow, &s_tdShade, &s_colYellow, &s_tdShadeOutline,
+			2, y+6, -1, -1, true, 0, _T("포기"),
+			&s_colWhite, &s_tdShade, &s_colCyan, &s_tdShadeOutline,
 			(LPVOID)0 );
 
 		RegisterHotspot(
-			2, y+6, -1, -1, true, 0, _T("출마 !!"),
+			5, y+6, -1, -1, true, 0, _T("딜미스 !!"),
+			&s_colYellow, &s_tdShade, &s_colYellow, &s_tdShadeOutline,
+			(LPVOID)10 );
+
+		RegisterHotspot(
+			10, y+6, -1, -1, true, 0, _T("출마 !!"),
 			&s_colWhite, &s_tdShade, &s_colCyan, &s_tdShadeOutline,
 			(LPVOID)8 );
 	}
@@ -396,7 +421,7 @@ void DGoal::OnClick( LPVOID pVoid )
 
 			pGoal->nFriend = 0;
 			pGoal->nKiruda = m_nKiruda;
-			pGoal->nMinScore = m_bDealMiss ? -1 : 0;
+			pGoal->nMinScore = 0;
 
 			Destroy();
 		}
@@ -447,8 +472,23 @@ void DGoal::OnClick( LPVOID pVoid )
 
 			Destroy();
 		}
-
 	} break;
+	case 10:	// 딜미스
+		if ( !m_bDealMiss ) {
+			if ( Mo()->bUseSound ) MessageBeep( MB_ICONEXCLAMATION );
+			(new DShortMessage(m_pBoard))->Create(
+				0, _T("딜 미스가 아닙니다."),
+				true, false, 2000 );
+		}
+		else {
+			CGoal* pGoal = (CGoal*)m_pResult;
+
+			pGoal->nFriend = 0;
+			pGoal->nKiruda = m_nKiruda;
+			pGoal->nMinScore = -1;
+
+			Destroy();
+		}
 	}
 }
 

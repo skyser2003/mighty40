@@ -108,7 +108,12 @@ lblMightyBegin:
 			}
 			else if ( goalNew.nMinScore == 0 )	// 포기
 				abGiveup[nCurrentPlayer] = true;
-			else goal = goalNew;				// 출마
+			else{								// 출마
+				goal = goalNew;
+				if ( pRule->bPassAgain )		// 포기해도 다시 부를 수 있는 규칙이면
+					for(int i=0;i<pRule->nPlayerNum;i++)
+						abGiveup[i]=false;		// 누군가가 불렀을 때 다시 부를 수 있다. 다만, 이미 1명만 남은 경우는 제외
+			}
 
 			if ( bEnd ) {		// 이것으로 끝
 				nMaster = nNextID;	// 당선자
