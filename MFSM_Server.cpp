@@ -154,14 +154,14 @@ lblMightyBegin:
 					ASSERT(0); cKill = CCard(SPADE,ACE);
 				}
 
-				bKilled = KillTest( nMaster, &cKill, &nDeadID );
+				bKilled = KillTest( nMaster, &cKill, &nDeadID[0] );
 				if ( !bKilled ) lDead.AddTail( cKill );
 
 				NOTIFY_ALL( OnKillOneFromSix( cKill, bKilled, EVENT ) );
 
 			} while ( !bKilled );
 
-			CCardList* plcDead = apAllPlayers[nDeadID]->GetHand();
+			CCardList* plcDead = apAllPlayers[nDeadID[0]]->GetHand();
 			int nCards = plcDead->GetCount(); ASSERT( nCards == 8 );
 
 			// 죽은 플레이어의 카드를 나눠 가진다
@@ -172,7 +172,7 @@ lblMightyBegin:
 				nCurrentPlayer = (nBeginer+i)%nPlayers;
 				cCurrentCard = plcDead->RemoveTail();
 				lDeck.AddTail( cCurrentCard );
-				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
+				NOTIFY_ALL( OnDeal( nDeadID[0], -1, 3, cCurrentCard, EVENT ) );
 			}
 
 			RebuildPlayerArray();
@@ -209,20 +209,20 @@ lblMightyBegin:
 
 				cKill = CCard(0);
 				NOTIFY_TO( nMaster,
-					OnKillOneFromSeven( &cKill, &lDead, EVENT ) );
+					OnKillOneFromSix( &cKill, &lDead, EVENT ) );
 
 				if ( cKill == CCard(0) ) {	// 잘못된 카드 값
 					ASSERT(0); cKill = CCard(SPADE,ACE);
 				}
 
-				bKilled = KillTest( nMaster, &cKill, &nDeadID2 );
+				bKilled = KillTest( nMaster, &cKill, &nDeadID[0] );
 				lDead.AddTail( cKill );
 
-				NOTIFY_ALL( OnKillOneFromSeven( cKill, bKilled, EVENT ) );
+				NOTIFY_ALL( OnKillOneFromSix( cKill, bKilled, EVENT ) );
 
 			} while ( !bKilled );
 
-			CCardList* plcDead = apAllPlayers[nDeadID2]->GetHand();
+			CCardList* plcDead = apAllPlayers[nDeadID[0]]->GetHand();
 			int nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
 
 			// 회수단계
@@ -231,7 +231,7 @@ lblMightyBegin:
 				nCurrentPlayer = (nBeginer+i)%nPlayers;
 				cCurrentCard = plcDead->RemoveTail();
 				lDeck.AddTail( cCurrentCard );
-				NOTIFY_ALL( OnDeal( nDeadID2, -1, 3, cCurrentCard, EVENT ) );
+				NOTIFY_ALL( OnDeal( nDeadID[0], -1, 3, cCurrentCard, EVENT ) );
 			}
 
 			nCurrentPlayer = nMaster;
@@ -246,13 +246,13 @@ lblMightyBegin:
 					ASSERT(0); cKill = CCard(SPADE,ACE);
 				}
 
-				bKilled = KillTest( nMaster, &cKill, &nDeadID );
+				bKilled = KillTest( nMaster, &cKill, &nDeadID[1] );
 				if ( !bKilled ) lDead.AddTail( cKill );
 
 				NOTIFY_ALL( OnKillOneFromSix( cKill, bKilled, EVENT ) );
 
 			} while ( !bKilled );
-			plcDead = apAllPlayers[nDeadID]->GetHand();
+			plcDead = apAllPlayers[nDeadID[1]]->GetHand();
 			nCards = plcDead->GetCount(); ASSERT( nCards == 7 );
 
 			// 죽은 플레이어의 카드를 나눠 가진다
@@ -263,10 +263,10 @@ lblMightyBegin:
 				nCurrentPlayer = (nBeginer+i)%6;
 				cCurrentCard = plcDead->RemoveTail();
 				lDeck.AddTail( cCurrentCard );
-				NOTIFY_ALL( OnDeal( nDeadID, -1, 3, cCurrentCard, EVENT ) );
+				NOTIFY_ALL( OnDeal( nDeadID[1], -1, 3, cCurrentCard, EVENT ) );
 			}
 
-			RebuildPlayerArray6();
+			RebuildPlayerArray();
 
 			// 가운데 모은 카드를 섞고 실제로 하나의 플레이어를 죽인다
 			lDeck.Suffle();

@@ -40,8 +40,6 @@ public:
 
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
-	virtual void OnKillOneFromSeven( CCard* pcCardToKill,
-		CCardList* plcFailedCardsTillNow, CEvent* );
 	virtual void OnElection( CGoal* pNewGoal, CEvent* );
 	virtual void OnTurn( CCard* pc, int* pe, CEvent* e );
 

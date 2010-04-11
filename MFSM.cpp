@@ -101,56 +101,26 @@ long CMFSM::GetPlayerUIDFromNum( long num ) { return GetPlayerUIDFromID( GetPlay
 // 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다
 void CMFSM::RebuildPlayerArray()
 {
-	ASSERT( nDeadID != -1 && pRule->nPlayerNum == 6 );
+	ASSERT( pRule->nPlayerNum >= 6 && nDeadID[0] != -1 && nDeadID[pRule->nPlayerNum-6] != -1 );
 
 	for ( int i = 0, j = 0; i < pRule->nPlayerNum; i++ )
-		if ( nDeadID != i ) {
+		if ( nDeadID[0] != i && nDeadID[pRule->nPlayerNum-6] != i ) {
 			apPlayers[j] = apAllPlayers[i];
 			apPlayers[j]->SetPlayerNum(j);
+			// 다른 값들을 재조정한다
+			if ( nMaster == i ) nMaster = j;
+			if ( nBeginer == i ) nBeginer = j;
+			if ( nFriend == i ) nFriend = j;
+			if ( nCurrentPlayer == i ) nCurrentPlayer = j;
 			j++;
 		}
 		else apAllPlayers[i]->SetPlayerNum(-1);
 
-	ASSERT( nPlayers == 6 );
-
-	apPlayers[5] = 0;
-	nPlayers = 5;	// 5 명이라는 확신이 있음
-
-	// 다른 값들을 재조정한다
-	if ( nMaster > nDeadID ) nMaster--;
-	if ( nBeginer > nDeadID ) nBeginer--;
-	if ( nFriend > nDeadID ) nFriend--;
-	if ( nCurrentPlayer > nDeadID ) nCurrentPlayer--;
-}
-// 7마에서 죽은 플레이어가 생겼으니, apPlayers[] 를 재배열한다
-void CMFSM::RebuildPlayerArray6()
-{
-	ASSERT( nDeadID2 != -1 && pRule->nPlayerNum == 7 );
-
-	for ( int i = 0, j = 0; i < pRule->nPlayerNum; i++ )
-		if ( nDeadID2 != i && nDeadID != i) {
-			apPlayers[j] = apAllPlayers[i];
-			apPlayers[j]->SetPlayerNum(j);
-			j++;
-		}
-		else apAllPlayers[i]->SetPlayerNum(-1);
-
-	ASSERT( nPlayers == 7 );
+	ASSERT( nPlayers >= 6 );
 
 	apPlayers[5] = 0;
 	apPlayers[6] = 0;
 	nPlayers = 5;	// 5 명이라는 확신이 있음
-
-	// 다른 값들을 재조정한다
-	if ( nMaster > nDeadID ) nMaster--;
-	if ( nBeginer > nDeadID ) nBeginer--;
-	if ( nFriend > nDeadID ) nFriend--;
-	if ( nCurrentPlayer > nDeadID ) nCurrentPlayer--;
-
-	if ( nMaster > nDeadID2 - ( nDeadID2 > nDeadID ? 1 : 0 ) ) nMaster--;
-	if ( nBeginer > nDeadID2 - ( nDeadID2 > nDeadID ? 1 : 0 ) ) nBeginer--;
-	if ( nFriend > nDeadID2 - ( nDeadID2 > nDeadID ? 1 : 0 ) ) nFriend--;
-	if ( nCurrentPlayer > nDeadID2 - ( nDeadID2 > nDeadID ? 1 : 0 ) ) nCurrentPlayer--;
 }
 
 // 모든 플레이어의 카드를 옵션에 따라 정렬한다
@@ -417,7 +387,9 @@ void CMFSM::GetReport(
 		b = pRule->nMinScore,
 		s = nDefPointed;
 
-	if ( pRule->bNoKirudaAdvantage ) b--;	// 노기루다로 1 적게 부를 수 있는 경우 기본을 1 감소시킴
+	if ( goal.nKiruda==0 &&
+		( ( pRule->bNoKirudaAdvantage && m == b ) || pRule->bNoKirudaAlways ) )
+		b--;	// 노기루다로 1 적게 부를 수 있는 경우 기본을 1 감소시킴
 
 	CString& sCalcMethod = asCalcMethod[0];
 	CString& sResult = asCalcMethod[1];
@@ -490,6 +462,7 @@ void CMFSM::GetReport(
 		}
 
 		// 2배 규칙
+		if ( nMoved < 0 ) nMoved = 0;				// 이길 경우 최소한 0점을 획득하게 함
 
 		if ( bDefWin && nDefPointed >= MAX_SCORE ) {	// 런
 			if ( pRule->bS_StaticRun ) {

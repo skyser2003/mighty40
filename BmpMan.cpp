@@ -24,6 +24,8 @@ CBmpMan::CBmpMan()
 		= CSize(0, 0);
 	m_pZoomFont = 0;
 
+	m_bmMask.LoadBitmap( IDB_MASK );
+
 	m_bmShadow.LoadBitmap( IDB_GRAY );
 	m_brShadow.CreatePatternBrush( &m_bmShadow );
 }
@@ -117,6 +119,7 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 	}
 
 	CDC dc; dc.CreateCompatibleDC( pDC );
+
 	dc.SelectObject( &m_bmCards );
 
 	pDC->StretchBlt( xTgt, yTgt, cxTgt, cyTgt,
@@ -125,6 +128,17 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 	pDC->StretchBlt( xTgt, yTgt, cxTgt, cyTgt,
 		&dc, xSrc+nCard*m_szCards.cx, ySrc, cxSrc, cySrc,
 		SRCAND );
+
+	if( cxTgt > cyTgt ) {
+		POINT pt[3];
+		pt[0].x = xTgt+cxTgt;
+		pt[0].y = yTgt;
+		pt[1].x = xTgt+cxTgt;
+		pt[1].y = yTgt+cyTgt;
+		pt[2].x = xTgt;
+		pt[2].y = yTgt;
+		pDC->PlgBlt( pt, &dc, xSrc+nCard*m_szCards.cx, ySrc, cxSrc, cySrc, m_bmMask, 0, 0 );
+	}
 
 	// 글자를 쓴다
 	if ( Mo()->bCardHelp && CCard::GetState() ) {
@@ -154,6 +168,22 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 				&rcText, sText, sText.GetLength(), 0 );
 		}
 	}
+
+	if( cxTgt > cyTgt ) {
+		XFORM xform;
+		dc.GetWorldTransform( &xform );
+		xform.eM11 = 1.0f;
+		xform.eM12 = 0.0f;
+		xform.eM21 = 0.0f;
+		xform.eM22 = 1.0f;
+		xform.eDx = 0.0f;
+		xform.eDy = 0.0f;
+
+		dc.SetWorldTransform( &xform );
+	}
+
+	dc.SetGraphicsMode(GM_COMPATIBLE);
+
 }
 
 // 뒷 그림을 읽는다

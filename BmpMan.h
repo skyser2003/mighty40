@@ -81,6 +81,8 @@ protected:
 	CSize m_szBackground;
 	// 확대한 배경 비트맵 ( 배경 확대 모드에서 그림이 깨지는것을 방지 )
 	CBitmap m_bmExpandedBackground;
+	// 마스크 비트맵
+	CBitmap m_bmMask;
 	// 확대한 배경 비트맵 크기
 	CSize m_szExpandedBackground;
 	// 폰트

@@ -67,8 +67,8 @@ void CState::InitStageData( int _nGameNum, int _nBeginer )
 
 	nMaster = -1;
 	nFriend = -1;
-	nDeadID = -1;
-	nDeadID2 = -1;
+	nDeadID[0] = -1;
+	nDeadID[1] = -1;
 
 	bFriendRevealed = false;
 

@@ -56,29 +56,12 @@ public:
 	// 반복적으로 호출될 수 있다 - 이 경우
 	// CCardList 에 지금까지 실패한 카드의 리스트가
 	// 누적되어 호출된다
-	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-	// 하나가 죽는다 !
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
 
 	// 주공이 다른 플레이어를 죽인다
 	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 	virtual void OnKillOneFromSix( CCard cKill,
-		bool bKilled, CEvent* e );
-
-	// 7마에서 당선된 경우 두 사람을 죽여야 한다
-	// 이 함수는 그 중 하나만 죽이는 함수로,
-	// OnKillOneFromSix와 같다.
-	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-	// 하나가 죽는다 !
-	virtual void OnKillOneFromSeven( CCard* pcCardToKill,
-		CCardList* plcFailedCardsTillNow, CEvent* );
-
-	// 주공이 다른 플레이어를 죽인다
-	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
-	virtual void OnKillOneFromSeven( CCard cKill,
 		bool bKilled, CEvent* e );
 
 	// 공약을 듣는다

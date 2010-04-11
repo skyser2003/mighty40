@@ -90,10 +90,8 @@ struct MIGHTY_EXPORT CState
 	int nMaster;
 	// 프랜드 ( 없을때 -1, 초구프랜드이고 결정 안됐을때 -2 )
 	int nFriend;
-	// 6 마 탈락자ID ( 아직 아무도 탈락 안됐을때 -1 )
-	int nDeadID;
-	// 7 마 탈락자ID ( 아직 아무도 탈락 안됐을때 -1 )
-	int nDeadID2;
+	// 6,7 마 탈락자ID ( 아직 아무도 탈락 안됐을때 -1 )
+	int nDeadID[2];
 	// 프랜드가 밝혀졌는가
 	bool bFriendRevealed;
 	// 현재 목표

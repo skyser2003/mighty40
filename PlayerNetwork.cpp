@@ -148,43 +148,6 @@ void CPlayerNetwork::OnKillOneFromSix( CCard cKill,
 	e->SetEvent();
 }
 
-void CPlayerNetwork::OnKillOneFromSeven( CCard* pcCardToKill,
-	CCardList* plcFailedCardsTillNow, CEvent* e )
-{
-	// mmGameKillOneFromSeven 메시지를 받아서 준다
-	CMsg* pMsg = 0;
-	AUTODELETE_MSG(pMsg);
-
-	GetSB()->GetMsgFor( GetUID(), pMsg, &m_e );
-	m_pMFSM->WaitEvent( &m_e );
-
-	long t, u, c;
-	if ( !pMsg->PumpLong( t ) || t != CMsg::mmGameKillOneFromSeven
-					|| !pMsg->PumpLong( u ) || u != GetUID()
-					|| !pMsg->PumpLong( c ) )
-		Error(3);
-
-	else {
-		*pcCardToKill = (int)c;
-		plcFailedCardsTillNow;	// unused
-	}
-	e->SetEvent();
-}
-
-void CPlayerNetwork::OnKillOneFromSeven( CCard cKill,
-	bool bKilled, CEvent* e )
-{
-	// mmGameKillOneFromSeven 메시지를 전달한다
-	if ( NeedSendingIfNumIs( m_pMFSM->GetState()->nMaster ) ) {
-
-		CMsg msg( _T("lllll"), CMsg::mmGameKillOneFromSeven,
-			GetPlayerUIDFromNum( m_pMFSM->GetState()->nMaster ),
-			(long)(int)cKill );
-		SendMsg( &msg );
-	}
-	e->SetEvent();
-}
-
 // 플레이어를 죽인 후 카드를 섞었다
 void CPlayerNetwork::OnSuffledForDead( CEvent* e )
 {

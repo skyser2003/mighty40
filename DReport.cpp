@@ -128,15 +128,25 @@ void DReport::OnDraw(
 	CPen penC( PS_SOLID, 1, s_colCyan );
 
 	// 타이틀
-	if ( m_bGameOver && m_nPage == 3 ) // 게임 끝
+	if ( m_bGameOver && m_nPage == 3 )	// 게임 끝
 		PutText( pDC, _T("- 게임 끝 -"), -1, 1, true,
 			s_colYellow, s_tdMidiumOutline );
-	else if ( m_bWin ) // 승리
-		PutText( pDC, _T("승리 !"), -1, 1, true,
-			s_colYellow, s_tdMidiumOutline );
-	else // 패배
-		PutText( pDC, _T("패배 !"), -1, 1, true,
-			s_colYellow, s_tdMidiumOutline );
+	else if ( m_bWin ) {				// 승리
+		if ( m_nMe == -1 )				// 옵저버라면 여당이 승리했을 때 승리한 것으로 취급됨
+			PutText( pDC, _T("여당 승"), -1, 1, true,
+				s_colYellow, s_tdMidiumOutline );
+		else							// 아니라면
+			PutText( pDC, _T("승리 !"), -1, 1, true,
+				s_colYellow, s_tdMidiumOutline );
+	}
+	else {								// 패배
+		if ( m_nMe == -1 )				// 옵저버라면 여당이 승리했을 때 승리한 것으로 취급됨
+			PutText( pDC, _T("야당 승"), -1, 1, true,
+				s_colYellow, s_tdMidiumOutline );
+		else							// 아니라면
+			PutText( pDC, _T("패배 !"), -1, 1, true,
+				s_colYellow, s_tdMidiumOutline );
+	}
 
 	if ( m_nPage == 0 ) {	// 지지율/전적 변화 페이지
 

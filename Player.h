@@ -99,18 +99,7 @@ public:
 	// 반복적으로 호출될 수 있다 - 이 경우
 	// CCardList 에 지금까지 실패한 카드의 리스트가
 	// 누적되어 호출된다
-	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-	// 하나가 죽는다 !
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
-		CCardList* plcFailedCardsTillNow, CEvent* );
-	// 7마에서 당선된 경우 두 사람을 죽여야 한다
-	// 이 함수는 그 중 하나만 죽이는 함수로,
-	// OnKillOneFromSix와 같다.
-	// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-	// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-	// 하나가 죽는다 !
-	virtual void OnKillOneFromSeven( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
 
 	// 공약을 듣는다
@@ -165,10 +154,6 @@ public:
 	// 주공이 다른 플레이어를 죽인다
 	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 	virtual void OnKillOneFromSix( CCard cKill,
-		bool bKilled, CEvent* e )					{ cKill, bKilled, e->SetEvent(); }
-	// 주공이 7마에서 다른 플레이어를 죽인다
-	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
-	virtual void OnKillOneFromSeven( CCard cKill,
 		bool bKilled, CEvent* e )					{ cKill, bKilled, e->SetEvent(); }
 	// 플레이어를 죽인 후 카드를 섞었다
 	virtual void OnSuffledForDead( CEvent* e )		{ e->SetEvent(); }
@@ -242,10 +227,6 @@ inline void CPlayer::OnBegin( const CState* pState, CEvent* e )
 inline void CPlayer::OnKillOneFromSix( CCard* pcCardToKill,
 	CCardList* plcFailedCardsTillNow, CEvent* e )
 {	if ( m_pPlay ) m_pPlay->OnKillOneFromSix(pcCardToKill,plcFailedCardsTillNow);
-	e->SetEvent(); }
-inline void CPlayer::OnKillOneFromSeven( CCard* pcCardToKill,
-	CCardList* plcFailedCardsTillNow, CEvent* e )
-{	if ( m_pPlay ) m_pPlay->OnKillOneFromSeven(pcCardToKill,plcFailedCardsTillNow);
 	e->SetEvent(); }
 inline void CPlayer::OnElection( CGoal* pNewGoal, CEvent* e )
 {	if ( m_pPlay ) m_pPlay->OnElection(pNewGoal);

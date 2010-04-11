@@ -409,9 +409,6 @@ void CPlayerHuman::OnBegin( const CState* pState, CEvent* e )
 // 반복적으로 호출될 수 있다 - 이 경우
 // CCardList 에 지금까지 실패한 카드의 리스트가
 // 누적되어 호출된다
-// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-// 하나가 죽는다 !
 void CPlayerHuman::OnKillOneFromSix( CCard* pcCardToKill,
 	CCardList* plcFailedCardsTillNow, CEvent* e )
 {
@@ -427,62 +424,6 @@ void CPlayerHuman::OnKillOneFromSix( CCard* pcCardToKill,
 // 주공이 다른 플레이어를 죽인다
 // bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 void CPlayerHuman::OnKillOneFromSix( CCard cKill,
-	bool bKilled, CEvent* e )
-{
-	const CState* pState = m_pMFSM->GetState();
-
-	// 일단 조커콜 소리를 낸다
-	PlaySound( IDW_JOKERCALL, true );
-
-	// DSB 를 표시
-	DDeadDecl* pDecl = new DDeadDecl( m_pBoard );
-	pDecl->Create(
-		pState->apAllPlayers[pState->nMaster]->GetName(),
-		(int)cKill, false, -1 );
-	m_pBoard->SetElectionDSB( pDecl );
-
-	// 실패 !!
-	if ( !bKilled ) {
-
-		// 잠시 지연
-		Sleep( DELAY_KILL_AND_EFFECT );
-
-		// 뽀록 소리를 낸다
-		PlaySound( IDW_GIVEUP, true );
-
-		// 실패 DSB 를 표시
-		DDeadDecl* pDecl = new DDeadDecl( m_pBoard );
-		pDecl->Create(
-			pState->apAllPlayers[pState->nMaster]->GetName(),
-			(int)cKill, true, -1 );
-		m_pBoard->SetElectionDSB( pDecl );
-
-		// 또다시 지연
-		Sleep( DELAY_KILL_AND_EFFECT );
-	}
-	e->SetEvent();
-}
-// 7마에서 당선된 경우 두 사람을 죽여야 한다
-// 이 함수는 그 중 하나만 죽이는 함수로,
-// OnKillOneFromSix와 같다.
-// 5번 실패하면 (이 경우 알고리즘이 잘못되었거나
-// 사람이 잘 못 선택하는 경우) 임의로 나머지 5명 중
-// 하나가 죽는다 !
-void CPlayerHuman::OnKillOneFromSeven( CCard* pcCardToKill,
-	CCardList* plcFailedCardsTillNow, CEvent* e )
-{
-	// 죽이기 DSB 를 표시
-	DKill* pDSB = new DKill(m_pBoard);
-	*(CCard*)pcCardToKill =
-		GetRecommendedKillCard(
-			(CCardList*)plcFailedCardsTillNow );
-	pDSB->Create( e, (CCard*)pcCardToKill,
-		(CCardList*)plcFailedCardsTillNow, GetHand() );
-}
-
-// 7마에서 주공이 다른 플레이어를 죽인다
-// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
-void CPlayerHuman::OnKillOneFromSeven( CCard cKill,
 	bool bKilled, CEvent* e )
 {
 	const CState* pState = m_pMFSM->GetState();
@@ -664,7 +605,7 @@ void CPlayerHuman::OnElectionEnd( CEvent* e )
 	m_pBoard->UpdatePlayer( -2 );
 	DMasterDecl* pDecl = new DMasterDecl(m_pBoard);
 	pDecl->Create( false,	// bTemp
-		GetState()->nDeadID != 0 && GetState()->nDeadID2 != 0 && GetState()->nMaster == 0,
+		GetState()->nDeadID[0] != 0 && GetState()->nDeadID[1] != 0 && GetState()->nMaster == 0,
 		GetState()->pRule->nPlayerNum == 6,
 		GetState()->pRule->bFriend,
 		GetState()->pRule->nMinScore,
