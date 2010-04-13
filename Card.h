@@ -9,6 +9,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#ifndef LAST_TURN_2MA
+#	define LAST_TURN_2MA	12
+#endif
+
 #ifndef LAST_TURN
 #	define LAST_TURN	9
 #endif

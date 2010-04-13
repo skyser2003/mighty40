@@ -31,6 +31,7 @@ public:
 public:
 	// 인터페이스 ( CPlay 확장 )
 
+	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* );
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
 	virtual void OnElection( CGoal* pNewGoal, CEvent* );
@@ -45,6 +46,8 @@ public:
 	// 다른 사람의 선거 결과를 듣는다
 	virtual void OnElecting( int nPlayerID, int nKiruda,
 		int nMinScore, CEvent* e );
+	// 카드를 골랐다
+	virtual void OnSelect2MA( int* selecting, CEvent* e );
 	// 주공이 다른 플레이어를 죽인다
 	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 	virtual void OnKillOneFromSix( CCard cKill,

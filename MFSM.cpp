@@ -207,7 +207,8 @@ bool CMFSM::CanBeEndOfElection( bool& bDealMiss, long& nNextID,
 
 		// 풀로 올렸다면 즉시 당선
 		if ( pRule->bHighScore && goalNew.nMinScore >= HIGHSCORE_MAXLIMIT
-					|| goalNew.nMinScore >= MAX_SCORE ) {
+					|| goalNew.nMinScore >= MAX_SCORE 
+			|| pRule->nPlayerNum == 2 && goalNew.nMinScore >= MAX_SCORE_2MA ) {
 			nNextID = nCurrentPlayer;
 			return true;
 		}
@@ -275,12 +276,12 @@ void CMFSM::RemoveDroppedCards( CCard acDrop[3], int nNewKiruda )
 {
 	// 추한만큼 확실히 제약한다
 	ASSERT( state == msPrivilege );
-	ASSERT( apPlayers[nMaster]->GetHand()->GetCount() == 13 );
+	ASSERT( apPlayers[nMaster]->GetHand()->GetCount() == 13 || (nPlayers == 2 && apPlayers[nMaster]->GetHand()->GetCount() == 14 ) );	//v4.0
 	ASSERT( lDeck.GetCount() == 0 );
 
 	CCardList* pHand = apPlayers[nMaster]->GetHand();
 
-	for ( int i = 0; i < 3; i++ ) {
+	for ( int i = 0; i < ( nPlayers == 2 ? 1 : 3 ); i++ ) {
 
 		POSITION pos = pHand->Find(acDrop[i]);
 		ASSERT(pos);
@@ -336,39 +337,52 @@ void CMFSM::GetReport(
 
 	const int* anScored = aanHistory[0];
 	const int* anAssist = aanHistory[1];
+	const int* anTurn = aanHistory[3];
 
 	int i;
-	// 공헌도를 계산하기 위해서 여당의 점수, 도움의 합과
-	// 야당의 점수, 도움의 합을 계산해 둔다
+
 	int nDefSum = 0, nAttSum = 0;			// 점수, 도움의 합
 	int nDefPointed = 0, nAttPointed = 0;	// 점수만의 합
-	for ( i = 0; i < nPlayers; i++ ) {
-		if ( i == nFriend || i == nMaster )
-			nDefSum += anScored[i] + anAssist[i],
-			nDefPointed += anScored[i];
-		else nAttSum += anScored[i] + anAssist[i],
-			nAttPointed += anScored[i];
-	}
 
-	// 버려진 카드의 점수를 누구에게 넣는가 처리
-	if ( pRule->bAttScoreThrownPoints )
-		nAttPointed += nThrownPoints;
-	else nDefPointed += nThrownPoints;
-
-	// 공헌도 계산
-	// 그 팀이 딴 모든 점수와 모든 도움의 합 중에서
-	// 그 플레이어가 딴 점수와 도움의 합
-	for ( i = 0; i < nPlayers; i++ ) {
-
-		if ( i == nFriend || i == nMaster ) {
-			if ( anContrib )
-			anContrib[i] = nDefSum == 0 ? 0
-				: ( anScored[i] + anAssist[i] ) * 100 / nDefSum;
+	if( pRule->nPlayerNum == 2 ) {
+		// 2마는 턴으로 계산한다.
+		for ( i = 0; i < nPlayers; i++ ) {
+			if ( i == nMaster )
+				nDefSum = nDefPointed = anTurn[i] / 10;
+			else nAttSum = nAttPointed = anTurn[i] / 10;
 		}
-		else {
-			if ( anContrib )
-			anContrib[i] = nAttSum == 0 ? 0
-				: ( anScored[i] + anAssist[i] ) * 100 / nAttSum;
+	}
+	else {
+		// 공헌도를 계산하기 위해서 여당의 점수, 도움의 합과
+		// 야당의 점수, 도움의 합을 계산해 둔다
+		for ( i = 0; i < nPlayers; i++ ) {
+			if ( i == nFriend || i == nMaster )
+				nDefSum += anScored[i] + anAssist[i],
+				nDefPointed += anScored[i];
+			else nAttSum += anScored[i] + anAssist[i],
+				nAttPointed += anScored[i];
+		}
+
+		// 버려진 카드의 점수를 누구에게 넣는가 처리
+		if ( pRule->bAttScoreThrownPoints )
+			nAttPointed += nThrownPoints;
+		else nDefPointed += nThrownPoints;
+
+		// 공헌도 계산
+		// 그 팀이 딴 모든 점수와 모든 도움의 합 중에서
+		// 그 플레이어가 딴 점수와 도움의 합
+		for ( i = 0; i < nPlayers; i++ ) {
+
+			if ( i == nFriend || i == nMaster ) {
+				if ( anContrib )
+				anContrib[i] = nDefSum == 0 ? 0
+					: ( anScored[i] + anAssist[i] ) * 100 / nDefSum;
+			}
+			else {
+				if ( anContrib )
+				anContrib[i] = nAttSum == 0 ? 0
+					: ( anScored[i] + anAssist[i] ) * 100 / nAttSum;
+			}
 		}
 	}
 
@@ -470,7 +484,7 @@ void CMFSM::GetReport(
 				nMoved = 20;
 			}
 			else if ( pRule->bS_DoubleForDeclaredRun ) {
-				if ( goal.nMinScore >= MAX_SCORE ) {
+				if ( goal.nMinScore >= MAX_SCORE || pRule->nPlayerNum == 2 && goal.nMinScore >= MAX_SCORE_2MA ) {
 					sResult += _T(" x2(런)");	// 런
 					nMoved *= 2;
 				}
@@ -627,10 +641,10 @@ void CMFSM::GetReport(
 		}
 	}
 
-/*#ifdef _DEBUG	// 총 돈의 합계를 비교한다
+#ifdef _DEBUG	// 총 돈의 합계를 비교한다
 	int nAllDebugSum2 = 0;
-	for ( debug = 0; debug < nPlayers; debug++ )
+	for ( int debug = 0; debug < nPlayers; debug++ )
 		nAllDebugSum2 += anMoney[debug];
 	ASSERT( nAllDebugSum == nAllDebugSum2 );
-#endif*/
+#endif
 }

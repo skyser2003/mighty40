@@ -137,6 +137,8 @@ public:
 
 	// 한 판이 시작됨 - OnBegin 전, 아직 덱이 분배되지 않은 상태
 	virtual void OnInit( CEvent* e )				{ e->SetEvent(); }
+	// 2마에서 카드를 뽑음
+	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )	{ selecting, pcShow, e->SetEvent(); }
 	// 카드를 나눠 주고 있음 ( nFrom 에서 nTo 로 (-1은 중앙)
 	// nCurrentCard 가 이동하였음 )
 	// nMode  0 : 카드를 날리지 않고, 단지 전체 화면 갱신 필요
@@ -151,6 +153,8 @@ public:
 		int nMinScore, CEvent* e )					{ nPlayerID, nKiruda, nMinScore, e->SetEvent(); }
 	// 주공이 정해졌다
 	virtual void OnElected( int nPlayerID, CEvent* e )	{ nPlayerID, e->SetEvent(); }
+	// 카드를 골랐다.
+	virtual void OnSelect2MA( int* selecting, CEvent *e )	{ selecting, e->SetEvent(); }
 	// 주공이 다른 플레이어를 죽인다
 	// bKilled : 참이면 실제로 죽였고, 거짓이면 헛다리 짚었다
 	virtual void OnKillOneFromSix( CCard cKill,

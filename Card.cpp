@@ -109,13 +109,26 @@ CString CCard::GetGoalString( bool bUseTerm,
 		return sRet;
 	}
 	else {
-		// 문제는 최소 점수가 11 보다 작거나 20보다 큰 경우이다
-		// 각각 "초" 을 붙이고 "풀" 을 붙인다
-		// 30 이상인 경우는 생각하지 않는다
-		if ( nMinScore <= 10 ) sRet = _T("초");
-		if ( nMinScore > 20 ) sRet = _T("풀");
-		sRet += s_aScoreTerm[(nMinScore+9)%10];
-		sRet += s_aShapeTerm[nKiruda][0];
+		if( s_pState->pRule->nPlayerNum == 2 ) {
+			//2마의 경우 용어가 약간 다르다
+			if ( nMinScore == 10 ) sRet = _T("열");
+			else if ( nMinScore == 11 ) sRet = _T("열한");
+			else if ( nMinScore == 13 ) sRet = _T("풀");
+			else{
+				if ( nMinScore > 10 ) sRet = _T("열");
+				sRet += s_aScoreTerm[(nMinScore+9)%10];
+			}
+			sRet += s_aShapeTerm[nKiruda][0];
+		}
+		else {
+			// 문제는 최소 점수가 11 보다 작거나 20보다 큰 경우이다
+			// 각각 "초" 을 붙이고 "풀" 을 붙인다
+			// 30 이상인 경우는 생각하지 않는다
+			if ( nMinScore <= 10 ) sRet = _T("초");
+			if ( nMinScore > 20 ) sRet = _T("풀");
+			sRet += s_aScoreTerm[(nMinScore+9)%10];
+			sRet += s_aShapeTerm[nKiruda][0];
+		}
 	}
 	return sRet;
 }
@@ -435,7 +448,7 @@ int CCardList::PowerComp( CCard c1, CCard c2, int nTurn,
 	// 막판이고 막판에 마이티 효력 없으면 무효
 	bool bMightyEffect =
 		! ( nTurn == 0 && !pRule->bInitMightyEffect
-			|| nTurn == LAST_TURN && !pRule->bLastMightyEffect );
+			|| nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastMightyEffect );
 	// 조커콜 효력
 	// 첫판이고 첫판에 조커콜 효력 없으면 무효
 	bool bJokercallEffect =
@@ -450,7 +463,7 @@ int CCardList::PowerComp( CCard c1, CCard c2, int nTurn,
 	// 조커콜 당했을때 무효
 	bool bJokerEffect =
 		! ( nTurn == 0 && !pRule->bInitJokerEffect
-			|| nTurn == LAST_TURN && !pRule->bLastJokerEffect
+			|| nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastJokerEffect
 			|| bJokercalled && !pRule->bJokercallJokerEffect );
 
 	// 마이티에 대한 처리
@@ -526,7 +539,7 @@ void CCardList::GetAvList(
 
 			// 첫판, 끝 판에 마이티 낼 수 있는지를 조사
 			if ( !( nTurn == 0 && !pRule->bInitMighty
-					|| nTurn == LAST_TURN && !pRule->bLastMighty ) )
+					||  nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastMighty ) )
 				// 낼 수 있음
 				plResult->AddTail( c );
 		}
@@ -552,7 +565,7 @@ void CCardList::GetAvList(
 			}
 			// 첫판, 끝 판에 조커 낼 수 있는지를 조사
 			if ( !( nTurn == 0 && !pRule->bInitJoker
-					|| nTurn == LAST_TURN && !pRule->bLastJoker ) )
+					||  nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastJoker ) )
 				// 낼 수 있음
 				plResult->AddTail( c );
 		}
@@ -585,7 +598,7 @@ void CCardList::GetAvList(
 	// 만약 마지막에 조커나 마이티를 낼 수 없는데
 	// 마지막 턴 이전에 이들을 가지고 있다면
 	// 꼭 이들을 내야 한다
-	if ( nTurn == LAST_TURN-2
+	if ( nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) - 2
 			&& ( bHasMighty && !pRule->bLastMighty )
 			&& ( bHasJoker && !pRule->bLastJoker ) ) {
 		plResult->RemoveAll();
@@ -593,7 +606,7 @@ void CCardList::GetAvList(
 		plResult->AddTail( CCard::GetJoker() );
 		return;
 	}
-	else if ( nTurn == LAST_TURN-1
+	else if ( nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) - 1
 			&& ( ( bHasMighty && !pRule->bLastMighty )
 				|| ( bHasJoker && !pRule->bLastJoker ) ) ) {
 		plResult->RemoveAll();

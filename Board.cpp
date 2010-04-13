@@ -40,7 +40,7 @@ CBoard::CBoard()
 	m_pWaitingSelectionCard = 0;
 
 	m_nMouseOver = -1;
-	for ( int i = 0; i < (LAST_TURN+1)*2; i++ )
+	for ( int i = 0; i < LAST_TURN_2MA + 2; i++ )
 		m_abSelected[i] = false;
 	m_nDealMiss = -1;
 

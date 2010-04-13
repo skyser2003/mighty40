@@ -396,6 +396,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\D2MA.cpp"
+				>
+			</File>
+			<File
 				RelativePath="DBackSelect.cpp"
 				>
 				<FileConfiguration
@@ -1386,6 +1390,10 @@
 			</File>
 			<File
 				RelativePath="Card.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D2MA.h"
 				>
 			</File>
 			<File

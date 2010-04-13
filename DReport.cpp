@@ -94,9 +94,10 @@ void DReport::OnInit()
 		Mo()->bMoneyAsSupport ? _T("지지율변화") : _T("점수변화"),
 		&m_acolPage[0], &m_atdPage[0], &m_acolPage[0], &s_tdShadeOutline,
 		(LPVOID)100 );
-	RegisterHotspot( 18, 2, -1, -1, true, 0, _T("분석보기"),
-		&m_acolPage[1], &m_atdPage[1], &m_acolPage[1], &s_tdShadeOutline,
-		(LPVOID)101 );
+	if ( Mo()->rule.nPlayerNum != 2 )
+		RegisterHotspot( 18, 2, -1, -1, true, 0, _T("분석보기"),
+			&m_acolPage[1], &m_atdPage[1], &m_acolPage[1], &s_tdShadeOutline,
+			(LPVOID)101 );
 	RegisterHotspot( 18, 3, -1, -1, true, 0, _T("전적보기"),
 		&m_acolPage[2], &m_atdPage[2], &m_acolPage[2], &s_tdShadeOutline,
 		(LPVOID)102 );
@@ -151,8 +152,12 @@ void DReport::OnDraw(
 	if ( m_nPage == 0 ) {	// 지지율/전적 변화 페이지
 
 		CString sTitle;
-		sTitle.Format(_T("%d 장 공약에 %d 장 득점"),
-			pState->goal.nMinScore, m_nDefPointed );
+		if( pState->nPlayers == 2 )
+			sTitle.Format(_T("%d 턴 공약에 %d 턴 득점"),
+				pState->goal.nMinScore, m_nDefPointed );
+		else
+			sTitle.Format(_T("%d 장 공약에 %d 장 득점"),
+				pState->goal.nMinScore, m_nDefPointed );
 		PutText( pDC, sTitle,
 			2, 4, true, s_colWhite, s_tdShade );
 		CRect rc = PutText( pDC, _T("[기본]: ") + m_asCalcMethod[0],

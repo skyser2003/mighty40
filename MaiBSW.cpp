@@ -162,6 +162,9 @@ public:
 	// 프랜드 선택 (필요한 모든 인자는 CCard::CState 에서 얻는다 )
 	int Friend( int nKiruda, const CCardList* pHand, const CCardList* pDeck = 0 ) const;
 
+	// 2마에서 카드 선택
+	int Select( const CCardList* pHand, const CCard* pcShow) const;
+
 	// 죽일 카드 선택
 	CCard Kill( const CCardList* pHand, const CCardList* pTillNow ) const;
 
@@ -205,6 +208,10 @@ public:
 	// pState->nCurrentPlayer 값이 바로 자기 자신의
 	// 번호이며, 이 값은 자신을 인식하는데 사용된다
 	virtual void OnBegin( const CState* pState );
+
+	// 2마에서 카드를 고른다.
+	virtual void OnSelect2MA(
+		int* selecting, CCard* pcShow );
 
 	// 6마에서 당선된 경우 한 사람을 죽여야 한다
 	// 죽일 카드를 지정하면 된다 - 단 이 함수는
@@ -623,7 +630,7 @@ int CMaiBSWPrideTable::CalcPride( int nKiruda, const CCardList& lc ) const
 	CMaiBSWCardList lCard = lc;
 	lCard.m_nKiruda = nKiruda;
 
-	ASSERT( lCard.GetCount() <= 10 );
+	ASSERT( lCard.GetCount() <= 14 );	//4.0
 
 	int nPride = 0;
 
@@ -828,7 +835,7 @@ void CMaiBSWAlgo::Goal( int* pnKiruda, int* pnMinScore, CCard acDrop[3],
 	if ( pDeck )
 		lc.AddTail( (CList<CCard,CCard>*)pDeck );
 
-	ASSERT( lc.GetCount() == 13 || lc.GetCount() == 8
+	ASSERT( lc.GetCount() == 14 || lc.GetCount() == 13 || lc.GetCount() == 8
 		|| lc.GetCount() == 7 || lc.GetCount() == 10 );	//v4.0에서 수정됨
 
 	m_pUpdate->SetProgress( 10 );	// 10 % 완료
@@ -989,6 +996,14 @@ CCard CMaiBSWAlgo::Kill( const CCardList* pHand, const CCardList* pTillNow ) con
 				return (int)CCard( s, i );
 	ASSERT(0);
 	return (int)CCard(nKiruda,2);	// never reached
+}
+
+// 2마에서 선택할 카드 선택
+int CMaiBSWAlgo::Select( const CCardList* pHand, const CCard* pcShow ) const
+{
+	// 9 이상이면 갖고, 아니면 버린다
+	if ( pcShow->IsPoint() || pcShow->GetNum() == 9 ) return 0;
+	else return 1;
 }
 
 
@@ -1261,19 +1276,19 @@ static void Simulation(
 	int nProgressL1Range,
 	MAIDLL_UPDATE* pUpdate )
 {
-	if ( nTurn > LAST_TURN ) { // 마지막 턴을 지남 (종료 조건
+	const CState* pState = CCard::GetState();
+
+	// 플레이어 수
+	int nPlayers = pState->nPlayers;
+	int nPlayersToPlay = nPlayers - pCurrent->GetCount();
+
+	if ( nTurn > ( nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ) ) { // 마지막 턴을 지남 (종료 조건)
 		nScored = 0;
 		c = 0;
 		bJokercallEffect = false;
 		nJokerShape = 0;
 		return;
 	}
-
-	const CState* pState = CCard::GetState();
-
-	// 플레이어 수
-	int nPlayers = pState->nPlayers;
-	int nPlayersToPlay = nPlayers - pCurrent->GetCount();
 
 	// 이사람은 여당인가
 	bool bIsDefender = pState->IsDefender(nPlayer);
@@ -1464,20 +1479,20 @@ CCard CMaiBSWAlgo::TurnSimulation( int& eff ) const
 // 카드 내기 (필요한 모든 인자는 CCard::CState 에서 얻는다 )
 CCard CMaiBSWAlgo::Turn( int& eff, bool bUseSimulation ) const
 {
+	const CState* pState = CCard::GetState();
+
 	// 시물레이션을 사용하면, 3 턴부터, 아니면 2 턴부터
 	// 시물레이션 알고리즘을 사용한다
 	int nSimulatedTurn = bUseSimulation ? 3 : 2;
 
 	CCard c;
-	if ( CCard::GetState()->nTurn + nSimulatedTurn > LAST_TURN )
+	if ( CCard::GetState()->nTurn + nSimulatedTurn > ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ) )
 		c = TurnSimulation(eff);
 	else c = TurnIteration(eff);
 
 	// 주공의 조커콜이고, 프랜드에게 조커가 있다는 사실을 몰라야 될 때
 	// '조커콜 아님' 은 너무 속보이므로 그냥 조커콜로 바꾼다
 	if ( c.IsJokercall() ) {
-
-		const CState* pState = CCard::GetState();
 
 		if ( !eff	// 조커콜이 아니고
 			&& pState->lCurrent.IsEmpty()	// 선이고
@@ -1589,6 +1604,14 @@ void CMaiBSWWrap::OnElection( CGoal* pNewGoal )
 		pNewGoal->nMinScore =	// 1 씩 올린다
 			pNewGoal->nMinScore < nMinScore && pNewGoal->nMinScore > 0
 			? pNewGoal->nMinScore + 1 : m_pState->pRule->nMinScore;
+}
+
+// 2마에서 카드를 고른다.
+void CMaiBSWWrap::OnSelect2MA(
+	int* selecting, CCard *pcShow )
+{
+	*selecting = m_pBSW->Select(
+		GetHand(), pcShow );
 }
 
 // 6 마에서 당선된 경우 한 명을 죽여야 한다

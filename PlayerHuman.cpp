@@ -18,6 +18,7 @@
 #include "DSB.h"
 #include "DEtc.h"
 #include "DElection.h"
+#include "D2MA.h"
 #include "DReport.h"
 #include "DScoreBoard.h"
 
@@ -321,6 +322,19 @@ void CPlayerHuman::OnInit( CEvent* e )
 	else e->SetEvent();
 }
 
+// 2마에서 카드를 뽑음
+void CPlayerHuman::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
+{
+	// 카드 고르기 DSB 를 표시
+	DSelect2MA* pDSB = new DSelect2MA(m_pBoard);
+	pDSB->Create( e, selecting, pcShow );
+}
+// 카드를 골랐다
+void CPlayerHuman::OnSelect2MA( int* selecting, CEvent* e )
+{
+	e->SetEvent();
+}
+
 // 카드를 나눠 주고 있음 ( nFrom 에서 nTo 로 (-1은 중앙)
 // nCurrentCard 가 이동하였음 )
 // nMode  0 : 카드를 날리지 않고, 단지 전체 화면 갱신 필요
@@ -388,7 +402,6 @@ void CPlayerHuman::OnBegin( const CState* pState, CEvent* e )
 	PlaySound( IDW_BEGIN, true );
 
 	// 카드를 정렬하고 이름을 다시 그리기 위해서 전체 화면을 갱신한다 !
-	m_pMFSM->SortPlayerHand( Mo()->bLeftKiruda, Mo()->bLeftAce );
 	m_pBoard->UpdatePlayer( -2 );
 
 	// 시작한다는 DSB 를 띄운다
@@ -570,7 +583,7 @@ void CPlayerHuman::OnElected( CGoal* pNewGoal, CCard acDrop[3], CEvent* e )
 		if ( m_pBoard->GetSelection(i) )
 			acDrop[j++] = c;
 	}
-	ASSERT(j==3);
+	ASSERT(j==3 || (j==1 && Mo()->rule.nPlayerNum == 2));
 
 	// 화면을 업데이트 ( 소리도 함께 )
 	PlaySound( IDW_CARDSET, true );
@@ -701,10 +714,16 @@ void CPlayerHuman::OnTurnEnding( int nWinner, CEvent* e )
 
 	CCard c(GetState()->cCurrentCard);
 
-	if ( c.IsPoint() && GetState()->nMaster != nWinner
-		&& ( GetState()->nFriend != nWinner
-			|| !GetState()->bFriendRevealed ) ) {
+	if ( GetState()->nPlayers != 2
+			&& ( ( c.IsPoint() && GetState()->nMaster != nWinner
+			&& ( GetState()->nFriend != nWinner
+			|| !GetState()->bFriendRevealed ) ) )
+		|| GetState()->nPlayers == 2
+			&& ( nWinner != GetState()->nMaster )
+			&& ( GetState()->nBeginer == GetState()->nMaster && !GetState()->lCurrent.IsEmpty()
+				|| GetState()->nBeginer != GetState()->nMaster && GetState()->lCurrent.IsEmpty() ) ) {
 		// 점수카드이고 야당이면 득점 영역으로
+		// 2마에서는 무조건 1장의 카드를 득점 영역으로 보낸다(v4.0 : 2010.4.13)
 
 		m_pBoard->FlyCard( (int)c, 2,
 			0, -1,

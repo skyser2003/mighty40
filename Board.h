@@ -325,7 +325,7 @@ protected:
 	long*			m_pWaitingSelectionCard;	// 클릭 대기 상태에서 클릭된 카드를 리턴할 포인터
 
 	int		m_nMouseOver;		// 현재 마우스 아래에 있어서 조금 들려진 카드 (-1은 없는경우)
-	bool	m_abSelected[(LAST_TURN+1)*2];	// privilege 때 선택된 카드 (이중 13개만 사용)
+	bool	m_abSelected[LAST_TURN_2MA+2];	// privilege 때 선택된 카드 (이중 14개만 사용)
 	int		m_nDealMiss;		// 딜 미스 한 플레이어 (이 플레이어의 카드 내용은 reveal)
 
 	int		m_nTurnRect;		// 차례 사각형의 위치

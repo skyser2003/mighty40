@@ -129,14 +129,14 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 		&dc, xSrc+nCard*m_szCards.cx, ySrc, cxSrc, cySrc,
 		SRCAND );
 
-	if( cxTgt > cyTgt ) {
+	if( cxTgt > cyTgt ) {	// 가로가 더 길면 90도 회전하여 출력한다.
 		POINT pt[3];
-		pt[0].x = xTgt+cxTgt;
-		pt[0].y = yTgt;
-		pt[1].x = xTgt+cxTgt;
-		pt[1].y = yTgt+cyTgt;
-		pt[2].x = xTgt;
-		pt[2].y = yTgt;
+		pt[0].x = xTgt;
+		pt[0].y = yTgt+cyTgt;
+		pt[1].x = xTgt;
+		pt[1].y = yTgt;
+		pt[2].x = xTgt+cxTgt;
+		pt[2].y = yTgt+cyTgt;
 		pDC->PlgBlt( pt, &dc, xSrc+nCard*m_szCards.cx, ySrc, cxSrc, cySrc, m_bmMask, 0, 0 );
 	}
 
@@ -168,22 +168,6 @@ void CBmpMan::DrawCardEx( CDC* pDC, int nCard,
 				&rcText, sText, sText.GetLength(), 0 );
 		}
 	}
-
-	if( cxTgt > cyTgt ) {
-		XFORM xform;
-		dc.GetWorldTransform( &xform );
-		xform.eM11 = 1.0f;
-		xform.eM12 = 0.0f;
-		xform.eM21 = 0.0f;
-		xform.eM22 = 1.0f;
-		xform.eDx = 0.0f;
-		xform.eDy = 0.0f;
-
-		dc.SetWorldTransform( &xform );
-	}
-
-	dc.SetGraphicsMode(GM_COMPATIBLE);
-
 }
 
 // 뒷 그림을 읽는다

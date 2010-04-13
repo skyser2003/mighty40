@@ -111,6 +111,41 @@ void CPlayerNetwork::OnElecting( int nPlayerID, int nKiruda,
 	e->SetEvent();
 }
 
+void CPlayerNetwork::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
+{
+	// mmGet2MA 메시지를 받아서 준다
+	CMsg* pMsg = 0;
+	AUTODELETE_MSG(pMsg);
+
+	GetSB()->GetMsgFor( GetUID(), pMsg, &m_e );
+	m_pMFSM->WaitEvent( &m_e );
+
+	long t, u, c;
+	if ( !pMsg->PumpLong( t ) || t != CMsg::mmGet2MA
+					|| !pMsg->PumpLong( u ) || u != GetUID()
+					|| !pMsg->PumpLong( c ) )
+		Error(3);
+
+	else {
+		*selecting = (int)c;
+		pcShow;	// unused
+	}
+	e->SetEvent();
+}
+
+void CPlayerNetwork::OnSelect2MA( int* selecting, CEvent* e )
+{
+	// mmGet2MA 메시지를 전달한다
+	if ( NeedSendingIfNumIs( m_pMFSM->GetState()->nCurrentPlayer ) ) {
+
+		CMsg msg( _T("lll"), CMsg::mmGet2MA,
+			GetPlayerUIDFromNum( m_pMFSM->GetState()->nCurrentPlayer ),
+			(long)(int)*selecting );
+		SendMsg( &msg );
+	}
+	e->SetEvent();
+}
+
 void CPlayerNetwork::OnKillOneFromSix( CCard* pcCardToKill,
 	CCardList* plcFailedCardsTillNow, CEvent* e )
 {

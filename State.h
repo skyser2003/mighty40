@@ -32,6 +32,7 @@ class CCardList;
 enum MIGHTY_STATE {
 
 	msReady,					// 모든 데이터가 만들어지고 새 판이 초기화 됨
+	msDeal2MA,					// 2마에서 카드를 가짐
 	msElection,					// 선거가 시작됨
 	msPrivilege,				// 주공이 나머지 3장을 가짐 ( 가지기 직전 기루다 바꾸는 상황 포함 )
 	msTurn,						// 카드를 내는 중

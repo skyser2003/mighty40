@@ -324,8 +324,9 @@ void CBoard::DrawBoard( CDC* pDC, LPCRECT prc )
 #endif
 			int nMouseOver = !bHuman || i != 0 ? -1 : m_nMouseOver;
 			bool* abSelected =
-				!bHuman || i != 0 || pState->state != msPrivilege
-				? 0 : m_abSelected; 
+				!bHuman || i != 0
+				|| pState->state != msPrivilege
+				&& !( pState->state == msDeal2MA && nPlayers == 2 ) ? 0 : m_abSelected;
 
 			CRect rcHand = CalcRect(
 					nPlayers, CR_HAND, i, m_szCard.cx, m_szCard.cy );

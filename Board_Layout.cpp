@@ -540,8 +540,9 @@ bool CBoard::CalcRealCardRect( LPRECT prc, int index ) const
 	CRect rc = CalcRect( pState->nPlayers, CR_HAND, 0,
 		m_szCard.cx, m_szCard.cy, index, nCards );
 
-	// 세장 선택중이라면
-	if ( pState->state == msPrivilege
+	// 세장 선택중 or 2마 딜 상황이면(v4.0: 2010.4.13)
+	if ( ( pState->state == msPrivilege
+			|| ( pState->state == msDeal2MA && pState->nPlayers == 2 ) )
 			&& GetSelection(index) )
 		rc.OffsetRect( 0, -m_szCard.cy/CARD_SHIFT_RATIO_OF_SELECTION );
 

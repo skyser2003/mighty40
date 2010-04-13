@@ -34,6 +34,12 @@ public:
 	// 한 판이 시작됨 - OnBegin 전, 아직 덱이 분배되지 않은 상태
 	virtual void OnInit( CEvent* e );
 
+	// 2마에서 카드를 뽑음
+	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e );
+
+	// 카드를 골랐다
+	virtual void OnSelect2MA( int* selecting, CEvent* e );
+
 	// 카드를 나눠 주고 있음 ( nFrom 에서 nTo 로 (-1은 중앙)
 	// nCurrentCard 가 이동하였음 )
 	// nMode  0 : 카드를 날리지 않고, 단지 전체 화면 갱신 필요

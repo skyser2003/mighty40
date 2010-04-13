@@ -42,10 +42,38 @@ lblMightyBegin:
 			NOTIFY_TO( i, OnInit(EVENT) );
 		}
 
-		// 카드를 나눠 준다
-		// 두장, 세장, 세장, 두장 의 순서
-		// 플레이어가 7명인 경우 두장, 세장, 두장의 순이다. (v4.0 : 2010.4.3 Yoshi-TS4)
-		{
+		if ( pRule->nPlayerNum == 2 ) {
+			// 2마이면 카드를 나눠 가지는 방법이 다르다.
+			state = msDeal2MA;
+
+			// 시작했음을 각 플레이어에게 알린다
+			for ( i = 0; i < pRule->nPlayerNum; i++ ) {
+				nCurrentPlayer = GetPlayerNumFromID(i);
+				NOTIFY_TO( i, OnBegin( GetState(), EVENT ) );
+			}
+			int nCardsPerOnePlayer = 13;
+			int nAllCards = nCardsPerOnePlayer * nPlayers;
+			for ( i = 0; i < nAllCards; i++ ) {
+				nCurrentPlayer = (nBeginer+i)%nPlayers;
+				NOTIFY_ALL( OnBeginThink( nCurrentPlayer, 0, EVENT ) );
+				int selecting = 0;
+				CCard cShow = lDeck.RemoveTail();
+				CCard cHide = lDeck.RemoveTail();
+				NOTIFY_TO( nCurrentPlayer, OnSelect2MA( &selecting, &cShow, EVENT ) );
+				NOTIFY_ALL( OnSelect2MA( &selecting, EVENT ) );
+				if ( selecting == 0 )
+					apPlayers[nCurrentPlayer]->GetHand()->AddTail( cShow );
+				else
+					apPlayers[nCurrentPlayer]->GetHand()->AddTail( cHide );
+				if ( !Mo()->bNoSort )
+					apPlayers[nCurrentPlayer]->GetHand()->Sort( Mo()->bLeftKiruda, Mo()->bLeftAce );
+				NOTIFY_ALL( OnDeal( -1, nCurrentPlayer, 9, cCurrentCard, EVENT ) );
+			}
+		}
+		else {
+			// 카드를 나눠 준다
+			// 두장, 세장, 세장, 두장 의 순서
+			// 7마의 경우 두장, 세장, 두장의 순이다. (v4.0 : 2010.4.3 Yoshi-TS4)
 			int nCardsPerOnePlayer = pRule->nPlayerNum == 7 ? 7 
 				: pRule->nPlayerNum == 6 ? 8 : 10;
 			int nAllCards = nCardsPerOnePlayer * nPlayers;
@@ -72,6 +100,13 @@ lblMightyBegin:
 			nCurrentPlayer = GetPlayerNumFromID(i);
 			NOTIFY_TO( i, OnBegin( GetState(), EVENT ) );
 		}
+
+		// 손에 든 카드를 재정렬하고 모두에게 알린다.
+		if ( !Mo()->bNoSort )
+			for ( i = 0; i < nPlayers; i++ ) {
+				apPlayers[i]->GetHand()->Sort( Mo()->bLeftKiruda, Mo()->bLeftAce );
+				NOTIFY_ALL( OnDeal( -1, i, 1, cCurrentCard, EVENT ) );
+			}
 
 		nCurrentPlayer = nBeginer;
 
@@ -112,7 +147,7 @@ lblMightyBegin:
 				goal = goalNew;
 				if ( pRule->bPassAgain )		// 포기해도 다시 부를 수 있는 규칙이면
 					for(int i=0;i<pRule->nPlayerNum;i++)
-						abGiveup[i]=false;		// 누군가가 불렀을 때 다시 부를 수 있다. 다만, 이미 1명만 남은 경우는 제외
+						abGiveup[i]=false;		// 누군가가 불렀을 때 다시 부를 수 있다. 단, 이미 1명만 남은 경우는 제외
 			}
 
 			if ( bEnd ) {		// 이것으로 끝
@@ -321,10 +356,10 @@ lblMightyBegin:
 			// 결과를 반영한다
 
 			// 석장의 카드를 버린다
-			if ( apPlayers[nMaster]->GetHand()->GetCount() > 10 ) {
+			if ( apPlayers[nMaster]->GetHand()->GetCount() > ( nPlayers == 2 ? 13 : 10 ) ) {
 				CCardList* pHand = apPlayers[nMaster]->GetHand();
 				POSITION pos = pHand->GetTailPosition();
-				for ( i = 0; i < 3; i++ ) {
+				for ( i = 0; i < ( nPlayers == 2 ? 1 : 3 ); i++ ) {
 					if ( !pHand->Find(ac[i]) ) { // 잘못된 카드
 						ASSERT(0);
 						bool bDup;
@@ -337,8 +372,8 @@ lblMightyBegin:
 					}
 				}
 				RemoveDroppedCards( ac, goalNew.nKiruda );
-				ASSERT( pHand->GetCount() == 10
-					&& lDeck.GetCount() == 3 );
+				ASSERT( ( pHand->GetCount() == 10 && lDeck.GetCount() == 3 && nPlayers != 2 )
+					|| ( pHand->GetCount() == 13 && lDeck.GetCount() == 1 && nPlayers == 2 ) );
 			}
 
 			// 목표 점수, 프랜드
@@ -374,8 +409,8 @@ lblMightyBegin:
 		}
 
 		// 가장 중요한 게임 루프 !
-		// 10 번 반복함
-		for ( nTurn = 0; nTurn <= LAST_TURN; nTurn++ ) {
+		// 10 번 반복함 (2마: 13번)
+		for ( nTurn = 0; nTurn <= ( nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ); nTurn++ ) {
 
 			nJokerShape = 0;
 			bJokercallEffect = false;
@@ -467,11 +502,21 @@ lblMightyBegin:
 
 				CCard c( cCurrentCard = (int)lCurrent.RemoveTail() );
 
-				if ( c.IsPoint() && GetState()->nMaster != nWinner
+				if ( nPlayers == 2 ) {
+					if ( nWinner != GetState()->nMaster ) {		// 주공이 아닌 경우
+						if ( nBeginer == nMaster && !lCurrent.IsEmpty()
+							|| nBeginer != nMaster && lCurrent.IsEmpty() )
+							pWinnerScore->AddTail(c);
+						else lDeck.AddTail(c);
+					}
+				}
+				else {
+					if ( c.IsPoint() && GetState()->nMaster != nWinner
 					&& ( GetState()->nFriend != nWinner
 						|| !GetState()->bFriendRevealed ) )
 					pWinnerScore->AddTail(c);
-				else lDeck.AddTail(c);
+					else lDeck.AddTail(c);
+				}
 
 				NOTIFY_ALL( OnTurnEnding( nWinner, EVENT ) );
 			}
