@@ -127,9 +127,13 @@ void CState::WriteHistory()
 		// 승자와 다른 편 : 실점 ( 다른 편이 얻게 한 점수 )
 		// 를 갱신한다
 
-		if ( nPlayer == nWinner )
+		if ( nPlayer == nWinner ) {
 			// 승자
-			anScored[nPlayer] += lCurrent.GetPoint();
+			if ( nPlayers == 2 ) 
+				anScored[nPlayer]++;
+			else 
+				anScored[nPlayer] += lCurrent.GetPoint();
+		}
 		else if ( bWinnerDef && ( nPlayer == nMaster
 								|| nPlayer == nFriend )
 				|| !bWinnerDef && ( nPlayer != nMaster
@@ -209,12 +213,11 @@ bool CState::IsValidNewGoal( int nNewKiruda, int nNewMinScore ) const
 
 		// 올려야 하는 점수
 		int nMinDiff;
-		if ( pRule->bNoKirudaAdvantage
-				&& ( goal.nKiruda == 0 || nNewKiruda == 0 )
-			|| !pRule->bRaise2ForKirudaChange
+		if ( !pRule->bRaise2ForKirudaChange
 			|| bBlindKirudaChange )
 			nMinDiff = 1;
 		else nMinDiff = 2;
+		if ( pRule->bNoKirudaAdvantage && ( nNewKiruda == 0 ) ) nMinDiff--;
 
 		if ( min( goal.nMinScore + nMinDiff, nMaxLimit )
 			<= min( nNewMinScore, nMaxLimit ) )
@@ -263,13 +266,7 @@ bool CState::IsDealMiss( const CCardList* pl ) const
 	bool bHasJoker = pl->Find( CCard::GetJoker() ) ? true : false;
 	int nPoints = pl->GetPoint();
 
-	// 조커 -1점
-	if ( pRule->bDM_JokerIsReversePoint && bHasJoker ) nPoints--;
-
-	// 마이티 0점
-	if ( pRule->bDM_OnlyMighty && bHasMighty ) nPoints--;
-
-	// 오직 10 한 장
+	// 10 한 장
 	if ( pRule->bDM_Only10 && nPoints == 1 ) {
 		POSITION pos10 = pl->GetHeadPosition();
 		while (pos10) if ( pl->GetNext(pos10).GetNum() == 10 ) return true;
@@ -281,15 +278,35 @@ bool CState::IsDealMiss( const CCardList* pl ) const
 		while (posJ) if ( pl->GetNext(posJ).IsOneEyedJack() ) return true;
 	}
 
-	if ( pRule->bDM_OnlyOne && nPoints <= 1 ) return true;
+	// 조커 -1점
+	if ( pRule->bDM_JokerIsReversePoint && bHasJoker ) nPoints--;
+
+	// 마이티 0점
+	if ( pRule->bDM_OnlyMighty && bHasMighty ) nPoints--;
+
+	if ( pRule->bDM_Duplicate ) {
+		// 10 한 장
+		if ( pRule->bDM_Only10 && nPoints == 1 ) {
+			POSITION pos10 = pl->GetHeadPosition();
+			while (pos10) if ( pl->GetNext(pos10).GetNum() == 10 ) return true;
+		}
+		// 애꾸눈 J 한 장
+		if ( pRule->bDM_OneEyedJack && nPoints == 1 ) {
+			POSITION posJ = pl->GetHeadPosition();
+			while (posJ) if ( pl->GetNext(posJ).IsOneEyedJack() ) return true;
+		}
+	}
 
 	// 이제 전반적인 점수 카드의 수로 계산을 시작
 
 	// 점수카드가 없을 때 딜미스
-	if ( nPoints <= 0 ) return true;
+	if ( pRule->bDM_NoPoint) {
+		if ( pRule->bDM_OnlyOne && nPoints <= 1 ) return true;
+		if ( nPoints <= 0 ) return true;
+	}
 
 	// 모두 점수카드일때 딜미스
-	if ( nPoints >= pl->GetCount() ) return true;
+	if ( pRule->bDM_AllPoint && nPoints >= pl->GetCount() ) return true;
 
 	// 그 외에는 딜미스가 아님
 	return false;

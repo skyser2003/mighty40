@@ -1,5 +1,5 @@
 // PRuleScore.cpp : implementation file
-// modified(v4.0): 2010.4.2 Yoshi-TS4
+// modified(v4.0): 2010.4.2
 
 #include "stdafx.h"
 #include "mighty.h"

@@ -394,8 +394,8 @@ DConnect::DConnect( CBoardWrap* pBoard ) : DSB(pBoard)
 	m_nChatDataBegin = 0;
 	m_nChatDataEnd = 0;
 
-	// 채팅창 사각형 ( 27 x CHAT_LINES )
-	m_rcChat.SetRect( 1, 23, 29, 23+CHAT_LINES );
+	// 채팅창 사각형 ( 31 x CHAT_LINES )
+	m_rcChat.SetRect( 1, 26, 32, 26+CHAT_LINES );
 
 	m_pPopup = 0;
 }
@@ -503,7 +503,7 @@ void DConnect::Create( CPlayerSocket* pServerSocket )
 	// 채팅창 핸들러를 세트
 	Ib()->SetChatHandler( (DWORD)(LPVOID)this, ChatProc );
 
-	DSB::Create( 0, 0, 30, 30, -1 );
+	DSB::Create( 0, 0, 33, 33, -1 );
 
 
 	if ( bFailed ) {
@@ -535,7 +535,7 @@ void DConnect::OnInit()
 	}
 
 	RegisterHotspot(
-		23, 20, -1, -1, true, 0,
+		27, 23, -1, -1, true, 0,
 		_T("취소"),
 		&s_colCyan, &s_tdMidium, &s_colCyan, &s_tdMidiumOutline,
 		(LPVOID)0 );
@@ -554,8 +554,7 @@ void DConnect::OnDraw(
 	PutText( pDC, m_sAddress,
 			-1, 1, true, s_colYellow, s_tdMidiumOutline );
 	// 참가자
-	int y = m_rule.nPlayerNum == 6 ? 5 
-		: m_rule.nPlayerNum == 6 ? 4 : 7;
+	int y = m_rule.nPlayerNum >= 6 ? 5 :7;
 	PutText( pDC, _T("참가자 :"),
 			2, y - 2, true, s_colWhite, s_tdShade );
 	for ( int i = 0; i < m_rule.nPlayerNum; i++ ) {
@@ -573,7 +572,7 @@ void DConnect::OnDraw(
 
 	// 규칙
 	PutText( pDC, _T("적용 규칙 : "),
-			21, y - 2, true, s_colWhite, s_tdShade );
+			24, y - 2, true, s_colWhite, s_tdShade );
 
 	// 채팅창
 	int nChatLines = (int)( m_nChatDataEnd - m_nChatDataBegin );
@@ -596,7 +595,7 @@ void DConnect::OnDraw(
 		CPoint( GetDSBUnit(), GetDSBUnit() ) );
 
 	// 테두리 (참가자)
-	rcBound = DSBtoDP( CRect( 1, y, 20, 22 ) );
+	rcBound = DSBtoDP( CRect( 1, y, 24, 25 ) );
 	rcBound.InflateRect( GetDSBUnit()/2, GetDSBUnit()/2, 0, GetDSBUnit()/3 );
 	pDC->RoundRect( &rcBound,
 		CPoint( GetDSBUnit(), GetDSBUnit() ) );
@@ -606,14 +605,14 @@ void DConnect::OnDraw(
 	// 테두리 (확인)
 	if ( m_bServer ) {
 
-		rcBound = DSBtoDP( CRect( 21, 17, 29, 19 ) );
+		rcBound = DSBtoDP( CRect( 25, 20, 32, 22 ) );
 		rcBound.InflateRect( GetDSBUnit()/2, GetDSBUnit()/3, GetDSBUnit()/2, -GetDSBUnit()/4 );
 		pDC->RoundRect( &rcBound,
 			CPoint( GetDSBUnit(), GetDSBUnit() ) );
 	}
 
 	// 테두리 (취소)
-	rcBound = DSBtoDP( CRect( 21, 20, 29, 22 ) );
+	rcBound = DSBtoDP( CRect( 25, 23, 32, 25 ) );
 	rcBound.InflateRect( GetDSBUnit()/2, GetDSBUnit()/3, GetDSBUnit()/2, -GetDSBUnit()/4 );
 	pDC->RoundRect( &rcBound,
 		CPoint( GetDSBUnit(), GetDSBUnit() ) );
@@ -704,7 +703,7 @@ void DConnect::Fail( LPCTSTR sMsg1, LPCTSTR sMsg2 )
 void DConnect::RegisterOk()
 {
 	RegisterHotspot(
-		23, 17, -1, -1, true, 0,
+		27, 20, -1, -1, true, 0,
 		_T("시작"),
 		&s_colCyan, &s_tdMidium, &s_colCyan, &s_tdMidiumOutline,
 		(LPVOID)0xffffffff );
@@ -713,8 +712,7 @@ void DConnect::RegisterOk()
 // 사람에 붙는 기호를 등록
 void DConnect::RegisterMarks()
 {
-	int y = m_rule.nPlayerNum == 6 ? 5 
-		: m_rule.nPlayerNum == 7 ? 4 : 7;
+	int y = m_rule.nPlayerNum >= 6 ? 5 : 7;
 	for ( int i = 0; i < m_rule.nPlayerNum; i++ )
 		RegisterHotspot(
 			1, y+i*3, -1, -1, true, 0, _T("▽"),
@@ -726,7 +724,7 @@ void DConnect::RegisterMarks()
 void DConnect::RegisterRule()
 {
 	RegisterHotspot(
-		22, 7 - ( m_rule.nPlayerNum == 6 ? 2 : 0 ), -1, -1, true, 0,
+		25, 7 - ( m_rule.nPlayerNum >= 6 ? 2 : 0 ), -1, -1, true, 0,
 		m_sRule,
 		&s_colCyan, &s_tdShade, &s_colCyan, &s_tdOutline, (LPVOID)500 );
 }

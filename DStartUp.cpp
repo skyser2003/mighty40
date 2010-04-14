@@ -118,7 +118,7 @@ void DStartUp::OnDraw(
 			s_colCyan, s_tdShade );
 		PutText( pDC, _T("Copyright 1999 ¿ÂπÆº∫"), 3, 17, true,
 			s_colCyan, s_tdShade );
-		PutText( pDC, _T("2010 Puzzlet & Yoshi-TS4"), 3, 18, true,
+		PutText( pDC, _T("2006 - 2010 UPnL"), 3, 18, true,
 			s_colCyan, s_tdShade );
 	}
 	else {

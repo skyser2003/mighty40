@@ -16,22 +16,22 @@ static char THIS_FILE[]=__FILE__;
 
 static LPCTSTR asPreset[][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
-	{ _T("'1$1M&%)2K5'3,$"), _T("표준 4마") },
-	{ _T("&/$1M&#)2K5'3,$"), _T("표준 3마") },
-	{ _T(")0$1M&))2K5'3,$"), _T("표준 6마") },
-	{ _T("*0$1M&))2K%'3,$"), _T("표준 7마") },
-	{ _T("%*$1M&#)2K5'3,$"), _T("표준 2마") },
-	{ _T("(0$1M@IYb-A(C@%"), _T("SNUCSE 5마") },
-	{ _T(")1$1M@IYb-1(C@%"), _T("SNUCSE 6마") },
-	{ _T("*1$1M@IYb-1(C@%"), _T("SNUCSE 7마") },
-	{ _T(")0$1M@I7BK]F30$"), _T("관악 6마") },
-	{ _T("(1$1M&Z8B+](3@$"), _T("신촌 5마") },
-	{ _T("(/$1M@1-bb&'3@$"), _T("경기 5마") },
-	{ _T("'0$1M&E7BKU(30$"), _T("부산 4마") },
-	{ _T("(/$1M&I8@K5'30$"), _T("대구 5마") },
-	{ _T(")0$1M&I7BK]*30$"), _T("대전 6마") },
-	{ _T("(/$1M&*9P-5'30$"), _T("광주 5마") },
-	{ _T("&/$1M&#%BK](30$"), _T("제주 3마") },
+	{ _T("'1$1M&%)2K%,C5%"), _T("표준 4마") },
+	{ _T("&/$1M&#)2K%,C5%"), _T("표준 3마") },
+	{ _T(")0$1M&))2K%,C5%"), _T("표준 6마") },
+	{ _T("*0$1M&))2K%,C5%"), _T("표준 7마") },
+	{ _T("%*$1M&#)2K%,C5%"), _T("표준 2마") },
+	{ _T("(0$1M@IYb-],C]'"), _T("SNUCSE 5마") },
+	{ _T(")1$1M@IYb-]+C]'"), _T("SNUCSE 6마") },
+	{ _T("*1$1M@IYb-]+C]'"), _T("SNUCSE 7마") },
+	{ _T(")0$1M@I7BKU&D=%"), _T("관악 6마") },
+	{ _T("(1$1M&Z8B+].C]%"), _T("신촌 5마") },
+	{ _T("(/$1M@1%bb&+C]%"), _T("경기 5마") },
+	{ _T("'0$1M&E7BKE.C=%"), _T("부산 4마") },
+	{ _T("(/$1M&I8@K%,C=%"), _T("대구 5마") },
+	{ _T(")0$1M&I7BKU.C=%"), _T("대전 6마") },
+	{ _T("(/$1M&*9P-%,C=%"), _T("광주 5마") },
+	{ _T("&/$1M&#%BK].C=%"), _T("제주 3마") },
 };
 
 // 미리 정의된 표준 룰로 세트
@@ -76,12 +76,13 @@ LPCTSTR CRule::Preset( int nRule )
 	bInitJokercallEffect = true;
 	bJokercallJokerEffect = false;
 	bDM_NoPoint = true;
+	bDM_OnlyOne = false;
 	bDM_AllPoint = false;
 	bDM_JokerIsReversePoint = false;
+	bDM_OnlyMighty = false;
 	bDM_Only10 = true;
 	bDM_OneEyedJack = false;
-	bDM_OnlyMighty = false;
-	bDM_OnlyOne = false;
+	bDM_Duplicate = false;
 	bS_Use20 = false;
 	bs_Use40 = true;
 	bs_Call = false;
@@ -193,12 +194,13 @@ CString CRule::Encode() const
 	SYNC_RULE_BOOL( bInitJokercallEffect );
 	SYNC_RULE_BOOL( bJokercallJokerEffect );
 	SYNC_RULE_BOOL( bDM_NoPoint );
+	SYNC_RULE_BOOL( bDM_OnlyOne );
 	SYNC_RULE_BOOL( bDM_AllPoint );
 	SYNC_RULE_BOOL( bDM_JokerIsReversePoint );
+	SYNC_RULE_BOOL( bDM_OnlyMighty );
 	SYNC_RULE_BOOL( bDM_Only10 );
 	SYNC_RULE_BOOL( bDM_OneEyedJack );
-	SYNC_RULE_BOOL( bDM_OnlyMighty );
-	SYNC_RULE_BOOL( bDM_OnlyOne );
+	SYNC_RULE_BOOL( bDM_Duplicate );
 	SYNC_RULE_BOOL( bS_Use20 );
 	SYNC_RULE_BOOL( bS_Use40 );
 	SYNC_RULE_BOOL( bS_Call );
@@ -273,12 +275,13 @@ void CRule::Decode( LPCTSTR sRule )
 	SYNC_RULE_BOOL( bInitJokercallEffect );
 	SYNC_RULE_BOOL( bJokercallJokerEffect );
 	SYNC_RULE_BOOL( bDM_NoPoint );
+	SYNC_RULE_BOOL( bDM_OnlyOne );
 	SYNC_RULE_BOOL( bDM_AllPoint );
 	SYNC_RULE_BOOL( bDM_JokerIsReversePoint );
+	SYNC_RULE_BOOL( bDM_OnlyMighty );
 	SYNC_RULE_BOOL( bDM_Only10 );
 	SYNC_RULE_BOOL( bDM_OneEyedJack );
-	SYNC_RULE_BOOL( bDM_OnlyMighty );
-	SYNC_RULE_BOOL( bDM_OnlyOne );
+	SYNC_RULE_BOOL( bDM_Duplicate );
 	SYNC_RULE_BOOL( bS_Use20 );
 	SYNC_RULE_BOOL( bS_Use40 );
 	SYNC_RULE_BOOL( bS_Call );

@@ -73,7 +73,7 @@ lblMightyBegin:
 		else {
 			// 카드를 나눠 준다
 			// 두장, 세장, 세장, 두장 의 순서
-			// 7마의 경우 두장, 세장, 두장의 순이다. (v4.0 : 2010.4.3 Yoshi-TS4)
+			// 7마의 경우 두장, 세장, 두장의 순이다. (v4.0 : 2010.4.3)
 			int nCardsPerOnePlayer = pRule->nPlayerNum == 7 ? 7 
 				: pRule->nPlayerNum == 6 ? 8 : 10;
 			int nAllCards = nCardsPerOnePlayer * nPlayers;

@@ -344,7 +344,7 @@ void CMFSM::GetReport(
 	int nDefSum = 0, nAttSum = 0;			// 점수, 도움의 합
 	int nDefPointed = 0, nAttPointed = 0;	// 점수만의 합
 
-	if( pRule->nPlayerNum == 2 ) {
+/*	if( pRule->nPlayerNum == 2 ) {
 		// 2마는 턴으로 계산한다.
 		for ( i = 0; i < nPlayers; i++ ) {
 			if ( i == nMaster )
@@ -352,7 +352,7 @@ void CMFSM::GetReport(
 			else nAttSum = nAttPointed = anTurn[i] / 10;
 		}
 	}
-	else {
+	else {*/
 		// 공헌도를 계산하기 위해서 여당의 점수, 도움의 합과
 		// 야당의 점수, 도움의 합을 계산해 둔다
 		for ( i = 0; i < nPlayers; i++ ) {
@@ -384,7 +384,7 @@ void CMFSM::GetReport(
 					: ( anScored[i] + anAssist[i] ) * 100 / nAttSum;
 			}
 		}
-	}
+/*	}*/
 
 	// 여당의 득점을 리턴
 	if ( pnDefPointed ) *pnDefPointed = nDefPointed;
@@ -478,7 +478,8 @@ void CMFSM::GetReport(
 		// 2배 규칙
 		if ( nMoved < 0 ) nMoved = 0;				// 이길 경우 최소한 0점을 획득하게 함
 
-		if ( bDefWin && nDefPointed >= MAX_SCORE ) {	// 런
+		if ( bDefWin && nDefPointed >= MAX_SCORE 
+			|| pRule->nPlayerNum == 2 && nDefPointed >= MAX_SCORE_2MA ) {	// 런
 			if ( pRule->bS_StaticRun ) {
 				sCalcMethod.Format( _T("%d(고정)"), 20 );	// 고정액
 				nMoved = 20;

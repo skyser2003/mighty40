@@ -4,7 +4,7 @@
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-// PRuleSpecial.h : header file (v4.0 : 2010.4.2 Yoshi-TS4)
+// PRuleSpecial.h : header file (v4.0 : 2010.4.2)
 //
 
 /////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#define STANDARD_RULE_STRING _T("(0$1M&))2O5'3,$")
+#define STANDARD_RULE_STRING _T("(0$1M&))2O%,C5%")
 
 // 마이티 게임 규칙
 
@@ -96,18 +96,20 @@ struct CRule
 
 	// 점수카드가 없을때
 	bool bDM_NoPoint;
+	// 점수카드 1장
+	bool bDM_OnlyOne;
 	// 모두 점수카드일때
 	bool bDM_AllPoint;
 	// 조커를 역 점수카드로 계산
 	bool bDM_JokerIsReversePoint;
+	// 마이티 1장
+	bool bDM_OnlyMighty;
 	// 점수카드 10
 	bool bDM_Only10;
 	// 애꾸눈 J 1장
 	bool bDM_OneEyedJack;
-	// 마이티 1장
-	bool bDM_OnlyMighty;
-	// 점수카드 1장
-	bool bDM_OnlyOne;
+	// 10, 애꾸눈 잭과 조커&마이티 중복 적용
+	bool bDM_Duplicate;
 
 	// 점수 (목:목표점수 기:기본점수 득:여당득점)
 

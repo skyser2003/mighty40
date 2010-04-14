@@ -93,13 +93,13 @@ CRect CBoard::CalcNameRect( int nPlayers, int nPlayer,
 			// 중앙에서 왼쪽에 있는 경우
 			ta = TA_LEFT|TA_TOP;
 			x = rcHand.right + nMargin;
-			y = rcScore.bottom + nMargin;
+			y = nPlayers == 7 ? rcScore.top + nMargin : rcScore.bottom + nMargin ;
 		}
 		else {
 			// 중앙에서 오른쪽에 있는 경우
 			ta = TA_RIGHT|TA_TOP;
 			x = rcHand.left - nMargin;
-			y = rcScore.bottom + nMargin;
+			y = nPlayers == 7 ? rcScore.top + nMargin : rcScore.bottom + nMargin ;
 		}
 	}
 	else {	// 가로로 긴 경우
@@ -410,7 +410,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 		else {
 
 			if ( bVert ) {
-				if ( nPlayers == 7 ) {	// 7마에서 왼쪽 오른쪽 플레이어는 nCardWidth만큼 크기를 줄인다 (v4.0 : 2010.4.11 Yoshi-TS4)
+				if ( nPlayers == 7 ) {	// 7마에서 왼쪽 오른쪽 플레이어는 nCardWidth만큼 크기를 줄인다 (v4.0 : 2010.4.11)
 					if ( rc.Height() < 5*nCardHeight+nCardHeight/2 )
 						rcHand.SetRect( -nCardHeight, -nCardHeight*2 , 0, 0 );
 					else rcHand.SetRect( -nCardHeight, -( rc.Height()/2 - nCardHeight*3/4 ), 0, 0 );
@@ -437,7 +437,7 @@ CRect CBoard::CalcRect( int nPlayers, CR_TYPE type, int nPlayer,
 			else {
 				if ( ( nPlayers == 5 && nPlayer != 0 ) ||	// 5마에서 위 플레이어
 					nPlayers == 6 ||						// 6마에서 위, 아래 플레이어
-					( nPlayers == 7 && nPlayer != 0 ) ) {	// 7마에서 위 플레이어는 nCardWidth/4만큼 크기를 줄인다 (v4.0 : 2010.4.9-11 Yoshi-TS4)
+					( nPlayers == 7 && nPlayer != 0 ) ) {	// 7마에서 위 플레이어는 nCardWidth/4만큼 크기를 줄인다 (v4.0 : 2010.4.9-11)
 					if ( rc.Width() < 4*nCardWidth+2*nCardHeight )
 						rcHand.SetRect( -nCardWidth*13/4, -nCardHeight, 0, 0 );
 					else rcHand.SetRect(

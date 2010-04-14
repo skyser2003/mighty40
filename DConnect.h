@@ -151,7 +151,7 @@ protected:
 	// 채팅창 사각형
 	CRect m_rcChat;
 	// 세모 마크의 색상
-	COLORREF m_acolMark[MAX_PLAYERS]; //v4.0 : 2010.4.6 Yoshi-TS4 - 서버 만들었다가 끌 때 튕기는 버그 수정
+	COLORREF m_acolMark[MAX_PLAYERS]; //v4.0 : 2010.4.6 - 서버 만들었다가 끌 때 튕기는 버그 수정
 	// 팝업 메뉴
 	DConnectPopup* m_pPopup;
 	// 블랙리스트 (이사람들은 접속을 못하게 막음)

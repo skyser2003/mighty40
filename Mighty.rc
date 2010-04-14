@@ -110,8 +110,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,11
- PRODUCTVERSION 4,0,0,11
+ FILEVERSION 4,0,0,0
+ PRODUCTVERSION 4,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "0.0.0.11"
+            VALUE "FileVersion", "4.0.0.12"
             VALUE "InternalName", "Mighty Network 4.0"
-            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2007-2010 Puzzlet & Yoshi-TS4"
+            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "0.0.0.11"
+            VALUE "ProductVersion", "4.0.0.12"
         END
     END
     BLOCK "VarFileInfo"
@@ -266,7 +266,7 @@ FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     EDITTEXT        IDC_HUMANNAME,7,69,80,14,ES_AUTOHSCROLL
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2009-2010 puzzlet && Yoshi-TS4",IDC_STATIC,37,7,104,39
+    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010 UPnL",IDC_STATIC,37,7,104,39
     CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,96,10
     CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
     CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
@@ -568,14 +568,16 @@ CAPTION "딜 미스"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",IDC_STATIC,7,7,225,35
-    CONTROL         "점수 카드가 하나도 없으면 딜 미스",IDC_DM_NOPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,170,10
-    CONTROL         "모든 카드가 점수 카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,170,10
+    CONTROL         "점수 카드 수가 다음 이하 이면 딜 미스 :",IDC_DM_NOPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,133,10
+    CONTROL         "모든 카드가 점수 카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,125,10
     CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",IDC_DM_JOKERISREVERSEPOINT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,170,10
+    CONTROL         "마이티는 점수 카드로 간주하지 않음",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
     CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
     CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
-    CONTROL         "마이티는 점수 카드로 간주하지 않음",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
-    CONTROL         "점수카드가 한 장 이하인 경우 딜 미스",IDC_DM_ONLYONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,170,10
+    CONTROL         "위의 두 조건을 검사할 때, 마이티나 조커의 효과를 고려",IDC_DM_DUPLICATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,200,10
+    COMBOBOX        IDC_DM_NUM,143,44,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_RULE_SCORE DIALOGEX 0, 0, 239, 179
@@ -1302,6 +1304,15 @@ BEGIN
     0
 END
 
+IDD_RULE_DEALMISS DLGINIT
+BEGIN
+    IDC_DM_NUM, 0x403, 2, 0
+0x0030, 
+    IDC_DM_NUM, 0x403, 2, 0
+0x0031, 
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1311,13 +1322,13 @@ END
 STRINGTABLE 
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 3.9"
+    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-14)"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "마이티 네트워크 3.9"
-    AFX_IDS_IDLEMESSAGE     "마이티 네트워크 3.9"
+    AFX_IDS_APP_TITLE       "마이티 네트워크 4.0"
+    AFX_IDS_IDLEMESSAGE     "마이티 네트워크 4.0 Beta"
 END
 
 STRINGTABLE 
@@ -1349,17 +1360,18 @@ END
 
 STRINGTABLE 
 BEGIN
+    IDC_CLOCKWISE           "카드를 내는 순서를 시계방향으로 진행합니다 (이른바 '고스톱 게임'의 반대 방향입니다)"
     IDC_USESOUND            "게임에서 소리를 사용할 것인가를 선택합니다"
     IDC_USETERM             "'곱트(하트 17)', '기아(기루다A)'와 같은 마이티만의 '은어'를 사용할 것인가를 선택합니다 - 이러한 방식의 호칭에 익숙한 플레이어만 사용하십시오"
     IDC_SORTMODE            "카드를 정렬하지 않습니다"
     IDC_SORTMODE1           "기루다를 왼쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
     IDC_SORTMODE2           "기루다를 왼쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
     IDC_SORTMODE3           "기루다를 오른쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
-    IDC_SORTMODE4           "기루다를 오른쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
 END
 
 STRINGTABLE 
 BEGIN
+    IDC_SORTMODE4           "기루다를 오른쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
     IDC_BACKSELECT          "다른 뒷면 그림을 선택하고 싶으면 이 버튼을 누릅니다"
     IDC_SAMPLEBACK          "현재 선택되어 있는 뒷면 그림입니다 - 다른 그림을 선택하고 싶으면 아래쪽의 버튼을 누르세요"
     IDC_ZOOMCARD            "화면이 카드를 표시하기에 너무 작을 때 카드를 축소해서 그려 줍니다, 또 화면이 충분히 크면 카드를 확대해서 그려줍니다"
@@ -1378,11 +1390,11 @@ BEGIN
     IDC_BACKALIGN1          "배경 그림을 타일 형태로 배치합니다 - 배경 그림이 화면보다 큰 경우 반복적으로 채웁니다"
     IDC_BACKALIGN2          "배경 그림을 늘리거나 줄여서 바탕 화면 크기에 맞춥니다"
     IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
-    IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
 END
 
 STRINGTABLE 
 BEGIN
+    IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
     IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실재로는 이와 다소 다를 수 있습니다"
     IDC_DSBSHADEMODE        "검은 점들을 이용해서 병치혼합을 하여 투명한 느낌을 줍니다"
     IDC_DSBSHADEMODE1       "투명한 느낌 없이 음영 상자를 일정 색상으로 채웁니다"
@@ -1394,18 +1406,21 @@ BEGIN
     IDC_SHOWDEALING         "카드를 섞고 나눠주는 에니메이션을 보여줍니다"
     IDC_RULEPRESET          "미리 정의된 표준 규칙들"
     IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
+END
+
+STRINGTABLE 
+BEGIN
     IDC_SHOWRULE            "현재 선택된 규칙을 보거나 사용자 정의 규칙을 수정하려면 이 버튼을 누르십시오"
 END
 
 STRINGTABLE 
 BEGIN
     IDC_RESETPATH           "현재 설정된 모든 AI DLL의 경로를 지우고 기본 설정값을 사용합니다"
-    IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 가 디폴트 값입니다"
 END
 
 STRINGTABLE 
 BEGIN
-    IDC_USEHINTINNETWORK    "다른 사람과의 게임에서도 카드 팁을 사용할지를 결정합니다"
+    IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 가 디폴트 값입니다"
     IDC_MIGHTYNETADDRESS    "Mighty.Net 의 IP 주소를 설정합니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
     IDC_RESETSCORE          "지금까지의 기록을 지웁니다"
@@ -1416,34 +1431,37 @@ BEGIN
     IDC_5MA                 "다섯 사람이 하는 마이티로, 가장 표준적인 마이티입니다"
     IDC_6MA                 "5 마 의 변형된 형태로, 선거는 여섯 사람이 시작하여, 주공으로 당선된 플레이어가 다른 한 사람을 탈락시키고 5 마로 진행하는 방식입니다"
     IDC_7MA                 "6 마 의 변형된 형태로, 선거는 일곱 사람이 시작하여, 주공으로 당선된 플레이어가 다른 두 사람을 탈락시키고 5 마로 진행하는 방식입니다"
-    IDC_CLOCKWISE           "카드를 내는 순서를 시계방향으로 진행합니다 (이른바 '고스톱 게임'의 반대 방향입니다)"
+    IDC_FRIEND              "프랜드 제도가 있는가를 선택합니다 - 3 마에서는 프랜드 제도를 두지 않는 것이 표준입니다"
+    IDC_JOKERFRIEND         "조커를 프랜드로 부를 수 있는지 결정합니다 - 이 옵션이 세트되지 않으면 조커 프랜드를 부르는 것은 불가능합니다"
     IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
-    IDC_HIDESCORE           "득점한 카드를 아무도 볼 수 없게 뒤집어 놓습니다 - 플레이어들은 득점한 카드를 보고는 지금까지 출현한 카드들에 대한 실마리를 잡을 수 없게 됩니다"
 END
 
 STRINGTABLE 
 BEGIN
+    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
+    IDC_ATTSCORETHROWNPOINTS 
+                            "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
+    IDC_HIDESCORE           "득점한 카드를 아무도 볼 수 없게 뒤집어 놓습니다 - 플레이어들은 득점한 카드를 보고는 지금까지 출현한 카드들에 대한 실마리를 잡을 수 없게 됩니다"
     IDC_MINSCORE            "주공이 목표 점수로로 정할 수 있는 최소 기본 점수를 정합니다 - 목표 점수는 여당이 득점하겠다고 선언하는 점수 카드(10, J, Q, K, A) 의 개수입니다"
     IDC_NOKIRUDAADVANTAGE   "노기루다로 공약을 세우는 경우 최소 기본 점수보다 하나 적게 목표 점수를 잡을 수 있습니다"
     IDC_HIGHSCORE           "목표 점수를 20 을 넘게 잡을 수 있습니다 - 이 경우 여당이 모든 점수를 얻어야만 승리하는 것으로 하며, 다른 계산은 그대로 유지합니다, 그러나 최대한으로 올려도 25 를 넘을 수는 없습니다"
-    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
     IDC_BEGINERPASS         "가장 먼저 공약을 부르는 플레이어 (딜러) 가 아무런 공약도 부르지 않고 패스를 할 수 있습니다 - 이 옵션이 세트되어 있지 않으면 딜러는 반드시 공약을 불러야 합니다"
     IDC_RAISE2FORKIRUDACHANGE 
                             "주공이 추가 카드를 받고 나서 기루다를 바꾸고 싶을 때 목표 점수를 2 만큼 올려야 합니다 - 이 옵션이 세트되어 있지 않으면 1 만큼 올려야 합니다"
     IDC_RAISE1FORNOKIRUDACHANGE "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
-    IDC_FRIEND              "프랜드 제도가 있는가를 선택합니다 - 3 마에서는 프랜드 제도를 두지 않는 것이 표준입니다"
-    IDC_JOKERFRIEND         "조커를 프랜드로 부를 수 있는지 결정합니다 - 이 옵션이 세트되지 않으면 조커 프랜드를 부르는 것은 불가능합니다"
-    IDC_ATTSCORETHROWNPOINTS 
-                            "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
+    IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
+    IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
+    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다."
+    IDC_PASSAGAIN           "출마 포기 한 사람이 다시 공약을 부를 수 있습니다 - 이 옵션이 세트되어 있으면 마지막으로 공약을 부른 사람 부터 한 바퀴 동안 모든 사람이 출마 포기를 선언한 경우에 당선됩니다."
     IDC_INITMIGHTY          "이 옵션을 세트 하면 첫 턴에 마이티를 낼 수 있습니다"
     IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
-    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
-    IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
-    IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
 END
 
 STRINGTABLE 
 BEGIN
+    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
+    IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
+    IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
     IDC_INITJOKER           "이 옵션을 세트 하면 첫 턴에 조커를 낼 수 있습니다"
     IDC_INITJOKEREFFECT     "첫 턴에 조커를 낸 경우 이 옵션을 해제하면 그 카드는 아무런 효력도 갖지 않습니다"
     IDC_LASTJOKER           "이 옵션을 세트 하면 마지막 턴에 조커를 낼 수 있습니다"
@@ -1453,18 +1471,20 @@ BEGIN
     IDC_INITJOKERCALLEFFECT "이 옵션을 세트 하면 첫 턴에 선이 조커콜을 내서 조커를 잡을 수 있습니다 - 비록 첫 턴에 조커를 낼 수 없는 규칙이 있어도 이 경우만은 예외가 됩니다"
     IDC_JOKERCALLJOKEREFFECT 
                             "조커콜을 당한 조커가 조커의 효력을 가지고 있습니다 - 즉, 그 조커도 마이티를 제외한 모든 카드들 보다 높습니다"
-    IDC_DM_NOPOINT          "점수카드를 하나도 받지 못한 경우 딜 미스 조건이 됩니다"
+    IDC_DM_NOPOINT          "점수카드 수가 오른쪽의 숫자 이하인 경우 딜 미스 조건이 됩니다"
+    IDC_DM_NUM              "딜 미스 조건에 해당되는 최대 점수카드 수를 결정합니다. 만약 왼쪽 옵션이 체크되어 있지 않으면 이 숫자는 무시됩니다."
     IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
+END
+
+STRINGTABLE 
+BEGIN
     IDC_DM_JOKERISREVERSEPOINT 
                             "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
     IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
-END
-
-STRINGTABLE 
-BEGIN
     IDC_DM_ONLYONE          "점수 카드가 한 장 이하인 경우 딜 미스 조건이 됩니다 - 2 마의 기본값입니다."
+    IDC_DM_DUPLICATE        "10 한 장 또는 애꾸눈 잭 딜 미스 조건을 검사할 때, 조커가 점수카드 하나를 상쇄하는 것과 마이티를 점수카드로 생각하지 않는 효과를 적용합니다. 예를 들어, 이 옵션이 체크되어 있고 마이티를 점수카드로 생각하지 않으면 10 한 장과 마이티가 있어도 10 한 장 딜 미스 조건에 해당하게 됩니다."
     IDC_S_0                 "Mighty 2.0 방식의 점수 계산법으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)"
     IDC_S_1                 "Mighty 2.0 방식의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: [(목표수-기본수)*1.5]+(여당득점-목표수)"
     IDC_S_2                 "여당이 승리하였을 때 얻은 점수와 상관 없이 목표수에 해당하는 만큼의 보상을 받는 방식입니다.\n여당승: (목표수-기본수+1)*2"
@@ -1475,43 +1495,31 @@ BEGIN
     IDC_S_7                 "기본수를 기준으로 하는 계산법입니다\n여당승: (여당득점-기본수)"
     IDC_SS_0                "여당이 목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
     IDC_SS_1                "눈에는 눈 계산법의 변형된 버전으로, 여당이 기본 점수도 내지 못한 경우 더 큰 보상을 받는 방식입니다\n기본수 이상: (목표수-여당득점)\n기본수 미만: (목표수-기본수)+(기본수-여당득점)*2"
+END
+
+STRINGTABLE 
+BEGIN
     IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
     IDC_S_REVERSERUN        "야당이 빽런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
-END
-
-STRINGTABLE 
-BEGIN
     IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 1.5배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 3 배, 4 마에서 4.5 배의 점수를 더 얻게 됩니다"
     IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
+    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 빽런이 됩니다."
+    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 빽런이 됩니다."
+    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 빽런이 됩니다."
     IDC_CARD_MIGHTY         "마이티 카드를 선택합니다 - 기본값은 스페이드A 이고, 바꾸지 않는 것이 좋습니다"
     IDC_CARD_ALTMIGHTY      "기루다가 기본 마이티와 같은 모양이 되었을 때 마이티가 될 카드를 선택합니다 - 기본값은 다이아몬드A 이고, 바꾸지 않는 것이 좋습니다 - 이 카드는 일명 빨마(빨간마이티)라고 합니다"
     IDC_CARD_JOKERCALL      "조커콜 카드를 선택합니다 - 기본값은 클로버3 이고, 바꾸지 않는 것이 좋습니다"
     IDC_CARD_ALTJOKERCALL   "기루다가 기본 조커콜과 같은 모양이 되었을 때 조커콜이 될 카드를 선택합니다 - 기본값은 스페이드3 입니다."
     IDC_HUMANNAME           "당신의 이름(별명)을 입력하세요 - 이 이름은 대부분의 상황에서 당신을 식별하는 기준이 됩니다"
+END
+
+STRINGTABLE 
+BEGIN
     IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
-END
-
-STRINGTABLE 
-BEGIN
-    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 빽런이 됩니다."
-    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 빽런이 됩니다."
-    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 빽런이 됩니다."
-    IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
-END
-
-STRINGTABLE 
-BEGIN
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
-END
-
-STRINGTABLE 
-BEGIN
-    IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
-    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다."
-    IDC_PASSAGAIN           "출마 포기 한 사람이 다시 공약을 부를 수 있습니다 - 이 옵션이 세트되어 있으면 마지막으로 공약을 부른 사람 부터 한 바퀴 동안 모든 사람이 출마 포기를 선언한 경우에 당선됩니다."
 END
 
 #endif    // Korean resources
