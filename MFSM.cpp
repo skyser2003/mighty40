@@ -344,54 +344,45 @@ void CMFSM::GetReport(
 	int nDefSum = 0, nAttSum = 0;			// 점수, 도움의 합
 	int nDefPointed = 0, nAttPointed = 0;	// 점수만의 합
 
-/*	if( pRule->nPlayerNum == 2 ) {
-		// 2마는 턴으로 계산한다.
-		for ( i = 0; i < nPlayers; i++ ) {
-			if ( i == nMaster )
-				nDefSum = nDefPointed = anTurn[i] / 10;
-			else nAttSum = nAttPointed = anTurn[i] / 10;
+	// 공헌도를 계산하기 위해서 여당의 점수, 도움의 합과
+	// 야당의 점수, 도움의 합을 계산해 둔다
+	for ( i = 0; i < nPlayers; i++ ) {
+		if ( i == nFriend || i == nMaster )
+			nDefSum += anScored[i] + anAssist[i],
+			nDefPointed += anScored[i];
+		else nAttSum += anScored[i] + anAssist[i],
+			nAttPointed += anScored[i];
+	}
+
+	// 버려진 카드의 점수를 누구에게 넣는가 처리
+	if ( pRule->bAttScoreThrownPoints )
+		nAttPointed += nThrownPoints;
+	else if ( pRule->nPlayerNum != 2 ) nDefPointed += nThrownPoints;	//2마에서는 더해지지 않는다 (v4.0 : 2010.4.18)
+
+	// 공헌도 계산
+	// 그 팀이 딴 모든 점수와 모든 도움의 합 중에서
+	// 그 플레이어가 딴 점수와 도움의 합
+	for ( i = 0; i < nPlayers; i++ ) {
+
+		if ( i == nFriend || i == nMaster ) {
+			if ( anContrib )
+			anContrib[i] = nDefSum == 0 ? 0
+				: ( anScored[i] + anAssist[i] ) * 100 / nDefSum;
+		}
+		else {
+			if ( anContrib )
+			anContrib[i] = nAttSum == 0 ? 0
+				: ( anScored[i] + anAssist[i] ) * 100 / nAttSum;
 		}
 	}
-	else {*/
-		// 공헌도를 계산하기 위해서 여당의 점수, 도움의 합과
-		// 야당의 점수, 도움의 합을 계산해 둔다
-		for ( i = 0; i < nPlayers; i++ ) {
-			if ( i == nFriend || i == nMaster )
-				nDefSum += anScored[i] + anAssist[i],
-				nDefPointed += anScored[i];
-			else nAttSum += anScored[i] + anAssist[i],
-				nAttPointed += anScored[i];
-		}
-
-		// 버려진 카드의 점수를 누구에게 넣는가 처리
-		if ( pRule->bAttScoreThrownPoints )
-			nAttPointed += nThrownPoints;
-		else nDefPointed += nThrownPoints;
-
-		// 공헌도 계산
-		// 그 팀이 딴 모든 점수와 모든 도움의 합 중에서
-		// 그 플레이어가 딴 점수와 도움의 합
-		for ( i = 0; i < nPlayers; i++ ) {
-
-			if ( i == nFriend || i == nMaster ) {
-				if ( anContrib )
-				anContrib[i] = nDefSum == 0 ? 0
-					: ( anScored[i] + anAssist[i] ) * 100 / nDefSum;
-			}
-			else {
-				if ( anContrib )
-				anContrib[i] = nAttSum == 0 ? 0
-					: ( anScored[i] + anAssist[i] ) * 100 / nAttSum;
-			}
-		}
-/*	}*/
 
 	// 여당의 득점을 리턴
 	if ( pnDefPointed ) *pnDefPointed = nDefPointed;
 
 	// 여당의 승 패 여부를 결정
 	// 득점이 목표 점수보다 작으면 패
-	bDefWin = nDefPointed >= min( goal.nMinScore, MAX_SCORE );
+	if ( pRule->nPlayerNum == 2 ) bDefWin = nDefPointed >= min( goal.nMinScore, MAX_SCORE_2MA );
+	else bDefWin = nDefPointed >= min( goal.nMinScore, MAX_SCORE );
 
 	/////////////////////////////////////////////////////////////////////////
 	// 점수를 계산한다

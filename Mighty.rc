@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
-#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +73,7 @@ IDI_MYCOM               ICON                    "res\\mycom.ico"
 // Menu
 //
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "게임(&G)"
     BEGIN
@@ -98,7 +96,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
 END
@@ -127,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.12"
+            VALUE "FileVersion", "4.0.0.13"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.12"
+            VALUE "ProductVersion", "4.0.0.13"
         END
     END
     BLOCK "VarFileInfo"
@@ -325,7 +323,7 @@ BEGIN
     CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,20,120,38
 END
 
-IDD_SELECTBACK DIALOG  0, 0, 279, 147
+IDD_SELECTBACK DIALOG 0, 0, 279, 147
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "카드 뒷면 그림 선택"
 FONT 9, "굴림"
@@ -625,7 +623,7 @@ BEGIN
     CONTROL         "",IDC_SB_6,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,76,19,8
 END
 
-IDD_SETTING DIALOG  0, 0, 187, 137
+IDD_SETTING DIALOG 0, 0, 187, 137
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "설정 변경"
 FONT 9, "굴림"
@@ -666,7 +664,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_OPTION_GENERAL, DIALOG
     BEGIN
@@ -1319,25 +1317,25 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
     IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-14)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "마이티 네트워크 4.0"
     AFX_IDS_IDLEMESSAGE     "마이티 네트워크 4.0 Beta"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "마이티 정보를 표시합니다\n정보"
     ID_APP_EXIT             "게임을 종료합니다\n종료"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
     AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
@@ -1346,19 +1344,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "창을 닫고 게임을 종료합니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_CLOCKWISE           "카드를 내는 순서를 시계방향으로 진행합니다 (이른바 '고스톱 게임'의 반대 방향입니다)"
     IDC_USESOUND            "게임에서 소리를 사용할 것인가를 선택합니다"
@@ -1369,7 +1367,7 @@ BEGIN
     IDC_SORTMODE3           "기루다를 오른쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_SORTMODE4           "기루다를 오른쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
     IDC_BACKSELECT          "다른 뒷면 그림을 선택하고 싶으면 이 버튼을 누릅니다"
@@ -1379,7 +1377,7 @@ BEGIN
     IDC_CARDTIP             "툴팁과 비슷하게, 카드에 커서를 가만히 두고 있으면 그 카드에 대한 간략한 설명을 표시합니다 (그 카드의 명칭과, 그 모양의 카드 중 그 카드보다 높은 카드들을 표시합니다)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_SAMPLEBACKGROUND    "현재 배경 그림 설정을 나타냅니다"
     IDC_DEFCOLSELECT        "여당의 이름을 어떤 색상으로 그릴지를 선택합니다"
@@ -1392,7 +1390,7 @@ BEGIN
     IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
     IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실재로는 이와 다소 다를 수 있습니다"
@@ -1408,17 +1406,17 @@ BEGIN
     IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_SHOWRULE            "현재 선택된 규칙을 보거나 사용자 정의 규칙을 수정하려면 이 버튼을 누르십시오"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_RESETPATH           "현재 설정된 모든 AI DLL의 경로를 지우고 기본 설정값을 사용합니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 가 디폴트 값입니다"
     IDC_MIGHTYNETADDRESS    "Mighty.Net 의 IP 주소를 설정합니다"
@@ -1436,7 +1434,7 @@ BEGIN
     IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
     IDC_ATTSCORETHROWNPOINTS 
@@ -1457,7 +1455,7 @@ BEGIN
     IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
     IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
@@ -1476,7 +1474,7 @@ BEGIN
     IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_DM_JOKERISREVERSEPOINT 
                             "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
@@ -1497,7 +1495,7 @@ BEGIN
     IDC_SS_1                "눈에는 눈 계산법의 변형된 버전으로, 여당이 기본 점수도 내지 못한 경우 더 큰 보상을 받는 방식입니다\n기본수 이상: (목표수-여당득점)\n기본수 미만: (목표수-기본수)+(기본수-여당득점)*2"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
@@ -1506,9 +1504,9 @@ BEGIN
     IDC_S_REVERSERUN        "야당이 빽런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
     IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 1.5배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 3 배, 4 마에서 4.5 배의 점수를 더 얻게 됩니다"
     IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
-    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 빽런이 됩니다."
-    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 빽런이 됩니다."
-    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 빽런이 됩니다."
+    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 백런이 됩니다."
+    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 백런이 됩니다."
+    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 백런이 됩니다."
     IDC_CARD_MIGHTY         "마이티 카드를 선택합니다 - 기본값은 스페이드A 이고, 바꾸지 않는 것이 좋습니다"
     IDC_CARD_ALTMIGHTY      "기루다가 기본 마이티와 같은 모양이 되었을 때 마이티가 될 카드를 선택합니다 - 기본값은 다이아몬드A 이고, 바꾸지 않는 것이 좋습니다 - 이 카드는 일명 빨마(빨간마이티)라고 합니다"
     IDC_CARD_JOKERCALL      "조커콜 카드를 선택합니다 - 기본값은 클로버3 이고, 바꾸지 않는 것이 좋습니다"
@@ -1516,13 +1514,13 @@ BEGIN
     IDC_HUMANNAME           "당신의 이름(별명)을 입력하세요 - 이 이름은 대부분의 상황에서 당신을 식별하는 기준이 됩니다"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
 END
 
-#endif    // Korean resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

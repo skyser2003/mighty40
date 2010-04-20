@@ -188,7 +188,12 @@ bool CState::IsValidNewGoal( int nNewKiruda, int nNewMinScore ) const
 
 	// 최대점수 제약 검사
 	int nMaxLimit;
-	if ( pRule->nPlayerNum == 2 ) nMaxLimit = MAX_SCORE_2MA;
+	if ( pRule->nPlayerNum == 2 ) {
+		if ( pRule->nMinScore > MAX_SCORE_2MA )
+			nMaxLimit = pRule->nMinScore;
+		else
+			nMaxLimit = MAX_SCORE_2MA;
+	}
 	else {
 		if ( pRule->bHighScore ) nMaxLimit = HIGHSCORE_MAXLIMIT;
 		else nMaxLimit = MAX_SCORE;
