@@ -632,7 +632,7 @@ BEGIN
     CONTROL         "목표를 1 씩 올림",IDC_GOALMODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,28,67,10
     GROUPBOX        "주공이 되려는 경향성",IDC_STATIC,21,43,108,39
     CONTROL         "Slider1",IDC_FACTOR,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,25,55,100,23
-    LTEXT           "주의: 확장 알고리즘은 CPU를 많이 소모하므로 펜티엄2 이상에서만 사용하세요",IDC_STATIC,19,89,149,20
+    LTEXT           "주의: 확장 알고리즘을 사용하면 게임 진행이 다소 느려질 수 있습니다",IDC_STATIC,19,89,149,20
     DEFPUSHBUTTON   "확인",IDOK,74,116,50,14
     PUSHBUTTON      "취소",IDCANCEL,130,116,50,14
 END
@@ -649,9 +649,9 @@ BEGIN
     CONTROL         "고정액 줌 (20단위)",IDC_RUN3,"Button",BS_AUTORADIOBUTTON,13,55,112,10
     CONTROL         "여당이 노프랜드로 이기면 1.5배",IDC_S_NOFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,77,125,10
     CONTROL         "여당이 노기루다로 이기면 2배",IDC_S_NOKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,90,125,10
-    CONTROL         "야당이 빽런으로 이기면 2배",IDC_S_REVERSERUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,103,125,10
+    CONTROL         "야당이 백런으로 이기면 2배",IDC_S_REVERSERUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,103,125,10
     LTEXT           "각 방법에 대한 자세한 설명은 오른쪽 위의 '?' 버튼을 눌러서 볼 수 있습니다",IDC_STATIC,148,17,72,36
-    GROUPBOX        "빽런 판정법",IDC_STATIC,7,120,136,52
+    GROUPBOX        "백런 판정법",IDC_STATIC,7,120,136,52
     CONTROL         "야당이 여당의 공약 이상을 땄을 때",IDC_REVERSERUN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,129,120,12
     CONTROL         "야당이 11장 이상을 땄을 때",IDC_REVERSERUN1,"Button",BS_AUTORADIOBUTTON,13,141,120,12
     CONTROL         "야당이 기본 이상을 땄을 때",IDC_REVERSERUN2,"Button",BS_AUTORADIOBUTTON,13,153,120,12
@@ -1320,7 +1320,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-14)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-23)"
 END
 
 STRINGTABLE
@@ -1393,10 +1393,10 @@ END
 STRINGTABLE
 BEGIN
     IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
-    IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실재로는 이와 다소 다를 수 있습니다"
+    IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실제로는 이와 다소 다를 수 있습니다"
     IDC_DSBSHADEMODE        "검은 점들을 이용해서 병치혼합을 하여 투명한 느낌을 줍니다"
     IDC_DSBSHADEMODE1       "투명한 느낌 없이 음영 상자를 일정 색상으로 채웁니다"
-    IDC_DSBSHADEMODE2       "음영 상자 영역의 명암을 어둡게 하여 투명한 느낌을 줍니다 - 32768 색상 이상의 환경에서 사용할 수 있습니다 - 기본 설정입니다."
+    IDC_DSBSHADEMODE2       "음영 상자 영역의 명암을 어둡게 하여 투명한 느낌을 줍니다 - 기본 설정입니다."
     IDC_CARDSPEED           "카드가 목적지까지 도달하는 전체 시간에 비례하는 값입니다 - 이 값이 작아지면 각 프레임간의 간격도 그만큼 작아집니다"
     IDC_CARDMOTION          "카드 움직임의 부드러운 정도를 결정합니다 - 이 값은 목적지까지 카드가 이동할 때 그려주는 프레임 수에 비례합니다"
     IDC_DELAYONECARD        "하나의 카드를 냈을 때 그 카드를 확인하도록 지연해 주는 시간입니다 - AI 들은 최소한 이 시간만큼 기다린 후에 다음 카드를 냅니다"
@@ -1481,7 +1481,6 @@ BEGIN
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
     IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
-    IDC_DM_ONLYONE          "점수 카드가 한 장 이하인 경우 딜 미스 조건이 됩니다 - 2 마의 기본값입니다."
     IDC_DM_DUPLICATE        "10 한 장 또는 애꾸눈 잭 딜 미스 조건을 검사할 때, 조커가 점수카드 하나를 상쇄하는 것과 마이티를 점수카드로 생각하지 않는 효과를 적용합니다. 예를 들어, 이 옵션이 체크되어 있고 마이티를 점수카드로 생각하지 않으면 10 한 장과 마이티가 있어도 10 한 장 딜 미스 조건에 해당하게 됩니다."
     IDC_S_0                 "Mighty 2.0 방식의 점수 계산법으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)"
     IDC_S_1                 "Mighty 2.0 방식의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: [(목표수-기본수)*1.5]+(여당득점-목표수)"
@@ -1501,7 +1500,7 @@ BEGIN
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
-    IDC_S_REVERSERUN        "야당이 빽런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
+    IDC_S_REVERSERUN        "야당이 백런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
     IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 1.5배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 3 배, 4 마에서 4.5 배의 점수를 더 얻게 됩니다"
     IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
     IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 백런이 됩니다."

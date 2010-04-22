@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d850060d-a841-4296-8cbf-157675a7fae6}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{71d3f6a8-77d3-4a19-94ce-1fff863f1dfc}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{9c0ceb7b-fedf-44b6-9020-ab5a7a2aba1b}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BmpMan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_Draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_DSB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_Layout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_SE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board_Wrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D2MA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DBackSelect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DConnect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DElection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DEtc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DMaiInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DSB_Fill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DScoreBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DStartUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaiBSW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MFSM_AISupp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MFSM_Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MFSM_Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mighty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MightyToolTip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Msg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHuman.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMai.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerNetwork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionAI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionBosskey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionChat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionComm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionDSB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="POptionSpeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleConstrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleDealMiss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleElection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleGeneral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleScore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRuleSpecial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketBag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Mighty.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BmpMan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardWrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D2MA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DBackSelect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DConnect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DElection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DEtc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DMaiInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DOption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DScoreBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DStartUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaiBSW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MFSM_Notify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mighty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MightyToolTip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Msg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Play.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHuman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMai.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerNetwork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionBosskey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionChat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionComm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionDSB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionGeneral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="POptionSpeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleConstrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleDealMiss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleElection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleGeneral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleScore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRuleSpecial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketBag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Back1.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back11.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back8.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Back9.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C8.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\C9.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ca.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Cj.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ck.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Clover.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Cq.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D8.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\D9.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Da.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Diamond.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Dj.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Dk.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Dq.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\gray.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H8.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\H9.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Ha.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Hand.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Heart.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Hj.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Hk.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Hq.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\iex.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Joker.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\mask.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\mighty.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Mighty.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Mighty.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\mycom.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Nothing.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\person.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S10.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S2.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S3.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S4.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S5.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S6.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S7.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S8.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\S9.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Sa.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shade.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Sj.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Sk.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Spade.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Sq.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Stop.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\게임시작.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\공약.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\공지.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\득점.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\마이티.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\삑.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\섞기.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\승리.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\조커.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\조커콜.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\죽은조커.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\찍기.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\철컥.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\카드.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\카드받기.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\카드셋.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\패배.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\포기.wav">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

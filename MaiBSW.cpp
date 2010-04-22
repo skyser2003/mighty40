@@ -1481,12 +1481,13 @@ CCard CMaiBSWAlgo::Turn( int& eff, bool bUseSimulation ) const
 {
 	const CState* pState = CCard::GetState();
 
-	// 시물레이션을 사용하면, 3 턴부터, 아니면 2 턴부터
+	// 시물레이션을 사용하면 4 턴, 아니면 3 턴 남았을 때 부터
 	// 시물레이션 알고리즘을 사용한다
-	int nSimulatedTurn = bUseSimulation ? 3 : 2;
+	int nSimulatedTurn = bUseSimulation ? 4 : 3;
 
 	CCard c;
-	if ( CCard::GetState()->nTurn + nSimulatedTurn > ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ) )
+	if ( CCard::GetState()->nTurn + nSimulatedTurn > ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN )
+		&& !( nSimulatedTurn == 4 && pState->lCurrent.GetCount() < 3 ) )
 		c = TurnSimulation(eff);
 	else c = TurnIteration(eff);
 

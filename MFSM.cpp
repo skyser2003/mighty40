@@ -487,15 +487,15 @@ void CMFSM::GetReport(
 		}
 		if ( !bDefWin && pRule->bS_DoubleForReverseRun ) { // ¹é·± °Ë»ç
 			if( pRule->bS_AGoalReverse && nAttPointed >= goal.nMinScore ) {
-				sResult += _T(" x2(»ª·±)");
+				sResult += _T(" x2(¹é·±)");
 				nMoved *= 2;
 			}
 			else if( pRule->bS_A11Reverse && nAttPointed >= 11 ) {
-				sResult += _T(" x2(»ª·±)");
+				sResult += _T(" x2(¹é·±)");
 				nMoved *= 2;
 			}
 			else if( pRule->bS_AMReverse && nAttPointed >= pRule->nMinScore) {
-				sResult += _T(" x2(»ª·±)");
+				sResult += _T(" x2(¹é·±)");
 				nMoved *= 2;
 			}
 		}
