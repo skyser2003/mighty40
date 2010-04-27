@@ -2,7 +2,7 @@
 // modified(v4.0): 2010.4.2
 
 #include "stdafx.h"
-#include "mighty.h"
+#include "Mighty.h"
 #include "PRuleScore.h"
 
 #ifdef _DEBUG

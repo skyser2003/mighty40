@@ -46,7 +46,7 @@ struct CState;
 #define KING 13
 #define JOKER 53
 
-class MIGHTY_EXPORT CCard  
+class CCard  
 {
 public:
 	// 현재 상태 정보에 대한 포인터를 설정 ( 이전 상태 리턴 )
@@ -106,7 +106,7 @@ protected:
 
 // 카드 리스트
 
-class MIGHTY_EXPORT CCardList : public CList<CCard,CCard>
+class CCardList : public CList<CCard,CCard>
 {
 public:
 	CCardList() : CList<CCard,CCard>(5) {}

@@ -542,7 +542,7 @@ Status: OR
 
 
 
-from: http://dbserver.kaist.ac.kr/~cwyang/doc/mighty.html
+from: http://dbserver.kaist.ac.kr/~cwyang/doc/Mighty.html
 
 Ã¶¿õÀÌ°¡ ¸»ÇÏ´Â MIGHTY Game
 

@@ -49,9 +49,9 @@ CPlayerHuman::~CPlayerHuman()
 
 	if ( m_pMFSM->GetState()->IsNetworkGame() ) {
 		// 네트워크 게임이었다면, 전적을 영구적으로 Update 한다
-		Mo()->anPlayerState[0] = MAKELONG( m_recAll.wm, m_recAll.lm );
-		Mo()->anPlayerState[1] = MAKELONG( m_recAll.wf, m_recAll.lf );
-		Mo()->anPlayerState[2] = MAKELONG( m_recAll.wa, m_recAll.la );
+		Mo()->anPlayerState[GetState()->pRule->nPlayerNum-2][0] = MAKELONG( m_recAll.wm, m_recAll.lm );
+		Mo()->anPlayerState[GetState()->pRule->nPlayerNum-2][1] = MAKELONG( m_recAll.wf, m_recAll.lf );
+		Mo()->anPlayerState[GetState()->pRule->nPlayerNum-2][2] = MAKELONG( m_recAll.wa, m_recAll.la );
 	}
 }
 
@@ -583,7 +583,7 @@ void CPlayerHuman::OnElected( CGoal* pNewGoal, CCard acDrop[3], CEvent* e )
 		if ( m_pBoard->GetSelection(i) )
 			acDrop[j++] = c;
 	}
-	ASSERT(j==3 || (j==1 && Mo()->rule.nPlayerNum == 2));
+	ASSERT(j==3 || (j==1 && GetState()->pRule->nPlayerNum == 2));
 
 	// 화면을 업데이트 ( 소리도 함께 )
 	PlaySound( IDW_CARDSET, true );

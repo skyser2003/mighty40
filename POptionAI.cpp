@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "mighty.h"
+#include "Mighty.h"
 #include "POptionAI.h"
 
 #include "Play.h"

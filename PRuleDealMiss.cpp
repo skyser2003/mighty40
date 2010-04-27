@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "mighty.h"
+#include "Mighty.h"
 #include "PRuleDealMiss.h"
 
 #ifdef _DEBUG

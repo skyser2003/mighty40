@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "mighty.h"
+#include "Mighty.h"
 #include "PRuleGeneral.h"
 
 #ifdef _DEBUG

@@ -1,30 +1,25 @@
-#if !defined(AFX_POPTIONCOMM_H__400AD6E1_4FEF_11D3_99CE_000000000000__INCLUDED_)
-#define AFX_POPTIONCOMM_H__400AD6E1_4FEF_11D3_99CE_000000000000__INCLUDED_
+#if !defined(AFX_PDETAILSCORE)
+#define AFX_PDETAILSCORE
 
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-// POptionComm.h : header file
+// DDetailScore.h : header file
 //
 
 /////////////////////////////////////////////////////////////////////////////
-// POptionComm dialog
+// DDetailScore dialog
 
-class POptionComm : public CPropertyPage
+class DDetailScore : public CDialog
 {
-	DECLARE_DYNCREATE(POptionComm)
-
 // Construction
 public:
-	POptionComm();
-	~POptionComm();
+	DDetailScore(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(POptionComm)
-	enum { IDD = IDD_OPTION_COMM };
-	CString	m_sMightyNetAddress;
-	UINT	m_nPort;
-	CString	m_sAddress;
+	enum { IDD = IDD_DETAILSCORE };
+	CString	m_sScore[6];
 	//}}AFX_DATA
 
 
@@ -39,7 +34,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(POptionComm)
-	afx_msg void OnDetailScore();
+	afx_msg void OnResetscore();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -47,4 +42,4 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_POPTIONCOMM_H__400AD6E1_4FEF_11D3_99CE_000000000000__INCLUDED_)
+#endif // !defined(AFX_PDETAILSCORE)

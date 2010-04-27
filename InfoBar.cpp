@@ -113,7 +113,7 @@ BOOL CInfoBar::Create( CFrameWnd* pParent )
 	aWidths[1] = aWidths[0]
 		+ dc.GetTextExtent( _T("WW"), 2 ).cx + nSpacing;
 	CString s(_T("스페이드"));
-	aWidths[2] = aWidths[1] + dc.GetTextExtent(s).cx + nSpacing;
+	aWidths[2] = aWidths[1] + dc.GetTextExtent(s).cx * 3 / 2 + nSpacing;	// 4.0에서 약간 키움
 	aWidths[3] = -1;
 
 	// 패인을 만들고 속성을 설정
@@ -277,7 +277,7 @@ LRESULT CInfoBar::OnInfoBarUpdate( WPARAM wParam, LPARAM lParam )
 	return 0;
 }
 
-// 각 페인 아이템을 그린다
+// 각 패인 아이템을 그린다
 void CInfoBar::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct )
 {
 	static const UINT arcBitmap[] = {
@@ -296,7 +296,7 @@ void CInfoBar::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct )
 	}
 }
 
-// 오른쪽 텍스트 페인 그리기
+// 오른쪽 텍스트 패인 그리기
 void CInfoBar::DrawMainPane( CDC* pDC )
 {
 	CRect rc; GetItemRect( 2, &rc );

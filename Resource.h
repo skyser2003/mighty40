@@ -221,6 +221,7 @@
 #define IDC_ADDRESS                     1091
 #define IDC_RESETSCORE                  1092
 #define IDC_CHATBUFFERSIZE              1093
+#define IDC_DETAILSCORE                 1093
 #define IDC_CHATBUFFERSIZESPIN          1094
 #define IDC_2MA                         1095
 #define IDC_3MA                         1096
@@ -303,17 +304,29 @@
 #define IDC_SB_6                        1173
 #define IDC_SB_TAB                      1174
 #define IDC_SLOWMACHINE                 1175
-#define IDC_SCORE                       1176
-#define IDC_CARDSPEEDGROUP              1177
-#define IDC_CARDMOTIONGROUP             1178
-#define IDC_MONEYASSUPPORT              1179
+#define IDC_SCORE1                      1176
+#define IDC_SCORE2                      1177
+#define IDC_SCORE3                      1178
+#define IDC_SCORE4                      1179
+#define IDC_SCORE5                      1180
+#define IDC_SCORE6                      1181
+#define IDC_CARDSPEEDGROUP              1182
+#define IDC_CARDMOTIONGROUP             1183
+#define IDC_MONEYASSUPPORT              1184
 #define IDD_SETTING                     10000
 #define IDC_FACTOR                      10000
 #define IDC_USESIMULATION               10001
+#define IDD_DETAILSCORE                 10001
 #define IDC_GOALMODE                    10002
 #define ID_GAME_EXIT                    32771
 #define ID_APP_OPTION                   32772
 #define ID_APP_SCOREBOARD               32773
+#define ID_32774                        32774
+#define ID_32775                        32775
+#define ID_Menu                         32776
+#define ID_32777                        32777
+#define ID_LOG_DIALOG                   32778
+#define ID_LOG_MONEY                    32779
 
 // Next default values for new objects
 // 
@@ -321,8 +334,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        2002
-#define _APS_NEXT_COMMAND_VALUE         32774
-#define _APS_NEXT_CONTROL_VALUE         2021
+#define _APS_NEXT_COMMAND_VALUE         32780
+#define _APS_NEXT_CONTROL_VALUE         2022
 #define _APS_NEXT_SYMED_VALUE           2000
 #endif
 #endif

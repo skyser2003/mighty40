@@ -83,9 +83,11 @@ void COption::Save() const
 	}
 
 	sSection = _T("Player0");
-	for ( i = 0; i < 3; i++ ) {
-		CString sEntry; sEntry.Format( _T("State%d"), i );
-		SYNC_OPTION_I( sEntry, anPlayerState[i], 0 );
+	for ( i = 0; i < MAX_PLAYERS - 1; i++ ) {
+		for ( int j = 0; j < 3; j++ ) {
+			CString sEntry; sEntry.Format( _T("Score%d_%d"), i + 2, j );
+			SYNC_OPTION_I( sEntry, anPlayerState[i][j], 0 );
+		}
 	}
 
 	sSection = _T("Communication");
@@ -97,7 +99,6 @@ void COption::Save() const
 		SYNC_OPTION_S( sEntry, asAddressBook[i], _T("") );
 	}
 	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
-//	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
 	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 
@@ -205,9 +206,11 @@ void COption::Load()
 	}
 
 	sSection = _T("Player0");
-	for ( i = 0; i < 3; i++ ) {
-		CString sEntry; sEntry.Format( _T("State%d"), i );
-		SYNC_OPTION_I( sEntry, anPlayerState[i], 0 );
+	for ( i = 0; i < MAX_PLAYERS - 1; i++ ) {
+		for ( int j = 0; j < 3; j++ ) {
+			CString sEntry; sEntry.Format( _T("Score%d_%d"), i + 2, j );
+			SYNC_OPTION_I( sEntry, anPlayerState[i][j], 0 );
+		}
 	}
 
 	sSection = _T("Communication");
@@ -223,7 +226,6 @@ void COption::Load()
 	for ( ; j < ADDRESSBOOK_SIZE; j++ )
 		asAddressBook[j].Empty();
 	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
-//	SYNC_OPTION_B( _T("UseHintInGame"), bUseHintInNetwork, true );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
 	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 

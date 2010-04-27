@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "mighty.h"
+#include "Mighty.h"
 
 #include "MFSM.h"
 #include "ZSocket.h"

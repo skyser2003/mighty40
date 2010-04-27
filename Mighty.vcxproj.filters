@@ -192,6 +192,9 @@
     <ClCompile Include="ZSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DDetailScore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Mighty.rc">
@@ -359,6 +362,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ZSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DDetailScore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

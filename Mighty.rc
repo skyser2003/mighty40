@@ -77,11 +77,16 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "게임(&G)"
     BEGIN
-        MENUITEM "점수판보기(&V)",                   ID_APP_SCOREBOARD
+        MENUITEM "점수판 보기(&V)",                  ID_APP_SCOREBOARD
         MENUITEM "옵션(&O)...",                   ID_APP_OPTION
         MENUITEM SEPARATOR
-        MENUITEM "초기메뉴로(&I)",                   ID_GAME_EXIT
+        MENUITEM "초기 메뉴로(&I)",                  ID_GAME_EXIT
         MENUITEM "종료(&X)",                      ID_APP_EXIT
+    END
+    POPUP "로그(&L)"
+    BEGIN
+        MENUITEM "대화 로그 보기(&D)",                ID_LOG_DIALOG
+        MENUITEM "지지율 변동 내역(&M)",               ID_LOG_MONEY
     END
     POPUP "도움말(&H)"
     BEGIN
@@ -125,12 +130,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.13"
+            VALUE "FileVersion", "4.0.0.17"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.13"
+            VALUE "ProductVersion", "4.0.0.17"
         END
     END
     BLOCK "VarFileInfo"
@@ -483,10 +488,7 @@ BEGIN
     EDITTEXT        IDC_ADDRESS,18,74,90,14,ES_AUTOHSCROLL
     LTEXT           "Mighty.Net 기본 주소 :",IDC_STATIC,17,99,100,8,WS_DISABLED
     EDITTEXT        IDC_MIGHTYNETADDRESS,18,112,90,14,ES_AUTOHSCROLL | WS_DISABLED
-    LTEXT           "네트워크 게임 전적",IDC_STATIC,139,54,79,8
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,122,68,44,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE,171,68,52,27
-    PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,148,100,50,14
+    PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,141,68,70,14
 END
 
 IDD_OPTION_CHAT DIALOGEX 0, 0, 239, 159
@@ -655,6 +657,33 @@ BEGIN
     CONTROL         "야당이 여당의 공약 이상을 땄을 때",IDC_REVERSERUN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,129,120,12
     CONTROL         "야당이 11장 이상을 땄을 때",IDC_REVERSERUN1,"Button",BS_AUTORADIOBUTTON,13,141,120,12
     CONTROL         "야당이 기본 이상을 땄을 때",IDC_REVERSERUN2,"Button",BS_AUTORADIOBUTTON,13,153,120,12
+END
+
+IDD_DETAILSCORE DIALOGEX 0, 0, 275, 139
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "네트워크 게임 전적"
+FONT 9, "굴림", 0, 0, 0x0
+BEGIN
+    CTEXT           "2 마",IDC_STATIC,27,10,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,10,25,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE1,43,25,45,27
+    CTEXT           "3 마",IDC_STATIC,117,9,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,100,25,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE2,133,25,45,27
+    CTEXT           "4 마",IDC_STATIC,207,9,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,190,25,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE3,223,25,45,27
+    CTEXT           "5 마",IDC_STATIC,27,64,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,10,80,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE4,43,80,45,27
+    CTEXT           "6 마",IDC_STATIC,117,64,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,100,80,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE5,133,80,45,27
+    CTEXT           "7 마",IDC_STATIC,207,65,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,190,81,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE6,223,81,45,27
+    PUSHBUTTON      "확인",IDOK,163,118,50,14
+    PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,219,118,50,14
 END
 
 
@@ -832,6 +861,14 @@ BEGIN
         RIGHTMARGIN, 232
         TOPMARGIN, 8
         BOTTOMMARGIN, 172
+    END
+
+    IDD_DETAILSCORE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 132
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1320,7 +1357,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-23)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-28)"
 END
 
 STRINGTABLE
@@ -1354,6 +1391,8 @@ BEGIN
     ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
+    ID_LOG_DIALOG           "네트워크 플레이에서 채팅의 내용을 봅니다"
+    ID_LOG_MONEY            "지지율 혹은 비자금의 변동 내역을 봅니다"
 END
 
 STRINGTABLE
@@ -1516,6 +1555,10 @@ END
 STRINGTABLE
 BEGIN
     IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
+END
+
+STRINGTABLE
+BEGIN
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
 END
 

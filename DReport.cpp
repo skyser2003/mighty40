@@ -94,7 +94,7 @@ void DReport::OnInit()
 		Mo()->bMoneyAsSupport ? _T("지지율변화") : _T("점수변화"),
 		&m_acolPage[0], &m_atdPage[0], &m_acolPage[0], &s_tdShadeOutline,
 		(LPVOID)100 );
-	if ( Mo()->rule.nPlayerNum != 2 )
+	if ( m_pMFSM->GetState()->pRule->nPlayerNum != 2 )
 		RegisterHotspot( 18, 2, -1, -1, true, 0, _T("분석보기"),
 			&m_acolPage[1], &m_atdPage[1], &m_acolPage[1], &s_tdShadeOutline,
 			(LPVOID)101 );

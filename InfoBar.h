@@ -72,7 +72,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 protected:
-	// 오른쪽 텍스트 페인 그리기
+	// 오른쪽 텍스트 패인 그리기
 	void DrawMainPane( CDC* pDC );
 
 protected:

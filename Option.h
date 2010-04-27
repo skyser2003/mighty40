@@ -116,8 +116,8 @@ struct COption
 		CString sSetting;
 
 	} aPlayer[MAX_PLAYERS];
-	// 플레이어 상태
-	int anPlayerState[3];
+	// 2마 ~ 7마 전적
+	int anPlayerState[MAX_PLAYERS-1][3];
 
 	// 통신
 

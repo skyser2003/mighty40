@@ -462,13 +462,14 @@ void DConnect::Create( CPlayerSocket* pServerSocket )
 		m_aInfo[0].bComputer = false;
 		m_aInfo[0].sName = Mo()->aPlayer[0].sName;
 		m_aInfo[0].sInfo = format_score(
-			Mo()->anPlayerState[0], Mo()->anPlayerState[1],
-			Mo()->anPlayerState[2] );
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][0], Mo()->anPlayerState[m_rule.nPlayerNum-2][1],
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][2] );
+		
 		m_aInfo[0].pSocket = 0;
 
-		m_aInfo[0].dfa[0] = Mo()->anPlayerState[0];
-		m_aInfo[0].dfa[1] = Mo()->anPlayerState[1];
-		m_aInfo[0].dfa[2] = Mo()->anPlayerState[2];
+		m_aInfo[0].dfa[0] = Mo()->anPlayerState[m_rule.nPlayerNum-2][0];
+		m_aInfo[0].dfa[1] = Mo()->anPlayerState[m_rule.nPlayerNum-2][1];
+		m_aInfo[0].dfa[2] = Mo()->anPlayerState[m_rule.nPlayerNum-2][2];
 		m_aInfo[0].dfa[3] = BASE_MONEY;
 
 		for ( int i = 1; i < MAX_PLAYERS; i++ )
@@ -476,7 +477,9 @@ void DConnect::Create( CPlayerSocket* pServerSocket )
 
 		// 등장메시지를 채팅창으로 출력한다
 		CString sEnterMsg = create_entermsg( m_aInfo[0].sName,
-			Mo()->anPlayerState[0], Mo()->anPlayerState[1], Mo()->anPlayerState[2] );
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][0], 
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][1], 
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][2] );
 		Chat( sEnterMsg, -1, false );
 
 		UpdateMarks();
@@ -834,16 +837,19 @@ void DConnect::FailedForPlayer( long uid, bool bAccessDenied )
 long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 {
 	// 이름, 전적을 추출한다
-	CString sName; long r[4];
+	CString sName; long r[6][3]; long p;
 
 	long m;
 	VERIFY( pMsg->PumpLong( m ) && m == CMsg::mmNewPlayer );
 
 	if ( !pMsg->PumpString( sName )
-		|| !pMsg->PumpLong( r[0] )
-		|| !pMsg->PumpLong( r[1] )
-		|| !pMsg->PumpLong( r[2] )
-		|| !pMsg->PumpLong( r[3] ) ) return -1;
+		|| !pMsg->PumpLong( r[0][0] ) || !pMsg->PumpLong( r[0][1] ) || !pMsg->PumpLong( r[0][2] )
+		|| !pMsg->PumpLong( r[1][0] ) || !pMsg->PumpLong( r[1][1] ) || !pMsg->PumpLong( r[1][2] )
+		|| !pMsg->PumpLong( r[2][0] ) || !pMsg->PumpLong( r[2][1] ) || !pMsg->PumpLong( r[2][2] )
+		|| !pMsg->PumpLong( r[3][0] ) || !pMsg->PumpLong( r[3][1] ) || !pMsg->PumpLong( r[3][2] )
+		|| !pMsg->PumpLong( r[4][0] ) || !pMsg->PumpLong( r[4][1] ) || !pMsg->PumpLong( r[4][2] )
+		|| !pMsg->PumpLong( r[5][0] ) || !pMsg->PumpLong( r[5][1] ) || !pMsg->PumpLong( r[5][2] )
+		|| !pMsg->PumpLong( p ) ) return -1;
 
 	// 블랙리스트에 있는 인물인가 조사한다
 	POSITION pos = m_lBlackList.GetHeadPosition();
@@ -857,16 +863,16 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 	if ( uid >= m_rule.nPlayerNum ) return -1;
 
 	m_aInfo[uid].sName = sName;
-	m_aInfo[uid].sInfo = format_score( r[0], r[1], r[2] );
+	m_aInfo[uid].sInfo = format_score( r[m_rule.nPlayerNum-1][0], r[m_rule.nPlayerNum-1][1], r[m_rule.nPlayerNum-1][2] );
 	m_aInfo[uid].bComputer = false;
 	m_aInfo[uid].pSocket = pSocket;
 	for ( int i = 0; i < 3; i++ )
-		m_aInfo[uid].dfa[i] = r[i];
+		m_aInfo[uid].dfa[i] = r[m_rule.nPlayerNum-1][i];
 	m_aInfo[uid].dfa[3] = BASE_MONEY;
 
 	// 등장메시지를 채팅창으로 출력한다
 	CString sEnterMsg = create_entermsg(
-							m_aInfo[uid].sName, r[0], r[1], r[2] );
+							m_aInfo[uid].sName, r[m_rule.nPlayerNum-1][0], r[m_rule.nPlayerNum-1][1], r[m_rule.nPlayerNum-1][2] );
 
 	CMsg* pEnterMsg = CreateChatMsg( -1, sEnterMsg );
 	AUTODELETE_MSG(pEnterMsg);
@@ -1031,9 +1037,14 @@ void DConnect::ServerSockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 // mmNewPlayer 메시지를 생성
 CMsg* DConnect::CreateNewPlayerMsg()
 {
-	return new CMsg( _T("lsllll"), CMsg::mmNewPlayer,
+	return new CMsg( _T("lslllllllllllllllllll"), CMsg::mmNewPlayer,
 		Mo()->aPlayer[0].sName,
-		Mo()->anPlayerState[0], Mo()->anPlayerState[1], Mo()->anPlayerState[2],
+		Mo()->anPlayerState[0][0], Mo()->anPlayerState[0][1], Mo()->anPlayerState[0][2],
+		Mo()->anPlayerState[1][0], Mo()->anPlayerState[1][1], Mo()->anPlayerState[1][2],
+		Mo()->anPlayerState[2][0], Mo()->anPlayerState[2][1], Mo()->anPlayerState[2][2],
+		Mo()->anPlayerState[3][0], Mo()->anPlayerState[3][1], Mo()->anPlayerState[3][2],
+		Mo()->anPlayerState[4][0], Mo()->anPlayerState[4][1], Mo()->anPlayerState[4][2],
+		Mo()->anPlayerState[5][0], Mo()->anPlayerState[5][1], Mo()->anPlayerState[5][2],
 		0 // BASE_MONEY 또는 자기돈?
 	);
 }
