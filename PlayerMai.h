@@ -38,7 +38,7 @@ public:
 
 	// CPlayer 인터페이스 구현
 
-	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e );
+	virtual void OnSelect2MA( int* selecting, CCardList* plCard, CEvent* e );
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
 	virtual void OnElection( CGoal* pNewGoal, CEvent* );

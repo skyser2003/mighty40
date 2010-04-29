@@ -28,10 +28,11 @@ static char THIS_FILE[]=__FILE__;
 // pcToKill : 이 DSB 가 결과 카드를 저장할 장소 (결과-값 독립변수)
 // plShow   : 보이는 (위에 있는) 카드
 // plHide   : 숨겨진 (아래에 있는) 카드
-void DSelect2MA::Create( CEvent* pEvent, int* selecting, CCard* pcShow )
+void DSelect2MA::Create( CEvent* pEvent, int* selecting, CCardList* plCard )
 {
 	m_pselecting = selecting;
-	m_pcShow = pcShow;
+	m_pcShow = plCard->GetAt(plCard->POSITIONFromIndex(0));
+	m_pcHide = plCard->GetAt(plCard->POSITIONFromIndex(1));
 
 	SetFixed();
 
@@ -109,10 +110,14 @@ void DSelect2MA::OnDraw(
 
 	// 보이는 카드를 그린다
 	CRect rcShowCard; CalcShowCardRect( &rcShowCard );
-	m_pBoard->GetBmpMan()->DrawCard( pDC, *m_pcShow, rcShowCard );
+	m_pBoard->GetBmpMan()->DrawCard( pDC, m_pcShow, rcShowCard );
 	// 숨겨진 카드를 그린다
 	CRect rcHideCard; CalcHideCardRect( &rcHideCard );
+#ifdef _DEBUG
+	m_pBoard->GetBmpMan()->DrawCard( pDC, m_pcHide, rcHideCard );
+#else
 	m_pBoard->GetBmpMan()->DrawCard( pDC, CCard(0/*back*/), rcHideCard );
+#endif
 
 	static LPCTSTR asText[] = {
 		_T("보이는 카드와"),

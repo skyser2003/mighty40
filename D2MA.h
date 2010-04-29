@@ -16,9 +16,8 @@ public:
 	virtual ~DSelect2MA() {}
 
 	// pcToKill : 이 DSB 가 결과 카드를 저장할 장소 (결과-값 독립변수)
-	// plShow   : 보이는 (위에 있는) 카드
-	// plHide   : 숨겨진 (아래에 있는) 카드
-	void Create( CEvent* pEvent, int* selecting, CCard* pcShow );
+	// plCard   : 보이는 카드와 숨겨진 카드의 리스트
+	void Create( CEvent* pEvent, int* selecting, CCardList* plCard );
 
 protected:
 	// 초기화 ( 생성된 후 호출됨 )
@@ -43,7 +42,9 @@ protected:
 	// 선택될 카드 포인터
 	int* m_pselecting;
 	// 보이는 카드
-	CCard* m_pcShow;
+	CCard m_pcShow;
+	// 숨겨진 카드
+	CCard m_pcHide;
 	// 보이는 카드를 그릴 영역을 리턴한다
 	void CalcShowCardRect( LPRECT pRc );
 	// 숨겨진 카드를 그릴 영역을 리턴한다

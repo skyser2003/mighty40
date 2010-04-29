@@ -36,7 +36,7 @@ struct CPlay
 
 	// 2마에서 카드를 고른다.
 	virtual void OnSelect2MA(
-		int* selecting, CCard* pcShow ) = 0;
+		int* selecting, CCardList* plCard ) = 0;
 
 	// 6마에서 당선된 경우 한 사람을 죽여야 한다
 	// 죽일 카드를 지정하면 된다 - 단 이 함수는

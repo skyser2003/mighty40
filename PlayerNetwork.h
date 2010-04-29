@@ -31,7 +31,7 @@ public:
 public:
 	// 인터페이스 ( CPlay 확장 )
 
-	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* );
+	virtual void OnSelect2MA( int* selecting, CCardList* plCard, CEvent* );
 	virtual void OnKillOneFromSix( CCard* pcCardToKill,
 		CCardList* plcFailedCardsTillNow, CEvent* );
 	virtual void OnElection( CGoal* pNewGoal, CEvent* );

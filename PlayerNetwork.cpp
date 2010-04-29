@@ -111,7 +111,7 @@ void CPlayerNetwork::OnElecting( int nPlayerID, int nKiruda,
 	e->SetEvent();
 }
 
-void CPlayerNetwork::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
+void CPlayerNetwork::OnSelect2MA( int* selecting, CCardList* plCard, CEvent* e )
 {
 	// mmGet2MA 메시지를 받아서 준다
 	CMsg* pMsg = 0;
@@ -128,7 +128,7 @@ void CPlayerNetwork::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
 
 	else {
 		*selecting = (int)c;
-		pcShow;	// unused
+		plCard;	// unused
 	}
 	e->SetEvent();
 }
@@ -181,6 +181,7 @@ void CPlayerNetwork::OnKillOneFromSix( CCard cKill,
 		SendMsg( &msg );
 	}
 	e->SetEvent();
+	bKilled;	//unused
 }
 
 // 플레이어를 죽인 후 카드를 섞었다
@@ -281,6 +282,7 @@ void CPlayerNetwork::OnTurn( CCard c, int eff, int nHandIndex, CEvent* e )
 		SendMsg( &msg );
 	}
 	e->SetEvent();
+	nHandIndex;	//unused
 }
 
 // 채팅 메시지 (bSource : 채팅창이 소스)
@@ -293,4 +295,5 @@ void CPlayerNetwork::OnChat( int nPlayerID, LPCTSTR sMsg, bool bSource )
 			GetPlayerUIDFromID( nPlayerID ), sMsg );
 		SendMsg( &msg );
 	}
+	bSource;	//unused
 }

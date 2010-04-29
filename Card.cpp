@@ -89,7 +89,7 @@ CString CCard::GetString( bool bUseTerm ) const
 // 선거 공약에 대한 문자열을 리턴한다
 // (예: "스페이드13" "곱트" "기노" )
 CString CCard::GetGoalString( bool bUseTerm,
-	int nKiruda, int nMinScore, int nDefaultMinScore )
+	int nKiruda, int nMinScore )
 {
 	static LPCTSTR s_aScoreTerm[] = {
 		_T("독"), _T("둘"), _T("셋"), _T("넷"), _T("닷"),

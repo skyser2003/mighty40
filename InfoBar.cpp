@@ -399,7 +399,7 @@ CString CInfoBar::GetGoalString() const
 {
 	if ( m_nMinScore ) {
 		CString sGoal = CCard::GetGoalString( Mo()->bUseTerm, m_nKiruda,
-			m_nMinScore, m_nDefaultMinScore );
+			m_nMinScore );
 		sGoal += _T(" ") + m_sFriend;
 		return sGoal;
 	}

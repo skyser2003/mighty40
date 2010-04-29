@@ -295,6 +295,8 @@ void CBoard::DoFlyCard2(
 		Sleep( nFlyingInterval );
 		FlyCard( m_hFlying );
 	}
+
+	nSpeed;	//unused
 }
 
 void CBoard::DoFlyCard(

@@ -289,7 +289,7 @@ void CBoard::FloatGoalDSB( int nPlayer, const CGoal* pGoal )
 			arcBitmap[pGoal->nKiruda],
 			CString(_T(" ")) + CCard::GetGoalString(
 				Mo()->bUseTerm, pGoal->nKiruda,
-				pGoal->nMinScore, nDefaultMinScore ),
+				pGoal->nMinScore ),
 			true, true, -1, nPlayer, sName );
 
 		if ( m_apGoalDSB[nPlayer] ) m_apGoalDSB[nPlayer]->Destroy();

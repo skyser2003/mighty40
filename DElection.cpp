@@ -84,8 +84,7 @@ void DGoal::ChangeKiruda( int nShape )
 	// 마이티 용어 사용시 표시될 스트링을 재작성 해야한다
 	if ( Mo()->bUseTerm )
 		m_sMinScore = CCard::GetGoalString(
-			Mo()->bUseTerm, m_nKiruda, m_nMinScore,
-			m_pState->pRule->nMinScore );
+			Mo()->bUseTerm, m_nKiruda, m_nMinScore );
 
 	// 갱신
 	CRect rc; GetRect( &rc );
@@ -130,8 +129,7 @@ void DGoal::ChangeMinScore( int nMinScore )
 	// 표시될 스트링을 작성한다
 	if ( Mo()->bUseTerm )
 		m_sMinScore = CCard::GetGoalString(
-			Mo()->bUseTerm, m_nKiruda, nMinScore,
-			m_pState->pRule->nMinScore );
+			Mo()->bUseTerm, m_nKiruda, nMinScore );
 	else
 		m_sMinScore.Format( _T("%d"), nMinScore );
 
@@ -847,7 +845,7 @@ void DMasterDecl::OnDraw(
 	// 공약 스트링
 	CString sGoal(_T(" "));
 	sGoal += CCard::GetGoalString( Mo()->bUseTerm,
-		m_goal.nKiruda, m_goal.nMinScore, m_nDefaultMinScore );
+		m_goal.nKiruda, m_goal.nMinScore );
 
 	PutText( pDC, sTitle, -1, 1, true, s_colWhite, s_tdShade );
 	PutText( pDC, m_sMasterName, -1, 3, true, s_colYellow, s_tdShadeOutline );

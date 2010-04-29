@@ -171,14 +171,14 @@ void CPlayerMai::LoadDefault( LPCTSTR sOption, MAIDLL_UPDATE* pUpdate )
 
 // CPlayer 구현
 
-void CPlayerMai::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
+void CPlayerMai::OnSelect2MA( int* selecting, CCardList* plCard, CEvent* e )
 {
 	CSandClock c(DELAY_KILL);
 
 	// CPlayer::OnSelect2MA( pcShow, pcHide, e );
 	// Ib()->SetProgress( 0 );	// 상태바의 진행률 표시를 리셋
 
-	m_pMFSM->RequestCallAIThread( m_pPlay, 3, &m_eTemp, selecting, pcShow );
+	m_pMFSM->RequestCallAIThread( m_pPlay, 3, &m_eTemp, selecting, plCard );
 
 	m_pMFSM->WaitEvent( &m_eTemp );
 

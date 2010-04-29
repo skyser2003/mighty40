@@ -35,7 +35,7 @@ public:
 	virtual void OnInit( CEvent* e );
 
 	// 2¸¶¿¡¼­ Ä«µå¸¦ »ÌÀ½
-	virtual void OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e );
+	virtual void OnSelect2MA( int* selecting, CCardList* plCard, CEvent* e );
 
 	// Ä«µå¸¦ °ñ¶ú´Ù
 	virtual void OnSelect2MA( int* selecting, CEvent* e );

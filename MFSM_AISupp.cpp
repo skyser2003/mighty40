@@ -48,7 +48,7 @@ void CMFSM::CallAIThread( CPlay* pPlay, int nType,
 	case 0 : pPlay->OnElection( (CGoal*)arg1 ); break;
 	case 1 : pPlay->OnKillOneFromSix( (CCard*)arg1, (CCardList*)arg2 ); break;
 	case 2 : pPlay->OnTurn( (CCard*)arg1, (int*)arg2 ); break;
-	case 3 : pPlay->OnSelect2MA( (int*)arg1, (CCard*)arg2 ); break;
+	case 3 : pPlay->OnSelect2MA( (int*)arg1, (CCardList*)arg2 ); break;
 	}
 	pEvent->SetEvent();
 }

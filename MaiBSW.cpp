@@ -163,7 +163,7 @@ public:
 	int Friend( int nKiruda, const CCardList* pHand, const CCardList* pDeck = 0 ) const;
 
 	// 2마에서 카드 선택
-	int Select( const CCardList* pHand, const CCard* pcShow) const;
+	int Select( const CCardList* pHand, const CCardList* plCard) const;
 
 	// 죽일 카드 선택
 	CCard Kill( const CCardList* pHand, const CCardList* pTillNow ) const;
@@ -211,7 +211,7 @@ public:
 
 	// 2마에서 카드를 고른다.
 	virtual void OnSelect2MA(
-		int* selecting, CCard* pcShow );
+		int* selecting, CCardList* plCard );
 
 	// 6마에서 당선된 경우 한 사람을 죽여야 한다
 	// 죽일 카드를 지정하면 된다 - 단 이 함수는
@@ -999,10 +999,29 @@ CCard CMaiBSWAlgo::Kill( const CCardList* pHand, const CCardList* pTillNow ) con
 }
 
 // 2마에서 선택할 카드 선택
-int CMaiBSWAlgo::Select( const CCardList* pHand, const CCard* pcShow ) const
+int CMaiBSWAlgo::Select( const CCardList* pHand, const CCardList* plCard ) const
 {
-	// 9 이상이면 갖고, 아니면 버린다
-	if ( pcShow->IsPoint() || pcShow->GetNum() == 9 ) return 0;
+	int showNum, hideNum;
+	// 더 높은 카드를 가진다.
+	// 같은 무늬는 이 카드의 숫자를 1 높인다.
+	CCard pcShow = plCard->GetAt(plCard->POSITIONFromIndex(0));
+	CCard pcHide = plCard->GetAt(plCard->POSITIONFromIndex(1));
+	showNum = pcShow.GetNum();
+	hideNum = pcHide.GetNum();
+
+	for ( int i = 0; i < pHand->GetCount(); i++ ) {
+		CCard cHand = pHand->GetAt( pHand->POSITIONFromIndex ( i ) );
+		if ( cHand.GetShape() == pcShow.GetShape() ) showNum++;
+		if ( cHand.GetShape() == pcHide.GetShape() ) hideNum++;
+	}
+	if ( pcShow.IsMighty() ) showNum = 100;
+	else if ( pcShow.IsJoker() ) showNum = 99;
+	else if ( pcShow.IsJokercall() && !pHand->Find( CCard::GetJoker() ) ) showNum += 6;
+	if ( pcHide.IsMighty() ) hideNum = 100;
+	else if ( pcHide.IsJoker() ) hideNum = 99;
+	else if ( pcHide.IsJokercall() && !pHand->Find( CCard::GetJoker() ) ) hideNum += 6;
+
+	if ( showNum > hideNum ) return 0;
 	else return 1;
 }
 
@@ -1609,10 +1628,10 @@ void CMaiBSWWrap::OnElection( CGoal* pNewGoal )
 
 // 2마에서 카드를 고른다.
 void CMaiBSWWrap::OnSelect2MA(
-	int* selecting, CCard *pcShow )
+	int* selecting, CCardList *plCard )
 {
 	*selecting = m_pBSW->Select(
-		GetHand(), pcShow );
+		GetHand(), plCard );
 }
 
 // 6 마에서 당선된 경우 한 명을 죽여야 한다

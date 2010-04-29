@@ -96,7 +96,7 @@ public:
 	// 선거 공약에 대한 문자열을 리턴한다
 	// (예: "스페이드13" "곱트" "기노" )
 	static CString GetGoalString( bool bUseTerm,
-		int nKiruda, int nMinScore, int nDefaultMinScore );
+		int nKiruda, int nMinScore );
 
 protected:
 	static const CState* s_pState;

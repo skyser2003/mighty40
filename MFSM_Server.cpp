@@ -57,14 +57,12 @@ lblMightyBegin:
 				nCurrentPlayer = (nBeginer+i)%nPlayers;
 				NOTIFY_ALL( OnBeginThink( nCurrentPlayer, 0, EVENT ) );
 				int selecting = 0;
-				CCard cShow = lDeck.RemoveTail();
-				CCard cHide = lDeck.RemoveTail();
-				NOTIFY_TO( nCurrentPlayer, OnSelect2MA( &selecting, &cShow, EVENT ) );
+				CCardList* lCard = new CCardList();
+				lCard->AddTail(lDeck.RemoveTail());
+				lCard->AddTail(lDeck.RemoveTail());
+				NOTIFY_TO( nCurrentPlayer, OnSelect2MA( &selecting, lCard, EVENT ) );
 				NOTIFY_ALL( OnSelect2MA( &selecting, EVENT ) );
-				if ( selecting == 0 )
-					apPlayers[nCurrentPlayer]->GetHand()->AddTail( cShow );
-				else
-					apPlayers[nCurrentPlayer]->GetHand()->AddTail( cHide );
+				apPlayers[nCurrentPlayer]->GetHand()->AddTail( lCard->GetAt( lCard->POSITIONFromIndex(selecting) ) );
 				if ( !Mo()->bNoSort )
 					apPlayers[nCurrentPlayer]->GetHand()->Sort( Mo()->bLeftKiruda, Mo()->bLeftAce );
 				NOTIFY_ALL( OnDeal( -1, nCurrentPlayer, 9, cCurrentCard, EVENT ) );

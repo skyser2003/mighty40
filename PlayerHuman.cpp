@@ -323,15 +323,16 @@ void CPlayerHuman::OnInit( CEvent* e )
 }
 
 // 2마에서 카드를 뽑음
-void CPlayerHuman::OnSelect2MA( int* selecting, CCard* pcShow, CEvent* e )
+void CPlayerHuman::OnSelect2MA( int* selecting, CCardList* plCard, CEvent* e )
 {
 	// 카드 고르기 DSB 를 표시
 	DSelect2MA* pDSB = new DSelect2MA(m_pBoard);
-	pDSB->Create( e, selecting, pcShow );
+	pDSB->Create( e, selecting, plCard );
 }
 // 카드를 골랐다
 void CPlayerHuman::OnSelect2MA( int* selecting, CEvent* e )
 {
+	selecting;	//unused
 	e->SetEvent();
 }
 
