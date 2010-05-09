@@ -130,12 +130,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.17"
+            VALUE "FileVersion", "4.0.0.20"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.17"
+            VALUE "ProductVersion", "4.0.0.20"
         END
     END
     BLOCK "VarFileInfo"
@@ -649,7 +649,7 @@ BEGIN
     CONTROL         "2 배 줌",IDC_RUN1,"Button",BS_AUTORADIOBUTTON,13,31,69,10
     CONTROL         "미리 런을 선언했을 경우만 2배 줌",IDC_RUN2,"Button",BS_AUTORADIOBUTTON,13,43,125,10
     CONTROL         "고정액 줌 (20단위)",IDC_RUN3,"Button",BS_AUTORADIOBUTTON,13,55,112,10
-    CONTROL         "여당이 노프랜드로 이기면 1.5배",IDC_S_NOFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,77,125,10
+    CONTROL         "여당이 노프랜드로 이기면 2배",IDC_S_NOFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,77,125,10
     CONTROL         "여당이 노기루다로 이기면 2배",IDC_S_NOKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,90,125,10
     CONTROL         "야당이 백런으로 이기면 2배",IDC_S_REVERSERUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,103,125,10
     LTEXT           "각 방법에 대한 자세한 설명은 오른쪽 위의 '?' 버튼을 눌러서 볼 수 있습니다",IDC_STATIC,148,17,72,36
@@ -684,6 +684,15 @@ BEGIN
     LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE6,223,81,45,27
     PUSHBUTTON      "확인",IDOK,163,118,50,14
     PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,219,118,50,14
+END
+
+IDD_LOG DIALOGEX 0, 0, 200, 199
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "대화 로그"
+FONT 9, "굴림", 400, 0, 0x81
+BEGIN
+    CONTROL         "",IDC_LOG,"RichEdit20W",WS_BORDER | WS_TABSTOP | 0x800,7,7,186,185
 END
 
 
@@ -869,6 +878,14 @@ BEGIN
         RIGHTMARGIN, 268
         TOPMARGIN, 7
         BOTTOMMARGIN, 132
+    END
+
+    IDD_LOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1357,7 +1374,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-04-28)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-05-09)"
 END
 
 STRINGTABLE
@@ -1391,7 +1408,7 @@ BEGIN
     ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
-    ID_LOG_DIALOG           "네트워크 플레이에서 채팅의 내용을 봅니다"
+    ID_LOG_DIALOG           "네트워크 플레이에서의 대화 내용을 봅니다"
     ID_LOG_MONEY            "지지율 혹은 비자금의 변동 내역을 봅니다"
 END
 
@@ -1540,7 +1557,7 @@ BEGIN
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
     IDC_S_REVERSERUN        "야당이 백런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
-    IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 1.5배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 3 배, 4 마에서 4.5 배의 점수를 더 얻게 됩니다"
+    IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 2배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 4 배, 4 마에서 6 배의 점수를 더 얻게 됩니다"
     IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
     IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 백런이 됩니다."
     IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 백런이 됩니다."

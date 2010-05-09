@@ -46,13 +46,13 @@ void DAbout::OnDraw(
 	DSB::OnDraw( pDC, bBrushOrigin );
 
 	CRect rc = PutBitmap( pDC, IDB_MIGHTY,
-		_T(" 마이티 네트워크 3.2"), 1, 1, true,
+		_T(" 마이티 네트워크 4.0"), 1, 1, true,
 		s_colWhite, s_tdShade );
 
 	rc = PutText( pDC, _T("Copyright (C) 1999 장문성"),
 		rc.left, rc.bottom + rc.Height()/2, false,
 		s_colWhite, s_tdShade );
-	PutText( pDC, _T("sw6ueyz@hitel.net"),
+	PutText( pDC, _T("2006 puzzlet, 2010 Yoshi-TS4"),
 		rc.left, rc.bottom + rc.Height()/4, false,
 		s_colWhite, s_tdShade );
 }

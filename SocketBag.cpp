@@ -62,7 +62,7 @@ void CSocketBag::InitForClient( CPlayerSocket* pServerSocket )
 {
 	ASSERT( pServerSocket );
 	m_pServerSocket = pServerSocket;
-	m_pServerSocket->SetTrigger( (DWORD)(LPVOID)this, -1, SockProc );
+	m_pServerSocket->SetTrigger( (DWORD)(LPVOID)this, (DWORD)-1, SockProc );
 }
 
 // 서버용 초기화 (각 플레이어에 대해 반복해서 호출한다)

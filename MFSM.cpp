@@ -499,14 +499,15 @@ void CMFSM::GetReport(
 				nMoved *= 2;
 			}
 		}
-		if ( bDefWin && goal.nKiruda == 0 ) {	// 노기루다
+		if ( pRule->bS_DoubleForNoKiruda			// 노기루다
+			&& bDefWin && goal.nKiruda == 0 ) {
 			sResult += _T(" x2(노기)");
 			nMoved *= 2;
 		}
-		if ( pRule->bFriend	// 프랜드 제도가 있는가
-				&& bDefWin && goal.nFriend == 0 ) {	// 노프랜드
-			sResult += _T(" x1.5(노프)");
-			nMoved = nMoved * 3 / 2;
+		if ( pRule->bS_DoubleForNoFriend && pRule->bFriend	// 프랜드 제도가 있는 경우 노프 2배가 가능
+				&& bDefWin && goal.nFriend == 0 ) {
+			sResult += _T(" x2(노프)");
+			nMoved *= 2;
 		}
 	}
 

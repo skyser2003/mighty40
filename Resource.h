@@ -128,6 +128,7 @@
 #define IDD_RULE_SCORE                  820
 #define IDD_RULE_SPECIAL                821
 #define IDD_SCOREBOARD                  822
+#define IDD_LOG                         823
 #define IDC_CLOCKWISE                   1001
 #define IDC_USESOUND                    1002
 #define IDC_USETERM                     1003
@@ -313,6 +314,7 @@
 #define IDC_CARDSPEEDGROUP              1182
 #define IDC_CARDMOTIONGROUP             1183
 #define IDC_MONEYASSUPPORT              1184
+#define IDC_LOG                         1185
 #define IDD_SETTING                     10000
 #define IDC_FACTOR                      10000
 #define IDC_USESIMULATION               10001
@@ -333,9 +335,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        2002
+#define _APS_NEXT_RESOURCE_VALUE        2001
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         2022
+#define _APS_NEXT_CONTROL_VALUE         2002
 #define _APS_NEXT_SYMED_VALUE           2000
 #endif
 #endif

@@ -83,17 +83,9 @@ protected:
 	int m_nUSJ;		// Using Safe Joker ( Free for Joker Call )
 	int m_nULJ;		// Using Last Joker ( Free for Joker Call and Mighty )
 	int m_nUEJC;	// Using Effective Jokercall
-	int m_nDL30;	// D, Lost 0% ~ 30%
-	int m_nDL45;	// D, Lost 30% ~ 45%
-	int m_nDL60;	// D, Lost 45% ~ 60%
-	int m_nDL75;	// D, Lost 60% ~ 75%
-	int m_nDL100;	// D, Lost 75% ~ 100%
+	int m_nDL100;	// D, Lost 100%, ratio
 	int m_nDLOver;	// D, Lost all
-	int m_nAS1;		// A, Score 1 pt
-	int m_nAS2;		// A, Score 2 pt
-	int m_nAS3;		// A, Score 3 pt
-	int m_nAS4;		// A, Score 4 pt
-	int m_nAS5;		// A, Score 5 pt
+	int m_nAS;		// A, Score 1 pt
 };
 
 
@@ -140,6 +132,8 @@ protected:
 	int m_nJokerWeight;
 	// Jokercall 소유의 중요도(조커 없을때)
 	int m_nJokercallWeight;
+	// 프렌드 존재 여부의 중요도
+	int m_nFriendWeight;
 };
 
 
@@ -398,22 +392,14 @@ CMaiBSWPenaltyTable::CMaiBSWPenaltyTable()
 	m_nUSN_d = -20;
 	m_nUNN = 10;
 	m_nUNN_d = -1;
-	m_nUM = 1999;
-	m_nUJ = 1997;
-	m_nUSJ = 1998;
+	m_nUM = 2001;
+	m_nUJ = 1897;
+	m_nUSJ = 1898;
 	m_nULJ = 2000;
 	m_nUEJC = 300;
-	m_nDL30 = 200;
-	m_nDL45 = 350;
-	m_nDL60 = 1000;
-	m_nDL75 = 2500;
-	m_nDL100 = 5000;
+	m_nDL100 = 2000;
 	m_nDLOver = 100000000;
-	m_nAS1 = -400;
-	m_nAS2 = -500;
-	m_nAS3 = -3000;
-	m_nAS4 = -5000;
-	m_nAS5 = -100000000;
+	m_nAS = -750;
 }
 
 // 이 카드의 소모 벌점을 구한다
@@ -462,30 +448,18 @@ int CMaiBSWPenaltyTable::CalcDefLostPenalty( double dRemain, double dLostScore )
 	if ( dLostScore < 0.001 ) return 0;
 
 	if ( dRemain < 0.0 ) // 이미 졌음
-		return m_nDL60; // 그냥 60% 값을 리턴
+		return -CMaiBSWPenaltyTable::CalcAttGainPenalty ( dLostScore ); // 장수에 따른 벌점
 	else if ( dRemain < 0.001 || dRemain < dLostScore )
 		// remain 값이 0 이다
 		return m_nDLOver;
-	else if ( dLostScore / dRemain < 0.3 + 0.001 )
-		return m_nDL30;
-	else if ( dLostScore / dRemain < 0.45 + 0.001 )
-		return m_nDL45;
-	else if ( dLostScore / dRemain < 0.60 + 0.001 )
-		return m_nDL60;
-	else if ( dLostScore / dRemain < 0.75 + 0.001 )
-		return m_nDL75;
-	else return m_nDL100;
+	else return (int)( m_nDL100 * dLostScore / dRemain );
 }
 
 // 야당이 이만큼을 땄을 때 생기는 벌점을 구한다
 int CMaiBSWPenaltyTable::CalcAttGainPenalty( double dGainScore ) const
 {
-	if ( dGainScore < 0.001 ) return 0;
-	else if ( dGainScore < 1.001 ) return m_nAS1;
-	else if ( dGainScore < 2.001 ) return m_nAS2;
-	else if ( dGainScore < 3.001 ) return m_nAS3;
-	else if ( dGainScore < 4.001 ) return m_nAS4;
-	else return m_nAS5;
+	if ( dGainScore <= 0 ) return 0;
+	else return (int)( m_nAS * dGainScore );
 }
 
 // 벌점을 계산한다
@@ -614,12 +588,14 @@ CMaiBSWPrideTable::CMaiBSWPrideTable()
 	m_nEtc10Weight = 80;
 	// 빈 모양에 의한 가중치
 	m_nEmptyWeight = 30;
-	// Mighty 소유의 중요도 (주공은 Mighty 를 가질 필요는 없음)
-	m_nMightyWeight = 100;
+	// Mighty 소유의 중요도
+	m_nMightyWeight = 250;
 	// Joker 소유의 중요도
-	m_nJokerWeight = 200;
+	m_nJokerWeight = 250;
 	// Jokercall 소유의 중요도 (조커 없을때)
 	m_nJokercallWeight = 100;
+	// 프렌드 존재 여부의 중요도
+	m_nFriendWeight = 2000;
 }
 
 // 상점을 계산한다 ( CCardList 의 기루다는 세트되어 있다고 가정 )
@@ -718,6 +694,8 @@ int CMaiBSWPrideTable::CalcPride( int nKiruda, const CCardList& lc ) const
 	// 2 개 정도는 프랜드가 막는다고 생각한다
 	if ( nDem < -2*(m_nEtc10Weight+12) )
 		nDem += 2*(m_nEtc10Weight+12);
+	else if ( nDem < 0 )
+		nDem = 0;
 
 	if ( nKiruda )
 		nPride += nDem;
@@ -727,8 +705,8 @@ int CMaiBSWPrideTable::CalcPride( int nKiruda, const CCardList& lc ) const
 		nPride += nDem * 3;
 	}
 
-	if ( lCard.GetCount() == 8 )
-		nPride = nPride * 10 / 8;
+	if ( lCard.GetCount() < 10 )
+		nPride = nPride * 10 / lCard.GetCount();
 
 	return nPride;
 }
@@ -1008,6 +986,8 @@ int CMaiBSWAlgo::Select( const CCardList* pHand, const CCardList* plCard ) const
 	CCard pcHide = plCard->GetAt(plCard->POSITIONFromIndex(1));
 	showNum = pcShow.GetNum();
 	hideNum = pcHide.GetNum();
+	if(pcShow.IsAce()) showNum += 13;
+	if(pcHide.IsAce()) hideNum += 13;
 
 	for ( int i = 0; i < pHand->GetCount(); i++ ) {
 		CCard cHand = pHand->GetAt( pHand->POSITIONFromIndex ( i ) );
@@ -1500,30 +1480,19 @@ CCard CMaiBSWAlgo::Turn( int& eff, bool bUseSimulation ) const
 {
 	const CState* pState = CCard::GetState();
 
-	// 시물레이션을 사용하면 4 턴, 아니면 3 턴 남았을 때 부터
-	// 시물레이션 알고리즘을 사용한다
-	int nSimulatedTurn = bUseSimulation ? 4 : 3;
+	// 확장 알고리즘에 체크되어 있으면 체크되어 있지 않을 때 보다
+	// 카드 수가 1 더 많을 때 부터 시뮬레이션을 사용한다.
+	int nSimulatedTime = pState->nPlayers * 2 + ( bUseSimulation ? 7 : 6 );
 
 	CCard c;
-	if ( CCard::GetState()->nTurn + nSimulatedTurn > ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN )
-		&& !( nSimulatedTurn == 4 && pState->lCurrent.GetCount() < 3 ) )
+	if ( ( ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ) - pState->nTurn + 1 ) * pState->nPlayers
+		- pState->lCurrent.GetCount() <= nSimulatedTime )
 		c = TurnSimulation(eff);
 	else c = TurnIteration(eff);
 
 	// 주공의 조커콜이고, 프랜드에게 조커가 있다는 사실을 몰라야 될 때
-	// '조커콜 아님' 은 너무 속보이므로 그냥 조커콜로 바꾼다
-	if ( c.IsJokercall() ) {
-
-		if ( !eff	// 조커콜이 아니고
-			&& pState->lCurrent.IsEmpty()	// 선이고
-			&& pState->nCurrentPlayer == pState->nMaster	// 주공이고
-			&& pState->goal.nFriend == (int)CCard::GetMighty()	// 프랜드에게 조커가 있는지 모르고
-			&& pState->nFriend >= 0	// 프랜드가 있고
-			&& pState->apPlayers[pState->nFriend]->GetHand()
-				->Find( CCard::GetJoker() )	// 프랜드한테 조커가 있고
-			)
-				eff = 1;
-	}
+	// '조커콜 아님' 은 너무 속보이므로 그냥 조커콜로 바꾼다는 코드가 여기 있었으나
+	// 지웠다.
 
 	// c 와 같은 의미의 카드를 낸다
 	return GetEqualCard(c);
