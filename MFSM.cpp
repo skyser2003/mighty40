@@ -357,7 +357,7 @@ void CMFSM::GetReport(
 	// 버려진 카드의 점수를 누구에게 넣는가 처리
 	if ( pRule->bAttScoreThrownPoints )
 		nAttPointed += nThrownPoints;
-	else if ( pRule->nPlayerNum != 2 ) nDefPointed += nThrownPoints;	//2마에서는 더해지지 않는다 (v4.0 : 2010.4.18)
+	else if ( pRule->nPlayerNum != 2 ) nDefPointed += nThrownPoints; //2마에서는 더해지지 않는다 (v4.0 : 2010.4.18)
 
 	// 공헌도 계산
 	// 그 팀이 딴 모든 점수와 모든 도움의 합 중에서
@@ -619,7 +619,7 @@ void CMFSM::GetReport(
 
 			for ( int i = 0; i < nPlayers; i++ )
 				if ( i != nMaster && i != nFriend ) {
-					// 야당이면 몪을 나눠 가짐
+					// 야당이면 몫을 나눠 가짐
 					nAttCount--;
 					if ( nAttCount > 0 ) {
 						anMoney[i] += nInsuffShare;

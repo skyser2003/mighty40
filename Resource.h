@@ -323,12 +323,8 @@
 #define ID_GAME_EXIT                    32771
 #define ID_APP_OPTION                   32772
 #define ID_APP_SCOREBOARD               32773
-#define ID_32774                        32774
-#define ID_32775                        32775
-#define ID_Menu                         32776
-#define ID_32777                        32777
-#define ID_LOG_DIALOG                   32778
-#define ID_LOG_MONEY                    32779
+#define ID_Menu                         32774
+#define ID_LOG_DIALOG                   32775
 
 // Next default values for new objects
 // 

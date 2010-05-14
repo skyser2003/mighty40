@@ -80,13 +80,10 @@ BEGIN
         MENUITEM "점수판 보기(&V)",                  ID_APP_SCOREBOARD
         MENUITEM "옵션(&O)...",                   ID_APP_OPTION
         MENUITEM SEPARATOR
+        MENUITEM "대화 로그 보기(&D)",                ID_LOG_DIALOG
+        MENUITEM SEPARATOR
         MENUITEM "초기 메뉴로(&I)",                  ID_GAME_EXIT
         MENUITEM "종료(&X)",                      ID_APP_EXIT
-    END
-    POPUP "로그(&L)"
-    BEGIN
-        MENUITEM "대화 로그 보기(&D)",                ID_LOG_DIALOG
-        MENUITEM "지지율 변동 내역(&M)",               ID_LOG_MONEY
     END
     POPUP "도움말(&H)"
     BEGIN
@@ -130,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.20"
+            VALUE "FileVersion", "4.0.0.21"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.20"
+            VALUE "ProductVersion", "4.0.0.21"
         END
     END
     BLOCK "VarFileInfo"
@@ -1374,7 +1371,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-05-09)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-05-15)"
 END
 
 STRINGTABLE
@@ -1409,7 +1406,6 @@ BEGIN
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
     ID_LOG_DIALOG           "네트워크 플레이에서의 대화 내용을 봅니다"
-    ID_LOG_MONEY            "지지율 혹은 비자금의 변동 내역을 봅니다"
 END
 
 STRINGTABLE
