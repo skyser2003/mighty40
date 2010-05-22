@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.21"
+            VALUE "FileVersion", "4.0.0.22"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.21"
+            VALUE "ProductVersion", "4.0.0.22"
         END
     END
     BLOCK "VarFileInfo"
@@ -1371,7 +1371,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0 Beta (2010-05-15)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.0.22 (2010-05-23)"
 END
 
 STRINGTABLE

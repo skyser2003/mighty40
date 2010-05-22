@@ -171,7 +171,7 @@ void DStartUp::OnClick( LPVOID pVoid )
 		case 0xffffffff:
 		case 1:		// 서버가 됨
 			Ib()->ShowChat();	// 채팅창 표시
-			(new DConnect(m_pBoard))->Create( 0 );
+			(new DConnect(m_pBoard))->Create( 0, Mo()->rule.nPlayerNum );
 			DSB::OnClick(0);
 			break;
 		case 2:		// 다른 곳으로 접속

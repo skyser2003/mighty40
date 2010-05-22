@@ -104,7 +104,7 @@ public:
 	// pServerSocket 이 0 이면 이 DSB 는 서버용 접속DSB
 	// 0 이 아니면, pServerSocket 을 서버로 하는
 	// 클라이언트 DSB
-	void Create( CPlayerSocket* pServerSocket );
+	void Create( CPlayerSocket* pServerSocket, long players );
 
 protected:
 	// 초기화 ( 생성된 후 호출됨 )
@@ -193,8 +193,8 @@ protected:
 	// m_aInfo 의 i 번째 플레이어에 대한 CMsg 객체를 생성(new)
 	// 즉, mmChanged 메시지
 	CMsg* CreatePlayerInfoMsg( long uid );
-	// mmInit 메시지를 생성(new)
-	CMsg* CreateInitMsg();
+	// mmInit 메시지를 생성(new) : players를 보내도록 바꿈(v4.0: 2010.5.23)
+	CMsg* CreateInitMsg( long players );
 	// mmUID 메시지를 생성(new)
 	CMsg* CreateUIDMsg( long uid );
 	// 특정 플레이어에 대한 소켓 호출이 실패
@@ -222,7 +222,7 @@ protected:
 	// 클라이언트에서 호출하는 유틸리티들
 
 	// mmNewPlayer 메시지를 생성
-	CMsg* CreateNewPlayerMsg();
+	CMsg* CreateNewPlayerMsg( long players );
 	// mmUID 메시지를 수신하여 Update
 	bool ReceiveUIDMsg( CMsg* pMsg );
 	// mmPrepare 메시지를 수신
