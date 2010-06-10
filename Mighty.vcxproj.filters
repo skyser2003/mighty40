@@ -138,9 +138,6 @@
     <ClCompile Include="POptionCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="POptionChat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="POptionComm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -305,9 +302,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="POptionCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="POptionChat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="POptionComm.h">

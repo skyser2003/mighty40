@@ -15,7 +15,6 @@
 #include "POptionRule.h"
 #include "POptionAI.h"
 #include "POptionComm.h"
-#include "POptionChat.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,7 +30,7 @@ IMPLEMENT_DYNAMIC(DOption, CPropertySheet)
 DOption::DOption(CWnd* pParentWnd, UINT iSelectPage)
 	:CPropertySheet(_T("마이티 옵션"), pParentWnd, iSelectPage)
 {
-	m_nPages = 10;
+	m_nPages = 9;
 	m_apPages = new CPropertyPage*[m_nPages];
 
 	m_apPages[0] = new POptionGeneral;
@@ -43,7 +42,6 @@ DOption::DOption(CWnd* pParentWnd, UINT iSelectPage)
 	m_apPages[6] = new POptionRule;
 	m_apPages[7] = new POptionAI;
 	m_apPages[8] = new POptionComm;
-	m_apPages[9] = new POptionChat;
 
 	for ( int i = 0; i < m_nPages; i++ )
 		AddPage( m_apPages[i] );

@@ -20,9 +20,10 @@ IMPLEMENT_DYNCREATE(POptionComm, CPropertyPage)
 POptionComm::POptionComm() : CPropertyPage(POptionComm::IDD)
 {
 	//{{AFX_DATA_INIT(POptionComm)
-	m_sMightyNetAddress = Mo()->sMightyNetAddress;
+	m_bObserver = Mo()->bObserver;
 	m_nPort = Mo()->nPort;
 	m_sAddress = Mo()->sAddress;
+	m_nChatDSBTimeOut = Mo()->nChatDSBTimeOut;
 	//}}AFX_DATA_INIT
 }
 
@@ -34,17 +35,19 @@ void POptionComm::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(POptionComm)
-	DDX_Text(pDX, IDC_MIGHTYNETADDRESS, m_sMightyNetAddress);
+	DDX_Check(pDX, IDC_OBSERVER, m_bObserver);
 	DDX_Text(pDX, IDC_PORT, m_nPort);
 	DDX_Text(pDX, IDC_ADDRESS, m_sAddress);
+	DDX_Slider(pDX, IDC_CHATDSBTIMEOUT, m_nChatDSBTimeOut);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
-		Mo()->sMightyNetAddress = m_sMightyNetAddress;
+		Mo()->bObserver = (bool)m_bObserver;
 		Mo()->nPort = m_nPort;
 		m_sAddress.TrimLeft();
 		m_sAddress.TrimRight();
 		Mo()->sAddress = m_sAddress;
+		Mo()->nChatDSBTimeOut = (int)m_nChatDSBTimeOut;
 	}
 }
 
@@ -61,4 +64,18 @@ void POptionComm::OnDetailScore()
 {
 	DDetailScore dlg;
 	dlg.DoModal();
+}
+
+
+BOOL POptionComm::OnInitDialog()
+{
+	CPropertyPage::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+
+	((CSliderCtrl*)GetDlgItem(IDC_CHATDSBTIMEOUT))
+		->SetRange( 0, 10, TRUE );
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
 }

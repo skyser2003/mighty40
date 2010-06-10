@@ -63,13 +63,13 @@
 // 조커/조커콜 DSB 를 보여주는 시간
 #define DELAY_JOKERDSB			( Mo()->nDelayOneTurn * 200 * 5 )
 
-
 #include "resource.h"       // main symbols
 #include "state.h"
 #include "rule.h"
 #include "option.h"
 #include "card.h"
 #include "msg.h"
+
 
 class CInfoBar;
 class CMightyToolTip;

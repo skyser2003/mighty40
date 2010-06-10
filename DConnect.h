@@ -142,7 +142,7 @@ protected:
 		bool bComputer;	// 컴퓨터인가?
 		CPlayerSocket* pSocket;
 	}
-	m_aInfo[MAX_PLAYERS];
+	m_aInfo[20];		// v4.0 : 최대 20명 까지 접속 가능. players 이후는 관전자 
 	// 채팅창 내용
 	TCHAR (*m_asChatData)[256];
 	COLORREF *m_acolChatData;
@@ -151,7 +151,7 @@ protected:
 	// 채팅창 사각형
 	CRect m_rcChat;
 	// 세모 마크의 색상
-	COLORREF m_acolMark[MAX_PLAYERS]; //v4.0 : 2010.4.6 - 서버 만들었다가 끌 때 튕기는 버그 수정
+	COLORREF m_acolMark[20]; // v4.0 : 20명 까지 접속 가능. (2010.6.4)
 	// 팝업 메뉴
 	DConnectPopup* m_pPopup;
 	// 블랙리스트 (이사람들은 접속을 못하게 막음)

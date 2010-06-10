@@ -2,6 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+#include <algorithm>
 #include "stdafx.h"
 #include "State.h"
 #include "Rule.h"
@@ -246,8 +247,8 @@ void CCardList::Suffle()
 
 	CCardList lTemp;
 
-	for ( int i = 0; i < 3; i++ ) {
-		// 세 번 반복
+	for ( int i = 0; i < 5; i++ ) {
+		// 다섯 번 반복 (v4.0)
 
 		// 모든 원소를 lTemp 로 옮긴다
 		for ( int j = 0; j < nCards; j++ )

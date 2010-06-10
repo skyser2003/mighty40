@@ -121,6 +121,8 @@ struct COption
 
 	// 통신
 
+	// 관전 가능 여부
+	bool bObserver;
 	// 서버가 될 때 포트 번호
 	int nPort;
 	// 서버가 될 때 주소 (일부firewall)
@@ -128,8 +130,6 @@ struct COption
 	// 이전에 접속했던 주소 기억
 #	define ADDRESSBOOK_SIZE		4
 	CString asAddressBook[ADDRESSBOOK_SIZE];
-	// Mighty.Net 주소
-	CString sMightyNetAddress;
 	// 다른 사람들과의 게임 중에 힌트를 볼 수 있음
 	bool bUseHintInNetwork;
 	// 채팅창이 떠 있는 시간 (x2초)

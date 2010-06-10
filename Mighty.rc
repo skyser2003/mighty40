@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.22"
+            VALUE "FileVersion", "4.0.0.23"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.22"
+            VALUE "ProductVersion", "4.0.0.23"
         END
     END
     BLOCK "VarFileInfo"
@@ -479,27 +479,16 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "통신"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,17,23,189,8
-    EDITTEXT        IDC_PORT,18,36,90,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,17,61,108,8
-    EDITTEXT        IDC_ADDRESS,18,74,90,14,ES_AUTOHSCROLL
-    LTEXT           "Mighty.Net 기본 주소 :",IDC_STATIC,17,99,100,8,WS_DISABLED
-    EDITTEXT        IDC_MIGHTYNETADDRESS,18,112,90,14,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,141,68,70,14
-END
-
-IDD_OPTION_CHAT DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
-CAPTION "채팅"
-FONT 9, "굴림", 0, 0, 0x0
-BEGIN
-    LTEXT           "채팅창 버퍼 크기",IDC_STATIC,13,17,70,8
-    EDITTEXT        IDC_CHATBUFFERSIZE,14,33,40,14,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
-    CONTROL         "Spin1",IDC_CHATBUFFERSIZESPIN,"msctls_updown32",UDS_WRAP | UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,53,32,9,14
-    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,106,9,103,51
-    LTEXT           "짧게",IDC_STATIC,112,23,27,8
-    RTEXT           "길게",IDC_STATIC,179,23,24,8
-    CONTROL         "Slider2",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,112,32,90,21
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,16,53,189,8
+    EDITTEXT        IDC_PORT,17,69,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,16,93,98,8
+    EDITTEXT        IDC_ADDRESS,17,109,90,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,150,18,70,14
+    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,121,77,103,51
+    LTEXT           "짧게",IDC_STATIC,127,91,27,8
+    RTEXT           "길게",IDC_STATIC,194,91,24,8
+    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,100,90,21
+    CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,20,62,10
 END
 
 IDD_RULE_GENERAL DIALOGEX 0, 0, 239, 179
@@ -790,14 +779,6 @@ BEGIN
     END
 
     IDD_OPTION_COMM, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 232
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 152
-    END
-
-    IDD_OPTION_CHAT, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 232
@@ -1371,7 +1352,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.0.22 (2010-05-23)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.0.23 (2010-06-05)"
 END
 
 STRINGTABLE
@@ -1470,11 +1451,10 @@ END
 
 STRINGTABLE
 BEGIN
-    IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 가 디폴트 값입니다"
-    IDC_MIGHTYNETADDRESS    "Mighty.Net 의 IP 주소를 설정합니다"
+    IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
+    IDC_ADDRESS             "ㅓ"
     IDC_RESETSCORE          "지금까지의 기록을 지웁니다"
-    IDC_CHATBUFFERSIZE      "채팅창이 기억하고 있는 이전 내용의 줄 수를 정합니다"
     IDC_2MA                 "두 사람이 하는 마이티입니다 - 전체 덱에서 각 사람이 2장 중 1장을 골라 총 13장씩 가진 후 자신이 이길 턴 수로 공약을 부르게 됩니다."
     IDC_3MA                 "세 사람이 하는 마이티입니다 - 프랜드 제도가 없는 것이 표준이고, 20 장의 카드 ('2','4','5','6','7') 를 제외한 덱을 사용합니다"
     IDC_4MA                 "네 사람이 하는 마이티입니다 - 프랜드로 조커 프랜드를 부를 수 없는 것이 표준이고, 10 장의 카드 (조커콜을 제외한 '3' 두장과, '2', '4' 각 네장씩) 을 제외한 덱을 사용합니다"

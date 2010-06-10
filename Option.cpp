@@ -92,15 +92,14 @@ void COption::Save() const
 
 	sSection = _T("Communication");
 
+	SYNC_OPTION_B( _T("Observer"), bObserver, true );
 	SYNC_OPTION_I( _T("Port"), nPort, 4111 );
 	SYNC_OPTION_S( _T("Address"), sAddress, _T("") );
 	for ( i = 0; i < ADDRESSBOOK_SIZE; i++ ) {
 		CString sEntry; sEntry.Format( _T("Addr%d"), i );
 		SYNC_OPTION_S( sEntry, asAddressBook[i], _T("") );
 	}
-	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
-	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 
 	sSection = _T("Windows");
 
@@ -215,6 +214,7 @@ void COption::Load()
 
 	sSection = _T("Communication");
 
+	SYNC_OPTION_B( _T("Observer"), bObserver, true );
 	SYNC_OPTION_I( _T("Port"), nPort, 4111 );
 	SYNC_OPTION_S( _T("Address"), sAddress, _T("") );
 	int j = 0;
@@ -225,9 +225,7 @@ void COption::Load()
 	}
 	for ( ; j < ADDRESSBOOK_SIZE; j++ )
 		asAddressBook[j].Empty();
-	SYNC_OPTION_S( _T("MightyNet"), sMightyNetAddress, _T("") );
 	SYNC_OPTION_I( _T("ChatTimeOut"), nChatDSBTimeOut, 5 );
-	SYNC_OPTION_I( _T("ChatBufferSize"), nChatBufferSize, 5 );
 
 	sSection = _T("Windows");
 
@@ -239,6 +237,8 @@ void COption::Load()
 	SYNC_OPTION_I( _T("ScoreboardLastX"), pntLastScoreboard.x, 600 );
 	SYNC_OPTION_I( _T("ScoreboardLastY"), pntLastScoreboard.y, 30 );
 	SYNC_OPTION_B( _T("Init"), bInit, true );
+
+	nChatBufferSize = 16;
 
 	// bUseHintInNetwork 은 항상 false 이다
 	bUseHintInNetwork = false;

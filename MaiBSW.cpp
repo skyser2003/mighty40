@@ -1482,7 +1482,7 @@ CCard CMaiBSWAlgo::Turn( int& eff, bool bUseSimulation ) const
 
 	// 확장 알고리즘에 체크되어 있으면 체크되어 있지 않을 때 보다
 	// 카드 수가 1 더 많을 때 부터 시뮬레이션을 사용한다.
-	int nSimulatedTime = pState->nPlayers * 2 + ( bUseSimulation ? 7 : 6 );
+	int nSimulatedTime = pState->nPlayers * 2 + ( bUseSimulation ? 6 : 5 );
 
 	CCard c;
 	if ( ( ( pState->nPlayers == 2 ? LAST_TURN_2MA : LAST_TURN ) - pState->nTurn + 1 ) * pState->nPlayers

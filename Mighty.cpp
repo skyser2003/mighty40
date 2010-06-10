@@ -296,7 +296,7 @@ BOOL CMightyApp::PreTranslateMessage(MSG* pMsg)
 					_T("Microsoft Internet Explorer"),
 					MB_OK|MB_ICONSTOP|MB_SETFOREGROUND );
 		}
-		CString sTitle; sTitle.LoadString( AFX_IDS_APP_TITLE );
+		CString sTitle; sTitle.LoadString( IDR_MAINFRAME );
 		pWnd->SetIcon( LoadIcon( IDR_MAINFRAME ), TRUE );
 		pWnd->SetWindowText( sTitle );
 		pWnd->ShowWindow( SW_RESTORE );

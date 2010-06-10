@@ -22,9 +22,10 @@ public:
 // Dialog Data
 	//{{AFX_DATA(POptionComm)
 	enum { IDD = IDD_OPTION_COMM };
-	CString	m_sMightyNetAddress;
 	UINT	m_nPort;
 	CString	m_sAddress;
+	int		m_nChatDSBTimeOut;
+	BOOL	m_bObserver;
 	//}}AFX_DATA
 
 
@@ -40,6 +41,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(POptionComm)
 	afx_msg void OnDetailScore();
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
