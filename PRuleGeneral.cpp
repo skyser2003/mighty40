@@ -47,24 +47,33 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_FRIENDGETSBEGINER, m_bFriendGetsBeginer);
 	DDX_Check(pDX, IDC_ATTSCORETHROWNPOINTS, m_bAttScoreThrownPoints);
 	DDX_Check(pDX, IDC_HIDESCORE, m_bHideScore);
+	DDX_Control(pDX, IDC_FRIEND, m_btFriend);
+	DDX_Control(pDX, IDC_JOKERFRIEND, m_btJokerFriend);
+	DDX_Control(pDX, IDC_SHOWFRIEND, m_btShowFriend);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
 		m_pRule->nPlayerNum = m_nPlayerNum + 2;
-		m_pRule->bFriend = !!m_bFriend;
+		m_pRule->bFriend = !!m_bFriend && (m_nPlayerNum > 2);
 		m_pRule->bJokerFriend = !!m_bJokerFriend;
 		m_pRule->bShowFriend = m_bShowFriend ? true : false;
 		m_pRule->bFriendGetsBeginer = !!m_bFriendGetsBeginer;
 		m_pRule->bAttScoreThrownPoints = !!m_bAttScoreThrownPoints;
 		m_pRule->bHideScore = m_bHideScore ? true : false;
 	}
+	else if ( m_nPlayerNum == 0 ) OnClicked2MA();
 }
-
 
 BEGIN_MESSAGE_MAP(PRuleGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(PRuleGeneral)
 	ON_WM_CREATE()
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_2MA, &PRuleGeneral::OnClicked2MA)
+	ON_BN_CLICKED(IDC_3MA, &PRuleGeneral::OnClicked3MA)
+	ON_BN_CLICKED(IDC_4MA, &PRuleGeneral::OnClicked4MA)
+	ON_BN_CLICKED(IDC_5MA, &PRuleGeneral::OnClicked5MA)
+	ON_BN_CLICKED(IDC_6MA, &PRuleGeneral::OnClicked6MA)
+	ON_BN_CLICKED(IDC_7MA, &PRuleGeneral::OnClicked7MA)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -75,7 +84,39 @@ int PRuleGeneral::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CPropertyPage::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Add your specialized creation code here
 	EnableWindow(!m_bReadOnly);
+
 	return 0;
+}
+
+void PRuleGeneral::OnClicked2MA()
+{
+	setFriendCheckbox(false);
+}
+void PRuleGeneral::OnClicked3MA()
+{
+	setFriendCheckbox(true);
+}
+void PRuleGeneral::OnClicked4MA()
+{
+	setFriendCheckbox(true);
+}
+void PRuleGeneral::OnClicked5MA()
+{
+	setFriendCheckbox(true);
+}
+void PRuleGeneral::OnClicked6MA()
+{
+	setFriendCheckbox(true);
+}
+void PRuleGeneral::OnClicked7MA()
+{
+	setFriendCheckbox(true);
+}
+
+void PRuleGeneral::setFriendCheckbox(bool enable)
+{
+	m_btFriend.EnableWindow(enable);
+	m_btJokerFriend.EnableWindow(enable);
+	m_btShowFriend.EnableWindow(enable);
 }

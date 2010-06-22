@@ -13,6 +13,13 @@ static char THIS_FILE[] = __FILE__;
 
 static void format_state( int k, CString* pStr )
 {
+	if ( k == 0 )	// 2¸¶
+	pStr->Format( _T("%d½Â%dÆÐ\n\n%d½Â%dÆÐ"),
+		LOWORD(Mo()->anPlayerState[k][0]),
+		HIWORD(Mo()->anPlayerState[k][0]),
+		LOWORD(Mo()->anPlayerState[k][2]),
+		HIWORD(Mo()->anPlayerState[k][2]) );
+	else
 	pStr->Format( _T("%d½Â%dÆÐ\n%d½Â%dÆÐ\n%d½Â%dÆÐ"),
 		LOWORD(Mo()->anPlayerState[k][0]),
 		HIWORD(Mo()->anPlayerState[k][0]),

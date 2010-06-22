@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.23"
+            VALUE "FileVersion", "4.0.0.24"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.23"
+            VALUE "ProductVersion", "4.0.0.24"
         END
     END
     BLOCK "VarFileInfo"
@@ -266,7 +266,7 @@ FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     EDITTEXT        IDC_HUMANNAME,7,69,80,14,ES_AUTOHSCROLL
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010 UPnL",IDC_STATIC,37,7,104,39
+    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010 UPnL",IDC_COPYRIGHT,37,7,104,39
     CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,96,10
     CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
     CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
@@ -497,7 +497,7 @@ CAPTION "일반"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     GROUPBOX        "플레이어 수",IDC_STATIC,8,8,130,80,WS_GROUP
-    CONTROL         "2 마",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,18,80,10
+    CONTROL         "2 마 (특수 룰)",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,18,80,10
     CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,14,29,80,10
     CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,14,40,80,10
     CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,51,80,10
@@ -651,8 +651,8 @@ CAPTION "네트워크 게임 전적"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     CTEXT           "2 마",IDC_STATIC,27,10,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,10,25,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE1,43,25,45,27
+    RTEXT           "주공 :\n\n야당 :",IDC_STATIC,10,25,28,27
+    LTEXT           "0승/0패\n\n0승/0패",IDC_SCORE1,43,25,45,27
     CTEXT           "3 마",IDC_STATIC,117,9,25,10
     RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,100,25,28,27
     LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE2,133,25,45,27
@@ -1352,7 +1352,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.0.23 (2010-06-05)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.0.24 (2010-06-22)"
 END
 
 STRINGTABLE
@@ -1464,11 +1464,11 @@ BEGIN
     IDC_FRIEND              "프랜드 제도가 있는가를 선택합니다 - 3 마에서는 프랜드 제도를 두지 않는 것이 표준입니다"
     IDC_JOKERFRIEND         "조커를 프랜드로 부를 수 있는지 결정합니다 - 이 옵션이 세트되지 않으면 조커 프랜드를 부르는 것은 불가능합니다"
     IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
+    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
 END
 
 STRINGTABLE
 BEGIN
-    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
     IDC_ATTSCORETHROWNPOINTS 
                             "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
     IDC_HIDESCORE           "득점한 카드를 아무도 볼 수 없게 뒤집어 놓습니다 - 플레이어들은 득점한 카드를 보고는 지금까지 출현한 카드들에 대한 실마리를 잡을 수 없게 됩니다"
@@ -1485,11 +1485,11 @@ BEGIN
     IDC_PASSAGAIN           "출마 포기 한 사람이 다시 공약을 부를 수 있습니다 - 이 옵션이 세트되어 있으면 마지막으로 공약을 부른 사람 부터 한 바퀴 동안 모든 사람이 출마 포기를 선언한 경우에 당선됩니다."
     IDC_INITMIGHTY          "이 옵션을 세트 하면 첫 턴에 마이티를 낼 수 있습니다"
     IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
+    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
 END
 
 STRINGTABLE
 BEGIN
-    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
     IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
     IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
     IDC_INITJOKER           "이 옵션을 세트 하면 첫 턴에 조커를 낼 수 있습니다"
@@ -1504,12 +1504,12 @@ BEGIN
     IDC_DM_NOPOINT          "점수카드 수가 오른쪽의 숫자 이하인 경우 딜 미스 조건이 됩니다"
     IDC_DM_NUM              "딜 미스 조건에 해당되는 최대 점수카드 수를 결정합니다. 만약 왼쪽 옵션이 체크되어 있지 않으면 이 숫자는 무시됩니다."
     IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
+    IDC_DM_JOKERISREVERSEPOINT 
+                            "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
 END
 
 STRINGTABLE
 BEGIN
-    IDC_DM_JOKERISREVERSEPOINT 
-                            "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
     IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
@@ -1524,11 +1524,11 @@ BEGIN
     IDC_S_7                 "기본수를 기준으로 하는 계산법입니다\n여당승: (여당득점-기본수)"
     IDC_SS_0                "여당이 목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
     IDC_SS_1                "눈에는 눈 계산법의 변형된 버전으로, 여당이 기본 점수도 내지 못한 경우 더 큰 보상을 받는 방식입니다\n기본수 이상: (목표수-여당득점)\n기본수 미만: (목표수-기본수)+(기본수-여당득점)*2"
+    IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
 END
 
 STRINGTABLE
 BEGIN
-    IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
@@ -1548,11 +1548,12 @@ END
 STRINGTABLE
 BEGIN
     IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
+    IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
 END
 
 STRINGTABLE
 BEGIN
-    IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
+    IDC_COPYRIGHT2          "ver 3.21 by Puzzlet\nver 4.0 by Yoshi-TS4"
 END
 
 #endif    // Korean (Korea) resources
