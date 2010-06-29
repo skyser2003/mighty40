@@ -14,16 +14,14 @@ static char THIS_FILE[]=__FILE__;
 
 #define USE_PRESET
 
-static LPCTSTR asPreset[][2] = {
+static const LPCTSTR presetFileName = "rule.txt";
+static LPCTSTR asPreset[MAX_PRESET_RULE][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
 	{ _T("'1$1M&%)2K%,C5%"), _T("표준 4마") },
 	{ _T("&/$1M&#)2K%,C5%"), _T("표준 3마") },
 	{ _T(")0$1M&))2K%,C5%"), _T("표준 6마") },
 	{ _T("*0$1M&))2K%,C5%"), _T("표준 7마") },
 	{ _T("%*$1M&#)2K%,C5%"), _T("표준 2마") },
-	{ _T("(0$1M@IYb-],C]'"), _T("SNUCSE 5마") },
-	{ _T(")1$1M@IYb-]+C]'"), _T("SNUCSE 6마") },
-	{ _T("*1$1M@IYb-]+C]'"), _T("SNUCSE 7마") },
 	{ _T(")0$1M@I7BKU&D=%"), _T("관악 6마") },
 	{ _T("(1$1M&Z8B+].C]%"), _T("신촌 5마") },
 	{ _T("(/$1M@1%bb&+C]%"), _T("경기 5마") },
@@ -32,7 +30,58 @@ static LPCTSTR asPreset[][2] = {
 	{ _T(")0$1M&I7BKU.C=%"), _T("대전 6마") },
 	{ _T("(/$1M&*9P-%,C=%"), _T("광주 5마") },
 	{ _T("&/$1M&#%BK].C=%"), _T("제주 3마") },
+	{ _T("(0$1M@IYb-],C]'"), _T("SNUCSE 5마") },
+	{ _T(")1$1M@IYb-]+C]'"), _T("SNUCSE 6마") },
+	{ _T("*1$1M@IYb-]+C]'"), _T("SNUCSE 7마") },
 };
+static int presets = BASIC_PRESET;
+
+// 규칙을 로드한다.
+// 사용자가 추가한 기본 규칙이 저장되어 있는
+// 파일이 있다면, 이 파일로부터 규칙을 로드한다.
+void CRule::LoadPreset()
+{
+	CFile presetFile;
+	CFileException fileException;
+
+	char szBuffer;
+	LPCTSTR strBuffer = "";
+	try
+	{
+		CFileStatus status;
+		if ( CFile::GetStatus( presetFileName, status ) )
+		{
+			if ( !presetFile.Open( presetFileName, CFile::modeCreate |   
+					  CFile::modeReadWrite, &fileException ) )
+			{
+				TRACE( "Can't open file %s, error = %u\n",
+				   presetFileName, fileException.m_cause );
+			}
+			while ( presetFile.Read ( &szBuffer, 1 ) )
+			{
+				switch ( szBuffer )
+				{
+				case '\t':
+					asPreset[presets][0] = strBuffer;
+					strBuffer = "";
+					break;
+				case '\n':
+					asPreset[presets++][1] = strBuffer;
+					strBuffer = "";
+					break;
+				default:
+					strBuffer += szBuffer;
+				}
+			}
+		}
+	} catch(...) {
+	}
+}
+
+// 사용자가 추가한 규칙을 기본 규칙이 있는 파일로 저장한다.
+void CRule::SavePreset()
+{
+}
 
 // 미리 정의된 표준 룰로 세트
 // (리턴값은 그 룰의 이름, NULL 이면 해당 룰이 없음)
@@ -41,7 +90,7 @@ static LPCTSTR asPreset[][2] = {
 LPCTSTR CRule::Preset( int nRule )
 {
 	nRule--;
-	if ( nRule < 0 || nRule >= sizeof(asPreset)/sizeof(LPCTSTR[2]) ) {
+	if ( nRule < 0 || nRule >= presets ) {
 		return 0;
 	}
 

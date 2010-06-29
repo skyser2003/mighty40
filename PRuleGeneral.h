@@ -51,13 +51,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-//	afx_msg void OnSetfocus2MA();
 	void setFriendCheckbox(bool enable);
 
 private:
 	CButton m_btFriend;
 	CButton m_btJokerFriend;
 	CButton m_btShowFriend;
+	CButton m_btFriendGetsBeginer;
 public:
 	afx_msg void OnClicked2MA();
 	afx_msg void OnClicked3MA();

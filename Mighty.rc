@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.24"
+            VALUE "FileVersion", "4.0.0.25"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.24"
+            VALUE "ProductVersion", "4.0.0.25"
         END
     END
     BLOCK "VarFileInfo"
@@ -411,12 +411,14 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "게임 규칙"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",IDC_STATIC,22,13,210,35
-    LTEXT           "현재 선택된 기본 규칙",IDC_STATIC,17,59,115,8
-    COMBOBOX        IDC_RULEPRESET,17,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "자세히(&D)...",IDC_SHOWRULE,118,73,50,14
-    LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,17,99,148,8
-    EDITTEXT        IDC_RULESTRING,17,113,75,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",IDC_STATIC,20,13,210,35
+    LTEXT           "현재 선택된 기본 규칙",IDC_STATIC,16,59,115,8
+    COMBOBOX        IDC_RULEPRESET,16,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "자세히(&D)...",IDC_SHOWRULE,117,73,50,14
+    LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,16,99,130,8
+    EDITTEXT        IDC_RULESTRING,16,113,75,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "규칙 추가(A)",IDC_ADDRULE,157,104,60,14
+    PUSHBUTTON      "규칙 제거(&R)",IDC_REMOVERULE,157,121,60,14
 END
 
 IDD_OPTION_AI DIALOGEX 0, 0, 239, 159
@@ -426,36 +428,36 @@ FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     LTEXT           "이름",IDC_STATIC,25,24,35,8
     LTEXT           "인공지능 확장 파일 (DLL)",IDC_STATIC,79,24,81,8
-    LTEXT           "1 :",IDC_STATIC,7,42,9,8
-    EDITTEXT        IDC_PLAYERNAME0,21,39,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH0,77,42,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE0,143,39,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING0,196,39,36,14
-    LTEXT           "2 :",IDC_STATIC,7,60,9,8
-    EDITTEXT        IDC_PLAYERNAME1,21,57,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH1,77,60,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE1,143,57,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING1,196,57,36,14
-    LTEXT           "3 :",IDC_STATIC,7,78,9,8
-    EDITTEXT        IDC_PLAYERNAME2,21,75,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH2,77,78,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE2,143,75,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING2,196,75,36,14
-    LTEXT           "4 :",IDC_STATIC,7,96,9,8
-    EDITTEXT        IDC_PLAYERNAME3,21,93,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH3,77,96,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE3,143,93,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING3,196,93,36,14
-    LTEXT           "5 :",IDC_STATIC,7,114,9,8
-    EDITTEXT        IDC_PLAYERNAME4,21,111,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH4,77,114,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE4,143,111,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING4,196,111,36,14
-    LTEXT           "6 :",IDC_STATIC,7,132,9,8
-    EDITTEXT        IDC_PLAYERNAME5,21,129,53,14,ES_AUTOHSCROLL
-    LTEXT           "path",IDC_AIPATH5,77,132,64,8
-    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE5,143,129,43,14
-    PUSHBUTTON      "설정...",IDC_AISETTING5,196,129,36,14
+    LTEXT           "1 :",IDC_STATIC,7,43,9,8
+    EDITTEXT        IDC_PLAYERNAME0,21,40,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH0,77,43,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE0,143,40,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING0,196,40,36,14
+    LTEXT           "2 :",IDC_STATIC,7,61,9,8
+    EDITTEXT        IDC_PLAYERNAME1,21,58,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH1,77,61,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE1,143,58,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING1,196,58,36,14
+    LTEXT           "3 :",IDC_STATIC,7,79,9,8
+    EDITTEXT        IDC_PLAYERNAME2,21,76,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH2,77,79,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE2,143,76,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING2,196,76,36,14
+    LTEXT           "4 :",IDC_STATIC,7,97,9,8
+    EDITTEXT        IDC_PLAYERNAME3,21,94,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH3,77,97,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE3,143,94,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING3,196,94,36,14
+    LTEXT           "5 :",IDC_STATIC,7,115,9,8
+    EDITTEXT        IDC_PLAYERNAME4,21,112,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH4,77,115,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE4,143,112,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING4,196,112,36,14
+    LTEXT           "6 :",IDC_STATIC,7,133,9,8
+    EDITTEXT        IDC_PLAYERNAME5,21,130,53,14,ES_AUTOHSCROLL
+    LTEXT           "path",IDC_AIPATH5,77,133,64,8
+    PUSHBUTTON      "찾아보기...",IDC_AIBROWSE5,143,130,43,14
+    PUSHBUTTON      "설정...",IDC_AISETTING5,196,130,36,14
     PUSHBUTTON      "DLL 경로 초기화",IDC_RESETPATH,172,7,60,14
 END
 
@@ -479,15 +481,15 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "통신"
 FONT 9, "굴림", 0, 0, 0x0
 BEGIN
-    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,16,53,189,8
-    EDITTEXT        IDC_PORT,17,69,90,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,16,93,98,8
-    EDITTEXT        IDC_ADDRESS,17,109,90,14,ES_AUTOHSCROLL
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,15,52,189,8
+    EDITTEXT        IDC_PORT,16,68,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,15,92,98,8
+    EDITTEXT        IDC_ADDRESS,16,108,90,14,ES_AUTOHSCROLL
     PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,150,18,70,14
-    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,121,77,103,51
-    LTEXT           "짧게",IDC_STATIC,127,91,27,8
-    RTEXT           "길게",IDC_STATIC,194,91,24,8
-    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,127,100,90,21
+    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,122,78,103,51
+    LTEXT           "짧게",IDC_STATIC,128,92,27,8
+    RTEXT           "길게",IDC_STATIC,195,92,24,8
+    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,128,101,90,21
     CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,20,62,10
 END
 
@@ -1352,7 +1354,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.0.24 (2010-06-22)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.0.25 (2010-06-29)"
 END
 
 STRINGTABLE
@@ -1554,6 +1556,8 @@ END
 STRINGTABLE
 BEGIN
     IDC_COPYRIGHT2          "ver 3.21 by Puzzlet\nver 4.0 by Yoshi-TS4"
+    IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다."
+    IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다. 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다."
 END
 
 #endif    // Korean (Korea) resources

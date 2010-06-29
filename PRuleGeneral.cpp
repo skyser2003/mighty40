@@ -50,6 +50,7 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_FRIEND, m_btFriend);
 	DDX_Control(pDX, IDC_JOKERFRIEND, m_btJokerFriend);
 	DDX_Control(pDX, IDC_SHOWFRIEND, m_btShowFriend);
+	DDX_Control(pDX, IDC_FRIENDGETSBEGINER, m_btFriendGetsBeginer);
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
@@ -119,4 +120,5 @@ void PRuleGeneral::setFriendCheckbox(bool enable)
 	m_btFriend.EnableWindow(enable);
 	m_btJokerFriend.EnableWindow(enable);
 	m_btShowFriend.EnableWindow(enable);
+	m_btFriendGetsBeginer.EnableWindow(enable);
 }

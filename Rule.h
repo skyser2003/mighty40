@@ -11,11 +11,21 @@
 
 #define STANDARD_RULE_STRING _T("(0$1M&))2O%,C5%")
 
+#define BASIC_PRESET 17		// 기본 적인 PRESET 개수
+#define MAX_PRESET_RULE 40	// PRESET 최대 개수
+
 // 마이티 게임 규칙
 
 struct CRule  
 {
 	CRule() { Preset( 1 ); }
+
+	// 규칙을 로드한다.
+	// 사용자가 추가한 기본 규칙이 저장되어 있는
+	// 파일이 있다면, 이 파일로부터 규칙을 로드한다.
+	static void LoadPreset();
+	// 사용자가 추가한 규칙을 기본 규칙이 있는 파일로 저장한다.
+	static void SavePreset();
 
 	// 미리 정의된 표준 룰로 세트
 	// (리턴값은 그 룰의 이름, NULL 이면 해당 룰이 없음)

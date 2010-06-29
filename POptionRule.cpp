@@ -23,8 +23,8 @@ POptionRule::POptionRule() : CPropertyPage(POptionRule::IDD)
 	//{{AFX_DATA_INIT(POptionRule)
 	m_sRuleString = Mo()->rule.Encode();
 	m_nRulePreset = Mo()->nPreset;
-	//}}AFX_DATA_INIT
 	m_sCustom = Mo()->sCustom;
+	//}}AFX_DATA_INIT
 }
 
 POptionRule::~POptionRule()
@@ -37,7 +37,11 @@ void POptionRule::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(POptionRule)
 	DDX_Text(pDX, IDC_RULESTRING, m_sRuleString);
 	DDX_CBIndex(pDX, IDC_RULEPRESET, m_nRulePreset);
+	DDX_Control(pDX, IDC_ADDRULE, m_btAddRule);
+	DDX_Control(pDX, IDC_REMOVERULE, m_btRemoveRule);
 	//}}AFX_DATA_MAP
+	
+	m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESET);
 }
 
 
@@ -45,6 +49,8 @@ BEGIN_MESSAGE_MAP(POptionRule, CPropertyPage)
 	//{{AFX_MSG_MAP(POptionRule)
 	ON_BN_CLICKED(IDC_SHOWRULE, OnShowrule)
 	ON_CBN_SELCHANGE(IDC_RULEPRESET, OnSelchangeRulepreset)
+	ON_BN_CLICKED(IDC_ADDRULE, &POptionRule::OnClickedAddrule)
+	ON_BN_CLICKED(IDC_REMOVERULE, &POptionRule::OnClickedRemoverule)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -88,10 +94,13 @@ void POptionRule::OnShowrule()
 
 void POptionRule::OnSelchangeRulepreset() 
 {
+	
 	// TODO: Add your control notification handler code here
 	UpdateData( TRUE );
 
 	if ( m_nRulePreset > 0 ) {
+
+		m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESET);
 
 		CRule rule; rule.Preset( m_nRulePreset );
 		m_sRuleString = rule.Encode();
@@ -112,4 +121,16 @@ void POptionRule::OnOK()
 	Mo()->nPreset = m_nRulePreset;
 
 	CPropertyPage::OnOK();
+}
+
+
+void POptionRule::OnClickedAddrule()
+{
+	// TODO: Add your control notification handler code here
+}
+
+
+void POptionRule::OnClickedRemoverule()
+{
+	// TODO: Add your control notification handler code here
 }

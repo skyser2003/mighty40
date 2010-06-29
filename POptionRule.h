@@ -43,10 +43,15 @@ protected:
 	//{{AFX_MSG(POptionRule)
 	afx_msg void OnShowrule();
 	afx_msg void OnSelchangeRulepreset();
+	afx_msg void OnClickedAddrule();
+	afx_msg void OnClickedRemoverule();
 	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+private:
+	CButton m_btAddRule;
+	CButton m_btRemoveRule;
 };
 
 //{{AFX_INSERT_LOCATION}}
