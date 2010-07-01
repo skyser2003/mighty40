@@ -184,6 +184,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="D2MA.cpp" />
+    <ClCompile Include="DAddRule.cpp" />
     <ClCompile Include="DBackSelect.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -388,6 +389,7 @@
     <ClInclude Include="BoardWrap.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="D2MA.h" />
+    <ClInclude Include="DAddRule.h" />
     <ClInclude Include="DBackSelect.h" />
     <ClInclude Include="DConnect.h" />
     <ClInclude Include="DElection.h" />

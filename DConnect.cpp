@@ -775,13 +775,12 @@ void DConnect::SendToAll( CMsg* pMsg, long uidExcept )
 CMsg* DConnect::CreateStateMsg()
 {
 	int i;
-	CString sFormat = _T("lls");
+	CString sFormat = _T("lss");
 	for ( i = 0; i < m_rule.nPlayerNum; i++ )
 		sFormat += _T("sslllll");
 
 	CMsg* k = new CMsg( sFormat,
-		CMsg::mmPrepare, Mo()->nPreset,
-		Mo()->nPreset ? m_sRule : m_rule.Encode(),
+		CMsg::mmPrepare, m_rule.Encode(), m_sRule,
 		m_aInfo[0].sName, m_aInfo[0].sInfo, m_aInfo[0].bComputer ? 1 : 0,
 			m_aInfo[0].dfa[0], m_aInfo[0].dfa[1], m_aInfo[0].dfa[2], m_aInfo[0].dfa[3],
 		m_aInfo[1].sName, m_aInfo[1].sInfo, m_aInfo[1].bComputer ? 1 : 0,
@@ -1056,17 +1055,16 @@ bool DConnect::ReceiveUIDMsg( CMsg* pMsg )
 // mmPrepare 메시지를 수신
 bool DConnect::ReceiveStateMsg( CMsg* pMsg )
 {
-	long nPreset;
+	CString sPreset;
 	CString sRule;
 
 	if ( !pMsg->PumpLong( lDummy )
-		|| !pMsg->PumpLong( nPreset )
-		|| !pMsg->PumpString( sRule ) ) return false;
+		|| !pMsg->PumpString( sRule )
+		|| !pMsg->PumpString( sPreset ) ) return false;
 
 	// 규칙
-	if ( nPreset ) m_rule.Preset( nPreset );
-	else m_rule.Decode( sRule );
-	m_sRule = nPreset ? sRule : _T("사용자정의");
+	m_rule.Decode( sRule );
+	m_sRule = sPreset;
 
 	// 규칙 정보가 등록되지 않았다면 등록한다
 	if ( !FindHotspot( (LPVOID)500 ) ) RegisterRule();

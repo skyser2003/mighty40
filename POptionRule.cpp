@@ -5,6 +5,7 @@
 #include "Mighty.h"
 #include "POptionRule.h"
 
+#include "DAddRule.h"
 #include "DRule.h"
 
 #ifdef _DEBUG
@@ -39,9 +40,10 @@ void POptionRule::DoDataExchange(CDataExchange* pDX)
 	DDX_CBIndex(pDX, IDC_RULEPRESET, m_nRulePreset);
 	DDX_Control(pDX, IDC_ADDRULE, m_btAddRule);
 	DDX_Control(pDX, IDC_REMOVERULE, m_btRemoveRule);
+	DDX_Control(pDX, IDC_RULEPRESET, m_cbRulePreset);
 	//}}AFX_DATA_MAP
-	
-	m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESET);
+
+	m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESETS);
 }
 
 
@@ -63,14 +65,13 @@ BOOL POptionRule::OnInitDialog()
 
 	CRule r;
 	LPCTSTR s = _T("사용자정의");
-	CComboBox* pBox = (CComboBox*)GetDlgItem(IDC_RULEPRESET);
 	int i = 1;
 	do {
-		pBox->AddString( s );
+		m_cbRulePreset.AddString( s );
 		s = r.Preset(i++);
 	} while ( s );
 
-	pBox->SetCurSel( m_nRulePreset );
+		m_cbRulePreset.SetCurSel( m_nRulePreset );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -78,7 +79,6 @@ BOOL POptionRule::OnInitDialog()
 
 void POptionRule::OnShowrule() 
 {
-	// TODO: Add your control notification handler code here
 	DRule dlg(m_sRuleString);
 	if ( dlg.DoModal() == IDOK ) {
 
@@ -92,15 +92,14 @@ void POptionRule::OnShowrule()
 	}
 }
 
-void POptionRule::OnSelchangeRulepreset() 
+void POptionRule::OnSelchangeRulepreset()
 {
 	
-	// TODO: Add your control notification handler code here
 	UpdateData( TRUE );
 
 	if ( m_nRulePreset > 0 ) {
 
-		m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESET);
+		m_btRemoveRule.EnableWindow(m_nRulePreset > BASIC_PRESETS);
 
 		CRule rule; rule.Preset( m_nRulePreset );
 		m_sRuleString = rule.Encode();
@@ -112,10 +111,8 @@ void POptionRule::OnSelchangeRulepreset()
 	UpdateData( FALSE );
 }
 
-void POptionRule::OnOK() 
+void POptionRule::OnOK()
 {
-	// TODO: Add your specialized code here and/or call the base class
-
 	Mo()->sCustom = m_sCustom;
 	Mo()->rule.Decode( m_sRuleString );
 	Mo()->nPreset = m_nRulePreset;
@@ -126,11 +123,31 @@ void POptionRule::OnOK()
 
 void POptionRule::OnClickedAddrule()
 {
-	// TODO: Add your control notification handler code here
-}
+	DAddRule dlg;
+	CString rulename = dlg.GetStr(_T("규칙이름"));
+	if ( rulename != "" )
+	{
+		CRule::AddPreset( m_sRuleString, rulename );
 
+		m_cbRulePreset.AddString( rulename );
+		m_cbRulePreset.SetCurSel( m_cbRulePreset.GetCount() - 1 );
+		UpdateData();
+		m_btRemoveRule.EnableWindow( m_nRulePreset > BASIC_PRESETS );
+	}
+}
 
 void POptionRule::OnClickedRemoverule()
 {
-	// TODO: Add your control notification handler code here
+	CString msgboxstr = "\'";
+	msgboxstr += CRule::GetName ( m_nRulePreset - 1 ).Trim();
+	msgboxstr += "\' 규칙을 삭제하시겠습니까?";
+	if ( AfxMessageBox( msgboxstr,
+					MB_YESNO | MB_ICONQUESTION )
+		== IDYES ) {
+		CRule::RemovePreset( m_nRulePreset - BASIC_PRESETS - 1 );
+		m_cbRulePreset.DeleteString( m_nRulePreset );
+		m_cbRulePreset.SetCurSel( m_nRulePreset - 1 );
+		UpdateData();
+		m_btRemoveRule.EnableWindow( m_nRulePreset > BASIC_PRESETS );
+	}
 }

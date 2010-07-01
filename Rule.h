@@ -11,8 +11,7 @@
 
 #define STANDARD_RULE_STRING _T("(0$1M&))2O%,C5%")
 
-#define BASIC_PRESET 17		// 기본 적인 PRESET 개수
-#define MAX_PRESET_RULE 40	// PRESET 최대 개수
+#define BASIC_PRESETS 17
 
 // 마이티 게임 규칙
 
@@ -26,6 +25,10 @@ struct CRule
 	static void LoadPreset();
 	// 사용자가 추가한 규칙을 기본 규칙이 있는 파일로 저장한다.
 	static void SavePreset();
+	// 기본 규칙 목록에 사용자 정의 규칙을 추가한다.
+	static void AddPreset( CString ruleString, CString ruleName );
+	// 기본 규칙 목록에서 사용자 정의 규칙을 제거한다.
+	static void RemovePreset( int rulenum );
 
 	// 미리 정의된 표준 룰로 세트
 	// (리턴값은 그 룰의 이름, NULL 이면 해당 룰이 없음)
@@ -33,6 +36,8 @@ struct CRule
 	// 4 : 표준 6마
 	LPCTSTR Preset( int nRule );
 
+	// 룰의 이름을 리턴
+	static CString GetName( int nRule );
 	// 현재 룰을 스트링으로 인코드해서 리턴
 	CString Encode() const;
 	// 스트링에서 새로운 룰을 디코드함

@@ -52,6 +52,7 @@ protected:
 private:
 	CButton m_btAddRule;
 	CButton m_btRemoveRule;
+	CComboBox m_cbRulePreset;
 };
 
 //{{AFX_INSERT_LOCATION}}

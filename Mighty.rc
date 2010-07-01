@@ -127,12 +127,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.25"
+            VALUE "FileVersion", "4.0.0.26"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.25"
+            VALUE "ProductVersion", "4.0.0.26"
         END
     END
     BLOCK "VarFileInfo"
@@ -418,7 +418,7 @@ BEGIN
     LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,16,99,130,8
     EDITTEXT        IDC_RULESTRING,16,113,75,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
     PUSHBUTTON      "규칙 추가(A)",IDC_ADDRULE,157,104,60,14
-    PUSHBUTTON      "규칙 제거(&R)",IDC_REMOVERULE,157,121,60,14
+    PUSHBUTTON      "규칙 삭제(&R)",IDC_REMOVERULE,157,121,60,14
 END
 
 IDD_OPTION_AI DIALOGEX 0, 0, 239, 159
@@ -483,7 +483,7 @@ FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,15,52,189,8
     EDITTEXT        IDC_PORT,16,68,90,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "바인드할 서버 주소(firewall)",IDC_STATIC,15,92,98,8
+    LTEXT           "바인드할 서버 주소",IDC_STATIC,15,92,90,8
     EDITTEXT        IDC_ADDRESS,16,108,90,14,ES_AUTOHSCROLL
     PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,150,18,70,14
     GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,122,78,103,51
@@ -683,6 +683,16 @@ BEGIN
     CONTROL         "",IDC_LOG,"RichEdit20W",WS_BORDER | WS_TABSTOP | 0x800,7,7,186,185
 END
 
+IDD_ADDRULE DIALOGEX 0, 0, 159, 71
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "추가할 규칙의 이름을 정하세요"
+FONT 9, "굴림", 400, 0, 0x81
+BEGIN
+    EDITTEXT        IDC_NEWRULENAME,15,15,129,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "확인",IDOK,15,40,50,14
+    PUSHBUTTON      "취소",IDCANCEL,94,40,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -866,6 +876,14 @@ BEGIN
         RIGHTMARGIN, 193
         TOPMARGIN, 7
         BOTTOMMARGIN, 192
+    END
+
+    IDD_ADDRULE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1354,7 +1372,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.0.25 (2010-06-29)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.26 (2010-07-01)"
 END
 
 STRINGTABLE
@@ -1437,7 +1455,7 @@ BEGIN
     IDC_DELAYONECARD        "하나의 카드를 냈을 때 그 카드를 확인하도록 지연해 주는 시간입니다 - AI 들은 최소한 이 시간만큼 기다린 후에 다음 카드를 냅니다"
     IDC_DELAYONETURN        "기본적으로, 한 턴에서 모든 사람이 카드를 냈을 때 결과를 판단할 수 있도록 대기해 주는 시간입니다 - 이 값은 여러가지 다른 대기 시간에서도 사용되므로 전체적인 게임 속도를 조절할 수 있습니다"
     IDC_SHOWDEALING         "카드를 섞고 나눠주는 에니메이션을 보여줍니다"
-    IDC_RULEPRESET          "미리 정의된 표준 규칙들"
+    IDC_RULEPRESET          "미리 정의된 표준 규칙들 입니다. 사용자가 직접 추가할 수도 있습니다."
     IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
 END
 
@@ -1455,7 +1473,7 @@ STRINGTABLE
 BEGIN
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
-    IDC_ADDRESS             "ㅓ"
+    IDC_ADDRESS             "서버가 될 때 접속을 허용할 주소 범위를 지정합니다."
     IDC_RESETSCORE          "지금까지의 기록을 지웁니다"
     IDC_2MA                 "두 사람이 하는 마이티입니다 - 전체 덱에서 각 사람이 2장 중 1장을 골라 총 13장씩 가진 후 자신이 이길 턴 수로 공약을 부르게 됩니다."
     IDC_3MA                 "세 사람이 하는 마이티입니다 - 프랜드 제도가 없는 것이 표준이고, 20 장의 카드 ('2','4','5','6','7') 를 제외한 덱을 사용합니다"

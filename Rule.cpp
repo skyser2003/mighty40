@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "Rule.h"
 #include "card.h"
+#include <vector>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -12,10 +13,8 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-#define USE_PRESET
-
 static const LPCTSTR presetFileName = "rule.txt";
-static LPCTSTR asPreset[MAX_PRESET_RULE][2] = {
+static LPCTSTR asPreset[][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
 	{ _T("'1$1M&%)2K%,C5%"), _T("표준 4마") },
 	{ _T("&/$1M&#)2K%,C5%"), _T("표준 3마") },
@@ -34,7 +33,7 @@ static LPCTSTR asPreset[MAX_PRESET_RULE][2] = {
 	{ _T(")1$1M@IYb-]+C]'"), _T("SNUCSE 6마") },
 	{ _T("*1$1M@IYb-]+C]'"), _T("SNUCSE 7마") },
 };
-static int presets = BASIC_PRESET;
+static std::vector<CString> asUserPreset;
 
 // 규칙을 로드한다.
 // 사용자가 추가한 기본 규칙이 저장되어 있는
@@ -45,118 +44,110 @@ void CRule::LoadPreset()
 	CFileException fileException;
 
 	char szBuffer;
-	LPCTSTR strBuffer = "";
-	try
+	bool change = true;
+	CFileStatus status;
+	if ( CFile::GetStatus( presetFileName, status ) )
 	{
-		CFileStatus status;
-		if ( CFile::GetStatus( presetFileName, status ) )
+		try
 		{
-			if ( !presetFile.Open( presetFileName, CFile::modeCreate |   
-					  CFile::modeReadWrite, &fileException ) )
+			if ( !presetFile.Open( presetFileName, 
+				CFile::modeRead, &fileException ) )
 			{
 				TRACE( "Can't open file %s, error = %u\n",
 				   presetFileName, fileException.m_cause );
 			}
-			while ( presetFile.Read ( &szBuffer, 1 ) )
+			else
 			{
-				switch ( szBuffer )
+				while ( presetFile.Read ( &szBuffer, 1 ) )
 				{
-				case '\t':
-					asPreset[presets][0] = strBuffer;
-					strBuffer = "";
-					break;
-				case '\n':
-					asPreset[presets++][1] = strBuffer;
-					strBuffer = "";
-					break;
-				default:
-					strBuffer += szBuffer;
+					switch ( szBuffer )
+					{
+					case '\t':
+					case '\n':
+						change = true;
+						break;
+					default:
+						if ( change )
+						{
+							asUserPreset.push_back("");
+							change = false;
+						}
+						asUserPreset.back() += szBuffer;
+					}
 				}
 			}
-		}
-	} catch(...) {
+		} catch(...) { }
+		presetFile.Close();
 	}
 }
-
 // 사용자가 추가한 규칙을 기본 규칙이 있는 파일로 저장한다.
 void CRule::SavePreset()
 {
+	CFile presetFile;
+	CFileException fileException;
+
+	CString line;
+	CFileStatus status;
+	try
+	{
+		// Open the file with the Create flag
+		if ( !presetFile.Open( presetFileName, 
+						CFile::modeCreate | CFile::modeWrite, &fileException ) )
+		{
+			TRACE( "Can't open file %s, error = %u\n",
+				presetFileName, fileException.m_cause );
+			return;
+		}
+		else
+		{
+			for ( int i = 0; i < (int)asUserPreset.size() / 2; i++ )
+			{
+				line = asUserPreset[i * 2] + '\t' + asUserPreset[i * 2 + 1] + "\r\n";
+				presetFile.Write(line, line.GetLength());
+			}
+		}
+	} catch(...) { }
+	presetFile.Close();
+	return;
+}
+// 기본 규칙 목록에 사용자 정의 규칙을 추가한다.
+void CRule::AddPreset( CString ruleString, CString ruleName )
+{
+	asUserPreset.push_back( ruleString );
+	asUserPreset.push_back( ruleName );
+	SavePreset();
+}
+// 기본 규칙 목록에서 사용자 정의 규칙을 제거한다.
+void CRule::RemovePreset( int rulenum )
+{
+	if ( rulenum * 2 + 1 >= (int)asUserPreset.size() ) return;
+	asUserPreset.erase( asUserPreset.begin() + rulenum * 2 + 1 );
+	asUserPreset.erase( asUserPreset.begin() + rulenum * 2 );
+	SavePreset();
 }
 
 // 미리 정의된 표준 룰로 세트
 // (리턴값은 그 룰의 이름, NULL 이면 해당 룰이 없음)
-// 1 : 표준 5마  2 : 표준 4마  3 : 표준 3마
-// 4 : 표준 6마
+// 1 : 표준 5마  2 : 표준 4마  3 : 표준 3마  4 : 표준 6마
 LPCTSTR CRule::Preset( int nRule )
 {
 	nRule--;
-	if ( nRule < 0 || nRule >= presets ) {
+	if ( nRule < 0 || nRule >= (int)(BASIC_PRESETS + asUserPreset.size() / 2)) {
 		return 0;
 	}
 
-#ifdef USE_PRESET
-	Decode( asPreset[nRule][0] );
-#else
-	nPlayerNum = 5;
-	bHideScore = false;
-	bFriend = true;
-	bJokerFriend = true;
-	bShowFriend = false;
-	bAttScoreThrownPoints = false;
-	bFriendGetsBeginer = false;
-	nMinScore = 13;
-	bHighScore = false;
-	bBeginerPass = true;
-	bRaise2ForKirudaChange = true;
-	bPassAgain = false;
-	bNoKirudaAdvantage = false;
-	bNoKirudaAlways = false;
-	bInitMighty = true;
-	bInitMightyEffect = true;
-	bLastMighty = true;
-	bLastMightyEffect = true;
-	bOverrideMighty = false;
-	bInitJoker = false;
-	bInitJokerEffect = false;
-	bLastJoker = false;
-	bLastJokerEffect = false;
-	bInitKiruda = true;
-	bInitBeginKiruda = false;
-	bInitJokercallEffect = true;
-	bJokercallJokerEffect = false;
-	bDM_NoPoint = true;
-	bDM_OnlyOne = false;
-	bDM_AllPoint = false;
-	bDM_JokerIsReversePoint = false;
-	bDM_OnlyMighty = false;
-	bDM_Only10 = true;
-	bDM_OneEyedJack = false;
-	bDM_Duplicate = false;
-	bS_Use20 = false;
-	bs_Use40 = true;
-	bs_Call = false;
-	bS_Efe = false;
-	bS_MEfe = false;
-	bS_Base10 = false;
-	bS_Base13 = false;
-	bS_BaseM = false;
-	bSS_Efe = true;
-	bSS_Tft = false;
-	bS_DoubleForRun = true;
-	bS_DoubleForDeclaredRun = false;
-	bS_DoubleForReverseRun = false;
-	bS_DoubleForNoKiruda = true;
-	bS_DoubleForNoFriend = true;
-	bS_StaticRun = false;
-	bS_AGoalReverse = true;
-	bS_A11Reverse = false;
-	bS_AMReverse = false;
-	nMighty = (int)CCard( SPADE, ACE);
-	nAlterMighty = (int)CCard( DIAMOND, ACE );
-	nJokercall = (int)CCard( CLOVER, 3 );
-	nAlterJokercall = (int)CCard( SPADE, 3 );
-#endif
-	return asPreset[nRule][1];
+	if(nRule < BASIC_PRESETS)
+	{
+		// 원래 제공되던 규칙인 경우
+		Decode( asPreset[nRule][0] );
+		return asPreset[nRule][1];
+	}
+	else
+	{
+		// 유저가 추가한 기본 규칙인 경우
+		Decode( asUserPreset[(nRule - BASIC_PRESETS) * 2] );
+		return asUserPreset[(nRule - BASIC_PRESETS) * 2 + 1];
+	}
 }
 
 // 인코드될 문자중 가장 작은 문자
@@ -173,7 +164,7 @@ static void PushInt( TCHAR* p, int n )
 static void PopInt( const TCHAR* p, int& n )
 {
 	int np = (int)*p;
-	ASSERT( np >= BASE_CHAR && np < 99 );
+	ASSERT( np >= BASE_CHAR && np < 127 );	//v4.0
 	n = np - BASE_CHAR;
 }
 
@@ -201,6 +192,16 @@ static void PopBool( const TCHAR* p, int nPos, bool& bValue )
 	{	PushInt( p++, VALUE ); n = 0; }
 #define SYNC_RULE_BOOL( VALUE ) \
 	{	PushBool( p, n++, VALUE ); if ( n == 6 ) p++, n=0; }
+
+CString CRule::GetName( int nRule )
+{
+	if ( nRule < 0 || nRule >= (int)(BASIC_PRESETS + asUserPreset.size() / 2)) {
+		return "사용자정의";
+	}
+
+	if ( nRule < BASIC_PRESETS ) return asPreset[nRule][1];
+	else return asUserPreset[(nRule - BASIC_PRESETS) * 2 + 1];
+}
 
 // 현재 룰을 스트링으로 인코드해서 리턴
 CString CRule::Encode() const

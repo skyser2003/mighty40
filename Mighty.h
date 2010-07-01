@@ -20,7 +20,7 @@
 #define MAX_SCORE 20
 #define HIGHSCORE_MAXLIMIT 25
 #define DECK_SIZE 53
-#define MIGHTY_VERSION 39
+#define MIGHTY_VERSION 40
 
 #define BASE_MONEY 100	// 1 인당 기본 점수 단위
 #define MONEY_UNIT 10	// BASE_MONEY 1 당 실제 돈

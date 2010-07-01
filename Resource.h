@@ -316,12 +316,14 @@
 #define IDC_COPYRIGHT2                  1185
 #define IDC_ADDRULE                     1186
 #define IDC_REMOVERULE                  1187
-#define IDC_BUTTON2                     1188
+#define IDC_EDIT1                       1189
+#define IDC_NEWRULENAME                 1191
 #define IDD_SETTING                     10000
 #define IDC_FACTOR                      10000
 #define IDC_USESIMULATION               10001
 #define IDD_DETAILSCORE                 10001
 #define IDC_GOALMODE                    10002
+#define IDD_ADDRULE                     10002
 #define ID_GAME_EXIT                    32771
 #define ID_APP_OPTION                   32772
 #define ID_APP_SCOREBOARD               32773
@@ -333,9 +335,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        2001
+#define _APS_NEXT_RESOURCE_VALUE        2002
 #define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1188
+#define _APS_NEXT_CONTROL_VALUE         1192
 #define _APS_NEXT_SYMED_VALUE           2000
 #endif
 #endif

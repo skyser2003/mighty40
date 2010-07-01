@@ -151,6 +151,9 @@ BOOL CMightyApp::InitInstance()
 	//  of your final executable, you should remove from the following
 	//  the specific initialization routines you do not need.
 
+	// rule.txt에서 사용자 정의 기본 규칙을 로드한다.
+	CRule::LoadPreset();
+
 	// Change the registry key under which our settings are stored.
 	// TODO: You should modify this string to be something appropriate
 	// such as the name of your company or organization.

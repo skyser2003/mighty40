@@ -125,7 +125,7 @@ struct COption
 	bool bObserver;
 	// 서버가 될 때 포트 번호
 	int nPort;
-	// 서버가 될 때 주소 (일부firewall)
+	// 서버가 될 때 바인드 할 주소
 	CString sAddress;
 	// 이전에 접속했던 주소 기억
 #	define ADDRESSBOOK_SIZE		4
