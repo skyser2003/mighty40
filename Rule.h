@@ -36,6 +36,7 @@ struct CRule
 	// 4 : 표준 6마
 	LPCTSTR Preset( int nRule );
 
+	static int GetPresetCount();
 	// 룰의 이름을 리턴
 	static CString GetName( int nRule );
 	// 현재 룰을 스트링으로 인코드해서 리턴

@@ -150,6 +150,10 @@ LPCTSTR CRule::Preset( int nRule )
 	}
 }
 
+int CRule::GetPresetCount()
+{
+	return BASIC_PRESETS + asUserPreset.size() / 2;
+}
 // 인코드될 문자중 가장 작은 문자
 #define BASE_CHAR  35
 

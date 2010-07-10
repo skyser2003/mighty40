@@ -164,6 +164,7 @@ BOOL CMightyApp::InitInstance()
 #endif
 	Mo()->Load();
 
+	if(Mo()->nPreset > CRule::GetPresetCount()) Mo()->nPreset = 0;
 	// To create the main window, this code creates a new frame window
 	// object and then sets it as the application's main window object.
 

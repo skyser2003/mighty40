@@ -194,7 +194,7 @@ lblMightyBegin:
 					}
 
 					bKilled = KillTest( nMaster, &cKill, &nDeadID[j] );
-					if ( !bKilled ) lDead.AddTail( cKill );
+					lDead.AddTail( cKill );
 
 					NOTIFY_ALL( OnKillOneFromSix( cKill, bKilled, EVENT ) );
 

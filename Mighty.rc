@@ -80,8 +80,6 @@ BEGIN
         MENUITEM "점수판 보기(&V)",                  ID_APP_SCOREBOARD
         MENUITEM "옵션(&O)...",                   ID_APP_OPTION
         MENUITEM SEPARATOR
-        MENUITEM "대화 로그 보기(&D)",                ID_LOG_DIALOG
-        MENUITEM SEPARATOR
         MENUITEM "초기 메뉴로(&I)",                  ID_GAME_EXIT
         MENUITEM "종료(&X)",                      ID_APP_EXIT
     END
@@ -672,15 +670,6 @@ BEGIN
     LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE6,223,81,45,27
     PUSHBUTTON      "확인",IDOK,163,118,50,14
     PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,219,118,50,14
-END
-
-IDD_LOG DIALOGEX 0, 0, 200, 199
-STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
-EXSTYLE WS_EX_TOOLWINDOW
-CAPTION "대화 로그"
-FONT 9, "굴림", 400, 0, 0x81
-BEGIN
-    CONTROL         "",IDC_LOG,"RichEdit20W",WS_BORDER | WS_TABSTOP | 0x800,7,7,186,185
 END
 
 IDD_ADDRULE DIALOGEX 0, 0, 159, 71
@@ -1406,7 +1395,6 @@ BEGIN
     ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
-    ID_LOG_DIALOG           "네트워크 플레이에서의 대화 내용을 봅니다"
 END
 
 STRINGTABLE
