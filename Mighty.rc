@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+//Microsoft Developer Studio generated resource script.
 //
 #include "resource.h"
 
@@ -13,11 +13,13 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Korean (Korea) resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
+#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -25,18 +27,18 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE MOVEABLE PURE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE MOVEABLE PURE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE MOVEABLE PURE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -64,29 +66,29 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\Mighty.ico"
-IDI_IEX                 ICON                    "res\\iex.ico"
-IDI_MYCOM               ICON                    "res\\mycom.ico"
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Mighty.ico"
+IDI_IEX                 ICON    DISCARDABLE     "res\\iex.ico"
+IDI_MYCOM               ICON    DISCARDABLE     "res\\mycom.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_MAINFRAME MENU
+IDR_MAINFRAME MENU DISCARDABLE 
 BEGIN
     POPUP "게임(&G)"
     BEGIN
-        MENUITEM "점수판 보기(&V)",                  ID_APP_SCOREBOARD
-        MENUITEM "옵션(&O)...",                   ID_APP_OPTION
+        MENUITEM "점수판 보기(&V)",             ID_APP_SCOREBOARD
+        MENUITEM "옵션(&O)...",                 ID_APP_OPTION
         MENUITEM SEPARATOR
-        MENUITEM "초기 메뉴로(&I)",                  ID_GAME_EXIT
-        MENUITEM "종료(&X)",                      ID_APP_EXIT
+        MENUITEM "초기 메뉴로(&I)",             ID_GAME_EXIT
+        MENUITEM "종료(&X)",                    ID_APP_EXIT
     END
     POPUP "도움말(&H)"
     BEGIN
-        MENUITEM "도움말(&H)...\tF1",              ID_HELP
-        MENUITEM "Mighty 정보(&A)...",            ID_APP_ABOUT
+        MENUITEM "도움말(&H)...\tF1",           ID_HELP
+        MENUITEM "Mighty 정보(&A)...",          ID_APP_ABOUT
     END
 END
 
@@ -96,20 +98,21 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS
+IDR_MAINFRAME ACCELERATORS MOVEABLE PURE 
 BEGIN
     VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
 END
 
 
+#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,0,0
- PRODUCTVERSION 4,0,0,0
+ FILEVERSION 4,0,1,27
+ PRODUCTVERSION 4,0,1,27
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -124,13 +127,18 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.0.26"
-            VALUE "InternalName", "Mighty Network 4.0"
-            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
-            VALUE "OriginalFilename", "Mighty.EXE"
-            VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.0.26"
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "마이티 네트워크 4.0\0"
+            VALUE "FileVersion", "4.0.1.27\0"
+            VALUE "InternalName", "Mighty Network 4.0\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Mighty.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "마이티 네트워크 4.0\0"
+            VALUE "ProductVersion", "4.0.1.27\0"
+            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -139,118 +147,120 @@ BEGIN
     END
 END
 
+#endif    // !_MAC
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // WAVE
 //
 
-IDW_BEGIN               WAVE                    "res\\게임시작.wav"
-IDW_NOTIFY              WAVE                    "res\\공지.wav"
-IDW_SCORE               WAVE                    "res\\득점.wav"
-IDW_MIGHTY              WAVE                    "res\\마이티.wav"
-IDW_SUFFLE              WAVE                    "res\\섞기.wav"
-IDW_WIN                 WAVE                    "res\\승리.wav"
-IDW_JOKER               WAVE                    "res\\조커.wav"
-IDW_JOKERCALL           WAVE                    "res\\조커콜.wav"
-IDW_KILLEDJOKER         WAVE                    "res\\죽은조커.wav"
-IDW_KIRUDA              WAVE                    "res\\찍기.wav"
-IDW_CARD                WAVE                    "res\\카드.wav"
-IDW_GETCARD             WAVE                    "res\\카드받기.wav"
-IDW_LOSE                WAVE                    "res\\패배.wav"
-IDW_BEEP                WAVE                    "res\\삑.wav"
-IDW_GOAL                WAVE                    "res\\공약.wav"
-IDW_CHULK               WAVE                    "res\\철컥.wav"
-IDW_GIVEUP              WAVE                    "res\\포기.wav"
-IDW_CARDSET             WAVE                    "res\\카드셋.wav"
+IDW_BEGIN               WAVE    MOVEABLE PURE   "res\\게임시작.wav"
+IDW_NOTIFY              WAVE    MOVEABLE PURE   "res\\공지.wav"
+IDW_SCORE               WAVE    MOVEABLE PURE   "res\\득점.wav"
+IDW_MIGHTY              WAVE    MOVEABLE PURE   "res\\마이티.wav"
+IDW_SUFFLE              WAVE    MOVEABLE PURE   "res\\섞기.wav"
+IDW_WIN                 WAVE    MOVEABLE PURE   "res\\승리.wav"
+IDW_JOKER               WAVE    MOVEABLE PURE   "res\\조커.wav"
+IDW_JOKERCALL           WAVE    MOVEABLE PURE   "res\\조커콜.wav"
+IDW_KILLEDJOKER         WAVE    MOVEABLE PURE   "res\\죽은조커.wav"
+IDW_KIRUDA              WAVE    MOVEABLE PURE   "res\\찍기.wav"
+IDW_CARD                WAVE    MOVEABLE PURE   "res\\카드.wav"
+IDW_GETCARD             WAVE    MOVEABLE PURE   "res\\카드받기.wav"
+IDW_LOSE                WAVE    MOVEABLE PURE   "res\\패배.wav"
+IDW_BEEP                WAVE    MOVEABLE PURE   "res\\삑.wav"
+IDW_GOAL                WAVE    MOVEABLE PURE   "res\\공약.wav"
+IDW_CHULK               WAVE    MOVEABLE PURE   "res\\철컥.wav"
+IDW_GIVEUP              WAVE    MOVEABLE PURE   "res\\포기.wav"
+IDW_CARDSET             WAVE    MOVEABLE PURE   "res\\카드셋.wav"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Cursor
 //
 
-IDC_FOCUS               CURSOR                  "res\\Hand.cur"
+IDC_FOCUS               CURSOR  DISCARDABLE     "res\\Hand.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
-IDB_STOP                BITMAP                  "res\\Stop.bmp"
-IDB_BACK1               BITMAP                  "res\\Back1.bmp"
-IDB_BACK10              BITMAP                  "res\\Back10.bmp"
-IDB_BACK11              BITMAP                  "res\\Back11.bmp"
-IDB_BACK2               BITMAP                  "res\\Back2.bmp"
-IDB_BACK3               BITMAP                  "res\\Back3.bmp"
-IDB_BACK4               BITMAP                  "res\\Back4.bmp"
-IDB_BACK5               BITMAP                  "res\\Back5.bmp"
-IDB_BACK6               BITMAP                  "res\\Back6.bmp"
-IDB_BACK7               BITMAP                  "res\\Back7.bmp"
-IDB_BACK8               BITMAP                  "res\\Back8.bmp"
-IDB_BACK9               BITMAP                  "res\\Back9.bmp"
-IDB_C10                 BITMAP                  "res\\C10.bmp"
-IDB_C2                  BITMAP                  "res\\C2.bmp"
-IDB_C3                  BITMAP                  "res\\C3.bmp"
-IDB_C4                  BITMAP                  "res\\C4.bmp"
-IDB_C5                  BITMAP                  "res\\C5.bmp"
-IDB_C6                  BITMAP                  "res\\C6.bmp"
-IDB_C7                  BITMAP                  "res\\C7.bmp"
-IDB_C8                  BITMAP                  "res\\C8.bmp"
-IDB_CA                  BITMAP                  "res\\Ca.bmp"
-IDB_CJ                  BITMAP                  "res\\Cj.bmp"
-IDB_CK                  BITMAP                  "res\\Ck.bmp"
-IDB_CLOVER              BITMAP                  "res\\Clover.bmp"
-IDB_CQ                  BITMAP                  "res\\Cq.bmp"
-IDB_D10                 BITMAP                  "res\\D10.bmp"
-IDB_D2                  BITMAP                  "res\\D2.bmp"
-IDB_D3                  BITMAP                  "res\\D3.bmp"
-IDB_D4                  BITMAP                  "res\\D4.bmp"
-IDB_D5                  BITMAP                  "res\\D5.bmp"
-IDB_D6                  BITMAP                  "res\\D6.bmp"
-IDB_D7                  BITMAP                  "res\\D7.bmp"
-IDB_D8                  BITMAP                  "res\\D8.bmp"
-IDB_D9                  BITMAP                  "res\\D9.bmp"
-IDB_DA                  BITMAP                  "res\\Da.bmp"
-IDB_DIAMOND             BITMAP                  "res\\Diamond.bmp"
-IDB_DJ                  BITMAP                  "res\\Dj.bmp"
-IDB_DK                  BITMAP                  "res\\Dk.bmp"
-IDB_DQ                  BITMAP                  "res\\Dq.bmp"
-IDB_H10                 BITMAP                  "res\\H10.bmp"
-IDB_H2                  BITMAP                  "res\\H2.bmp"
-IDB_H3                  BITMAP                  "res\\H3.bmp"
-IDB_H4                  BITMAP                  "res\\H4.bmp"
-IDB_H5                  BITMAP                  "res\\H5.bmp"
-IDB_H6                  BITMAP                  "res\\H6.bmp"
-IDB_H7                  BITMAP                  "res\\H7.bmp"
-IDB_H9                  BITMAP                  "res\\H9.bmp"
-IDB_HA                  BITMAP                  "res\\Ha.bmp"
-IDB_HEART               BITMAP                  "res\\Heart.bmp"
-IDB_HJ                  BITMAP                  "res\\Hj.bmp"
-IDB_HK                  BITMAP                  "res\\Hk.bmp"
-IDB_HQ                  BITMAP                  "res\\Hq.bmp"
-IDB_JOKER               BITMAP                  "res\\Joker.bmp"
-IDB_NOTHING             BITMAP                  "res\\Nothing.bmp"
-IDB_S10                 BITMAP                  "res\\S10.bmp"
-IDB_S2                  BITMAP                  "res\\S2.bmp"
-IDB_S3                  BITMAP                  "res\\S3.bmp"
-IDB_S4                  BITMAP                  "res\\S4.bmp"
-IDB_S5                  BITMAP                  "res\\S5.bmp"
-IDB_S6                  BITMAP                  "res\\S6.bmp"
-IDB_S7                  BITMAP                  "res\\S7.bmp"
-IDB_S8                  BITMAP                  "res\\S8.bmp"
-IDB_S9                  BITMAP                  "res\\S9.bmp"
-IDB_SA                  BITMAP                  "res\\Sa.bmp"
-IDB_SJ                  BITMAP                  "res\\Sj.bmp"
-IDB_SK                  BITMAP                  "res\\Sk.bmp"
-IDB_SPADE               BITMAP                  "res\\Spade.bmp"
-IDB_SQ                  BITMAP                  "res\\Sq.bmp"
-IDB_H8                  BITMAP                  "res\\H8.bmp"
-IDB_C9                  BITMAP                  "res\\C9.bmp"
-IDB_GRAY                BITMAP                  "res\\gray.bmp"
-IDB_MIGHTY              BITMAP                  "res\\mighty.bmp"
-IDB_PERSON              BITMAP                  "res\\person.bmp"
-IDB_SHADE               BITMAP                  "res\\shade.bmp"
-IDB_MASK                BITMAP                  "res\\mask.bmp"
+IDB_STOP                BITMAP  MOVEABLE PURE   "res\\Stop.bmp"
+IDB_BACK1               BITMAP  MOVEABLE PURE   "res\\Back1.bmp"
+IDB_BACK10              BITMAP  MOVEABLE PURE   "res\\Back10.bmp"
+IDB_BACK11              BITMAP  MOVEABLE PURE   "res\\Back11.bmp"
+IDB_BACK2               BITMAP  MOVEABLE PURE   "res\\Back2.bmp"
+IDB_BACK3               BITMAP  MOVEABLE PURE   "res\\Back3.bmp"
+IDB_BACK4               BITMAP  MOVEABLE PURE   "res\\Back4.bmp"
+IDB_BACK5               BITMAP  MOVEABLE PURE   "res\\Back5.bmp"
+IDB_BACK6               BITMAP  MOVEABLE PURE   "res\\Back6.bmp"
+IDB_BACK7               BITMAP  MOVEABLE PURE   "res\\Back7.bmp"
+IDB_BACK8               BITMAP  MOVEABLE PURE   "res\\Back8.bmp"
+IDB_BACK9               BITMAP  MOVEABLE PURE   "res\\Back9.bmp"
+IDB_C10                 BITMAP  MOVEABLE PURE   "res\\C10.bmp"
+IDB_C2                  BITMAP  MOVEABLE PURE   "res\\C2.bmp"
+IDB_C3                  BITMAP  MOVEABLE PURE   "res\\C3.bmp"
+IDB_C4                  BITMAP  MOVEABLE PURE   "res\\C4.bmp"
+IDB_C5                  BITMAP  MOVEABLE PURE   "res\\C5.bmp"
+IDB_C6                  BITMAP  MOVEABLE PURE   "res\\C6.bmp"
+IDB_C7                  BITMAP  MOVEABLE PURE   "res\\C7.bmp"
+IDB_C8                  BITMAP  MOVEABLE PURE   "res\\C8.bmp"
+IDB_CA                  BITMAP  MOVEABLE PURE   "res\\Ca.bmp"
+IDB_CJ                  BITMAP  MOVEABLE PURE   "res\\Cj.bmp"
+IDB_CK                  BITMAP  MOVEABLE PURE   "res\\Ck.bmp"
+IDB_CLOVER              BITMAP  MOVEABLE PURE   "res\\Clover.bmp"
+IDB_CQ                  BITMAP  MOVEABLE PURE   "res\\Cq.bmp"
+IDB_D10                 BITMAP  MOVEABLE PURE   "res\\D10.bmp"
+IDB_D2                  BITMAP  MOVEABLE PURE   "res\\D2.bmp"
+IDB_D3                  BITMAP  MOVEABLE PURE   "res\\D3.bmp"
+IDB_D4                  BITMAP  MOVEABLE PURE   "res\\D4.bmp"
+IDB_D5                  BITMAP  MOVEABLE PURE   "res\\D5.bmp"
+IDB_D6                  BITMAP  MOVEABLE PURE   "res\\D6.bmp"
+IDB_D7                  BITMAP  MOVEABLE PURE   "res\\D7.bmp"
+IDB_D8                  BITMAP  MOVEABLE PURE   "res\\D8.bmp"
+IDB_D9                  BITMAP  MOVEABLE PURE   "res\\D9.bmp"
+IDB_DA                  BITMAP  MOVEABLE PURE   "res\\Da.bmp"
+IDB_DIAMOND             BITMAP  MOVEABLE PURE   "res\\Diamond.bmp"
+IDB_DJ                  BITMAP  MOVEABLE PURE   "res\\Dj.bmp"
+IDB_DK                  BITMAP  MOVEABLE PURE   "res\\Dk.bmp"
+IDB_DQ                  BITMAP  MOVEABLE PURE   "res\\Dq.bmp"
+IDB_H10                 BITMAP  MOVEABLE PURE   "res\\H10.bmp"
+IDB_H2                  BITMAP  MOVEABLE PURE   "res\\H2.bmp"
+IDB_H3                  BITMAP  MOVEABLE PURE   "res\\H3.bmp"
+IDB_H4                  BITMAP  MOVEABLE PURE   "res\\H4.bmp"
+IDB_H5                  BITMAP  MOVEABLE PURE   "res\\H5.bmp"
+IDB_H6                  BITMAP  MOVEABLE PURE   "res\\H6.bmp"
+IDB_H7                  BITMAP  MOVEABLE PURE   "res\\H7.bmp"
+IDB_H9                  BITMAP  MOVEABLE PURE   "res\\H9.bmp"
+IDB_HA                  BITMAP  MOVEABLE PURE   "res\\Ha.bmp"
+IDB_HEART               BITMAP  MOVEABLE PURE   "res\\Heart.bmp"
+IDB_HJ                  BITMAP  MOVEABLE PURE   "res\\Hj.bmp"
+IDB_HK                  BITMAP  MOVEABLE PURE   "res\\Hk.bmp"
+IDB_HQ                  BITMAP  MOVEABLE PURE   "res\\Hq.bmp"
+IDB_JOKER               BITMAP  MOVEABLE PURE   "res\\Joker.bmp"
+IDB_NOTHING             BITMAP  MOVEABLE PURE   "res\\Nothing.bmp"
+IDB_S10                 BITMAP  MOVEABLE PURE   "res\\S10.bmp"
+IDB_S2                  BITMAP  MOVEABLE PURE   "res\\S2.bmp"
+IDB_S3                  BITMAP  MOVEABLE PURE   "res\\S3.bmp"
+IDB_S4                  BITMAP  MOVEABLE PURE   "res\\S4.bmp"
+IDB_S5                  BITMAP  MOVEABLE PURE   "res\\S5.bmp"
+IDB_S6                  BITMAP  MOVEABLE PURE   "res\\S6.bmp"
+IDB_S7                  BITMAP  MOVEABLE PURE   "res\\S7.bmp"
+IDB_S8                  BITMAP  MOVEABLE PURE   "res\\S8.bmp"
+IDB_S9                  BITMAP  MOVEABLE PURE   "res\\S9.bmp"
+IDB_SA                  BITMAP  MOVEABLE PURE   "res\\Sa.bmp"
+IDB_SJ                  BITMAP  MOVEABLE PURE   "res\\Sj.bmp"
+IDB_SK                  BITMAP  MOVEABLE PURE   "res\\Sk.bmp"
+IDB_SPADE               BITMAP  MOVEABLE PURE   "res\\Spade.bmp"
+IDB_SQ                  BITMAP  MOVEABLE PURE   "res\\Sq.bmp"
+IDB_H8                  BITMAP  MOVEABLE PURE   "res\\H8.bmp"
+IDB_C9                  BITMAP  MOVEABLE PURE   "res\\C9.bmp"
+IDB_GRAY                BITMAP  MOVEABLE PURE   "res\\gray.bmp"
+IDB_MIGHTY              BITMAP  MOVEABLE PURE   "res\\mighty.bmp"
+IDB_PERSON              BITMAP  MOVEABLE PURE   "res\\person.bmp"
+IDB_SHADE               BITMAP  MOVEABLE PURE   "res\\shade.bmp"
+IDB_MASK                BITMAP  MOVEABLE PURE   "res\\mask.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -258,171 +268,233 @@ IDB_MASK                BITMAP                  "res\\mask.bmp"
 //
 
 IDD_OPTION_GENERAL DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "일반"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     EDITTEXT        IDC_HUMANNAME,7,69,80,14,ES_AUTOHSCROLL
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010 UPnL",IDC_COPYRIGHT,37,7,104,39
-    CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,96,10
-    CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
-    CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
+    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010 UPnL",
+                    IDC_COPYRIGHT,37,7,104,39
+    CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,104,96,10
+    CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
+    CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
     LTEXT           "플레이어의 이름",IDC_STATIC,7,58,85,8
-    CONTROL         "정렬 없음(&N)",IDC_SORTMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,121,79,102,10
-    CONTROL         "기루다 왼쪽, A 왼쪽(&1)",IDC_SORTMODE1,"Button",BS_AUTORADIOBUTTON,121,91,102,10
-    CONTROL         "기루다 왼쪽, A 오른쪽(&2)",IDC_SORTMODE2,"Button",BS_AUTORADIOBUTTON,121,103,102,10
-    CONTROL         "기루다 오른쪽, A 왼쪽(&3)",IDC_SORTMODE3,"Button",BS_AUTORADIOBUTTON,121,115,102,10
-    CONTROL         "기루다 오른쪽, A 오른쪽(&4)",IDC_SORTMODE4,"Button",BS_AUTORADIOBUTTON,121,127,102,10
+    CONTROL         "정렬 없음(&N)",IDC_SORTMODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,121,79,102,10
+    CONTROL         "기루다 왼쪽, A 왼쪽(&1)",IDC_SORTMODE1,"Button",
+                    BS_AUTORADIOBUTTON,121,91,102,10
+    CONTROL         "기루다 왼쪽, A 오른쪽(&2)",IDC_SORTMODE2,"Button",
+                    BS_AUTORADIOBUTTON,121,103,102,10
+    CONTROL         "기루다 오른쪽, A 왼쪽(&3)",IDC_SORTMODE3,"Button",
+                    BS_AUTORADIOBUTTON,121,115,102,10
+    CONTROL         "기루다 오른쪽, A 오른쪽(&4)",IDC_SORTMODE4,"Button",
+                    BS_AUTORADIOBUTTON,121,127,102,10
     GROUPBOX        "카드 정렬",IDC_STATIC,116,66,116,79,WS_GROUP
-    LTEXT           "우측 위의 ? 버튼을 누른 다음 컨트롤을 클릭하면 간단한 도움말이 나타납니다",IDC_STATIC,159,7,73,41
-    CONTROL         "시계 방향으로 진행(&C)",IDC_CLOCKWISE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,91,96,10
+    LTEXT           "우측 위의 ? 버튼을 누른 다음 컨트롤을 클릭하면 간단한 도움말이 나타납니다",
+                    IDC_STATIC,159,7,73,41
+    CONTROL         "시계 방향으로 진행(&C)",IDC_CLOCKWISE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,91,96,10
 END
 
 IDD_RULE_CARD DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "카드"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    LTEXT           "보조 카드란 ?\n마이티, 조커콜과 같은 특별 카드들의 모양이 기루다로 선택된 경우 그 게임에서만 이들 특별 카드를 다른 카드로 바꾸어서 플레이 하는데, 이 대체 카드가 보조 카드가 되는 것입니다",IDC_STATIC,7,7,225,41
+    LTEXT           "보조 카드란 ?\n마이티, 조커콜과 같은 특별 카드들의 모양이 기루다로 선택된 경우 그 게임에서만 이들 특별 카드를 다른 카드로 바꾸어서 플레이 하는데, 이 대체 카드가 보조 카드가 되는 것입니다",
+                    IDC_STATIC,7,7,225,41
     LTEXT           "기본 마이티",IDC_STATIC,23,63,58,8
-    COMBOBOX        IDC_CARD_MIGHTY,23,80,57,161,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CARD_MIGHTY,23,80,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
     LTEXT           "보조 마이티 (빨마)",IDC_STATIC,89,63,81,8
-    COMBOBOX        IDC_CARD_ALTMIGHTY,89,81,57,161,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CARD_ALTMIGHTY,89,81,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
     LTEXT           "기본 조커콜",IDC_STATIC,23,108,54,8
-    COMBOBOX        IDC_CARD_JOKERCALL,23,125,57,161,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CARD_JOKERCALL,23,125,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
     LTEXT           "보조 조커콜",IDC_STATIC,89,108,68,8
-    COMBOBOX        IDC_CARD_ALTJOKERCALL,89,125,57,161,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CARD_ALTJOKERCALL,89,125,57,161,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_OPTION_BOSSKEY DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "보스키"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "임의(&R)",IDC_BOSSTYPE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,17,69,77,10
-    CONTROL         "현재폴더가 가장 상위폴더입니다 (&1)",IDC_BOSSTYPE1,"Button",BS_AUTORADIOBUTTON,17,83,195,10
-    CONTROL         "지울수 없습니다:엑세스가 거부되었습니다 (&2)",IDC_BOSSTYPE2,"Button",BS_AUTORADIOBUTTON,17,97,196,10
-    CONTROL         "사이트를 찾을 수 없습니다 (&3)",IDC_BOSSTYPE3,"Button",BS_AUTORADIOBUTTON,17,111,196,10
-    CONTROL         "다운로드 완료 (&4)",IDC_BOSSTYPE4,"Button",BS_AUTORADIOBUTTON,17,125,170,10
-    GROUPBOX        "보스키가 작동중일 때 화면에 보일 가짜 모습",IDC_STATIC,7,56,225,96,WS_GROUP
-    LTEXT           "보스키란 ?\n게임을 하는 모습을 다른 사람이 보는 것을 원하지 않을 때\n순간적으로 게임 화면을 감추는 방법을 말합니다\n이 게임은 'Pause' 키가 보스키입니다",IDC_STATIC,8,8,225,33
+    CONTROL         "임의(&R)",IDC_BOSSTYPE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,17,69,77,10
+    CONTROL         "현재폴더가 가장 상위폴더입니다 (&1)",IDC_BOSSTYPE1,
+                    "Button",BS_AUTORADIOBUTTON,17,83,195,10
+    CONTROL         "지울수 없습니다:엑세스가 거부되었습니다 (&2)",
+                    IDC_BOSSTYPE2,"Button",BS_AUTORADIOBUTTON,17,97,196,10
+    CONTROL         "사이트를 찾을 수 없습니다 (&3)",IDC_BOSSTYPE3,"Button",
+                    BS_AUTORADIOBUTTON,17,111,196,10
+    CONTROL         "다운로드 완료 (&4)",IDC_BOSSTYPE4,"Button",
+                    BS_AUTORADIOBUTTON,17,125,170,10
+    GROUPBOX        "보스키가 작동중일 때 화면에 보일 가짜 모습",IDC_STATIC,
+                    7,56,225,96,WS_GROUP
+    LTEXT           "보스키란 ?\n게임을 하는 모습을 다른 사람이 보는 것을 원하지 않을 때\n순간적으로 게임 화면을 감추는 방법을 말합니다\n이 게임은 'Pause' 키가 보스키입니다",
+                    IDC_STATIC,8,8,225,33
 END
 
 IDD_OPTION_CARD DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "카드"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "카드 확대/축소 기능 사용(&Z)",IDC_ZOOMCARD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,71,120,10
-    CONTROL         "카드 도움말 사용(&H)",IDC_CARDHELP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,89,107,10
-    CONTROL         "카드 툴팁 사용(&T)",IDC_CARDTIP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,107,94,10
-    CONTROL         "",IDC_SAMPLEBACK,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,159,36,41,64
+    CONTROL         "카드 확대/축소 기능 사용(&Z)",IDC_ZOOMCARD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,71,120,10
+    CONTROL         "카드 도움말 사용(&H)",IDC_CARDHELP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,89,107,10
+    CONTROL         "카드 툴팁 사용(&T)",IDC_CARDTIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,22,107,94,10
+    CONTROL         "",IDC_SAMPLEBACK,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,
+                    159,36,41,64
     PUSHBUTTON      "뒷면 그림 선택(&P)...",IDC_BACKSELECT,141,109,75,14
     LTEXT           "현재 선택된 뒷면 그림",IDC_STATIC,144,18,86,8
-    CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,20,120,38
+    CONTROL         "",IDC_QUOTE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,13,
+                    20,120,38
 END
 
-IDD_SELECTBACK DIALOG 0, 0, 279, 147
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_SELECTBACK DIALOG DISCARDABLE  0, 0, 279, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "카드 뒷면 그림 선택"
 FONT 9, "굴림"
 BEGIN
-    CONTROL         770,IDC_BACKPIC1,"Static",SS_BITMAP | SS_NOTIFY,7,7,41,64
-    CONTROL         771,IDC_BACKPIC2,"Static",SS_BITMAP | SS_NOTIFY,52,7,41,64
-    CONTROL         772,IDC_BACKPIC3,"Static",SS_BITMAP | SS_NOTIFY,97,7,41,64
-    CONTROL         773,IDC_BACKPIC4,"Static",SS_BITMAP | SS_NOTIFY,142,7,41,64
-    CONTROL         774,IDC_BACKPIC5,"Static",SS_BITMAP | SS_NOTIFY,187,7,41,64
-    CONTROL         775,IDC_BACKPIC6,"Static",SS_BITMAP | SS_NOTIFY,232,7,41,64
-    CONTROL         776,IDC_BACKPIC7,"Static",SS_BITMAP | SS_NOTIFY,7,77,41,64
-    CONTROL         777,IDC_BACKPIC8,"Static",SS_BITMAP | SS_NOTIFY,52,77,41,64
-    CONTROL         778,IDC_BACKPIC9,"Static",SS_BITMAP | SS_NOTIFY,97,77,41,64
-    CONTROL         779,IDC_BACKPIC10,"Static",SS_BITMAP | SS_NOTIFY,142,77,41,64
-    CONTROL         780,IDC_BACKPIC11,"Static",SS_BITMAP | SS_NOTIFY,187,77,41,64
+    CONTROL         770,IDC_BACKPIC1,"Static",SS_BITMAP | SS_NOTIFY,7,7,41,
+                    64
+    CONTROL         771,IDC_BACKPIC2,"Static",SS_BITMAP | SS_NOTIFY,52,7,41,
+                    64
+    CONTROL         772,IDC_BACKPIC3,"Static",SS_BITMAP | SS_NOTIFY,97,7,41,
+                    64
+    CONTROL         773,IDC_BACKPIC4,"Static",SS_BITMAP | SS_NOTIFY,142,7,41,
+                    64
+    CONTROL         774,IDC_BACKPIC5,"Static",SS_BITMAP | SS_NOTIFY,187,7,41,
+                    64
+    CONTROL         775,IDC_BACKPIC6,"Static",SS_BITMAP | SS_NOTIFY,232,7,41,
+                    64
+    CONTROL         776,IDC_BACKPIC7,"Static",SS_BITMAP | SS_NOTIFY,7,77,41,
+                    64
+    CONTROL         777,IDC_BACKPIC8,"Static",SS_BITMAP | SS_NOTIFY,52,77,41,
+                    64
+    CONTROL         778,IDC_BACKPIC9,"Static",SS_BITMAP | SS_NOTIFY,97,77,41,
+                    64
+    CONTROL         779,IDC_BACKPIC10,"Static",SS_BITMAP | SS_NOTIFY,142,77,
+                    41,64
+    CONTROL         780,IDC_BACKPIC11,"Static",SS_BITMAP | SS_NOTIFY,187,77,
+                    41,64
     PUSHBUTTON      "찾아보기...",IDC_BACKBROWSE,232,107,40,14
     PUSHBUTTON      "취소",IDCANCEL,232,126,40,14
 END
 
 IDD_OPTION_BACKGROUND DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "배경"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "배경 그림 사용(&G)",IDC_USEBACKGROUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,156,48,76,10
-    CONTROL         "가운데(&C)",IDC_BACKALIGN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,161,88,62,10
-    CONTROL         "타일(&T)",IDC_BACKALIGN1,"Button",BS_AUTORADIOBUTTON,161,102,62,10
-    CONTROL         "화면에 맞춤(&F)",IDC_BACKALIGN2,"Button",BS_AUTORADIOBUTTON,161,116,62,10
+    CONTROL         "배경 그림 사용(&G)",IDC_USEBACKGROUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,156,48,76,10
+    CONTROL         "가운데(&C)",IDC_BACKALIGN,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,161,88,62,10
+    CONTROL         "타일(&T)",IDC_BACKALIGN1,"Button",BS_AUTORADIOBUTTON,
+                    161,102,62,10
+    CONTROL         "화면에 맞춤(&F)",IDC_BACKALIGN2,"Button",
+                    BS_AUTORADIOBUTTON,161,116,62,10
     GROUPBOX        "배경 그림",IDC_STATIC,152,72,80,80,WS_GROUP
     PUSHBUTTON      "찾아보기(&W)...",IDC_BACKGROUNDBROWSE,169,132,54,14
-    CONTROL         "",IDC_SAMPLEBACKGROUND,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,132,116
+    CONTROL         "",IDC_SAMPLEBACKGROUND,"Static",SS_GRAYFRAME | NOT 
+                    WS_VISIBLE,7,7,132,116
     PUSHBUTTON      "여당 색상(&D)...",IDC_DEFCOLSELECT,7,134,63,14
     PUSHBUTTON      "야당 색상(&A)...",IDC_ATTCOLSELECT,74,134,63,14
     PUSHBUTTON      "배경 색상(&B)...",IDC_BACKGROUNDCOLSELECT,156,7,76,14
 END
 
 IDD_OPTION_DSB DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "음영 상자"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,30,112,10
-    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",IDC_STATIC,117,109,115,43
-    CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,100,100
-    CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,129,60,76,10
-    CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",BS_AUTORADIOBUTTON,129,72,76,10
-    CONTROL         "어둡게(&A)",IDC_DSBSHADEMODE2,"Button",BS_AUTORADIOBUTTON,129,84,75,10
+    CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,120,30,112,10
+    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",
+                    IDC_STATIC,117,109,115,43
+    CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,
+                    7,7,100,100
+    CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,129,60,76,10
+    CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",
+                    BS_AUTORADIOBUTTON,129,72,76,10
+    CONTROL         "어둡게(&A)",IDC_DSBSHADEMODE2,"Button",
+                    BS_AUTORADIOBUTTON,129,84,75,10
     GROUPBOX        "음영 처리 방법",IDC_STATIC,119,48,113,54,WS_GROUP
     PUSHBUTTON      "표준(&S)...",IDC_DSBTEXTCOLSELECT,7,120,51,14
     PUSHBUTTON      "흐림(&D)...",IDC_DSBGRAYCOLSELECT,7,138,51,14
     PUSHBUTTON      "강조&1...",IDC_DSBSTRONG1COLSELECT,63,120,44,14
     PUSHBUTTON      "강조&2...",IDC_DSBSTRONG2COLSELECT,63,138,44,14
-    LTEXT           "음영 상자는 Windows의\n대화 상자와 같은 것입니다",IDC_STATIC,118,7,114,17
+    LTEXT           "음영 상자는 Windows의\n대화 상자와 같은 것입니다",
+                    IDC_STATIC,118,7,114,17
 END
 
 IDD_OPTION_SPEED DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "진행 속도"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,13,200,10
-    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,26,200,10
+    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,13,200,10
+    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",
+                    IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
+                    26,200,10
     GROUPBOX        "카드 속도",IDC_CARDSPEEDGROUP,7,43,108,50
     LTEXT           "느리게",IDC_STATIC,14,53,36,8
     RTEXT           "빠르게",IDC_STATIC,68,53,37,8
-    CONTROL         "Slider1",IDC_CARDSPEED,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,62,90,21
+    CONTROL         "Slider1",IDC_CARDSPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,62,90,21
     GROUPBOX        "그려지는 프레임 수",IDC_CARDMOTIONGROUP,7,102,108,50
     LTEXT           "부드럽게",IDC_STATIC,14,113,43,8
     RTEXT           "거칠게",IDC_STATIC,69,113,36,8
-    CONTROL         "Slider1",IDC_CARDMOTION,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,122,90,21
+    CONTROL         "Slider1",IDC_CARDMOTION,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,14,122,90,21
     GROUPBOX        "카드 한장에 대한 대기 시간",IDC_STATIC,124,43,108,50
     LTEXT           "짧게",IDC_STATIC,132,53,30,8
     RTEXT           "길게",IDC_STATIC,194,53,29,8
-    CONTROL         "Slider2",IDC_DELAYONECARD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,62,90,21
+    CONTROL         "Slider2",IDC_DELAYONECARD,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,62,90,21
     GROUPBOX        "기타 여러가지 대기 시간",IDC_STATIC,124,102,108,50
     LTEXT           "짧게",IDC_STATIC,132,113,30,8
     RTEXT           "길게",IDC_STATIC,194,113,29,8
-    CONTROL         "Slider2",IDC_DELAYONETURN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,122,90,21
+    CONTROL         "Slider2",IDC_DELAYONETURN,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,132,122,90,21
 END
 
 IDD_OPTION_RULE DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "게임 규칙"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",IDC_STATIC,20,13,210,35
+    LTEXT           "마이티의 경기 규칙은 지방마다 학교마다 다양합니다\n이 게임에서는 지역별로 널리 알려진 표준 규칙을 제공하지만, 각자 자신에게 익숙한 규칙을 새로 정하거나, 새롭고 실험적인 규칙을 만들어 볼 수도 있습니다",
+                    IDC_STATIC,20,13,210,35
     LTEXT           "현재 선택된 기본 규칙",IDC_STATIC,16,59,115,8
-    COMBOBOX        IDC_RULEPRESET,16,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RULEPRESET,16,73,97,65,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
     PUSHBUTTON      "자세히(&D)...",IDC_SHOWRULE,117,73,50,14
-    LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,16,99,130,8
-    EDITTEXT        IDC_RULESTRING,16,113,75,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "이 규칙을 표현하는 압축된 문자열 :",IDC_STATIC,16,99,
+                    130,8
+    EDITTEXT        IDC_RULESTRING,16,113,75,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
     PUSHBUTTON      "규칙 추가(A)",IDC_ADDRULE,157,104,60,14
     PUSHBUTTON      "규칙 삭제(&R)",IDC_REMOVERULE,157,121,60,14
 END
 
 IDD_OPTION_AI DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "인공지능"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     LTEXT           "이름",IDC_STATIC,25,24,35,8
     LTEXT           "인공지능 확장 파일 (DLL)",IDC_STATIC,79,24,81,8
@@ -460,9 +532,9 @@ BEGIN
 END
 
 IDD_MAIINFO DIALOGEX 0, 0, 209, 149
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "AI 정보"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     RTEXT           "파일명 :",IDC_STATIC,7,7,35,8
     LTEXT           "filename",IDC_MAIINFO_FILENAME,49,7,153,8
@@ -471,15 +543,17 @@ BEGIN
     RTEXT           "설명 :",IDC_STATIC,7,29,35,8
     LTEXT           "explain",IDC_MAIINFO_EXPLAIN,49,29,153,87
     DEFPUSHBUTTON   "확인",IDOK,150,128,52,14
-    PUSHBUTTON      "이 플레이어에 대한 설정 변경(&S)...",IDC_CHANGEOPTION,7,128,136,14
+    PUSHBUTTON      "이 플레이어에 대한 설정 변경(&S)...",IDC_CHANGEOPTION,7,
+                    128,136,14
 END
 
 IDD_OPTION_COMM DIALOGEX 0, 0, 239, 159
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "통신"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,15,52,189,8
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",
+                    IDC_STATIC,15,52,189,8
     EDITTEXT        IDC_PORT,16,68,90,14,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "바인드할 서버 주소",IDC_STATIC,15,92,90,8
     EDITTEXT        IDC_ADDRESS,16,108,90,14,ES_AUTOHSCROLL
@@ -487,101 +561,160 @@ BEGIN
     GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,122,78,103,51
     LTEXT           "짧게",IDC_STATIC,128,92,27,8
     RTEXT           "길게",IDC_STATIC,195,92,24,8
-    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,128,101,90,21
-    CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,20,62,10
+    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_TOP | WS_TABSTOP,128,101,90,21
+    CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,20,62,10
 END
 
 IDD_RULE_GENERAL DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "일반"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     GROUPBOX        "플레이어 수",IDC_STATIC,8,8,130,80,WS_GROUP
-    CONTROL         "2 마 (특수 룰)",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,18,80,10
-    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,14,29,80,10
+    CONTROL         "2 마 (특수 룰)",IDC_2MA,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,14,18,80,10
+    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,
+                    14,29,80,10
     CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,14,40,80,10
-    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,51,80,10
-    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,14,62,80,10
-    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,14,73,80,10
-    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,93,160,10
-    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,105,160,10
-    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,117,160,10
-    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,129,160,10
-    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,141,160,10
-    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,153,160,10
+    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,51,
+                    80,10
+    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,
+                    14,62,80,10
+    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,
+                    14,73,80,10
+    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,93,160,10
+    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,105,160,10
+    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,117,160,10
+    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",
+                    IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,129,160,10
+    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",
+                    IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,141,160,10
+    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,153,160,10
 END
 
 IDD_RULE_ELECTION DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "선거"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     RTEXT           "기본 목표 점수 :",IDC_STATIC,9,10,61,8
-    COMBOBOX        IDC_MINSCORE,75,7,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,27,160,10
-    CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,41,160,10
-    CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,55,160,10
-    CONTROL         "포기한 사람이 다시 부를 수 있음",IDC_PASSAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,69,160,10
+    COMBOBOX        IDC_MINSCORE,75,7,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "딜러가 처음에 패스할 수 있음",IDC_BEGINERPASS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,27,160,10
+    CONTROL         "목표 점수를 20 보다 높게 부를 수 있음",IDC_HIGHSCORE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,41,160,10
+    CONTROL         "기루다를 바꿀 때 목표점수를 2 올림",
+                    IDC_RAISE2FORKIRUDACHANGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,55,160,10
+    CONTROL         "포기한 사람이 다시 부를 수 있음",IDC_PASSAGAIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,69,160,10
     GROUPBOX        "노기루다로 부를 때",IDC_STATIC,7,90,216,63
-    CONTROL         "기루다가 있는 경우와 동일",IDC_NK,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,104,100,10
-    CONTROL         "처음 부르는 경우 혹은 노기루다로 바꿀 때 1 적게 부를 수 있음",IDC_NK1,"Button",BS_AUTORADIOBUTTON,13,118,203,10
-    CONTROL         "항상 1 적게 부를 수 있음",IDC_NK2,"Button",BS_AUTORADIOBUTTON,13,132,203,10
+    CONTROL         "기루다가 있는 경우와 동일",IDC_NK,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,104,100,10
+    CONTROL         "처음 부르는 경우 혹은 노기루다로 바꿀 때 1 적게 부를 수 있음",
+                    IDC_NK1,"Button",BS_AUTORADIOBUTTON,13,118,203,10
+    CONTROL         "항상 1 적게 부를 수 있음",IDC_NK2,"Button",
+                    BS_AUTORADIOBUTTON,13,132,203,10
 END
 
 IDD_RULE_CONSTRAIN DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "제약 조건"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    CONTROL         "첫 턴에 마이티 낼 수 있음",IDC_INITMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,125,10
-    CONTROL         "첫 턴에 나온 마이티 효력 있음",IDC_INITMIGHTYEFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,18,138,10
-    CONTROL         "마지막 턴에 마이티 낼 수 있음",IDC_LASTMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,29,146,10
-    CONTROL         "마지막 턴에 나온 마이티 효력 있음",IDC_LASTMIGHTYEFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,40,155,10
-    CONTROL         "조커콜에 조커 대신 마이티를 낼 수 있음",IDC_OVERRIDEMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,51,163,10
-    CONTROL         "첫 턴에 조커 낼 수 있음",IDC_INITJOKER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,62,110,10
-    CONTROL         "첫 턴에 나온 조커 효력 있음",IDC_INITJOKEREFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,73,123,10
-    CONTROL         "마지막 턴에 조커 낼 수 있음",IDC_LASTJOKER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,129,10
-    CONTROL         "마지막 턴에 나온 조커 효력 있음",IDC_LASTJOKEREFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,95,139,10
-    CONTROL         "첫 턴에 선이 아닌 플레이어는 기루다 낼 수 있음",IDC_INITKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,106,225,10
-    CONTROL         "첫턴에 선도 기루다 낼 수 있음",IDC_INITBEGINKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,117,131,10
-    CONTROL         "첫 턴에 조커콜 효력 있음",IDC_INITJOKERCALLEFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,128,120,10
-    CONTROL         "조커콜 당한 조커가 조커 효력 있음",IDC_JOKERCALLJOKEREFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,139,148,10
+    CONTROL         "첫 턴에 마이티 낼 수 있음",IDC_INITMIGHTY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,125,10
+    CONTROL         "첫 턴에 나온 마이티 효력 있음",IDC_INITMIGHTYEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,18,138,10
+    CONTROL         "마지막 턴에 마이티 낼 수 있음",IDC_LASTMIGHTY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,146,10
+    CONTROL         "마지막 턴에 나온 마이티 효력 있음",IDC_LASTMIGHTYEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,40,155,10
+    CONTROL         "조커콜에 조커 대신 마이티를 낼 수 있음",
+                    IDC_OVERRIDEMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,51,163,10
+    CONTROL         "첫 턴에 조커 낼 수 있음",IDC_INITJOKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,62,110,10
+    CONTROL         "첫 턴에 나온 조커 효력 있음",IDC_INITJOKEREFFECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,73,123,10
+    CONTROL         "마지막 턴에 조커 낼 수 있음",IDC_LASTJOKER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,84,129,10
+    CONTROL         "마지막 턴에 나온 조커 효력 있음",IDC_LASTJOKEREFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,95,139,10
+    CONTROL         "첫 턴에 선이 아닌 플레이어는 기루다 낼 수 있음",
+                    IDC_INITKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    106,225,10
+    CONTROL         "첫턴에 선도 기루다 낼 수 있음",IDC_INITBEGINKIRUDA,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,117,131,10
+    CONTROL         "첫 턴에 조커콜 효력 있음",IDC_INITJOKERCALLEFFECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,128,120,10
+    CONTROL         "조커콜 당한 조커가 조커 효력 있음",
+                    IDC_JOKERCALLJOKEREFFECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,139,148,10
 END
 
 IDD_RULE_DEALMISS DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "딜 미스"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",IDC_STATIC,7,7,225,35
-    CONTROL         "점수 카드 수가 다음 이하 이면 딜 미스 :",IDC_DM_NOPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,133,10
-    CONTROL         "모든 카드가 점수 카드면 딜 미스",IDC_DM_ALLPOINT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,125,10
-    CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",IDC_DM_JOKERISREVERSEPOINT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,170,10
-    CONTROL         "마이티는 점수 카드로 간주하지 않음",IDC_DM_ONLYMIGHTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
-    CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
-    CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
-    CONTROL         "위의 두 조건을 검사할 때, 마이티나 조커의 효과를 고려",IDC_DM_DUPLICATE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,200,10
-    COMBOBOX        IDC_DM_NUM,143,44,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "딜 미스란 ?\n처음에 받은 패가 지나치게 불리하여 게임을 하는 의미가 없을 때 패를 다시 돌리는 것을 말합니다: 즉, '불리한 패'의 조건을 정의합니다",
+                    IDC_STATIC,7,7,225,35
+    CONTROL         "점수 카드 수가 다음 이하 이면 딜 미스 :",IDC_DM_NOPOINT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,133,10
+    CONTROL         "모든 카드가 점수 카드면 딜 미스",IDC_DM_ALLPOINT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,125,10
+    CONTROL         "조커가 있으면 점수 카드 하나를 제할 수 있음",
+                    IDC_DM_JOKERISREVERSEPOINT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,74,170,10
+    CONTROL         "마이티는 점수 카드로 간주하지 않음",IDC_DM_ONLYMIGHTY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,170,10
+    CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
+    CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",
+                    IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,116,170,10
+    CONTROL         "위의 두 조건을 검사할 때, 마이티나 조커의 효과를 고려",
+                    IDC_DM_DUPLICATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    130,200,10
+    COMBOBOX        IDC_DM_NUM,143,44,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
 END
 
 IDD_RULE_SCORE DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "점수계산법"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
-    GROUPBOX        "여당이 받는 기본 점수 계산법",IDC_STATIC,7,13,225,109,WS_GROUP
-    CONTROL         "위험 보상 (2.0)",IDC_S_0,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,24,81,9
-    CONTROL         "위험 보상 (4.0)",IDC_S_1,"Button",BS_AUTORADIOBUTTON,13,36,81,9
-    CONTROL         "부르는게 값",IDC_S_2,"Button",BS_AUTORADIOBUTTON,13,48,81,9
-    CONTROL         "눈에는 눈",IDC_S_3,"Button",BS_AUTORADIOBUTTON,13,60,81,9
-    CONTROL         "눈에는 눈 (변형)",IDC_S_4,"Button",BS_AUTORADIOBUTTON,13,72,81,9
+    GROUPBOX        "여당이 받는 기본 점수 계산법",IDC_STATIC,7,13,225,109,
+                    WS_GROUP
+    CONTROL         "위험 보상 (2.0)",IDC_S_0,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,13,24,81,9
+    CONTROL         "위험 보상 (4.0)",IDC_S_1,"Button",BS_AUTORADIOBUTTON,13,
+                    36,81,9
+    CONTROL         "부르는게 값",IDC_S_2,"Button",BS_AUTORADIOBUTTON,13,48,
+                    81,9
+    CONTROL         "눈에는 눈",IDC_S_3,"Button",BS_AUTORADIOBUTTON,13,60,81,
+                    9
+    CONTROL         "눈에는 눈 (변형)",IDC_S_4,"Button",BS_AUTORADIOBUTTON,
+                    13,72,81,9
     CONTROL         "10 기준",IDC_S_5,"Button",BS_AUTORADIOBUTTON,13,84,81,9
     CONTROL         "13 기준",IDC_S_6,"Button",BS_AUTORADIOBUTTON,13,96,81,9
-    CONTROL         "기본 기준",IDC_S_7,"Button",BS_AUTORADIOBUTTON,13,108,81,9
-    LTEXT           "(공약-기본)x2 + (득점-공약)",IDC_STATIC,120,24,100,8,NOT WS_GROUP
-    LTEXT           "(공약-기본)x1.5 + (득점-공약)",IDC_STATIC,120,36,100,8,NOT WS_GROUP
+    CONTROL         "기본 기준",IDC_S_7,"Button",BS_AUTORADIOBUTTON,13,108,
+                    81,9
+    LTEXT           "(공약-기본)x2 + (득점-공약)",IDC_STATIC,120,24,100,8,
+                    NOT WS_GROUP
+    LTEXT           "(공약-기본)x1.5 + (득점-공약)",IDC_STATIC,120,36,100,8,
+                    NOT WS_GROUP
     LTEXT           "(공약-기본+1)x2",IDC_STATIC,120,48,100,8,NOT WS_GROUP
     LTEXT           "(득점-공약)",IDC_STATIC,120,60,100,8,NOT WS_GROUP
     LTEXT           "(득점-공약) + 1",IDC_STATIC,120,72,100,8,NOT WS_GROUP
@@ -589,66 +722,93 @@ BEGIN
     LTEXT           "(득점-13)",IDC_STATIC,120,96,100,8,NOT WS_GROUP
     LTEXT           "(득점-기본)",IDC_STATIC,120,108,100,8,NOT WS_GROUP
     GROUPBOX        "야당이 받는 기본 점수 계산법",IDC_STATIC,7,127,225,38
-    CONTROL         "눈에는 눈",IDC_SS_0,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,138,81,9
-    CONTROL         "이에는 이",IDC_SS_1,"Button",BS_AUTORADIOBUTTON,14,150,56,9
+    CONTROL         "눈에는 눈",IDC_SS_0,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,14,138,81,9
+    CONTROL         "이에는 이",IDC_SS_1,"Button",BS_AUTORADIOBUTTON,14,150,
+                    56,9
     LTEXT           "(공약-여당득점)",IDC_STATIC,120,139,100,8,NOT WS_GROUP
-    LTEXT           "(기본 이하의 점수에 대해 2배)",IDC_STATIC,120,151,100,8,NOT WS_GROUP
+    LTEXT           "(기본 이하의 점수에 대해 2배)",IDC_STATIC,120,151,100,8,
+                    NOT WS_GROUP
 END
 
 IDD_SCOREBOARD DIALOGEX 0, 0, 78, 97
-STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_HSCROLL | WS_SYSMENU | WS_THICKFRAME
+STYLE WS_POPUP | WS_CAPTION | WS_HSCROLL | WS_SYSMENU | WS_THICKFRAME
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION "전적"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_SB_0,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,16,19,8
-    CONTROL         "",IDC_SB_1,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,26,19,8
-    CONTROL         "",IDC_SB_2,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,36,19,8
-    CONTROL         "",IDC_SB_3,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,46,19,8
-    CONTROL         "",IDC_SB_4,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,56,19,8
-    CONTROL         "",IDC_SB_5,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,66,19,8
+    CONTROL         "",IDC_SB_0,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,16,
+                    19,8
+    CONTROL         "",IDC_SB_1,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,26,
+                    19,8
+    CONTROL         "",IDC_SB_2,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,36,
+                    19,8
+    CONTROL         "",IDC_SB_3,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,46,
+                    19,8
+    CONTROL         "",IDC_SB_4,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,56,
+                    19,8
+    CONTROL         "",IDC_SB_5,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,66,
+                    19,8
     LTEXT           "name",IDC_SB_TAB,1,1,19,8,NOT WS_VISIBLE
-    CONTROL         "",IDC_SB_6,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,76,19,8
+    CONTROL         "",IDC_SB_6,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,1,76,
+                    19,8
 END
 
-IDD_SETTING DIALOG 0, 0, 187, 137
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_SETTING DIALOG DISCARDABLE  0, 0, 187, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "설정 변경"
 FONT 9, "굴림"
 BEGIN
-    CONTROL         "확장 알고리즘 사용",IDC_USESIMULATION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,14,75,10
-    CONTROL         "목표를 1 씩 올림",IDC_GOALMODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,28,67,10
+    CONTROL         "확장 알고리즘 사용",IDC_USESIMULATION,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,21,14,75,10
+    CONTROL         "목표를 1 씩 올림",IDC_GOALMODE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,21,28,67,10
     GROUPBOX        "주공이 되려는 경향성",IDC_STATIC,21,43,108,39
-    CONTROL         "Slider1",IDC_FACTOR,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,25,55,100,23
-    LTEXT           "주의: 확장 알고리즘을 사용하면 게임 진행이 다소 느려질 수 있습니다",IDC_STATIC,19,89,149,20
+    CONTROL         "Slider1",IDC_FACTOR,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    TBS_TOP | WS_TABSTOP,25,55,100,23
+    LTEXT           "주의: 확장 알고리즘을 사용하면 게임 진행이 다소 느려질 수 있습니다",
+                    IDC_STATIC,19,89,149,20
     DEFPUSHBUTTON   "확인",IDOK,74,116,50,14
     PUSHBUTTON      "취소",IDCANCEL,130,116,50,14
 END
 
 IDD_RULE_SPECIAL DIALOGEX 0, 0, 239, 179
-STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+STYLE WS_CHILD | WS_CAPTION
 CAPTION "특수 보상"
 FONT 9, "굴림", 400, 0, 0x81
 BEGIN
-    GROUPBOX        "런(여당이 전부 따는 것)에 대한 보상",IDC_STATIC,7,9,136,60,WS_GROUP
-    CONTROL         "보상 없음",IDC_RUN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,19,70,10
-    CONTROL         "2 배 줌",IDC_RUN1,"Button",BS_AUTORADIOBUTTON,13,31,69,10
-    CONTROL         "미리 런을 선언했을 경우만 2배 줌",IDC_RUN2,"Button",BS_AUTORADIOBUTTON,13,43,125,10
-    CONTROL         "고정액 줌 (20단위)",IDC_RUN3,"Button",BS_AUTORADIOBUTTON,13,55,112,10
-    CONTROL         "여당이 노프랜드로 이기면 2배",IDC_S_NOFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,77,125,10
-    CONTROL         "여당이 노기루다로 이기면 2배",IDC_S_NOKIRUDA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,90,125,10
-    CONTROL         "야당이 백런으로 이기면 2배",IDC_S_REVERSERUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,103,125,10
-    LTEXT           "각 방법에 대한 자세한 설명은 오른쪽 위의 '?' 버튼을 눌러서 볼 수 있습니다",IDC_STATIC,148,17,72,36
+    GROUPBOX        "런(여당이 전부 따는 것)에 대한 보상",IDC_STATIC,7,9,136,
+                    60,WS_GROUP
+    CONTROL         "보상 없음",IDC_RUN,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,13,19,70,10
+    CONTROL         "2 배 줌",IDC_RUN1,"Button",BS_AUTORADIOBUTTON,13,31,69,
+                    10
+    CONTROL         "미리 런을 선언했을 경우만 2배 줌",IDC_RUN2,"Button",
+                    BS_AUTORADIOBUTTON,13,43,125,10
+    CONTROL         "고정액 줌 (20단위)",IDC_RUN3,"Button",
+                    BS_AUTORADIOBUTTON,13,55,112,10
+    CONTROL         "여당이 노프랜드로 이기면 2배",IDC_S_NOFRIEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,77,125,10
+    CONTROL         "여당이 노기루다로 이기면 2배",IDC_S_NOKIRUDA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,90,125,10
+    CONTROL         "야당이 백런으로 이기면 2배",IDC_S_REVERSERUN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,103,125,10
+    LTEXT           "각 방법에 대한 자세한 설명은 오른쪽 위의 '?' 버튼을 눌러서 볼 수 있습니다",
+                    IDC_STATIC,148,17,72,36
     GROUPBOX        "백런 판정법",IDC_STATIC,7,120,136,52
-    CONTROL         "야당이 여당의 공약 이상을 땄을 때",IDC_REVERSERUN,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,129,120,12
-    CONTROL         "야당이 11장 이상을 땄을 때",IDC_REVERSERUN1,"Button",BS_AUTORADIOBUTTON,13,141,120,12
-    CONTROL         "야당이 기본 이상을 땄을 때",IDC_REVERSERUN2,"Button",BS_AUTORADIOBUTTON,13,153,120,12
+    CONTROL         "야당이 여당의 공약 이상을 땄을 때",IDC_REVERSERUN,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,
+                    129,120,12
+    CONTROL         "야당이 11장 이상을 땄을 때",IDC_REVERSERUN1,"Button",
+                    BS_AUTORADIOBUTTON,13,141,120,12
+    CONTROL         "야당이 기본 이상을 땄을 때",IDC_REVERSERUN2,"Button",
+                    BS_AUTORADIOBUTTON,13,153,120,12
 END
 
 IDD_DETAILSCORE DIALOGEX 0, 0, 275, 139
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "네트워크 게임 전적"
-FONT 9, "굴림", 0, 0, 0x0
+FONT 9, "굴림"
 BEGIN
     CTEXT           "2 마",IDC_STATIC,27,10,25,10
     RTEXT           "주공 :\n\n야당 :",IDC_STATIC,10,25,28,27
@@ -673,7 +833,7 @@ BEGIN
 END
 
 IDD_ADDRULE DIALOGEX 0, 0, 159, 71
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "추가할 규칙의 이름을 정하세요"
 FONT 9, "굴림", 400, 0, 0x81
 BEGIN
@@ -689,7 +849,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
+GUIDELINES DESIGNINFO MOVEABLE PURE 
 BEGIN
     IDD_OPTION_GENERAL, DIALOG
     BEGIN
@@ -857,14 +1017,6 @@ BEGIN
         RIGHTMARGIN, 268
         TOPMARGIN, 7
         BOTTOMMARGIN, 132
-    END
-
-    IDD_LOG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 193
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 192
     END
 
     IDD_ADDRULE, DIALOG
@@ -1358,25 +1510,25 @@ END
 // String Table
 //
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.26 (2010-07-01)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.27 (2010-08-15)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "마이티 네트워크 4.0"
     AFX_IDS_IDLEMESSAGE     "마이티 네트워크 4.0 Beta"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "마이티 정보를 표시합니다\n정보"
     ID_APP_EXIT             "게임을 종료합니다\n종료"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 변경합니다"
     AFX_IDS_SCMOVE          "창의 위치를 변경합니다"
@@ -1385,19 +1537,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "창을 닫고 게임을 종료합니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "창을 원래 크기로 복원합니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_GAME_EXIT            "현재 진행중인 게임을 종료하고 초기메뉴로 돌아갑니다\n초기메뉴로"
     ID_APP_OPTION           "게임의 옵션을 설정합니다\n옵션..."
     ID_APP_SCOREBOARD       "점수판을 보이거나 감춥니다\n점수판"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_CLOCKWISE           "카드를 내는 순서를 시계방향으로 진행합니다 (이른바 '고스톱 게임'의 반대 방향입니다)"
     IDC_USESOUND            "게임에서 소리를 사용할 것인가를 선택합니다"
@@ -1408,7 +1560,7 @@ BEGIN
     IDC_SORTMODE3           "기루다를 오른쪽에, 같은 모양이면 에이스를 왼쪽에 둡니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_SORTMODE4           "기루다를 오른쪽에, 같은 모양이면 에이스를 오른쪽에 둡니다"
     IDC_BACKSELECT          "다른 뒷면 그림을 선택하고 싶으면 이 버튼을 누릅니다"
@@ -1418,7 +1570,7 @@ BEGIN
     IDC_CARDTIP             "툴팁과 비슷하게, 카드에 커서를 가만히 두고 있으면 그 카드에 대한 간략한 설명을 표시합니다 (그 카드의 명칭과, 그 모양의 카드 중 그 카드보다 높은 카드들을 표시합니다)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_SAMPLEBACKGROUND    "현재 배경 그림 설정을 나타냅니다"
     IDC_DEFCOLSELECT        "여당의 이름을 어떤 색상으로 그릴지를 선택합니다"
@@ -1431,7 +1583,7 @@ BEGIN
     IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
     IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실제로는 이와 다소 다를 수 있습니다"
@@ -1447,17 +1599,17 @@ BEGIN
     IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_SHOWRULE            "현재 선택된 규칙을 보거나 사용자 정의 규칙을 수정하려면 이 버튼을 누르십시오"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_RESETPATH           "현재 설정된 모든 AI DLL의 경로를 지우고 기본 설정값을 사용합니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
@@ -1475,7 +1627,7 @@ BEGIN
     IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_ATTSCORETHROWNPOINTS 
                             "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
@@ -1486,7 +1638,8 @@ BEGIN
     IDC_BEGINERPASS         "가장 먼저 공약을 부르는 플레이어 (딜러) 가 아무런 공약도 부르지 않고 패스를 할 수 있습니다 - 이 옵션이 세트되어 있지 않으면 딜러는 반드시 공약을 불러야 합니다"
     IDC_RAISE2FORKIRUDACHANGE 
                             "주공이 추가 카드를 받고 나서 기루다를 바꾸고 싶을 때 목표 점수를 2 만큼 올려야 합니다 - 이 옵션이 세트되어 있지 않으면 1 만큼 올려야 합니다"
-    IDC_RAISE1FORNOKIRUDACHANGE "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
+    IDC_RAISE1FORNOKIRUDACHANGE 
+                            "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
     IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
     IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
     IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다."
@@ -1496,7 +1649,7 @@ BEGIN
     IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
     IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
@@ -1516,7 +1669,7 @@ BEGIN
                             "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
@@ -1535,7 +1688,7 @@ BEGIN
     IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
@@ -1553,20 +1706,20 @@ BEGIN
     IDC_HUMANNAME           "당신의 이름(별명)을 입력하세요 - 이 이름은 대부분의 상황에서 당신을 식별하는 기준이 됩니다"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDC_COPYRIGHT2          "ver 3.21 by Puzzlet\nver 4.0 by Yoshi-TS4"
     IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다."
     IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다. 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다."
 END
 
-#endif    // Korean (Korea) resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 

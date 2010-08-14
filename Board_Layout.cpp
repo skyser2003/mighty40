@@ -241,7 +241,7 @@ void CBoard::CreateFont()
 	lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
 	lf.lfQuality = DEFAULT_QUALITY;
 	lf.lfPitchAndFamily = DEFAULT_PITCH|FF_SWISS;
-	_tcscpy_s( lf.lfFaceName, _T("µ¸¿ò") );
+	_tcscpy( lf.lfFaceName, _T("µ¸¿ò") );
 
 	// ÀÛÀº ±Û²Ã
 	lf.lfHeight = -lfSmallHeight;

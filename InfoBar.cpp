@@ -377,7 +377,7 @@ BOOL CInfoBar::OnToolTipNeedTextW( UINT /*id*/, NMHDR * pNMHDR, LRESULT * /*pRes
 	wcscpy( pTTT->szText, GetGoalString() );
 #else
 	if ( _mbstowcsz( pTTT->szText, GetGoalString(), sizeof(pTTT->szText)/sizeof(WCHAR) )
-		== (size_t)-1 ) wcscpy_s( pTTT->szText, L"마이티 네트워크" );
+		== (size_t)-1 ) wcscpy( pTTT->szText, L"마이티 네트워크" );
 #endif
 	return TRUE;
 }
@@ -389,7 +389,7 @@ BOOL CInfoBar::OnToolTipNeedTextA( UINT /*id*/, NMHDR * pNMHDR, LRESULT * /*pRes
 	if ( _wcstombsz( pTTT->szText, GetGoalString(), sizeof(pTTT->szText)/sizeof(char) )
 		== (size_t)-1 ) strcpy( pTTT->szText, "마이티 네트워크" );
 #else
-	strcpy_s( pTTT->szText, GetGoalString() );
+	strcpy( pTTT->szText, GetGoalString() );
 #endif
 	return TRUE;
 }

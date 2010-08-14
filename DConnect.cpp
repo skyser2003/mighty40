@@ -1225,7 +1225,7 @@ void DConnect::Chat( LPCTSTR sMsg, long uid, bool bUpdate )
 	// 각 라인을 추가한다
 	for ( i = 0; i < n; i++ ) {
 
-		strcpy_s( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
+		strcpy( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
 		m_acolChatData[m_nChatDataEnd % CHAT_LINES] =
 			uid == -1 ? s_colCyan
 			: uid == m_uid ? s_colYellow
@@ -1355,7 +1355,7 @@ bool DConnect::BeginClient()
 	}
 
 	// 돈과 전적을 배분
-	for ( int j = 0; j < nPlayers; j++ ) {
+	for ( j = 0; j < nPlayers; j++ ) {
 		int i = ( m_uid + j ) % nPlayers;
 		apPlayers[j]->SetMoney( m_aInfo[i].dfa[3] );
 		apPlayers[j]->GetAllRecord().wm = LOWORD( m_aInfo[i].dfa[0] );

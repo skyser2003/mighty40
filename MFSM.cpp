@@ -636,7 +636,7 @@ void CMFSM::GetReport(
 
 #ifdef _DEBUG	// ÃÑ µ·ÀÇ ÇÕ°è¸¦ ºñ±³ÇÑ´Ù
 	int nAllDebugSum2 = 0;
-	for ( int debug = 0; debug < nPlayers; debug++ )
+	for ( debug = 0; debug < nPlayers; debug++ )
 		nAllDebugSum2 += anMoney[debug];
 	ASSERT( nAllDebugSum == nAllDebugSum2 );
 #endif

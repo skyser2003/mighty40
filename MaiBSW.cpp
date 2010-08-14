@@ -1508,7 +1508,7 @@ CMaiBSWWrap::CMaiBSWWrap( LPCTSTR sOption, MAIDLL_UPDATE* pUpdate )
 	m_pUpdate = pUpdate;
 	m_pState = 0;
 
-	if ( !sOption || sscanf_s( sOption, _T("%d %d %d"),
+	if ( !sOption || sscanf( sOption, _T("%d %d %d"),
 		&m_bGoalMode, &m_bUseSimulation, &m_nPrideFac ) != 3 ) {
 
 		m_nPrideFac = 5;
@@ -1538,7 +1538,7 @@ const CCardList* CMaiBSWWrap::GetHand() const
 void CMaiBSWWrap::SetOption( HWND hWnd )
 {
 	CMaiBSWSetting dlg( CWnd::FromHandle(hWnd) );
-	if ( sscanf_s( m_sOption, _T("%d %d %d"),
+	if ( sscanf( m_sOption, _T("%d %d %d"),
 		&dlg.m_bGoalMode, &dlg.m_bUseSimulation, &dlg.m_nFactor )
 		!= 3 ) {
 		dlg.m_bGoalMode = m_bGoalMode ? TRUE : FALSE;

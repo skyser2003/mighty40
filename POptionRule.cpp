@@ -51,8 +51,8 @@ BEGIN_MESSAGE_MAP(POptionRule, CPropertyPage)
 	//{{AFX_MSG_MAP(POptionRule)
 	ON_BN_CLICKED(IDC_SHOWRULE, OnShowrule)
 	ON_CBN_SELCHANGE(IDC_RULEPRESET, OnSelchangeRulepreset)
-	ON_BN_CLICKED(IDC_ADDRULE, &POptionRule::OnClickedAddrule)
-	ON_BN_CLICKED(IDC_REMOVERULE, &POptionRule::OnClickedRemoverule)
+	ON_BN_CLICKED(IDC_ADDRULE, OnClickedAddrule)
+	ON_BN_CLICKED(IDC_REMOVERULE, OnClickedRemoverule)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -139,7 +139,9 @@ void POptionRule::OnClickedAddrule()
 void POptionRule::OnClickedRemoverule()
 {
 	CString msgboxstr = "\'";
-	msgboxstr += CRule::GetName ( m_nRulePreset - 1 ).Trim();
+	CString name = CRule::GetName ( m_nRulePreset - 1 );
+	name.TrimLeft(); name.TrimRight();
+	msgboxstr += name;
 	msgboxstr += "\' 규칙을 삭제하시겠습니까?";
 	if ( AfxMessageBox( msgboxstr,
 					MB_YESNO | MB_ICONQUESTION )

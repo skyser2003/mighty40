@@ -63,7 +63,7 @@ void DGoal::ChangeKiruda( int nShape )
 	}
 
 	// 화살표 색상을 변경한다 (4.0)
-	for ( int i = 0; i < 2; i++ ) {
+	for ( i = 0; i < 2; i++ ) {
 		int nExpectedDiff = i == 0 ? 1 : -1;
 		if ( m_pState->IsValidNewGoal(
 				m_nKiruda, m_nMinScore+nExpectedDiff ) ) {
@@ -454,8 +454,8 @@ void DGoal::OnClick( LPVOID pVoid )
 				0, _T("목표점수를 더 올려야 합니다"),
 				true, false, 2000 );
 		}
-		else if ( ! ( m_pBoard->GetSelectionCount() == 3 && m_plHand->GetSize() == 13 
-					|| m_pBoard->GetSelectionCount() == 1 && m_plHand->GetSize() == 14 ) ) {
+		else if ( ! ( m_pBoard->GetSelectionCount() == 3 && m_plHand->GetCount() == 13 
+					|| m_pBoard->GetSelectionCount() == 1 && m_plHand->GetCount() == 14 ) ) {
 			if ( Mo()->bUseSound ) MessageBeep( MB_ICONEXCLAMATION );
 			(new DShortMessage(m_pBoard))->Create(
 				0, _T("먼저, 버릴 카드 세 장을 선택하세요"),
@@ -521,8 +521,8 @@ UINT DGoal::TogglerProc( LPVOID _pThis )
 		ASSERT( pThis->m_bPrivilege );
 		COLORREF colOld = pThis->m_colConfirm;
 
-		if ( pThis->m_pBoard->GetSelectionCount() == 3 && pThis->m_plHand->GetSize() == 13 
-			|| pThis->m_pBoard->GetSelectionCount() == 1 && pThis->m_plHand->GetSize() == 14 ) {
+		if ( pThis->m_pBoard->GetSelectionCount() == 3 && pThis->m_plHand->GetCount() == 13 
+			|| pThis->m_pBoard->GetSelectionCount() == 1 && pThis->m_plHand->GetCount() == 14 ) {
 			pThis->m_colConfirm = s_colCyan;	// 시안 색으로
 			pThis->m_tdConfirm = s_tdShade;
 			pThis->m_tdConfirmSel = s_tdShadeOutline;
