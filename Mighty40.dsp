@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 wsock32.lib winmm.lib nafxcw.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
+# ADD LINK32 wsock32.lib winmm.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 
 !ENDIF 
 
@@ -560,11 +560,243 @@ SOURCE=.\ZSocket.h
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
+SOURCE=.\res\Back1.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back10.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back11.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back2.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back3.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back4.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back5.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back6.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back7.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back8.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Back9.bmp
+# End Source File
+# Begin Source File
+
+SOURCE="..\..\..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H"
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C10.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C2.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C3.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C4.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C5.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C6.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C7.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C8.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\C9.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Ca.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Cj.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Ck.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Clover.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Cq.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D10.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D2.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D3.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D4.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D5.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D6.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D7.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D8.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\D9.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Da.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Diamond.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Dj.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Dk.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Dq.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\gray.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H10.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H2.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H3.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H4.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H5.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H6.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H7.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H8.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\H9.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Ha.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\Hand.cur
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\Heart.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Hj.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Hk.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Hq.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\iex.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Joker.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\mask.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\mighty.bmp
 # End Source File
 # Begin Source File
 
@@ -576,12 +808,83 @@ SOURCE=.\Mighty.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\mycom.ico
+SOURCE=.\res\Mighty.rc2
 # End Source File
-# End Group
 # Begin Source File
 
-SOURCE=.\ReadMe.txt
+SOURCE=.\res\mycom.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Nothing.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\person.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S10.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S2.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S3.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S4.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S5.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S6.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S7.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S8.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\S9.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Sa.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\shade.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Sj.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Sk.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Spade.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Sq.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\Stop.bmp
 # End Source File
 # Begin Source File
 
@@ -654,6 +957,11 @@ SOURCE=".\res\패배.wav"
 # Begin Source File
 
 SOURCE=".\res\포기.wav"
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\ReadMe.txt
 # End Source File
 # End Target
 # End Project

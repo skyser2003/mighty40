@@ -42,7 +42,7 @@ void POptionComm::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 
 	if ( pDX->m_bSaveAndValidate ) {
-		Mo()->bObserver = (bool)m_bObserver;
+		Mo()->bObserver = !!m_bObserver;
 		Mo()->nPort = m_nPort;
 		m_sAddress.TrimLeft();
 		m_sAddress.TrimRight();

@@ -846,15 +846,20 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 		|| !pMsg->PumpLong( r[0] ) || !pMsg->PumpLong( r[1] ) || !pMsg->PumpLong( r[2] )
 		|| !pMsg->PumpLong( p ) ) return -1;
 
+
 	// 블랙리스트에 있는 인물인가 조사한다
 	POSITION pos = m_lBlackList.GetHeadPosition();
 	while (pos)
-		if ( m_lBlackList.GetNext(pos) == sName ) return -2;
+		if ( m_lBlackList.GetNext(pos) == sName ) return -3;
 
 	// 빈자리를 찾는다
 	long uid;
 	for ( uid = 0; uid < m_rule.nPlayerNum; uid++ )
+	{
 		if ( m_aInfo[uid].bComputer ) break;
+		// 같은 닉네임이 있는지 조사
+		if ( m_aInfo[uid].sName == sName ) return -2;
+	}
 	if ( uid >= m_rule.nPlayerNum ) return -1;
 
 	m_aInfo[uid].sName = sName;
@@ -972,7 +977,8 @@ void DConnect::ServerSockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 
 			if ( uid < 0 ) {
 				CMsg msgErr( _T("ls"), CMsg::mmError,
-					uid == -1 ? _T("이미 인원이 다 찼습니다")
+					uid == -1 ? _T("이미 인원이 다 찼습니다") : 
+					uid == -2 ? _T("같은 닉네임이 존재합니다")
 					: _T("접근이 거부되었습니다") );
 				VERIFY( pSocket->SendMsg( &msgErr ) );
 				delete pSocket;
@@ -1337,6 +1343,7 @@ bool DConnect::BeginServer()
 // 게임의 시작 (클라이언트로서)
 bool DConnect::BeginClient()
 {
+	int j;
 	int nPlayers = m_rule.nPlayerNum;
 
 	CPlayer* apPlayers[MAX_PLAYERS];
@@ -1346,7 +1353,7 @@ bool DConnect::BeginClient()
 		0, m_aInfo[m_uid].sName, *m_pBoard );
 
 	// Network Players 생성
-	for ( int j = 1; j < nPlayers; j++ ) {
+	for ( j = 1; j < nPlayers; j++ ) {
 		int i = ( m_uid + j ) % nPlayers;
 
 		CPlayerNetwork* pPlayer = new CPlayerNetwork(

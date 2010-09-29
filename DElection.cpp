@@ -55,9 +55,10 @@ DGoal::~DGoal()
 // 주어진 모양으로 기루다를 바꾼다
 void DGoal::ChangeKiruda( int nShape )
 {
+	int i;
 	m_nKiruda = nShape;
 
-	for ( int i = 0; i < 5; i++ ) {
+	for ( i = 0; i < 5; i++ ) {
 		m_aatdShape[i][0] = i == m_nKiruda ? s_tdOutline : s_tdNormal;
 		m_aatdShape[i][1] = i == m_nKiruda ? s_tdOutline : TD_SUNKEN;
 	}
