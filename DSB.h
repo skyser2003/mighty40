@@ -178,6 +178,9 @@ protected:
 		const int* pDecoSel,			// 마우스가 지나갈 때의 색상과 장식 & 크기
 		LPVOID pVoid );					// OnClick 에 넘겨지는 값
 
+	// v4.0: 핫 스팟을 제거한다 (2011.1.7)
+	void DeleteHotspot( LPVOID pVoid );
+
 	// 핫 스팟을 Update 하고 Invalidate 한다
 	void UpdateHotspot( POSITION pos1, POSITION pos2 = 0 );
 

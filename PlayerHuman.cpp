@@ -47,7 +47,7 @@ CPlayerHuman::~CPlayerHuman()
 {
 	Ib()->SetChatHandler( (DWORD)(LPVOID)this, 0 );
 
-	if ( m_pMFSM->GetState()->IsNetworkGame() ) {
+	if ( this->GetID() < GetState()->pRule->nPlayerNum && m_pMFSM->GetState()->IsNetworkGame() ) {
 		// 네트워크 게임이었다면, 전적을 영구적으로 Update 한다
 		Mo()->anPlayerState[GetState()->pRule->nPlayerNum-2][0] = MAKELONG( m_recAll.wm, m_recAll.lm );
 		Mo()->anPlayerState[GetState()->pRule->nPlayerNum-2][1] = MAKELONG( m_recAll.wf, m_recAll.lf );
@@ -188,7 +188,7 @@ void CPlayerHuman::PlayTurnSound()
 	}
 	// 찍기 (겐)
 	else if ( c.IsKiruda() && GetState()->lCurrent.GetCount() > 0
-		&& !GetState()->lCurrent.Find( CCard::GetJoker() )
+		&& !(GetState()->lCurrent.Find( CCard::GetJoker() ) && !GetState()->bJokercallEffect )
 		&& !GetState()->lCurrent.Find( CCard::GetMighty() )
 		&& !GetState()->lCurrent.GetHead().IsKiruda() ) {
 		PlaySound( IDW_KIRUDA, true );

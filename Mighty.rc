@@ -108,8 +108,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,1,27
- PRODUCTVERSION 4,0,1,27
+ FILEVERSION 4,0,1,29
+ PRODUCTVERSION 4,0,1,29
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -125,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.1.27"
+            VALUE "FileVersion", "4.0.1.29"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.1.27"
+            VALUE "ProductVersion", "4.0.1.29"
         END
     END
     BLOCK "VarFileInfo"
@@ -366,7 +366,7 @@ CAPTION "음영 상자"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
     CONTROL         "글자 부분만 불투명하게(&T)",IDC_DSBOPAQUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,30,112,10
-    LTEXT           "주의: ""어둡게"" 옵션을 선택하려면 32768 색상 이상의 화면 모드가 필요합니다 - 또 처리속도가 매우 늦어지므로 자신의 시스템 성능을 감안하여 선택하십시오",IDC_STATIC,117,109,115,43
+    LTEXT           """어둡게"" 옵션을 선택하였을 때 원격이나 가상머신 혹은 저사양 등의 이유로 반투명 효과가 안되는 경우 자동으로 음영을 ""병치 혼합""로 처리합니다.",IDC_STATIC,117,115,115,37
     CONTROL         "",IDC_DSBSAMPLE,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,100,100
     CONTROL         "병치 혼합(&P)",IDC_DSBSHADEMODE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,129,60,76,10
     CONTROL         "불투명(&O)",IDC_DSBSHADEMODE1,"Button",BS_AUTORADIOBUTTON,129,72,76,10
@@ -479,15 +479,16 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "통신"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,15,24,189,8
-    EDITTEXT        IDC_PORT,16,40,90,14,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "바인드할 서버 주소",IDC_STATIC,15,66,90,8
-    EDITTEXT        IDC_ADDRESS,16,82,90,14,ES_AUTOHSCROLL
-    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,122,48,103,51
-    LTEXT           "짧게",IDC_STATIC,128,62,27,8
-    RTEXT           "길게",IDC_STATIC,195,62,24,8
-    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,128,71,90,21
-    PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,65,117,110,22
+    LTEXT           "마이티 게임으로 사용할 포트 번호 (기본:4111)",IDC_STATIC,15,41,189,8
+    EDITTEXT        IDC_PORT,16,57,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "바인드할 서버 주소",IDC_STATIC,15,78,90,8
+    EDITTEXT        IDC_ADDRESS,16,94,90,14,ES_AUTOHSCROLL
+    GROUPBOX        "채팅 메시지 대기 시간",IDC_STATIC,122,60,103,51
+    LTEXT           "짧게",IDC_STATIC,128,74,27,8
+    RTEXT           "길게",IDC_STATIC,195,74,24,8
+    CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,128,83,90,21
+    PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,65,122,110,22
+    CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,18,46,10
 END
 
 IDD_RULE_GENERAL DIALOGEX 0, 0, 239, 179
@@ -561,7 +562,7 @@ BEGIN
     CONTROL         "점수카드가 10 한 장 뿐인 경우 딜 미스",IDC_DM_ONLY10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,102,170,10
     CONTROL         "점수카드가 애꾸눈 잭 한 장 뿐인 경우 딜 미스",IDC_DM_ONEEYEDJACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,116,170,10
     CONTROL         "위의 두 조건을 검사할 때, 마이티나 조커의 효과를 고려",IDC_DM_DUPLICATE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,200,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,130,200,10
     COMBOBOX        IDC_DM_NUM,143,44,29,175,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
@@ -649,24 +650,24 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "네트워크 게임 전적"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    CTEXT           "2 마",IDC_STATIC,27,10,25,10
-    RTEXT           "주공 :\n\n야당 :",IDC_STATIC,10,25,28,27
-    LTEXT           "0승/0패\n\n0승/0패",IDC_SCORE1,43,25,45,27
-    CTEXT           "3 마",IDC_STATIC,117,9,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,100,25,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE2,133,25,45,27
-    CTEXT           "4 마",IDC_STATIC,207,9,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,190,25,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE3,223,25,45,27
-    CTEXT           "5 마",IDC_STATIC,27,64,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,10,80,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE4,43,80,45,27
-    CTEXT           "6 마",IDC_STATIC,117,64,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,100,80,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE5,133,80,45,27
-    CTEXT           "7 마",IDC_STATIC,207,65,25,10
-    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,190,81,28,27
-    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE6,223,81,45,27
+    CTEXT           "2 마",IDC_STATIC,24,10,25,10
+    RTEXT           "주공 :\n\n야당 :",IDC_STATIC,7,25,28,27
+    LTEXT           "0승/0패\n\n0승/0패",IDC_SCORE1,40,25,50,27
+    CTEXT           "3 마",IDC_STATIC,114,9,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,97,25,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE2,130,25,50,27
+    CTEXT           "4 마",IDC_STATIC,204,9,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,187,25,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE3,221,25,50,27
+    CTEXT           "5 마",IDC_STATIC,24,64,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,7,80,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE4,40,80,50,27
+    CTEXT           "6 마",IDC_STATIC,114,64,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,97,80,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE5,130,80,50,27
+    CTEXT           "7 마",IDC_STATIC,204,65,25,10
+    RTEXT           "주공 :\n프랜드 :\n야당 :",IDC_STATIC,187,81,28,27
+    LTEXT           "0승/0패\n0승/0패\n0승/0패",IDC_SCORE6,221,81,50,27
     PUSHBUTTON      "확인",IDOK,163,118,50,14
     PUSHBUTTON      "기록 삭제",IDC_RESETSCORE,219,118,50,14
 END
@@ -853,7 +854,7 @@ BEGIN
     IDD_DETAILSCORE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 268
+        RIGHTMARGIN, 269
         TOPMARGIN, 7
         BOTTOMMARGIN, 132
     END
@@ -1352,7 +1353,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.28 (2010-09-19)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.29 (2011-01-09)"
 END
 
 STRINGTABLE
@@ -1450,11 +1451,13 @@ END
 
 STRINGTABLE
 BEGIN
+    IDC_OBSERVER            "관전자의 접속을 허용할지 결정합니다"
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
     IDC_ADDRESS             "서버가 될 때 접속을 허용할 주소 범위를 지정합니다."
     IDC_RESETSCORE          "지금까지의 기록을 지웁니다"
-    IDC_2MA                 "두 사람이 하는 마이티입니다 - 전체 덱에서 각 사람이 2장 중 1장을 골라 총 13장씩 가진 후 자신이 이길 턴 수로 공약을 부르게 됩니다."
+    IDC_DETAILSCORE         "지금까지의 네트워크 게임 전적을 봅니다"
+    IDC_2MA                 "두 사람이 하는 마이티입니다 - 전체 덱에서 각 사람이 2장 중 1장을 골라 총 13장씩 가진 후 자신이 이길 턴 수로 공약을 부르게 됩니다"
     IDC_3MA                 "세 사람이 하는 마이티입니다 - 프랜드 제도가 없는 것이 표준이고, 20 장의 카드 ('2','4','5','6','7') 를 제외한 덱을 사용합니다"
     IDC_4MA                 "네 사람이 하는 마이티입니다 - 프랜드로 조커 프랜드를 부를 수 없는 것이 표준이고, 10 장의 카드 (조커콜을 제외한 '3' 두장과, '2', '4' 각 네장씩) 을 제외한 덱을 사용합니다"
     IDC_5MA                 "다섯 사람이 하는 마이티로, 가장 표준적인 마이티입니다"
@@ -1480,7 +1483,7 @@ BEGIN
     IDC_RAISE1FORNOKIRUDACHANGE "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
     IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
     IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
-    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다."
+    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다"
     IDC_PASSAGAIN           "출마 포기 한 사람이 다시 공약을 부를 수 있습니다 - 이 옵션이 세트되어 있으면 마지막으로 공약을 부른 사람 부터 한 바퀴 동안 모든 사람이 출마 포기를 선언한 경우에 당선됩니다."
     IDC_INITMIGHTY          "이 옵션을 세트 하면 첫 턴에 마이티를 낼 수 있습니다"
     IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
@@ -1512,13 +1515,13 @@ BEGIN
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
     IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
-    IDC_DM_DUPLICATE        "10 한 장 또는 애꾸눈 잭 딜 미스 조건을 검사할 때, 조커가 점수카드 하나를 상쇄하는 것과 마이티를 점수카드로 생각하지 않는 효과를 적용합니다. 예를 들어, 이 옵션이 체크되어 있고 마이티를 점수카드로 생각하지 않으면 10 한 장과 마이티가 있어도 10 한 장 딜 미스 조건에 해당하게 됩니다."
+    IDC_DM_DUPLICATE        "10 한 장 또는 애꾸눈 잭 딜 미스 조건을 검사할 때, 조커가 점수카드 하나를 상쇄하는 것과 마이티를 점수카드로 생각하지 않는 효과를 적용합니다. 예를 들어, 이 옵션이 체크되어 있고 마이티를 점수카드로 생각하지 않으면 10 한 장과 마이티가 있어도 10 한 장 딜 미스 조건에 해당하게 됩니다"
     IDC_S_0                 "Mighty 2.0 방식의 점수 계산법으로, 높은 목표 점수에 대한 보상을 하는 방식입니다\n여당승: (목표수-기본수)*2+(여당득점-목표수)"
-    IDC_S_1                 "Mighty 2.0 방식의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다.\n여당승: [(목표수-기본수)*1.5]+(여당득점-목표수)"
+    IDC_S_1                 "Mighty 2.0 방식의 위험 보상 계산법에서 목표수에 대한 보상을 약간 줄인 방식입니다\n여당승: [(목표수-기본수)*1.5]+(여당득점-목표수)"
     IDC_S_2                 "여당이 승리하였을 때 얻은 점수와 상관 없이 목표수에 해당하는 만큼의 보상을 받는 방식입니다.\n여당승: (목표수-기본수+1)*2"
     IDC_S_3                 "목표수 보다 더 얻은 점수에 대해서만 보상하는 방식입니다\n여당승: (여당득점-목표수)"
     IDC_S_4                 "눈에는 눈 계산법의 변형된 버전으로, 여당이 이기면 최소한 1점을 얻도록 합니다\n여당승: (여당득점-목표수+1)"
-    IDC_S_5                 "10 을 기준으로 하는 계산법입니다\n여당승: (여당득점-10)"
+    IDC_S_5                 "10 을 기준으로 하는 계산법입니다. 목표수와 상관 없이 여당이 일반적으로 많은 점수를 가져가게 됩니다\n여당승: (여당득점-10)"
     IDC_S_6                 "13 을 기준으로 하는 계산법입니다\n여당승: (여당득점-13)"
     IDC_S_7                 "기본수를 기준으로 하는 계산법입니다\n여당승: (여당득점-기본수)"
     IDC_SS_0                "여당이 목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
@@ -1534,9 +1537,9 @@ BEGIN
     IDC_S_REVERSERUN        "야당이 백런으로 이겼을 때 여당은 곱절의 점수를 물어줍니다"
     IDC_S_NOFRIEND          "노 프랜드로 선언했을 경우에, 야당은 기본 점수의 2배를 더 내야 합니다 - 어차피 노 프랜드 상태에서는 더 많은 점수를 걷어서 주공 혼자 가지므로 기본적으로 이 이상을 가지게 됩니다 - 따라서 이 옵션을 선택하면 실질적으로 주공은, 5 마에서 4 배, 4 마에서 6 배의 점수를 더 얻게 됩니다"
     IDC_S_NOKIRUDA          "노 기루다로 선언했을 경우 기본 점수를 곱절로 합니다"
-    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 백런이 됩니다."
-    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 백런이 됩니다."
-    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 백런이 됩니다."
+    IDC_REVERSERUN          "야당이 여당의 목표수 이상의 점수를 얻었을 때 백런이 됩니다"
+    IDC_REVERSERUN1         "야당이 11점 이상의 점수를 얻었을 때 백런이 됩니다"
+    IDC_REVERSERUN2         "야당이 기본수 이상의 점수를 얻었을 때 백런이 됩니다"
     IDC_CARD_MIGHTY         "마이티 카드를 선택합니다 - 기본값은 스페이드A 이고, 바꾸지 않는 것이 좋습니다"
     IDC_CARD_ALTMIGHTY      "기루다가 기본 마이티와 같은 모양이 되었을 때 마이티가 될 카드를 선택합니다 - 기본값은 다이아몬드A 이고, 바꾸지 않는 것이 좋습니다 - 이 카드는 일명 빨마(빨간마이티)라고 합니다"
     IDC_CARD_JOKERCALL      "조커콜 카드를 선택합니다 - 기본값은 클로버3 이고, 바꾸지 않는 것이 좋습니다"
@@ -1552,8 +1555,8 @@ END
 
 STRINGTABLE
 BEGIN
-    IDC_COPYRIGHT2          "ver 3.21 by \nver 4.0 by Yoshi-TS4"
-    IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다."
+    IDC_COPYRIGHT2          "ver 3.21 by puz*\nver 4.0 by Yoshi-TS4"
+    IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다. 추가한 규칙은 rule.txt 파일에 저장됩니다"
     IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다. 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다."
 END
 

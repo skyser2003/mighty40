@@ -12,30 +12,6 @@
 class CPlayerSocket;
 class DConnectPopup;
 
-
-// 에러 메시지를 출력한 후에, pToKill 을 없애고 DStartUp 을 출력한다
-class DConnectFail : public DMessageBox
-{
-public:
-	DConnectFail( CBoardWrap* pBoard )
-		: DMessageBox( pBoard ) {}
-	void Create( LPCTSTR s1, LPCTSTR s2, LPCTSTR s3, DSB* pToKill ) {
-		m_pToKill = pToKill;
-		SetModal();
-		LPCTSTR s[3] = { s1, s2, s3 };
-		DMessageBox::Create( true, s3 ? 3 : s2 ? 2 : 1, s );
-		::MessageBeep( MB_ICONEXCLAMATION );
-	}
-	virtual void OnClick( LPVOID ) {
-		if ( m_pToKill ) m_pToKill->Destroy();
-		(new DStartUp(m_pBoard))->Create(0);
-		Destroy();
-	}
-protected:
-	DSB* m_pToKill;
-};
-
-
 class DConnecting;
 
 // 접속창에서 사용하는 콤보박스의 에디트를 Subclassing 하는 클래스
@@ -83,6 +59,8 @@ protected:
 	// 콤보
 	CComboBox m_combo;
 	DConnectingComboEdit m_edit;	// m_combo 의 Edit 창
+	// 접속 형태(관전자로'만' 접속할 것인지 결정)
+	bool m_spectator;
 	// 소켓 핸들러
 	static void SockProc( CPlayerSocket* pSocket, CMsg* pMsg,
 							DWORD dwUser1, DWORD dwUser2 );
@@ -92,6 +70,29 @@ protected:
 	friend DConnectingComboEdit;
 };
 
+
+// 에러 메시지를 출력한 후에, pToKill 을 없애고 /* DStartUp 을 출력한다 */
+// DConnect를 출력하는 것으로 바꾸었다 (v4.0: 2011.1.7)
+class DConnectFail : public DMessageBox
+{
+public:
+	DConnectFail( CBoardWrap* pBoard )
+		: DMessageBox( pBoard ) {}
+	void Create( LPCTSTR s1, LPCTSTR s2, LPCTSTR s3, DSB* pToKill ) {
+		m_pToKill = pToKill;
+		SetModal();
+		LPCTSTR s[3] = { s1, s2, s3 };
+		DMessageBox::Create( true, s3 ? 3 : s2 ? 2 : 1, s );
+		::MessageBeep( MB_ICONEXCLAMATION );
+	}
+	virtual void OnClick( LPVOID ) {
+		if ( m_pToKill ) m_pToKill->Destroy();
+		(new DConnecting(m_pBoard))->Create();
+		Destroy();
+	}
+protected:
+	DSB* m_pToKill;
+};
 
 // 다른 플레이어의 참여를 기다리는 서버 창
 // 또는 서버에 접속하여 서버 상태를 보는 클라이언트 창
@@ -104,7 +105,7 @@ public:
 	// pServerSocket 이 0 이면 이 DSB 는 서버용 접속DSB
 	// 0 이 아니면, pServerSocket 을 서버로 하는
 	// 클라이언트 DSB
-	void Create( CPlayerSocket* pServerSocket, long players );
+	void Create( CPlayerSocket* pServerSocket, long players, bool spectatorOnly );
 
 protected:
 	// 초기화 ( 생성된 후 호출됨 )
@@ -142,7 +143,11 @@ protected:
 		bool bComputer;	// 컴퓨터인가?
 		CPlayerSocket* pSocket;
 	}
-	m_aInfo[MAX_PLAYERS];
+	// v4.0: 관전자 위해 20명까지 (2011.1.7)
+	m_aInfo[MAX_CONNECTION];
+	// v4.0: 관전자 수 (2011.1.7)
+	int m_nSpectators;
+	TCHAR m_specstr[10];
 	// 채팅창 내용
 	TCHAR (*m_asChatData)[256];
 	COLORREF *m_acolChatData;
@@ -151,7 +156,7 @@ protected:
 	// 채팅창 사각형
 	CRect m_rcChat;
 	// 세모 마크의 색상
-	COLORREF m_acolMark[MAX_PLAYERS]; //v4.0 : 2010.4.6 - 서버 만들었다가 끌 때 튕기는 버그 수정
+	COLORREF m_acolMark[MAX_PLAYERS]; // v4.0: 서버 만들었다가 끌 때 튕기는 버그 수정 (2010.4.6)
 	// 팝업 메뉴
 	DConnectPopup* m_pPopup;
 	// 블랙리스트 (이사람들은 접속을 못하게 막음)
@@ -193,7 +198,7 @@ protected:
 	// m_aInfo 의 i 번째 플레이어에 대한 CMsg 객체를 생성(new)
 	// 즉, mmChanged 메시지
 	CMsg* CreatePlayerInfoMsg( long uid );
-	// mmInit 메시지를 생성(new) : players를 보내도록 바꿈(v4.0: 2010.5.23)
+	// mmInit 메시지를 생성(new) : v4.0: players를 보내도록 바꿈 (2010.5.23)
 	CMsg* CreateInitMsg( long players );
 	// mmUID 메시지를 생성(new)
 	CMsg* CreateUIDMsg( long uid );
@@ -203,7 +208,7 @@ protected:
 	// 추방에 의해 삭제되는것임 )
 	void FailedForPlayer( long uid, bool bAccessDenied = false );
 	// 플레이어를 하나 추가
-	// 리턴되는 값은 uid, -1 이면 빈공간이 없음, -2 이면 허용 거부
+	// 리턴되는 값은 uid, -1 이면 빈공간이 없음, -2 이면 같은 이름 존재, -3 이면 허용 거부, -4 이면 관전자 거부
 	// pMsg : mmNewPlayer 메시지
 	long AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket = 0 );
 	// 플레이어를 삭제 ( bAccessDenied 가 참이면, 이 플레이어는
@@ -222,7 +227,7 @@ protected:
 	// 클라이언트에서 호출하는 유틸리티들
 
 	// mmNewPlayer 메시지를 생성
-	CMsg* CreateNewPlayerMsg( long players );
+	CMsg* CreateNewPlayerMsg( long players, bool spectatorOnly );
 	// mmUID 메시지를 수신하여 Update
 	bool ReceiveUIDMsg( CMsg* pMsg );
 	// mmPrepare 메시지를 수신

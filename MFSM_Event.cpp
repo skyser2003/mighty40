@@ -217,13 +217,13 @@ void CMFSM::Notify( int nPlayerID )
 void CMFSM::ResetEvents()
 {
 	m_nWaitingPlayer = 0;
-	for ( int i = 0; i < pRule->nPlayerNum; i++ ) {
+	for ( int i = 0; i < MAX_CONNECTION; i++ ) {
 		m_abWaitingPlayerRedo[i] = true;
 		m_apeWaitingPlayer[i] = m_apePlayer[i];
 		m_apePlayer[i]->ResetEvent();
 	}
-	m_apeWaitingPlayer[pRule->nPlayerNum] = &m_eNotify;
-	m_nWaitingPlayer = pRule->nPlayerNum;
+	m_apeWaitingPlayer[MAX_CONNECTION] = &m_eNotify;
+	m_nWaitingPlayer = MAX_CONNECTION;
 }
 
 // 이벤트를 대기하며, 예외를 처리하는 함수
@@ -263,11 +263,11 @@ lblCheckNotify:
 		m_nWaitingPlayer--;
 
 		// 어떤 플레이어의 이벤트인지 검사
-		for ( i = 0; i < pRule->nPlayerNum; i++ )
+		for ( i = 0; i < MAX_CONNECTION; i++ )
 			if ( m_apePlayer[i] == pEvent )
 				break;
 
-		if ( i >= pRule->nPlayerNum ) {
+		if ( i >= MAX_CONNECTION ) {
 			ASSERT(0);
 			return -1;
 		}

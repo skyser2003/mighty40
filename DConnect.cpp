@@ -25,7 +25,7 @@
 #include "PlayerHuman.h"
 #include "PlayerNetwork.h"
 #include "PlayerMai.h"
-
+#include "PlayerDummy.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,17 +85,22 @@ static void parse_address( CComboBox& combo, CString& sAddr, UINT& uPort )
 	}
 }
 
-static CString create_entermsg( LPCTSTR sName, long d, long f, long a )
+static CString create_entermsg( LPCTSTR sName, long d, long f, long a, bool isSpectator )
 {
 	int w = (int)LOWORD(d)+(int)LOWORD(f)+(int)LOWORD(a);
 	int l = (int)HIWORD(d)+(int)HIWORD(f)+(int)HIWORD(a);
 
 	CString sEnterMsg;
-	sEnterMsg.Format( _T("%s 님이 입장하였습니다 - ")
-		_T("주공:%d승%d패 프랜드:%d승%d패 야당:%d승%d패 승률:%d%%"),
-		sName, LOWORD(d), HIWORD(d),
-		LOWORD(f), HIWORD(f), LOWORD(a), HIWORD(a),
-		(w+l) == 0 ? 0 : w*100/(w+l) );
+	if(isSpectator)
+		sEnterMsg.Format( _T("%s 님이 관전자로 입장하였습니다"), sName);
+	else
+	{
+		sEnterMsg.Format( _T("%s 님이 입장하였습니다 - ")
+			_T("주공:%d승%d패 프랜드:%d승%d패 야당:%d승%d패 승률:%d%%"),
+			sName, LOWORD(d), HIWORD(d),
+			LOWORD(f), HIWORD(f), LOWORD(a), HIWORD(a),
+			(w+l) == 0 ? 0 : w*100/(w+l) );
+	}
 	return sEnterMsg;
 }
 
@@ -190,10 +195,15 @@ void DConnecting::OnInit()
 {
 	DSB::OnInit();
 
-	RegisterHotspot( 4, 10, -1, -1, true, 0, _T("  확인  "),
+	// v4.0에서 추가(2010.1.7)
+	m_spectator = false;
+	RegisterHotspot( 3, 9, -1, -1, true, 0, _T("접속 형태: 플레이어"),
+		&s_colWhite, &s_tdShade, &s_colWhite, &s_tdOutline,
+		(LPVOID)1 );
+	RegisterHotspot( 4, 11, -1, -1, true, 0, _T("  확인  "),
 		&m_colOk, &s_tdShade, &m_colOk, &s_tdOutline,
 		(LPVOID)0xffffffff );
-	RegisterHotspot( 12, 10, -1, -1, true, 0, _T("  취소  "),
+	RegisterHotspot( 12, 11, -1, -1, true, 0, _T("  취소  "),
 		&s_colCyan, &s_tdShade, &s_colCyan, &s_tdOutline,
 		(LPVOID)0 );
 }
@@ -297,6 +307,20 @@ void DConnecting::OnClick( LPVOID pVoid )
 
 		break;
 	}
+	case 1: {	// 접속 형태 변경
+		m_spectator = !m_spectator;
+		DeleteHotspot( (LPVOID)1 );
+		if(m_spectator)
+			RegisterHotspot( 3, 9, -1, -1, true, 0, _T("접속 형태: 관전자"),
+				&s_colYellow, &s_tdShade, &s_colYellow, &s_tdOutline,
+				(LPVOID)1 );
+		else RegisterHotspot( 3, 9, -1, -1, true, 0, _T("접속 형태: 플레이어"),
+				&s_colWhite, &s_tdShade, &s_colWhite, &s_tdOutline,
+				(LPVOID)1 );
+
+		CRect rc; GetRect( &rc );
+		m_pBoard->UpdateDSB( &rc );
+	}
 	}
 }
 
@@ -345,11 +369,11 @@ void DConnecting::SockProc( CMsg* pMsg )
 		long nVer, nPlayers;
 		if ( !pMsg->PumpLong( nVer )
 			|| !pMsg->PumpLong( nVer )
-			|| nVer != MIGHTY_VERSION 
-			|| !pMsg->PumpLong( nPlayers ) )
+			|| !pMsg->PumpLong( nPlayers ) 
+			|| nVer != MIGHTY_VERSION )
 			Fail( _T("서버쪽의 버전이 다릅니다 !") );
 		else {
-			(new DConnect(m_pBoard))->Create( DetachSocket(), nPlayers );
+			(new DConnect(m_pBoard))->Create( DetachSocket(), nPlayers, m_spectator );
 			Destroy();
 		}
 	}
@@ -386,7 +410,7 @@ DConnect::DConnect( CBoardWrap* pBoard ) : DSB(pBoard)
 	m_pServerSocket = 0;
 	m_uid = 0;
 
-	for ( int i = 0; i < MAX_PLAYERS; i++ ) {
+	for ( int i = 0; i < MAX_CONNECTION; i++ ) {
 		m_aInfo[i].bComputer = true;
 		m_aInfo[i].pSocket = 0;
 	}
@@ -416,7 +440,7 @@ DConnect::~DConnect()
 	}
 	m_pServerSocket = 0;
 
-	for ( int i = 0; i < MAX_PLAYERS; i++ )
+	for ( int i = 0; i < MAX_CONNECTION; i++ )
 		if ( m_aInfo[i].pSocket ) {
 			m_aInfo[i].pSocket->ClearTrigger();
 			delete m_aInfo[i].pSocket;
@@ -426,11 +450,12 @@ DConnect::~DConnect()
 	delete[] m_acolChatData;
 }
 
-void DConnect::Create( CPlayerSocket* pServerSocket, long players )
+void DConnect::Create( CPlayerSocket* pServerSocket, long players, bool spectatorOnly )
 {
 	// 일단 생성은 하고 나서, 그 과정중에 실패한 것이 있으면
 	// Fail() 을 호출한다 (Fail()은 생성된 상태를 가정하므로)
 	bool bFailed = false;
+	m_nSpectators = 0;
 
 	UINT uPort;
 
@@ -473,14 +498,15 @@ void DConnect::Create( CPlayerSocket* pServerSocket, long players )
 		m_aInfo[0].dfa[2] = Mo()->anPlayerState[m_rule.nPlayerNum-2][2];
 		m_aInfo[0].dfa[3] = BASE_MONEY;
 
-		for ( int i = 1; i < MAX_PLAYERS; i++ )
+		for ( int i = 1; i < MAX_CONNECTION; i++ )
 			SetComputer( i, BASE_MONEY );
 
 		// 등장메시지를 채팅창으로 출력한다
 		CString sEnterMsg = create_entermsg( m_aInfo[0].sName,
 			Mo()->anPlayerState[m_rule.nPlayerNum-2][0], 
 			Mo()->anPlayerState[m_rule.nPlayerNum-2][1], 
-			Mo()->anPlayerState[m_rule.nPlayerNum-2][2] );
+			Mo()->anPlayerState[m_rule.nPlayerNum-2][2],
+			false );
 		Chat( sEnterMsg, -1, false );
 
 		UpdateMarks();
@@ -497,7 +523,7 @@ void DConnect::Create( CPlayerSocket* pServerSocket, long players )
 		m_sAddress.Format( _T("%s:%u"), sAddr, uPort );
 
 		// 호스트에게, mmNewPlayer 메시지를 보낸다
-		CMsg* pNewPlayerMsg = CreateNewPlayerMsg( players );
+		CMsg* pNewPlayerMsg = CreateNewPlayerMsg( players, spectatorOnly );
 		AUTODELETE_MSG(pNewPlayerMsg);
 		if ( !m_pServerSocket->SendMsg( pNewPlayerMsg ) )
 			// 실패 !
@@ -576,7 +602,15 @@ void DConnect::OnDraw(
 
 	// 규칙
 	PutText( pDC, _T("적용 규칙 : "),
-			24, y - 2, true, s_colWhite, s_tdShade );
+			25, y - 2, true, s_colWhite, s_tdShade );
+
+	// 관전자
+	PutText( pDC, _T("관전자 : "),
+			25, y + 4, true, s_colWhite, s_tdShade );
+	
+	wsprintf(m_specstr, "%d 명", m_nSpectators);
+	PutText( pDC, m_specstr,
+			25, y + 6, true, s_colYellow, s_tdShade );
 
 	// 채팅창
 	int nChatLines = (int)( m_nChatDataEnd - m_nChatDataBegin );
@@ -747,9 +781,21 @@ void DConnect::SetComputer( long uid, int money )
 		delete m_aInfo[uid].pSocket;
 	}
 
-	m_aInfo[uid].bComputer = true;
-	m_aInfo[uid].sName = Mo()->aPlayer[uid].sName + _T(" (컴퓨터)");
-	m_aInfo[uid].sInfo = get_name( Mo()->aPlayer[uid].sAIDLL );
+	if(!m_aInfo[uid].bComputer)
+	{
+		m_aInfo[uid].bComputer = true;
+		if(m_nSpectators > 0) m_nSpectators--;
+	}
+	if(uid < MAX_PLAYERS)
+	{
+		m_aInfo[uid].sName = Mo()->aPlayer[uid].sName + _T(" (컴퓨터)");
+		m_aInfo[uid].sInfo = get_name( Mo()->aPlayer[uid].sAIDLL );
+	}
+	else
+	{
+		m_aInfo[uid].sName = _T("관전 Dummy");
+		m_aInfo[uid].sInfo = get_name( Mo()->aPlayer[0].sAIDLL );
+	}
 	m_aInfo[uid].pSocket = 0;
 
 	m_aInfo[uid].dfa[0] = 0;
@@ -761,7 +807,7 @@ void DConnect::SetComputer( long uid, int money )
 // 현재 참가한 플레이어들에게 메시지를 전송
 void DConnect::SendToAll( CMsg* pMsg, long uidExcept )
 {
-	for ( int i = 1; i < MAX_PLAYERS; i++ )
+	for ( int i = 1; i < MAX_CONNECTION; i++ )
 		if ( uidExcept != i && !m_aInfo[i].bComputer ) {
 			// 사람이면 전달
 			if ( m_aInfo[i].pSocket )
@@ -776,25 +822,19 @@ CMsg* DConnect::CreateStateMsg()
 {
 	int i;
 	CString sFormat = _T("lss");
-	for ( i = 0; i < m_rule.nPlayerNum; i++ )
-		sFormat += _T("sslllll");
 
 	CMsg* k = new CMsg( sFormat,
-		CMsg::mmPrepare, m_rule.Encode(), m_sRule,
-		m_aInfo[0].sName, m_aInfo[0].sInfo, m_aInfo[0].bComputer ? 1 : 0,
-			m_aInfo[0].dfa[0], m_aInfo[0].dfa[1], m_aInfo[0].dfa[2], m_aInfo[0].dfa[3],
-		m_aInfo[1].sName, m_aInfo[1].sInfo, m_aInfo[1].bComputer ? 1 : 0,
-			m_aInfo[1].dfa[0], m_aInfo[1].dfa[1], m_aInfo[1].dfa[2], m_aInfo[1].dfa[3],
-		m_aInfo[2].sName, m_aInfo[2].sInfo, m_aInfo[2].bComputer ? 1 : 0,
-			m_aInfo[2].dfa[0], m_aInfo[2].dfa[1], m_aInfo[2].dfa[2], m_aInfo[2].dfa[3],
-		m_aInfo[3].sName, m_aInfo[3].sInfo, m_aInfo[3].bComputer ? 1 : 0,
-			m_aInfo[3].dfa[0], m_aInfo[3].dfa[1], m_aInfo[3].dfa[2], m_aInfo[3].dfa[3],
-		m_aInfo[4].sName, m_aInfo[4].sInfo, m_aInfo[4].bComputer ? 1 : 0,
-			m_aInfo[4].dfa[0], m_aInfo[4].dfa[1], m_aInfo[4].dfa[2], m_aInfo[4].dfa[3],
-		m_aInfo[5].sName, m_aInfo[5].sInfo, m_aInfo[5].bComputer ? 1 : 0,
-			m_aInfo[5].dfa[0], m_aInfo[5].dfa[1], m_aInfo[5].dfa[2], m_aInfo[5].dfa[3],
-		m_aInfo[6].sName, m_aInfo[6].sInfo, m_aInfo[6].bComputer ? 1 : 0,
-			m_aInfo[6].dfa[0], m_aInfo[6].dfa[1], m_aInfo[6].dfa[2], m_aInfo[6].dfa[3] );
+		CMsg::mmPrepare, m_rule.Encode(), m_sRule );
+	for(i = 0; i < MAX_CONNECTION; i++)
+	{
+		k->PushString(m_aInfo[i].sName);
+		k->PushString(m_aInfo[i].sInfo);
+		k->PushLong(m_aInfo[i].bComputer ? 1 : 0);
+		k->PushLong(m_aInfo[i].dfa[0]);
+		k->PushLong(m_aInfo[i].dfa[1]);
+		k->PushLong(m_aInfo[i].dfa[2]);
+		k->PushLong(m_aInfo[i].dfa[3]);
+	}
 	return k;
 }
 
@@ -832,19 +872,23 @@ void DConnect::FailedForPlayer( long uid, bool bAccessDenied )
 }
 
 // 플레이어를 하나 추가
-// 리턴되는 값은 uid, -1 이면 빈공간이 없음, -2 이면 허용 거부
+// 리턴되는 값은 uid, -1 이면 빈공간이 없음, -2 이면 같은 이름 존재,
+// -3 이면 허용 거부, -4 이면 관전자 거부
 // pMsg : mmNewPlayer 메시지
 long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 {
+	int i;
 	// 이름, 전적을 추출한다
-	CString sName; long r[3]; long p;
+	// spectatorOnly: 관전자만 하고 싶은 것으로 들어왔다 (2011.1.7)
+	CString sName; long spectatorOnly; long r[3]; long p;
 
 	long m;
 	VERIFY( pMsg->PumpLong( m ) && m == CMsg::mmNewPlayer );
 
 	if ( !pMsg->PumpString( sName )
+		|| !pMsg->PumpLong( spectatorOnly )
 		|| !pMsg->PumpLong( r[0] ) || !pMsg->PumpLong( r[1] ) || !pMsg->PumpLong( r[2] )
-		|| !pMsg->PumpLong( p ) ) return -1;
+		|| !pMsg->PumpLong( p ) ) return -3;
 
 
 	// 블랙리스트에 있는 인물인가 조사한다
@@ -852,27 +896,37 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 	while (pos)
 		if ( m_lBlackList.GetNext(pos) == sName ) return -3;
 
+	// 관전자 거부인데 관전자로 들어왔다
+	if ( !Mo()->bObserver && spectatorOnly )
+		return -4;
+	
 	// 빈자리를 찾는다
 	long uid;
-	for ( uid = 0; uid < m_rule.nPlayerNum; uid++ )
+	for ( uid = 0; uid < MAX_CONNECTION; uid++ )
 	{
-		if ( m_aInfo[uid].bComputer ) break;
+		if ( m_aInfo[uid].bComputer )
+		{
+			if ( !(spectatorOnly && uid < m_rule.nPlayerNum) )
+				break;
+		}
 		// 같은 닉네임이 있는지 조사
-		if ( m_aInfo[uid].sName == sName ) return -2;
+		else if ( m_aInfo[uid].sName == sName ) return -2;
 	}
-	if ( uid >= m_rule.nPlayerNum ) return -1;
+	// 관전 가능한 경우 20명, 불가능한 경우 플레이어 수보다 많은 경우 자리가 꽉찼다는 표시
+	if ( uid >= 20 || (( !Mo()->bObserver) && uid >= m_rule.nPlayerNum ) )
+		return -1;
 
 	m_aInfo[uid].sName = sName;
 	m_aInfo[uid].sInfo = format_score( r[0], r[1], r[2] );
 	m_aInfo[uid].bComputer = false;
 	m_aInfo[uid].pSocket = pSocket;
-	for ( int i = 0; i < 3; i++ )
+	for ( i = 0; i < 3; i++ )
 		m_aInfo[uid].dfa[i] = r[i];
 	m_aInfo[uid].dfa[3] = BASE_MONEY;
 
 	// 등장메시지를 채팅창으로 출력한다
 	CString sEnterMsg = create_entermsg(
-							m_aInfo[uid].sName, r[0], r[1], r[2] );
+							m_aInfo[uid].sName, r[0], r[1], r[2], uid >= m_rule.nPlayerNum );
 
 	CMsg* pEnterMsg = CreateChatMsg( -1, sEnterMsg );
 	AUTODELETE_MSG(pEnterMsg);
@@ -880,6 +934,9 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 	SendToAll( pEnterMsg );
 
 	Chat( sEnterMsg, -1, false );
+	
+	if(uid >= m_rule.nPlayerNum)
+		m_nSpectators++;
 
 	// 화면을 Update
 	UpdateMarks();
@@ -978,8 +1035,10 @@ void DConnect::ServerSockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 			if ( uid < 0 ) {
 				CMsg msgErr( _T("ls"), CMsg::mmError,
 					uid == -1 ? _T("이미 인원이 다 찼습니다") : 
-					uid == -2 ? _T("같은 닉네임이 존재합니다")
-					: _T("접근이 거부되었습니다") );
+					uid == -2 ? _T("같은 이름이 존재합니다") :
+					uid == -3 ? _T("접근이 거부되었습니다") :
+					uid == -4 ? _T("관전자를 허용하지 않습니다")
+					: _T("유저가 불량합니다") );
 				VERIFY( pSocket->SendMsg( &msgErr ) );
 				delete pSocket;
 				return;
@@ -1036,10 +1095,11 @@ void DConnect::ServerSockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 }
 
 // mmNewPlayer 메시지를 생성
-CMsg* DConnect::CreateNewPlayerMsg( long players )
+CMsg* DConnect::CreateNewPlayerMsg( long players, bool spectatorOnly )
 {
-	return new CMsg( _T("lsllll"), CMsg::mmNewPlayer,
+	return new CMsg( _T("lslllll"), CMsg::mmNewPlayer,
 		Mo()->aPlayer[0].sName,
+		spectatorOnly ? 1 : 0,
 		Mo()->anPlayerState[players-2][0], Mo()->anPlayerState[players-2][1], Mo()->anPlayerState[players-2][2],
 		0 // BASE_MONEY 또는 자기돈?
 	);
@@ -1061,6 +1121,7 @@ bool DConnect::ReceiveUIDMsg( CMsg* pMsg )
 // mmPrepare 메시지를 수신
 bool DConnect::ReceiveStateMsg( CMsg* pMsg )
 {
+	int i;
 	CString sPreset;
 	CString sRule;
 
@@ -1077,7 +1138,8 @@ bool DConnect::ReceiveStateMsg( CMsg* pMsg )
 
 	// 사람 정보
 	long bComputer;
-	for ( int i = 0; i < m_rule.nPlayerNum; i++ ) {
+	m_nSpectators = 0;
+	for ( i = 0; i < MAX_CONNECTION; i++ ) {
 		if ( !pMsg->PumpString( m_aInfo[i].sName )
 			|| !pMsg->PumpString( m_aInfo[i].sInfo )
 			|| !pMsg->PumpLong( bComputer )
@@ -1086,6 +1148,8 @@ bool DConnect::ReceiveStateMsg( CMsg* pMsg )
 			|| !pMsg->PumpLong( m_aInfo[i].dfa[2] )
 			|| !pMsg->PumpLong( m_aInfo[i].dfa[3] ) ) return false;
 		m_aInfo[i].bComputer = !!bComputer;
+		if(i >= m_rule.nPlayerNum && !bComputer)
+			m_nSpectators++;
 	}
 
 	// Mark 들이 등록되지 않았다면 등록한다
@@ -1108,6 +1172,12 @@ bool DConnect::ReceivePlayerInfoMsg( CMsg* pMsg )
 		|| !pMsg->PumpString( m_aInfo[uid].sName )
 		|| !pMsg->PumpString( m_aInfo[uid].sInfo )
 		|| !pMsg->PumpLong( bComputer ) ) return false;
+
+	if(uid >= m_rule.nPlayerNum)
+	{
+		if(!m_aInfo[uid].bComputer) m_nSpectators--;
+		if(!bComputer) m_nSpectators++;
+	}
 	m_aInfo[uid].bComputer = !!bComputer;
 
 	UpdateMarks();
@@ -1254,13 +1324,14 @@ void DConnect::Chat( LPCTSTR sMsg, long uid, bool bUpdate )
 // 게임의 시작 (서버로서)
 bool DConnect::BeginServer()
 {
+	int i;
 	ASSERT( m_uid == 0 );
 
 	// 이 소스는 DStartUp.cpp 참조
 
 	int nPlayers = m_rule.nPlayerNum;
 
-	CPlayer* apPlayers[MAX_PLAYERS];
+	CPlayer* apPlayers[MAX_CONNECTION];
 
 	// Human Player 생성
 	apPlayers[0] = new CPlayerHuman(
@@ -1269,17 +1340,22 @@ bool DConnect::BeginServer()
 	// Network Players / AI Players 생성
 	bool bFailed = false;
 	CString sFailedDLL;
-	for ( int i = 1; i < nPlayers; i++ ) {
+	for ( i = 1; i < MAX_CONNECTION; i++ ) {
 
 		if ( m_aInfo[i].bComputer ) {	// AI Player
-
-			CPlayerMai* pPlayer = new CPlayerMai(
-				i, m_aInfo[i].sName, *m_pBoard,
-				Mo()->aPlayer[i].sAIDLL, Mo()->aPlayer[i].sSetting );
-			apPlayers[i] = pPlayer;
-			if ( !pPlayer->IsDLLWorking() ) {
-				bFailed = true;
-				sFailedDLL = Mo()->aPlayer[i].sAIDLL;
+			if ( i < nPlayers ) {
+				CPlayerMai* pPlayer = new CPlayerMai(
+					i, m_aInfo[i].sName, *m_pBoard,
+					Mo()->aPlayer[i].sAIDLL, Mo()->aPlayer[i].sSetting );
+				apPlayers[i] = pPlayer;
+				if ( !pPlayer->IsDLLWorking() ) {
+					bFailed = true;
+					sFailedDLL = Mo()->aPlayer[i].sAIDLL;
+				}
+			}
+			else {			// 관전자 자리에 있는 더미
+				CPlayerDummy* pPlayer = new CPlayerDummy(i, *m_pBoard );
+				apPlayers[i] = pPlayer;
 			}
 		}
 		else {	// NetworkPlayer
@@ -1291,14 +1367,14 @@ bool DConnect::BeginServer()
 	}
 
 	// 돈과 전적을 배분
-	for ( int j = 0; j < nPlayers; j++ ) {
-		apPlayers[j]->SetMoney( m_aInfo[j].dfa[3] );
-		apPlayers[j]->GetAllRecord().wm = LOWORD( m_aInfo[j].dfa[0] );
-		apPlayers[j]->GetAllRecord().lm = HIWORD( m_aInfo[j].dfa[0] );
-		apPlayers[j]->GetAllRecord().wf = LOWORD( m_aInfo[j].dfa[1] );
-		apPlayers[j]->GetAllRecord().lf = HIWORD( m_aInfo[j].dfa[1] );
-		apPlayers[j]->GetAllRecord().wa = LOWORD( m_aInfo[j].dfa[2] );
-		apPlayers[j]->GetAllRecord().la = HIWORD( m_aInfo[j].dfa[2] );
+	for ( i = 0; i < nPlayers; i++ ) {
+		apPlayers[i]->SetMoney( m_aInfo[i].dfa[3] );
+		apPlayers[i]->GetAllRecord().wm = LOWORD( m_aInfo[i].dfa[0] );
+		apPlayers[i]->GetAllRecord().lm = HIWORD( m_aInfo[i].dfa[0] );
+		apPlayers[i]->GetAllRecord().wf = LOWORD( m_aInfo[i].dfa[1] );
+		apPlayers[i]->GetAllRecord().lf = HIWORD( m_aInfo[i].dfa[1] );
+		apPlayers[i]->GetAllRecord().wa = LOWORD( m_aInfo[i].dfa[2] );
+		apPlayers[i]->GetAllRecord().la = HIWORD( m_aInfo[i].dfa[2] );
 	}
 
 	// 이제 SetMFSM 을 하는 순간 this 를 비롯한 모든 DSB 가 사라진다
@@ -1310,7 +1386,7 @@ bool DConnect::BeginServer()
 	CMFSM* pMFSM = new CMFSM( m_rule.Encode(), apPlayers, pSB );
 
 	pSB->SetMFSM( pMFSM );
-	for ( int uid = 0; uid < nPlayers; uid++ )
+	for ( int uid = 0; uid < MAX_CONNECTION; uid++ )
 		if ( !m_aInfo[uid].bComputer ) {
 			pSB->InitForServer( uid, m_aInfo[uid].pSocket );
 			m_aInfo[uid].pSocket = 0;	// detach
@@ -1346,19 +1422,18 @@ bool DConnect::BeginClient()
 	int j;
 	int nPlayers = m_rule.nPlayerNum;
 
-	CPlayer* apPlayers[MAX_PLAYERS];
+	CPlayer* apPlayers[MAX_CONNECTION];
 
-	// Human Player 생성
-	apPlayers[0] = new CPlayerHuman(
-		0, m_aInfo[m_uid].sName, *m_pBoard );
+	// Human / Network Players 생성
+	for ( j = 0; j < MAX_CONNECTION; j++ ) {
+		int i = ( j < nPlayers ? ( m_uid + j ) % nPlayers : j );
 
-	// Network Players 생성
-	for ( j = 1; j < nPlayers; j++ ) {
-		int i = ( m_uid + j ) % nPlayers;
-
-		CPlayerNetwork* pPlayer = new CPlayerNetwork(
-			j, m_aInfo[i].sName, *m_pBoard );
-		apPlayers[j] = pPlayer;
+		if ( i == m_uid )
+			apPlayers[j] = new CPlayerHuman(
+				j, m_aInfo[i].sName, *m_pBoard );
+		else
+			apPlayers[j] = new CPlayerNetwork(
+				j, m_aInfo[i].sName, *m_pBoard );
 	}
 
 	// 돈과 전적을 배분

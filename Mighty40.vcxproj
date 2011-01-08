@@ -278,6 +278,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="DDetailScore.cpp" />
+    <ClCompile Include="PlayerDummy.cpp" />
     <ClCompile Include="PlayerHuman.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -413,6 +414,7 @@
     <ClInclude Include="DDetailScore.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerDummy.h" />
     <ClInclude Include="PlayerHuman.h" />
     <ClInclude Include="PlayerMai.h" />
     <ClInclude Include="PlayerNetwork.h" />

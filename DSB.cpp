@@ -321,6 +321,15 @@ RECT DSB::RegisterHotspot(
 	return rcSpot + CPoint(x,y);
 }
 
+// v4.0: 핫 스팟을 제거한다 (2011.1.7)
+void DSB::DeleteHotspot( LPVOID pVoid )
+{
+	POSITION pos = m_lHotspot.GetHeadPosition();
+	for (; pos; m_lHotspot.GetNext(pos) )
+		if ( m_lHotspot.GetAt(pos).pVoid == pVoid )
+			m_lHotspot.RemoveAt(pos);
+}
+
 // 주어진 pVoid 값을 가지는 핫 스팟을 찾는다
 POSITION DSB::FindHotspot( LPVOID pVoid )
 {

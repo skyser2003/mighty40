@@ -13,6 +13,7 @@
 #include "Player.h"
 #include "PlayerHuman.h"
 #include "PlayerMai.h"
+#include "PlayerDummy.h"
 
 #include "ZSocket.h"
 #include "BoardWrap.h"
@@ -171,7 +172,7 @@ void DStartUp::OnClick( LPVOID pVoid )
 		case 0xffffffff:
 		case 1:		// 서버가 됨
 			Ib()->ShowChat();	// 채팅창 표시
-			(new DConnect(m_pBoard))->Create( 0, Mo()->rule.nPlayerNum );
+			(new DConnect(m_pBoard))->Create( 0, Mo()->rule.nPlayerNum, false );
 			DSB::OnClick(0);
 			break;
 		case 2:		// 다른 곳으로 접속
@@ -195,9 +196,11 @@ void DStartUp::OnClickSound()
 // 0 을 리턴한다
 bool DStartUp::CreateOnePlayerGame()
 {
+	int i;
+
 	int nPlayers = Mo()->rule.nPlayerNum;
 
-	CPlayer* apPlayers[MAX_PLAYERS];
+	CPlayer* apPlayers[MAX_CONNECTION];
 
 	// Human Player 생성
 	apPlayers[0] = new CPlayerHuman(
@@ -206,8 +209,8 @@ bool DStartUp::CreateOnePlayerGame()
 	// AI Players 생성
 	bool bFailed = false;
 	CString sFailedDLL;
-	for ( int i = 1; i < nPlayers; i++ ) {
-
+	for ( i = 1; i < nPlayers; i++ )
+	{
 		CPlayerMai* pPlayer = new CPlayerMai(
 			i, Mo()->aPlayer[i].sName, *m_pBoard,
 			Mo()->aPlayer[i].sAIDLL, Mo()->aPlayer[i].sSetting );
@@ -216,6 +219,11 @@ bool DStartUp::CreateOnePlayerGame()
 			bFailed = true;
 			sFailedDLL = Mo()->aPlayer[i].sAIDLL;
 		}
+	}
+	// Dummy Players 생성
+	for ( ; i < MAX_CONNECTION; i++ )
+	{
+		apPlayers[i] = new CPlayerDummy(i, *m_pBoard);
 	}
 
 	// 돈을 적당히 준다

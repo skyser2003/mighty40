@@ -32,7 +32,7 @@ DRule::DRule(LPCTSTR sRule, bool bReadOnly, bool bAutoDelete,
 	m_bReadOnly = bReadOnly;
 	m_bAutoDelete = bAutoDelete;
 
-	m_nPages = 7;	//v4.0
+	m_nPages = 7;	//v3.21
 	m_apPages = new CPropertyPage*[m_nPages];
 	m_rule.Decode( sRule );
 
@@ -41,7 +41,7 @@ DRule::DRule(LPCTSTR sRule, bool bReadOnly, bool bAutoDelete,
 	m_apPages[2] = new PRuleConstrain(&m_rule,bReadOnly);
 	m_apPages[3] = new PRuleDealMiss(&m_rule,bReadOnly);
 	m_apPages[4] = new PRuleScore(&m_rule,bReadOnly);
-	m_apPages[5] = new PRuleSpecial(&m_rule,bReadOnly);	//v4.0
+	m_apPages[5] = new PRuleSpecial(&m_rule,bReadOnly);	//v3.21
 	m_apPages[6] = new PRuleCard(&m_rule,bReadOnly);
 
 	for ( int i = 0; i < m_nPages; i++ )

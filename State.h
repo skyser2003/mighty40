@@ -13,6 +13,9 @@
 #ifndef MAX_PLAYERS
 #	define MAX_PLAYERS		7
 #endif
+#ifndef MAX_CONNECTION
+#	define MAX_CONNECTION	20
+#endif
 
 #ifndef MIGHTY_EXPORT
 #	ifdef _WINDLL
@@ -68,8 +71,8 @@ struct MIGHTY_EXPORT CState
 	CRule* pRule;
 	// 지금까지의 게임 회수
 	int nGameNum;
-	// 모든 플레이어들 ( 최대 7명=MAX_PLAYERS )
-	CPlayer* apAllPlayers[MAX_PLAYERS];
+	// 모든 플레이어들 ( 최대 20명=MAX_CONNECTION )
+	CPlayer* apAllPlayers[MAX_CONNECTION];
 	// 덱
 	CCardList& lDeck;
 	// 바닥카드들
@@ -80,7 +83,7 @@ struct MIGHTY_EXPORT CState
 	// 판 범위
 
 	// 실제로 게임을 하는 플레이어들 ( 최대 7명 )
-	CPlayer* apPlayers[MAX_PLAYERS];
+	CPlayer* apPlayers[MAX_CONNECTION];
 	// 실제로 게임을 하는 플레이어들의 수
 	int nPlayers;
 	// 각 플레이어의 선거 기권 여부

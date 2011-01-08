@@ -21,7 +21,7 @@ static char THIS_FILE[]=__FILE__;
 UINT CMFSM::Server()
 {
 	TRACE( "Server Began\n" );
-	int i;
+	int i, j;
 
 	try {
 
@@ -37,7 +37,7 @@ lblMightyBegin:
 		if ( !IsServer() ) GetDeckFromServer();
 
 		// 각 플레이어의 초기화
-		for ( i = 0; i < pRule->nPlayerNum; i++ ) {
+		for ( i = 0; i < MAX_CONNECTION; i++ ) {
 			nCurrentPlayer = GetPlayerNumFromID(i);
 			NOTIFY_TO( i, OnInit(EVENT) );
 		}
@@ -47,7 +47,7 @@ lblMightyBegin:
 			state = msDeal2MA;
 
 			// 시작했음을 각 플레이어에게 알린다
-			for ( i = 0; i < pRule->nPlayerNum; i++ ) {
+			for ( i = 0; i < MAX_CONNECTION; i++ ) {
 				nCurrentPlayer = GetPlayerNumFromID(i);
 				NOTIFY_TO( i, OnBegin( GetState(), EVENT ) );
 			}
@@ -94,7 +94,7 @@ lblMightyBegin:
 		state = msElection;
 
 		// 시작했음을 각 플레이어에게 알린다
-		for ( i = 0; i < pRule->nPlayerNum; i++ ) {
+		for ( i = 0; i < MAX_CONNECTION; i++ ) {
 			nCurrentPlayer = GetPlayerNumFromID(i);
 			NOTIFY_TO( i, OnBegin( GetState(), EVENT ) );
 		}
@@ -180,7 +180,7 @@ lblMightyBegin:
 			CCardList* plcDead;
 			int nCards;
 
-			for( int j = 0; j < pRule->nPlayerNum - 5; j++ )		// 5명 남을 때 까지 반복한다.
+			for ( j = 0; j < pRule->nPlayerNum - 5; j++ )		// 5명 남을 때 까지 반복한다.
 			{
 				nCurrentPlayer = nMaster;
 				do {
@@ -280,7 +280,7 @@ lblMightyBegin:
 						do {
 							ac[i] = pHand->GetPrev(pos);	// 아무 카드나 빼 버린다!!
 							bDup = false;
-							for ( int j = 0; j < i; j++ )
+							for ( j = 0; j < i; j++ )
 								if ( ac[j] == ac[i] ) bDup = true;
 						} while (bDup);
 					}
@@ -317,10 +317,8 @@ lblMightyBegin:
 		state = msTurn;
 
 		// 이를 알린다
-		for ( i = 0; i < pRule->nPlayerNum; i++ ) {
-			nCurrentPlayer = GetPlayerNumFromID(i);
+		for ( i = 0; i < MAX_CONNECTION; i++ )
 			NOTIFY_TO_ID( i, i, OnElectionEnd( EVENT ) );
-		}
 
 		// 가장 중요한 게임 루프 !
 		// 10 번 반복함 (2마: 13번)
@@ -330,9 +328,9 @@ lblMightyBegin:
 			bJokercallEffect = false;
 
 			// 각 플레이어마다 반복
-			for ( int cnt = 0; cnt < nPlayers; cnt++ ) {
+			for ( i = 0; i < nPlayers; i++ ) {
 
-				nCurrentPlayer = ( nBeginer + cnt ) % nPlayers;
+				nCurrentPlayer = ( nBeginer + i ) % nPlayers;
 				cCurrentCard = 0;
 
 				// 카드를 낸다
@@ -482,7 +480,7 @@ lblMightyBegin:
 				if ( !abCont[i] ) { bCont = false; break; }
 
 			if ( !bCont )  { // 종료
-				for ( i = pRule->nPlayerNum - 1; i >= 0; i-- )
+				for ( i = MAX_CONNECTION - 1; i >= 0; i-- )
 					apAllPlayers[i]->OnTerminate( m_sTermRequestReason );
 				throw this;
 			}

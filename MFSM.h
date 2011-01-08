@@ -153,11 +153,11 @@ protected:
 	CEvent m_eSock;
 
 	// 플레이어들에 대한 모든 이벤트 ( 수동 이벤트들임 )
-	CEvent* m_apePlayer[MAX_PLAYERS];
+	CEvent* m_apePlayer[MAX_CONNECTION];
 	// 각 플레이어에 대해 요청 함수를 호출해야 하는지 여부
-	bool m_abWaitingPlayerRedo[MAX_PLAYERS];
+	bool m_abWaitingPlayerRedo[MAX_CONNECTION];
 	// 현재 대기중인 플레이어에 대한 이벤트와 개수
-	CEvent* m_apeWaitingPlayer[MAX_PLAYERS+1];	// 이벤트(m_eNotify 포함)
+	CEvent* m_apeWaitingPlayer[MAX_CONNECTION+1];	// 이벤트(m_eNotify 포함)
 	int m_nWaitingPlayer;						// 개수
 	// 이벤트를 리셋하고, m_apeWaitingPlayer 등을 초기화 한다
 	void ResetEvents();

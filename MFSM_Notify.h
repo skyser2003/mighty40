@@ -24,7 +24,7 @@
 #define NOTIFY_ALL( FUNC ) \
 	do { \
 		NOTIFY_BLOCK_BEGIN() \
-		for ( int _nPlayerID = pRule->nPlayerNum-1; _nPlayerID >= 0; _nPlayerID-- ) \
+		for ( int _nPlayerID = MAX_CONNECTION - 1; _nPlayerID >= 0; _nPlayerID-- ) \
 			CALL_IF_WANT_REDO( _nPlayerID, apAllPlayers[_nPlayerID]->FUNC ); \
 		NOTIFY_BLOCK_END() \
 	} while (0)

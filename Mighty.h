@@ -16,6 +16,7 @@
 #define LAST_TURN_2MA 12
 #define LAST_TURN 9
 #define MAX_PLAYERS 7
+#define MAX_CONNECTION 20
 #define MAX_SCORE_2MA 13
 #define MAX_SCORE 20
 #define HIGHSCORE_MAXLIMIT 25

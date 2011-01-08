@@ -56,7 +56,7 @@ protected:
 		CList<CMsg*,CMsg*> lmsg;	// 메시지 ( AddTail, RemoveHead 큐 )
 		CMsg** ppMsg;	// 메시지 트리거 결과
 		CEvent* pEvent;	// 메시지 트리거 완료이벤트
-	} m_aClients[MAX_PLAYERS];
+	} m_aClients[MAX_CONNECTION];
 
 	CMFSM* m_pMFSM;
 	CCriticalSection m_cs;

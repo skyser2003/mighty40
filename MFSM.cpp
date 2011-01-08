@@ -41,26 +41,22 @@ CMFSM::CMFSM( LPCTSTR sRule, CPlayer* _apPlayers[], CSocketBag* pSockBag )
 	ASSERT( pRule->nPlayerNum <= MAX_PLAYERS );
 	nPlayers = pRule->nPlayerNum;
 
-	for ( i = 0; i < MAX_PLAYERS; i++ )
-		m_apePlayer[i] = 0;
-
-	for ( i = 0; i < pRule->nPlayerNum; i++ )
+	for ( i = 0; i < MAX_CONNECTION; i++ )
 		m_apePlayer[i] = new CEvent( FALSE, TRUE );	// manual event
 	ResetEvents();
 
-	for ( i = 0; i < pRule->nPlayerNum; i++ ) {
+	for ( i = 0; i < MAX_CONNECTION; i++ ) {
 		apPlayers[i] = apAllPlayers[i] = _apPlayers[i];
-		apPlayers[i]->SetCurrentMFSM( this );
-		apPlayers[i]->Reset();
+		apAllPlayers[i]->SetCurrentMFSM( this );
+		apAllPlayers[i]->Reset();
 	}
-	for ( i = pRule->nPlayerNum; i < MAX_PLAYERS; i++ )
-		apPlayers[i] = apAllPlayers[i] = 0;
 
 	InitStageData( 0 );
 }
 
 CMFSM::~CMFSM()
 {
+	int i;
 	// 쓰레드를 종료한다
 	m_bTerminate = true;
 	m_eNotify.SetEvent();
@@ -76,11 +72,11 @@ CMFSM::~CMFSM()
 	TRACE("MFSM AIThread Terminated\n");
 
 	// 플레이어 자동 삭제
-	for ( int i = 0; i < MAX_PLAYERS; i++ )
+	for ( i = 0; i < MAX_CONNECTION; i++ )
 		delete apAllPlayers[i];
 
-	for ( int j = 0; j < pRule->nPlayerNum; j++ )
-		delete m_apePlayer[j];
+	for ( i = 0; i < MAX_CONNECTION; i++ )
+		delete m_apePlayer[i];
 
 	POSITION pos = m_lChatMsg.GetHeadPosition();
 	while (pos) delete m_lChatMsg.GetNext(pos).pMsg;
@@ -91,10 +87,10 @@ CMFSM::~CMFSM()
 
 // 플레이어를 표현하는 ID, UID, Num 간의 변환을 한다
 // 해당 플레이어가 존재하지 않는 경우 -1 을 리턴한다 (Num 을 리턴하는 함수의 경우)
-long CMFSM::GetPlayerUIDFromID( long id ) { return id < 0 ? -1 : (id+m_uid)%pRule->nPlayerNum; }
-long CMFSM::GetPlayerIDFromUID( long uid ) { return uid < 0 ? -1 : (uid-m_uid+pRule->nPlayerNum)%pRule->nPlayerNum; }
-long CMFSM::GetPlayerIDFromNum( long num ) { return num < 0 || num >= nPlayers ? -1 : apPlayers[num]->GetID(); }
-long CMFSM::GetPlayerNumFromID( long id ) { for ( int i = 0; i < nPlayers; i++ ) if ( apPlayers[i]->GetID() == id ) return i; return -1; }
+long CMFSM::GetPlayerUIDFromID( long id ) { return id < 0 ? -1 : id >= pRule->nPlayerNum ? id : (id+m_uid)%pRule->nPlayerNum; }
+long CMFSM::GetPlayerIDFromUID( long uid ) { return uid < 0 ? -1 : uid >= pRule->nPlayerNum ? uid : (uid-m_uid+pRule->nPlayerNum)%pRule->nPlayerNum; }
+long CMFSM::GetPlayerIDFromNum( long num ) { return num < 0 || num >= MAX_CONNECTION ? -1 : apPlayers[num]->GetID(); }
+long CMFSM::GetPlayerNumFromID( long id ) { for ( int i = 0; i < MAX_CONNECTION; i++ ) if ( apPlayers[i]->GetID() == id ) return i; return -1; }		// v4.0: 2011.1.8
 long CMFSM::GetPlayerNumFromUID( long uid ) { return GetPlayerNumFromID( GetPlayerIDFromUID(uid) ); }
 long CMFSM::GetPlayerUIDFromNum( long num ) { return GetPlayerUIDFromID( GetPlayerIDFromNum(num) ); }
 

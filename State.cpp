@@ -36,6 +36,8 @@ CState::~CState()
 // 각 판 범위의 데이터들을 초기화 한다 (프랜드 등)
 void CState::InitStageData( int _nGameNum, int _nBeginer )
 {
+	int i;
+
 	CCard::SetState( this );
 
 	state = msReady;
@@ -47,7 +49,7 @@ void CState::InitStageData( int _nGameNum, int _nBeginer )
 	lDeck.NewDeck( pRule->nPlayerNum,
 		CCard(pRule->nJokercall), CCard(pRule->nAlterJokercall) );
 
-	for ( int s = 0; s < 4; s++ )
+	for ( i = 0; i < 4; i++ )
 		lDeck.Suffle();
 
 	lCurrent.RemoveAll();
@@ -56,12 +58,13 @@ void CState::InitStageData( int _nGameNum, int _nBeginer )
 
 	// 아직 한 명이 죽지 않았으므로 모든 플레이어가 게임에 참가
 	nPlayers = pRule->nPlayerNum;
-	for ( int i = 0; i < pRule->nPlayerNum; i++ ) {
+	for ( i = 0; i < MAX_CONNECTION; i++ ) {
 		apAllPlayers[i]->Reset();
 		apPlayers[i] = apAllPlayers[i];
 		apPlayers[i]->SetPlayerNum(i);
-		abGiveup[i] = false;
 	}
+	for ( i = 0; i < nPlayers; i++ )
+		abGiveup[i] = false;
 
 	lDead.RemoveAll();
 
@@ -80,8 +83,8 @@ void CState::InitStageData( int _nGameNum, int _nBeginer )
 
 	bJokerUsed = false;
 
-	for ( int u = 0; u < 4; u++ )
-		anUsedCards[u] = anUsingCards[u] = 0;
+	for ( i = 0; i < 4; i++ )
+		anUsedCards[i] = anUsingCards[i] = 0;
 
 	nTurn = -1;
 	nBeginer = _nBeginer;

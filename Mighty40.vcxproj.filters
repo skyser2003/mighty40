@@ -189,7 +189,13 @@
     <ClCompile Include="ZSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="POptionChat.cpp">
+    <ClCompile Include="DAddRule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DDetailScore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -353,7 +359,13 @@
     <ClInclude Include="ZSocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="POptionChat.h">
+    <ClInclude Include="DAddRule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DDetailScore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDummy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

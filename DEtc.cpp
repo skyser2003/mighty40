@@ -52,7 +52,7 @@ void DAbout::OnDraw(
 	rc = PutText( pDC, _T("Copyright (C) 1999 ¿ÂπÆº∫"),
 		rc.left, rc.bottom + rc.Height()/2, false,
 		s_colWhite, s_tdShade );
-	PutText( pDC, _T("2006 puzzlet, 2010 Yoshi-TS4"),
+	PutText( pDC, _T("2006 puz*, 2010 Yoshi-TS4"),
 		rc.left, rc.bottom + rc.Height()/4, false,
 		s_colWhite, s_tdShade );
 }

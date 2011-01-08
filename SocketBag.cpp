@@ -50,7 +50,7 @@ CSocketBag::~CSocketBag()
 void CSocketBag::InitForClient( long uid )
 {
 	CLIENTITEM* pItem = &m_aClients[m_nClients++];
-	ASSERT( m_nClients <= MAX_PLAYERS );
+	ASSERT( m_nClients <= MAX_CONNECTION );
 
 	pItem->uid = uid;
 	pItem->pSocket = 0;
@@ -69,7 +69,7 @@ void CSocketBag::InitForClient( CPlayerSocket* pServerSocket )
 void CSocketBag::InitForServer( long uid, CPlayerSocket* pSocket )
 {
 	CLIENTITEM* pItem = &m_aClients[m_nClients++];
-	ASSERT( m_nClients <= MAX_PLAYERS );
+	ASSERT( m_nClients <= MAX_CONNECTION );
 
 	pItem->uid = uid;
 	pItem->pSocket = pSocket;
@@ -156,7 +156,7 @@ void CSocketBag::SockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 		// 게임 진행 메시지의 두 번째 원소는 항상 uid 이다
 		pMsg->PumpLong( uid );
 		pMsg->PumpLong( uid );
-		ASSERT( uid >= 0 && uid < m_pMFSM->GetState()->pRule->nPlayerNum );
+		ASSERT( uid >= 0 && uid < MAX_CONNECTION );
 		pMsg->Rewind();
 	}
 
