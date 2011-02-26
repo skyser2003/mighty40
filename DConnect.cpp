@@ -909,8 +909,8 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 			if ( !(spectatorOnly && uid < m_rule.nPlayerNum) )
 				break;
 		}
-		// 같은 닉네임이 있는지 조사
-		else if ( m_aInfo[uid].sName == sName ) return -2;
+		// 같은 닉네임 불가인데 같은 닉네임이 존재하면
+		else if ( !Mo()->bSameName && m_aInfo[uid].sName == sName ) return -2;
 	}
 	// 관전 가능한 경우 20명, 불가능한 경우 플레이어 수보다 많은 경우 자리가 꽉찼다는 표시
 	if ( uid >= 20 || (( !Mo()->bObserver) && uid >= m_rule.nPlayerNum ) )

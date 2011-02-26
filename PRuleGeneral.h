@@ -30,6 +30,7 @@ public:
 	BOOL	m_bJokerFriend;
 	BOOL	m_bShowFriend;
 	BOOL	m_bFriendGetsBeginer;
+	BOOL	m_bRandomSeat;
 	BOOL	m_bAttScoreThrownPoints;
 	BOOL	m_bHideScore;
 	//}}AFX_DATA

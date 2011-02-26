@@ -200,6 +200,7 @@ protected:
 	// 또 조커인 경우 nJokerShape 을 세트한다
 	void SetJokerState( CCard c, int nEffect );
 	// 서버에서 덱을 얻어온다
+	// mmGameInit의 경우 앉는 자리도 얻어온다 (v4.0: 2011.1.14)
 	void GetDeckFromServer();
 };
 

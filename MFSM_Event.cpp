@@ -165,8 +165,11 @@ void CMFSM::EventChat( CMsg* pMsg, bool bSource )
 }
 
 // 서버에서 덱을 얻어온다
+// mmGameInit의 경우 앉는 자리도 얻어온다 (v4.0: 2011.1.14)
 void CMFSM::GetDeckFromServer()
 {
+	int i;
+
 	ASSERT( !IsServer() && m_pSockBag );
 
 	CMsg* pMsg = 0;
@@ -187,13 +190,24 @@ void CMFSM::GetDeckFromServer()
 			&& uid == 0
 			&& pMsg->PumpCardList( lServerDeck )
 			&& lDeck.GetCount() == lServerDeck.GetCount() )
-
+	{
 		lDeck = lServerDeck;
-
-	else {	// 잘못된 메시지가 왔음
-		ASSERT(0);
-		EventExit( _T("서버로부터 예상치 못한 응답이 도착했습니다") );
+		if ( nType == CMsg::mmGameInit )
+		{
+			for ( i = 0; i < nPlayers; i++ )
+			{
+				if( !pMsg->PumpLong( uid ) ) goto hell;
+				apPlayers[i] = apAllPlayers[uid];
+			}
+			return;
+		}
+		else return;
 	}
+
+hell:
+	// 잘못된 메시지가 왔음
+	ASSERT(0);
+	EventExit( _T("서버로부터 예상치 못한 응답이 도착했습니다") );
 }
 
 // 오직 CPlayer 만 부르는 함수

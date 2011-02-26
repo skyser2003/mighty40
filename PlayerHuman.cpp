@@ -82,6 +82,16 @@ int CPlayerHuman::GetRecommendedKillCard( const CCardList* plDead )
 			if ( !GetHand()->Find( CCard( s, i ) )
 				&& !plDead->Find( CCard( s, i ) ) )
 				return (int)CCard( s, i );
+
+	nFrom = SPADE, nTo = CLOVER;
+	for ( int s = nFrom; s <= nTo; s++ )
+		if ( !GetHand()->Find( CCard( s, ACE ) )
+			&& !plDead->Find( CCard( s, ACE ) ) )
+			return (int)CCard( s, ACE );
+		else for ( int i = KING; i >= 2; i-- )
+			if ( !GetHand()->Find( CCard( s, i ) )
+				&& !plDead->Find( CCard( s, i ) ) )
+				return (int)CCard( s, i );
 	ASSERT(0);
 	return (int)CCard(nKiruda,2);	// never reached
 }

@@ -90,7 +90,7 @@ struct COption
 	int nDelayOneCard;
 	// 한 턴에 대한 대기 시간 0 - 10 (x200 millisecond)
 	int nDelayOneTurn;
-	// 카드 나눠 주는 에니메이션 보임
+	// 카드 나눠 주는 애니메이션 보임
 	bool bShowDealing;
 	// 저사양
 	bool bSlowMachine;
@@ -123,6 +123,8 @@ struct COption
 
 	// 관전 가능 여부
 	bool bObserver;
+	// 같은 이름 허용 여부
+	bool bSameName;
 	// 서버가 될 때 포트 번호
 	int nPort;
 	// 서버가 될 때 바인드 할 주소

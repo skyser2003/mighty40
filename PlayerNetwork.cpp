@@ -64,10 +64,24 @@ void CPlayerNetwork::SendMsg( CMsg* pMsg )
 
 void CPlayerNetwork::OnInit( CEvent* e )
 {
-	// 서버라면, 현재 덱을 전달해야 한다
+	int i;
+	// 서버라면, 현재 덱과 섞인 자리를 전달해야 한다
 	if ( IsServer() ) {
 		CMsg msg( _T("llC"), CMsg::mmGameInit, 0,
 								&m_pMFSM->GetState()->lDeck );
+
+		// 자리 섞는 룰이 켜진 경우 섞어서 전달
+		if ( m_pMFSM->GetState()->pRule->bRandomSeat ) {
+			int nPlayers = m_pMFSM->GetState()->nPlayers;
+			for ( i = 0; i < nPlayers; i++ )
+			{
+				int j = nPlayers - ( rand() % ( nPlayers - i ) ) - 1;
+				CPlayer* temp = m_pMFSM->GetState()->apPlayers[i];
+//				m_pMFSM->GetState()->apPlayers[i] = m_pMFSM->GetState()->apPlayers[j];
+//				m_pMFSM->GetState()->apPlayers[j] = temp;
+				msg.PushLong( m_pMFSM->GetState()->apPlayers[i]->GetID() );
+			}
+		}
 		SendMsg( &msg );
 	}
 	e->SetEvent();

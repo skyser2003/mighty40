@@ -74,7 +74,7 @@ protected:
 	// 위의 상태를 취소한다
 	void CancelSelection();
 
-	// 카드를 날리는 에니메이션 후
+	// 카드를 날리는 애니메이션 후
 	// 지정한 이벤트를 세트한다
 	// (그림자 효과는 중앙을 낮은 지점으로 생각)
 	void FlyCard(
@@ -88,7 +88,7 @@ protected:
 		int nToIndex,
 		CEvent* pEvent );
 
-	// 카드 섞는 에니메이션 후
+	// 카드 섞는 애니메이션 후
 	// 지정한 이벤트를 세트한다
 	// 음향은 IDW_SUFFLE 을 연주한다
 	void SuffleCards( int nCount /*섞는 회수*/, CEvent* pEvent );
@@ -224,9 +224,9 @@ protected:
 		COLORREF col, COLORREF colShadow,	// 글자 색상, 그림자 색상
 		CFont* pFont );						// 폰트 (0 이면 시스템 폰트 사용)
 
-	// 가운데 부분의 에니메이션
+	// 가운데 부분의 애니메이션
 	// 크기는 (카드폭)*2 X (카드높이)*1.5
-	// x, y 는 에니메이션의 한 가운데 위치
+	// x, y 는 애니메이션의 한 가운데 위치
 	// szCard 는 카드 크기
 	// nCount 카드 장수 (nStep==0 일때만 사용)
 	// nStep
@@ -256,7 +256,7 @@ protected:
 								//              2:아래에서 위로 3:위에서 위로)
 	volatile void* FlyCard( volatile void*&, int nStep = 1 );
 
-	// 카드를 섞는 에니메이션을 보인다
+	// 카드를 섞는 애니메이션을 보인다
 	// 이 함수는 위의 SuffleCards 의 저수준 버전으로
 	// DrawCenterAnimation 함수를 사용한다
 	// FlyCard 와 같은 방식으로 호출한다

@@ -61,14 +61,16 @@ struct CRule
 	bool bJokerFriend;
 	// 첫 득점때 프랜드 밝힘
 	bool bShowFriend;
-	// 버린 카드는 야당의 득점으로 치는가
-	bool bAttScoreThrownPoints;
 	// 다음판의 첫 출마자는 이전판의 프랜드인가 (false:전판선)
 	bool bFriendGetsBeginer;
+	// 버린 카드는 야당의 득점으로 치는가
+	bool bAttScoreThrownPoints;
+	// 각 판의 시작시 자리를 임의로 섞음
+	bool bRandomSeat;
 
 	// 선거
 
-	// 최소 기본 점수 ( 4 - 20 )
+	// 최소 기본 점수 ( 4 - 25 )
 	int nMinScore;
 	// 기본점수를 20 보다 높이 부를 수 있음 (25까지==HIGHSCORE_MAX_LIMIT)
 	bool bHighScore;
@@ -80,7 +82,7 @@ struct CRule
 	bool bPassAgain;
 	// 노기루시 처음과 바꿀 때 -1
 	bool bNoKirudaAdvantage;
-	// 노기루시 위와 다른 경우 -1
+	// 노기루시 항상 -1
 	bool bNoKirudaAlways;
 
 	// 제약 카드 & 효력
@@ -159,15 +161,15 @@ struct CRule
 	bool bS_DoubleForRun;
 	// 선언된 런만 2배 ( bS_DoubleForRun 을 오버라이드함 )
 	bool bS_DoubleForDeclaredRun;
+	// 런일때 고정액 있음 ( ..ForRun 을 오버라이드함 )
+	// 이 값은 20 으로 한다
+	bool bS_StaticRun;
 	// 백런은 2배
 	bool bS_DoubleForReverseRun;
 	// 노기루다 2배
 	bool bS_DoubleForNoKiruda;
-	// 노프랜드 1.5배씩 더 주기 ( 실질적으로 5마에서 3배, 4마에서 4.5배가 됨 )
+	// 노프랜드 2배씩 더 주기 ( 실질적으로 5마에서 4배, 4마에서 6배가 됨 )
 	bool bS_DoubleForNoFriend;
-	// 런일때 고정액 있음 ( ..ForRun 을 오버라이드함 )
-	// 이 값은 20 으로 한다
-	bool bS_StaticRun;
 	// 백런조건
 	// 야당이 여당의 공약 이상을 땄을 때
 	bool bS_AGoalReverse;

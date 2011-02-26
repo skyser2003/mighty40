@@ -274,6 +274,7 @@ CString CRule::Encode() const
 	SYNC_RULE_BOOL( bS_AGoalReverse );
 	SYNC_RULE_BOOL( bS_A11Reverse );
 	SYNC_RULE_BOOL( bS_AMReverse );
+	SYNC_RULE_BOOL( bRandomSeat );
 
 	if ( n == 0 ) *p = '\0';
 	else *(p+1) = '\0';
@@ -355,4 +356,5 @@ void CRule::Decode( LPCTSTR sRule )
 	SYNC_RULE_BOOL( bS_AGoalReverse );
 	SYNC_RULE_BOOL( bS_A11Reverse );
 	SYNC_RULE_BOOL( bS_AMReverse );
+	SYNC_RULE_BOOL( bRandomSeat );
 }

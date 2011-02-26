@@ -27,6 +27,7 @@ PRuleGeneral::PRuleGeneral(CRule* pRule,bool bReadOnly) : CPropertyPage(PRuleGen
 	m_bJokerFriend = m_pRule->bJokerFriend;
 	m_bShowFriend = m_pRule->bShowFriend;
 	m_bFriendGetsBeginer = m_pRule->bFriendGetsBeginer;
+	m_bRandomSeat = m_pRule->bRandomSeat;
 	m_bAttScoreThrownPoints = m_pRule->bAttScoreThrownPoints;
 	m_bHideScore = m_pRule->bHideScore;
 	//}}AFX_DATA_INIT
@@ -45,6 +46,7 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_JOKERFRIEND, m_bJokerFriend);
 	DDX_Check(pDX, IDC_SHOWFRIEND, m_bShowFriend);
 	DDX_Check(pDX, IDC_FRIENDGETSBEGINER, m_bFriendGetsBeginer);
+	DDX_Check(pDX, IDC_RANDOMSEAT, m_bRandomSeat);
 	DDX_Check(pDX, IDC_ATTSCORETHROWNPOINTS, m_bAttScoreThrownPoints);
 	DDX_Check(pDX, IDC_HIDESCORE, m_bHideScore);
 	DDX_Control(pDX, IDC_FRIEND, m_btFriend);
@@ -57,10 +59,11 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 		m_pRule->nPlayerNum = m_nPlayerNum + 2;
 		m_pRule->bFriend = !!m_bFriend && (m_nPlayerNum > 2);
 		m_pRule->bJokerFriend = !!m_bJokerFriend;
-		m_pRule->bShowFriend = m_bShowFriend ? true : false;
+		m_pRule->bShowFriend = !!m_bShowFriend;
 		m_pRule->bFriendGetsBeginer = !!m_bFriendGetsBeginer;
+		m_pRule->bRandomSeat = !!m_bRandomSeat;
 		m_pRule->bAttScoreThrownPoints = !!m_bAttScoreThrownPoints;
-		m_pRule->bHideScore = m_bHideScore ? true : false;
+		m_pRule->bHideScore = !!m_bHideScore;
 	}
 	else if ( m_nPlayerNum == 0 ) OnClicked2MA();
 }

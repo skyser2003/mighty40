@@ -34,7 +34,10 @@ lblMightyBegin:
 		InitStageData( nGameNum + 1, nBeginer );
 
 		// 클라이언트인 경우 서버에서 카드 배열을 얻어온다
-		if ( !IsServer() ) GetDeckFromServer();
+		if ( !IsServer() )
+		{
+			GetDeckFromServer();
+		}
 
 		// 각 플레이어의 초기화
 		for ( i = 0; i < MAX_CONNECTION; i++ ) {

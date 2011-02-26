@@ -24,7 +24,7 @@ POptionSpeed::POptionSpeed() : CPropertyPage(POptionSpeed::IDD)
 	m_nDelayOneCard = Mo()->nDelayOneCard;
 	m_nDelayOneTurn = Mo()->nDelayOneTurn;
 	m_bShowDealing = Mo()->bShowDealing;
-	m_bSlowMachine = Mo()->bSlowMachine;
+	m_bSlowMachine = !Mo()->bSlowMachine;
 	//}}AFX_DATA_INIT
 }
 
@@ -50,7 +50,7 @@ void POptionSpeed::DoDataExchange(CDataExchange* pDX)
 		Mo()->nDelayOneCard = m_nDelayOneCard;
 		Mo()->nDelayOneTurn = m_nDelayOneTurn;
 		Mo()->bShowDealing = !!m_bShowDealing;
-		Mo()->bSlowMachine = !!m_bSlowMachine;
+		Mo()->bSlowMachine = !m_bSlowMachine;
 	}
 }
 
@@ -83,7 +83,7 @@ BOOL POptionSpeed::OnInitDialog()
 
 void POptionSpeed::OnSlowmachine() 
 {
-	BOOL bEnable = ((CButton*)GetDlgItem(IDC_SLOWMACHINE))->GetCheck() & 1 ? FALSE : TRUE;
+	BOOL bEnable = ((CButton*)GetDlgItem(IDC_SLOWMACHINE))->GetCheck() & 1 ? TRUE : FALSE;
 	GetDlgItem(IDC_CARDSPEED)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CARDMOTION)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CARDSPEEDGROUP)->EnableWindow(bEnable);

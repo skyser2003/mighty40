@@ -103,7 +103,7 @@ void CBoard::WaitWhile( int nMillisecond, CEvent* pEvent )
 		(long)nMillisecond, (long)(LPVOID)pEvent ) );
 }
 
-// 카드를 날리는 에니메이션 후
+// 카드를 날리는 애니메이션 후
 // 지정한 이벤트를 세트한다
 // (그림자 효과는 중앙을 낮은 지점으로 생각)
 void CBoard::FlyCard( int nCard, int nSpeed,
@@ -118,7 +118,7 @@ void CBoard::FlyCard( int nCard, int nSpeed,
 		(long)(LPVOID)pEvent ) );
 }
 
-// 카드 섞는 에니메이션 후
+// 카드 섞는 애니메이션 후
 // 지정한 이벤트를 세트한다
 // 음향은 IDW_SUFFLE 을 연주한다
 void CBoard::SuffleCards( int nCount /*섞는 회수*/, CEvent* pEvent )

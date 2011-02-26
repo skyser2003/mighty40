@@ -179,9 +179,9 @@ void CBoard::DrawName(
 	}
 }
 
-// 가운데 부분의 에니메이션
+// 가운데 부분의 애니메이션
 // 크기는 (카드폭)*2 X (카드높이)*1.5
-// x, y 는 에니메이션의 한 가운데 위치
+// x, y 는 애니메이션의 한 가운데 위치
 // szCard 는 카드 크기
 // nCount 카드 장수 (nStep==0 일때만 사용)
 // nStep
@@ -671,7 +671,7 @@ volatile void* CBoard::FlyCard( volatile void*& h, int nStep )
 	return h;
 }
 
-// 카드를 섞는 에니메이션을 보인다
+// 카드를 섞는 애니메이션을 보인다
 // 이 함수는 위의 SuffleCards 의 저수준 버전으로
 // DrawCenterAnimation 함수를 사용한다
 // FlyCard 와 같은 방식으로 호출한다

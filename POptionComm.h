@@ -26,6 +26,7 @@ public:
 	CString	m_sAddress;
 	int		m_nChatDSBTimeOut;
 	BOOL	m_bObserver;
+	BOOL	m_bSameName;
 	//}}AFX_DATA
 
 

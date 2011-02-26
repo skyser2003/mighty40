@@ -108,8 +108,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,1,29
- PRODUCTVERSION 4,0,1,29
+ FILEVERSION 4,0,1,31
+ PRODUCTVERSION 4,0,1,31
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -125,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.1.29"
+            VALUE "FileVersion", "4.0.1.31"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.1.29"
+            VALUE "ProductVersion", "4.0.1.31"
         END
     END
     BLOCK "VarFileInfo"
@@ -384,8 +384,8 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "진행 속도"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    CONTROL         "카드를 섞고 나눠주는 에니메이션을 보임",IDC_SHOWDEALING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,13,200,10
-    CONTROL         "느린 하드웨어로 인해 부드러운 카드 이동을 원치 않음",IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,26,200,10
+    CONTROL         "카드를 섞고 나눠주는 애니메이션을 보임",IDC_SHOWDEALING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,13,200,10
+    CONTROL         "카드를 부드럽게 이동시킴",IDC_SLOWMACHINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,26,200,10
     GROUPBOX        "카드 속도",IDC_CARDSPEEDGROUP,7,43,108,50
     LTEXT           "느리게",IDC_STATIC,14,53,36,8
     RTEXT           "빠르게",IDC_STATIC,68,53,37,8
@@ -489,6 +489,7 @@ BEGIN
     CONTROL         "",IDC_CHATDSBTIMEOUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,128,83,90,21
     PUSHBUTTON      "전적 보기...",IDC_DETAILSCORE,65,122,110,22
     CONTROL         "관전 허용",IDC_OBSERVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,18,46,10
+    CONTROL         "같은 이름 허용",IDC_SAMENAME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,160,18,62,10
 END
 
 IDD_RULE_GENERAL DIALOGEX 0, 0, 239, 179
@@ -496,19 +497,21 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "일반"
 FONT 9, "굴림", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "플레이어 수",IDC_STATIC,8,8,130,80,WS_GROUP
-    CONTROL         "2 마 (특수 룰)",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,18,80,10
-    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,14,29,80,10
-    CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,14,40,80,10
-    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,51,80,10
-    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,14,62,80,10
-    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,14,73,80,10
-    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,93,160,10
-    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,105,160,10
-    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,117,160,10
-    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,129,160,10
-    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,141,160,10
-    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,153,160,10
+    GROUPBOX        "플레이어 수",IDC_STATIC,8,10,79,90,WS_GROUP
+    CONTROL         "2 마 (특수 룰)",IDC_2MA,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,22,70,10
+    CONTROL         "3 마 (프랜드 없음)",IDC_3MA,"Button",BS_AUTORADIOBUTTON,14,34,70,10
+    CONTROL         "4 마",IDC_4MA,"Button",BS_AUTORADIOBUTTON,14,46,70,10
+    CONTROL         "5 마 (표준)",IDC_5MA,"Button",BS_AUTORADIOBUTTON,14,58,70,10
+    CONTROL         "6 마 (1명 탈락제)",IDC_6MA,"Button",BS_AUTORADIOBUTTON,14,70,70,10
+    CONTROL         "7 마 (2명 탈락제)",IDC_7MA,"Button",BS_AUTORADIOBUTTON,14,82,70,10
+    CONTROL         "프랜드 제도 있음",IDC_FRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,16,140,10
+    GROUPBOX        "프렌드 제도",IDC_STATIC,88,33,143,60
+    CONTROL         "조커를 프랜드로 부를 수 있음",IDC_JOKERFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,47,137,10
+    CONTROL         "프랜드가 득점하면 즉시 프랜드임을 밝힘",IDC_SHOWFRIEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,60,137,10
+    CONTROL         "전판의 프랜드가 다음판의 딜러가 됨",IDC_FRIENDGETSBEGINER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,73,137,10
+    CONTROL         "각 판의 시작시 자리를 임의로 섞음",IDC_RANDOMSEAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,110,160,10
+    CONTROL         "주공이 버린 세 장의 카드는 야당 득점",IDC_ATTSCORETHROWNPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,124,160,10
+    CONTROL         "득점한 카드는 뒤집어 놓기",IDC_HIDESCORE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,138,160,10
 END
 
 IDD_RULE_ELECTION DIALOGEX 0, 0, 239, 179
@@ -1353,7 +1356,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.29 (2011-01-09)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.31 (2011-02-24)"
 END
 
 STRINGTABLE
@@ -1420,11 +1423,11 @@ BEGIN
     IDC_BACKALIGN           "배경 그림을 한 가운데에 그립니다 - 남은 부분은 바탕 화면 색상으로 채웁니다"
     IDC_BACKALIGN1          "배경 그림을 타일 형태로 배치합니다 - 배경 그림이 화면보다 큰 경우 반복적으로 채웁니다"
     IDC_BACKALIGN2          "배경 그림을 늘리거나 줄여서 바탕 화면 크기에 맞춥니다"
-    IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_BACKGROUNDBROWSE    "배경 그림을 선택하려면 이 버튼을 누르십시오"
     IDC_DSBOPAQUE           "색상의 조합이 적절치 못하면 음영 상자의 글자를 읽기 어려울 때가 있습니다, 이 기능은 글자 부분만 검게 칠해서 글자를 읽기 쉽게 해 주는 대신 화면을 다소 지저분하게 만들 수 있습니다"
     IDC_DSBSAMPLE           "현재 화면에 보여질 음영 상자의 대략적인 모습입니다 - 실제로는 이와 다소 다를 수 있습니다"
     IDC_DSBSHADEMODE        "검은 점들을 이용해서 병치혼합을 하여 투명한 느낌을 줍니다"
@@ -1434,13 +1437,13 @@ BEGIN
     IDC_CARDMOTION          "카드 움직임의 부드러운 정도를 결정합니다 - 이 값은 목적지까지 카드가 이동할 때 그려주는 프레임 수에 비례합니다"
     IDC_DELAYONECARD        "하나의 카드를 냈을 때 그 카드를 확인하도록 지연해 주는 시간입니다 - AI 들은 최소한 이 시간만큼 기다린 후에 다음 카드를 냅니다"
     IDC_DELAYONETURN        "기본적으로, 한 턴에서 모든 사람이 카드를 냈을 때 결과를 판단할 수 있도록 대기해 주는 시간입니다 - 이 값은 여러가지 다른 대기 시간에서도 사용되므로 전체적인 게임 속도를 조절할 수 있습니다"
-    IDC_SHOWDEALING         "카드를 섞고 나눠주는 에니메이션을 보여줍니다"
+    IDC_SHOWDEALING         "카드를 섞고 나눠주는 애니메이션을 보여줍니다"
     IDC_RULEPRESET          "미리 정의된 표준 규칙들 입니다. 사용자가 직접 추가할 수도 있습니다."
-    IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_RULESTRING          "현재 선택된 규칙을 문자열로 나타낸 것입니다"
     IDC_SHOWRULE            "현재 선택된 규칙을 보거나 사용자 정의 규칙을 수정하려면 이 버튼을 누르십시오"
 END
 
@@ -1452,6 +1455,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_OBSERVER            "관전자의 접속을 허용할지 결정합니다"
+    IDC_SAMENAME            "같은 닉네임을 가진 두 사람이 한 방에 접속하여 게임할 수 있는지 여부를 결정합니다"
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
     IDC_ADDRESS             "서버가 될 때 접속을 허용할 주소 범위를 지정합니다."
@@ -1465,12 +1469,13 @@ BEGIN
     IDC_7MA                 "6 마 의 변형된 형태로, 선거는 일곱 사람이 시작하여, 주공으로 당선된 플레이어가 다른 두 사람을 탈락시키고 5 마로 진행하는 방식입니다"
     IDC_FRIEND              "프랜드 제도가 있는가를 선택합니다 - 3 마에서는 프랜드 제도를 두지 않는 것이 표준입니다"
     IDC_JOKERFRIEND         "조커를 프랜드로 부를 수 있는지 결정합니다 - 이 옵션이 세트되지 않으면 조커 프랜드를 부르는 것은 불가능합니다"
-    IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
-    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_SHOWFRIEND          "프랜드가 득점하면 득점한 카드를 덱에 도로 돌려 놓음으로써, 즉석에서 자신이 프랜드임을 밝힙니다"
+    IDC_FRIENDGETSBEGINER   "전판에 프랜드를 했던 플레이어가 다음판에 가장 먼저 공약을 부를 수 있습니다 - 전판에 프랜드가 없었던 경우 전판의 주공이 다음판에 가장 먼저 공약을 부릅니다 - 이 옵션이 세트되어 있지 않으면 전판 선이 딜러가 됩니다"
+    IDC_RANDOMSEAT          "각 판을 시작할 때 자리를 임의로 섞습니다 - 이 옵션은 플레이어의 특성에 따라 앉은 위치에 따른 유불리를 개선할 수 있습니다"
     IDC_ATTSCORETHROWNPOINTS 
                             "주공이 버리게 되는 3 장의 카드는 야당이 득점한 것으로 합니다 - 이 옵션이 세트되지 않으면 그 카드들은 주공이 득점한 것입니다"
     IDC_HIDESCORE           "득점한 카드를 아무도 볼 수 없게 뒤집어 놓습니다 - 플레이어들은 득점한 카드를 보고는 지금까지 출현한 카드들에 대한 실마리를 잡을 수 없게 됩니다"
@@ -1480,18 +1485,17 @@ BEGIN
     IDC_BEGINERPASS         "가장 먼저 공약을 부르는 플레이어 (딜러) 가 아무런 공약도 부르지 않고 패스를 할 수 있습니다 - 이 옵션이 세트되어 있지 않으면 딜러는 반드시 공약을 불러야 합니다"
     IDC_RAISE2FORKIRUDACHANGE 
                             "주공이 추가 카드를 받고 나서 기루다를 바꾸고 싶을 때 목표 점수를 2 만큼 올려야 합니다 - 이 옵션이 세트되어 있지 않으면 1 만큼 올려야 합니다"
-    IDC_RAISE1FORNOKIRUDACHANGE "주공이 기루다를 노기루다로 바꾸는 경우 목표 점수를 1 만큼만 올리면 됩니다"
-    IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다."
-    IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다."
-    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다. 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다"
+    IDC_NK                  "노 기루다에 대해서도 기루다가 있을 때와 같은 방식으로 선거를 진행합니다"
+    IDC_NK1                 "노 기루다를 부르는 경우 기본 보다 1 적게 부를 수 있으며, 당선된 후 기루다를 노기루다로 바꾸는 경우 목표 점수를 평소보다 1 적게 올리게 됩니다"
+    IDC_NK2                 "노 기루다를 부르는 경우 기루다를 부르는 경우 보다 1 적게 부를 수 있습니다 - 예를 들어 이전 공약이 스페이드 15인 경우 노 기루다 15를 부를 수 있고, 이 경우 다음 사람은 노기 16 또는 기루다 17 이상을 불러야 합니다"
     IDC_PASSAGAIN           "출마 포기 한 사람이 다시 공약을 부를 수 있습니다 - 이 옵션이 세트되어 있으면 마지막으로 공약을 부른 사람 부터 한 바퀴 동안 모든 사람이 출마 포기를 선언한 경우에 당선됩니다."
     IDC_INITMIGHTY          "이 옵션을 세트 하면 첫 턴에 마이티를 낼 수 있습니다"
     IDC_INITMIGHTYEFFECT    "첫 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
-    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_LASTMIGHTY          "이 옵션을 세트 하면 마지막 턴에 마이티를 낼 수 있습니다"
     IDC_LASTMIGHTYEFFECT    "마지막 턴에 마이티를 낸 경우 이 옵션을 해제하면 그 카드는 마이티가 아니라 일반 카드로 생각합니다 - 가령 스페이드 에이스가 마이티였다면 그 카드는 스페이드 에이스가 됩니다"
     IDC_OVERRIDEMIGHTY      "조커와 마이티를 동시에 가지고 있을 때 조커콜을 당한 경우 조커 대신 마이티를 낼 수 있습니다 - 이것은 마이티는 언제나 나갈 수 있다는 이른바 '올마'규칙의 일종입니다"
     IDC_INITJOKER           "이 옵션을 세트 하면 첫 턴에 조커를 낼 수 있습니다"
@@ -1506,12 +1510,12 @@ BEGIN
     IDC_DM_NOPOINT          "점수카드 수가 오른쪽의 숫자 이하인 경우 딜 미스 조건이 됩니다"
     IDC_DM_NUM              "딜 미스 조건에 해당되는 최대 점수카드 수를 결정합니다. 만약 왼쪽 옵션이 체크되어 있지 않으면 이 숫자는 무시됩니다."
     IDC_DM_ALLPOINT         "받은 모든 카드가 점수카드인 경우 딜 미스 조건이 됩니다"
-    IDC_DM_JOKERISREVERSEPOINT 
-                            "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_DM_JOKERISREVERSEPOINT 
+                            "딜 미스 조건을 검사할 때, 조커가 있으면 또다른 점수카드 한 장과 상쇄 시킵니다 - 가령, 점수 카드가 한 장만 있고 조커가 있는 경우 서로 상쇄되어 점수 카드가 한 장도 없는 딜 미스 조건에 해당합니다"
     IDC_DM_ONLY10           "점수 카드가 10 한장 뿐일 때 딜 미스 조건이 됩니다"
     IDC_DM_ONEEYEDJACK      "점수 카드가 오직 애꾸눈 잭 한장인 경우 딜 미스 조건이 됩니다 (애꾸눈 잭은 눈이 하나만 보이는 잭 카드로, 하트의 잭이나 스페이드의 잭입니다)"
     IDC_DM_ONLYMIGHTY       "딜 미스 조건을 검사할 때, 마이티가 있으면 이를 점수카드로 간주하지 않을 수 있습니다. - 이것은 프랜드가 지나치게 불리해 지는 것을 막습니다"
@@ -1526,11 +1530,11 @@ BEGIN
     IDC_S_7                 "기본수를 기준으로 하는 계산법입니다\n여당승: (여당득점-기본수)"
     IDC_SS_0                "여당이 목표수에 미치지 못한 점수 만큼 보상하는 방식입니다\n야당승: (목표수-여당득점)"
     IDC_SS_1                "눈에는 눈 계산법의 변형된 버전으로, 여당이 기본 점수도 내지 못한 경우 더 큰 보상을 받는 방식입니다\n기본수 이상: (목표수-여당득점)\n기본수 미만: (목표수-기본수)+(기본수-여당득점)*2"
-    IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
 END
 
 STRINGTABLE
 BEGIN
+    IDC_RUN                 "런에 대한 특별한 보상은 없습니다 - 기본 점수만으로 계산합니다"
     IDC_RUN1                "런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN2                "처음에 주공이 20 개 이상으로 런을 선언한 경우에만, 런에 대해서 곱절의 점수를 줍니다"
     IDC_RUN3                "런에 대해서는 고정액을 줍니다 - 여기서는 20 단위를 주는 것으로 정했습니다"
@@ -1549,15 +1553,15 @@ END
 
 STRINGTABLE
 BEGIN
-    IDC_SLOWMACHINE         "느린 하드웨어 사양이기 때문에 카드가 부드럽게 이동하는 에니메이션을 원하지 않으면 설정하십시오"
-    IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
+    IDC_SLOWMACHINE         "카드가 움직일 때 부드럽게 이동하는 애니메이션으로 표시합니다"
 END
 
 STRINGTABLE
 BEGIN
-    IDC_COPYRIGHT2          "ver 3.21 by puz*\nver 4.0 by Yoshi-TS4"
-    IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다. 추가한 규칙은 rule.txt 파일에 저장됩니다"
-    IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다. 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다."
+    IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
+    IDC_COPYRIGHT2          "ver 3.21 by puzzlet\nver 4.0 by Yoshi-TS4"
+    IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다 - 추가한 규칙은 rule.txt 파일에 저장됩니다"
+    IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다 - 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다"
 END
 
 #endif    // Korean (Korea) resources
