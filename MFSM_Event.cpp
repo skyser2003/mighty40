@@ -164,12 +164,86 @@ void CMFSM::EventChat( CMsg* pMsg, bool bSource )
 	m_eNotify.SetEvent();
 }
 
-// 서버에서 덱을 얻어온다
-// mmGameInit의 경우 앉는 자리도 얻어온다 (v4.0: 2011.1.14)
-void CMFSM::GetDeckFromServer()
+// 자리를 섞는다 ( 자리 섞는 옵션이 켜진 경우에만 : 2011.2.27 )
+void CMFSM::SuffleSeat( int& nBeginer )
+{
+	if ( pRule->bRandomSeat )
+	{
+		int i;
+		for ( i = 1; i < pRule->nPlayerNum; i++ ) {
+			int j = pRule->nPlayerNum - ( rand() % ( pRule->nPlayerNum - i ) ) - 1;
+			CPlayer* temp = apAllPlayers[i];
+			apAllPlayers[i] = apAllPlayers[j];
+			apAllPlayers[j] = temp;
+			apAllPlayers[i]->SetPlayerNum(i);
+			if ( apAllPlayers[i]->GetID() == nBeginer )
+				nBeginer = i;
+			changed[i] = apAllPlayers[i]->GetID();
+			apAllPlayers[i]->SetID(i);
+			if ( IsNetworkGame() && m_pSockBag )
+				m_pSockBag->SwapClients(i, j);
+		}
+	}
+}
+
+// 서버에서 자리를 얻어온다
+void CMFSM::GetSeatFromServer( int& nBeginer )
 {
 	int i;
 
+	ASSERT( !IsServer() && m_pSockBag );
+
+	CMsg* pMsg = 0;
+	AUTODELETE_MSG(pMsg);
+
+	// mmGameSeat 메시지에 덱 정보가 있다
+	m_pSockBag->GetMsgFor( 0, pMsg, &m_eSock );
+	WaitEvent( &m_eSock );
+
+	long nType;
+	long uid;
+	CCardList lServerDeck;
+	
+	int uidtemp;
+	int beginertemp;
+
+	if ( pMsg->PumpLong( nType )
+			&& nType == CMsg::mmGameSeat
+			&& pMsg->PumpLong( uid )
+			&& uid == 0 )
+	{
+		for ( i = 0; i < pRule->nPlayerNum; i++ )
+		{
+			long loc;
+			if( !pMsg->PumpLong( loc ) ) goto hell;
+			apPlayers[i] = apAllPlayers[loc];
+
+			if ( pRule->nPlayerNum - m_uid == loc )
+				uidtemp = pRule->nPlayerNum - i;
+
+		}
+		for ( i = 0; i < pRule->nPlayerNum; i++ )
+		{
+			apAllPlayers[i] = apPlayers[i];
+			apAllPlayers[i]->SetPlayerNum(i);
+			if ( apAllPlayers[i]->GetID() == nBeginer )
+				beginertemp = i;
+			apAllPlayers[i]->SetID(i);
+		}
+		m_uid = uidtemp;
+		nBeginer = beginertemp;
+		return;
+	}
+
+	hell:
+	// 잘못된 메시지가 왔음
+	ASSERT(0);
+	EventExit( _T("서버로부터 예상치 못한 응답이 도착했습니다") );
+}
+
+// 서버에서 덱을 얻어온다
+void CMFSM::GetDeckFromServer()
+{
 	ASSERT( !IsServer() && m_pSockBag );
 
 	CMsg* pMsg = 0;
@@ -190,24 +264,14 @@ void CMFSM::GetDeckFromServer()
 			&& uid == 0
 			&& pMsg->PumpCardList( lServerDeck )
 			&& lDeck.GetCount() == lServerDeck.GetCount() )
-	{
-		lDeck = lServerDeck;
-		if ( nType == CMsg::mmGameInit )
-		{
-			for ( i = 0; i < nPlayers; i++ )
-			{
-				if( !pMsg->PumpLong( uid ) ) goto hell;
-				apPlayers[i] = apAllPlayers[uid];
-			}
-			return;
-		}
-		else return;
-	}
 
-hell:
-	// 잘못된 메시지가 왔음
-	ASSERT(0);
-	EventExit( _T("서버로부터 예상치 못한 응답이 도착했습니다") );
+		lDeck = lServerDeck;
+
+	else { // 잘못된 메시지가 왔음
+
+		ASSERT(0);
+		EventExit( _T("서버로부터 예상치 못한 응답이 도착했습니다") );
+	}
 }
 
 // 오직 CPlayer 만 부르는 함수

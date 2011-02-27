@@ -61,9 +61,25 @@ protected:
 	CMFSM* m_pMFSM;
 	CCriticalSection m_cs;
 
+public:
+	// 네트워크에서 자리 섞는 옵션을 만들기 위한 swap 동작 ( v4.0 : 2011.2.27 )
+	void SwapClients(int a, int b);
+
 protected:
+	// SocketBag에서만 사용되는 m_aClient의 인덱스 ( v4.0 : 2011.2.27 )
+	// 지저분한 코딩이다. 자리 섞는 옵션 만드려고 한 삽질이다.
+	int m_uidManager[MAX_CONNECTION];
+
 	// UID 를 찾는다
 	CLIENTITEM* FindUID( long uid )
+	{
+		int realid = m_uidManager[uid];
+		for ( int i = 0; i < m_nClients; i++ )
+			if ( m_aClients[i].uid == realid ) return &m_aClients[i];
+		ASSERT(0); return 0;
+	}
+	// 보낼 때가 아니라 받을 때는 FindUID 대신 이걸 사용
+	CLIENTITEM* FindUIDrecv( long uid )
 	{
 		for ( int i = 0; i < m_nClients; i++ )
 			if ( m_aClients[i].uid == uid ) return &m_aClients[i];

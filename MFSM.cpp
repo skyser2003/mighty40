@@ -87,8 +87,8 @@ CMFSM::~CMFSM()
 
 // 플레이어를 표현하는 ID, UID, Num 간의 변환을 한다
 // 해당 플레이어가 존재하지 않는 경우 -1 을 리턴한다 (Num 을 리턴하는 함수의 경우)
-long CMFSM::GetPlayerUIDFromID( long id ) { return id < 0 ? -1 : id >= pRule->nPlayerNum ? id : (id+m_uid)%pRule->nPlayerNum; }
-long CMFSM::GetPlayerIDFromUID( long uid ) { return uid < 0 ? -1 : uid >= pRule->nPlayerNum ? uid : (uid-m_uid+pRule->nPlayerNum)%pRule->nPlayerNum; }
+long CMFSM::GetPlayerUIDFromID( long id ) { return id < 0 ? -1 : (id >= pRule->nPlayerNum || m_uid >= pRule->nPlayerNum) ? id : (id+m_uid)%pRule->nPlayerNum; }
+long CMFSM::GetPlayerIDFromUID( long uid ) { return uid < 0 ? -1 : (uid >= pRule->nPlayerNum || m_uid >= pRule->nPlayerNum) ? uid : (uid-m_uid+pRule->nPlayerNum)%pRule->nPlayerNum; }
 long CMFSM::GetPlayerIDFromNum( long num ) { return num < 0 || num >= MAX_CONNECTION ? -1 : apPlayers[num]->GetID(); }
 long CMFSM::GetPlayerNumFromID( long id ) { for ( int i = 0; i < MAX_CONNECTION; i++ ) if ( apPlayers[i]->GetID() == id ) return i; return -1; }		// v4.0: 2011.1.8
 long CMFSM::GetPlayerNumFromUID( long uid ) { return GetPlayerNumFromID( GetPlayerIDFromUID(uid) ); }
@@ -213,7 +213,7 @@ bool CMFSM::CanBeEndOfElection( bool& bDealMiss, long& nNextID,
 		long i, nID = -1;
 		for ( i = 1; i < pRule->nPlayerNum; i++ ) {
 			nID = ( nCurrentPlayer + i ) % pRule->nPlayerNum;
-			if ( !abGiveup[nID] ) break;
+			if ( !abGiveup[nID] || pRule->bPassAgain ) break;
 		}
 		if ( i == pRule->nPlayerNum ) {	// 모두 포기 (당선)
 			nNextID = nCurrentPlayer;

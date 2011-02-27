@@ -26,6 +26,10 @@ CSocketBag::CSocketBag()
 	m_pMFSM = 0;
 	m_pServerSocket = 0;
 	m_nClients = 0;
+
+	for ( int i = 0; i < MAX_CONNECTION; i++ ) {
+		m_uidManager[i] = i;
+	}
 }
 
 CSocketBag::~CSocketBag()
@@ -139,10 +143,13 @@ void CSocketBag::SockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 			m_pMFSM->EventExit( _T("서버로부터 접속이 종료되었습니다") );
 
 		else {
+			int realid;
+			for ( realid = 0; realid < MAX_PLAYERS; realid++ )
+				if ( m_uidManager[realid] == uid ) break;
 			CString sMsg;
 			sMsg.Format( _T("%s 님이 접속을 종료하였습니다"),
 				m_pMFSM->GetState()
-				->apAllPlayers[m_pMFSM->GetPlayerIDFromUID(uid)]
+				->apAllPlayers[m_pMFSM->GetPlayerIDFromUID(realid)]
 				->GetName() );
 			m_pMFSM->EventExit( sMsg );
 		}
@@ -162,7 +169,7 @@ void CSocketBag::SockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 
 	m_cs.Lock();
 
-	CLIENTITEM* pItem = FindUID( uid );
+	CLIENTITEM* pItem = FindUIDrecv( uid );
 
 	pItem->lmsg.AddTail( *adme.Detach() );
 
@@ -179,4 +186,12 @@ void CSocketBag::SockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 
 	// 핸들러를 재설정
 	pSocket->SetTrigger( (DWORD)(LPVOID)this, (DWORD)ori_uid, SockProc );
+}
+
+// 네트워크에서 자리 섞는 옵션을 만들기 위한 swap 동작 ( v4.0 : 2011.2.27 )
+void CSocketBag::SwapClients(int a, int b)
+{
+	int temp = m_uidManager[a];
+	m_uidManager[a] = m_uidManager[b];
+	m_uidManager[b] = temp;
 }

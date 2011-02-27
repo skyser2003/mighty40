@@ -108,8 +108,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,1,31
- PRODUCTVERSION 4,0,1,31
+ FILEVERSION 4,0,1,32
+ PRODUCTVERSION 4,0,1,32
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -125,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.1.31"
+            VALUE "FileVersion", "4.0.1.32"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010"
             VALUE "OriginalFilename", "Mighty.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.1.31"
+            VALUE "ProductVersion", "4.0.1.32"
         END
     END
     BLOCK "VarFileInfo"
@@ -1356,7 +1356,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.31 (2011-02-24)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.32 (2011-02-27)"
 END
 
 STRINGTABLE
@@ -1559,7 +1559,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_MONEYASSUPPORT      "게임에서 얻고 잃은 점수를 지지율로 표시합니다 - 이 옵션이 체크되어 있지 않으면 비자금(돈)으로 표시합니다."
-    IDC_COPYRIGHT2          "ver 3.21 by puzzlet\nver 4.0 by Yoshi-TS4"
+    IDC_COPYRIGHT           "ver 3.21 by puzzlet\nver 4.0 by Yoshi-TS4"
     IDC_ADDRULE             "기본 규칙 목록에 사용자가 지정한 규칙을 추가합니다 - 추가한 규칙은 rule.txt 파일에 저장됩니다"
     IDC_REMOVERULE          "기본 규칙 목록에 있는 사용자가 추가한 규칙을 제거합니다 - 마이티 네트워크 프로그램에서 기본적으로 제공되는 규칙은 제거할 수 없습니다"
 END

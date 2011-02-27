@@ -79,6 +79,8 @@ struct MIGHTY_EXPORT CState
 	CCardList& lCurrent;
 	// 히스토리 ( 득점, 도움, 실점, 점유율 )
 	int aanHistory[4][MAX_PLAYERS];
+	// 자리 섞는 옵션에 필요한 보내줄 위치 정보 ( v4.0 : 2011.2.27 )
+	int changed[MAX_PLAYERS];
 
 	// 판 범위
 
@@ -139,6 +141,8 @@ struct MIGHTY_EXPORT CState
 	// 각 판 범위의 데이터들을 초기화 한다 (프랜드 등)
 	// 단, pRule, apPlayers[] 는 초기화 하지 않는다 (미리 정해져있어야 함)
 	void InitStageData(	int _nGameNum, int _nBeginer = 0 );
+	// 자리를 섞고 딜러 위치를 정한다
+	void SuffleSeat( int& nBeginer );
 	// 매턴의 끝 (lCurrent 가 사라지기 전) 에서 호출하여 히스토리 정보를 유지한다
 	void WriteHistory();
 

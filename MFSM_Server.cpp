@@ -30,14 +30,19 @@ UINT CMFSM::Server()
 // 게임 시작
 lblMightyBegin:
 
+		// 서버인 경우 자리를 재배열한다
+		if ( IsServer() )
+			SuffleSeat( nBeginer );
+		// 클라이언트인 경우 서버에서 자리를 얻어온다
+		else
+			GetSeatFromServer( nBeginer );
+
 		// 현재 state 를 초기화 한다
 		InitStageData( nGameNum + 1, nBeginer );
 
-		// 클라이언트인 경우 서버에서 카드 배열을 얻어온다
+		// 클라이언트인 경우 서버에서 카드배열을 얻어온다
 		if ( !IsServer() )
-		{
 			GetDeckFromServer();
-		}
 
 		// 각 플레이어의 초기화
 		for ( i = 0; i < MAX_CONNECTION; i++ ) {
@@ -137,6 +142,7 @@ lblMightyBegin:
 			// 이 목표치로서 선거가 끝나는가?
 			bool bEnd, bDealMiss;
 			long nNextID;
+
 			bEnd = CanBeEndOfElection( bDealMiss, nNextID, goalNew );
 
 			if ( bDealMiss ) {		// 딜미스
@@ -144,11 +150,11 @@ lblMightyBegin:
 			}
 			else if ( goalNew.nMinScore == 0 )	// 포기
 				abGiveup[nCurrentPlayer] = true;
-			else{								// 출마
+			else {								// 출마
 				goal = goalNew;
 				if ( pRule->bPassAgain )		// 포기해도 다시 부를 수 있는 규칙이면
 					for(int i=0;i<pRule->nPlayerNum;i++)
-						abGiveup[i]=false;		// 누군가가 불렀을 때 다시 부를 수 있다. 단, 이미 1명만 남은 경우는 제외
+						abGiveup[i]=false;		// 누군가가 불렀을 때 다시 부를 수 있다.
 			}
 
 			if ( bEnd ) {		// 이것으로 끝

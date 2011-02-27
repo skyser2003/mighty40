@@ -199,8 +199,11 @@ protected:
 	// 인자에 따라 bIsJokercall 을 세트한다
 	// 또 조커인 경우 nJokerShape 을 세트한다
 	void SetJokerState( CCard c, int nEffect );
+	// 자리를 섞는다 ( 자리 섞는 옵션이 켜진 경우에만 : 2011.2.27 )
+	void SuffleSeat( int& nBeginer );
+	// 서버에서 자리를 얻어오고 딜러 위치를 정한다
+	void GetSeatFromServer( int& nBeginer );
 	// 서버에서 덱을 얻어온다
-	// mmGameInit의 경우 앉는 자리도 얻어온다 (v4.0: 2011.1.14)
 	void GetDeckFromServer();
 };
 

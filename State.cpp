@@ -21,7 +21,11 @@ CState::CState() :
 	lDeck(*(new CCardList)),
 	lCurrent(*(new CCardList)),
 	lDead(*(new CCardList))
-{}
+{
+	int i;
+	for ( i = 0; i < MAX_PLAYERS; i++ )
+		changed[i] = i;
+}
 
 CState::~CState()
 {
@@ -63,6 +67,7 @@ void CState::InitStageData( int _nGameNum, int _nBeginer )
 		apPlayers[i] = apAllPlayers[i];
 		apPlayers[i]->SetPlayerNum(i);
 	}
+
 	for ( i = 0; i < nPlayers; i++ )
 		abGiveup[i] = false;
 

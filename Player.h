@@ -60,6 +60,7 @@ public:
 public:
 	// 고유 번호 ( 7명의 플레이어+ 13명의 관전자중 순서 ) 를 얻는다
 	int GetID() const								{ return m_nID; }
+	void SetID( int nPlayer)						{ m_nID = nPlayer; }
 	// 플레이어 번호 ( 실제 플레이 하는 플레이어 중 순서 )
 	int GetPlayerNum() const						{ return m_nNum; }
 	void SetPlayerNum( int nPlayer )				{ m_nNum = nPlayer; }
