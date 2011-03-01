@@ -20,7 +20,7 @@ static char THIS_FILE[]=__FILE__;
 // CPlayerDummy º»Ã¼
 
 CPlayerDummy::CPlayerDummy( int nID, CWnd* pCallback )
-	: CPlayer( nID, _T("Dummy"), pCallback )
+	: CPlayer( nID, _T("System"), pCallback )
 {
 }
 

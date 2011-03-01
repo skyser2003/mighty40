@@ -65,6 +65,7 @@ const CState* CPlayerHuman::GetState()
 // 탈락시킬 카드를 추천한다
 int CPlayerHuman::GetRecommendedKillCard( const CCardList* plDead )
 {
+	int s;
 	// 손에 없는 최고 기루다를 찾는다
 
 	int nKiruda = GetState()->goal.nKiruda;
@@ -74,7 +75,7 @@ int CPlayerHuman::GetRecommendedKillCard( const CCardList* plDead )
 		nFrom = SPADE, nTo = CLOVER;
 	else nFrom = nKiruda, nTo = nKiruda;
 
-	for ( int s = nFrom; s <= nTo; s++ )
+	for ( s = nFrom; s <= nTo; s++ )
 		if ( !GetHand()->Find( CCard( s, ACE ) )
 			&& !plDead->Find( CCard( s, ACE ) ) )
 			return (int)CCard( s, ACE );
@@ -84,7 +85,7 @@ int CPlayerHuman::GetRecommendedKillCard( const CCardList* plDead )
 				return (int)CCard( s, i );
 
 	nFrom = SPADE, nTo = CLOVER;
-	for ( int s = nFrom; s <= nTo; s++ )
+	for ( s = nFrom; s <= nTo; s++ )
 		if ( !GetHand()->Find( CCard( s, ACE ) )
 			&& !plDead->Find( CCard( s, ACE ) ) )
 			return (int)CCard( s, ACE );

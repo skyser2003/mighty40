@@ -10,6 +10,7 @@
 #include "MFSM.h"
 #include "MFSM_Notify.h"
 #include "SocketBag.h"
+#include "PlayerDummy.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -86,7 +87,7 @@ void CMFSM::ProcessNotifyEvents()
 	}
 	else if ( m_bTermRequest ) {
 		// 종료 요청
-		for ( int i = pRule->nPlayerNum - 1; i >= 0; i-- )
+		for ( int i = MAX_CONNECTION - 1; i >= 0; i-- )
 			apAllPlayers[i]->OnTerminate( m_sTermRequestReason );
 
 		m_bTerminate = true;
@@ -137,7 +138,8 @@ void CMFSM::ProcessChatMessage()
 		long nPlayerID = GetPlayerIDFromUID( uid );
 
 		// 모두에게 뿌린다
-		for ( int i = pRule->nPlayerNum - 1; i >= 0; i-- )
+		// v4.0에서 추가: 관전자라면 서버에게 전달할 필요가 없다 (2011.3.1)
+		for ( int i = MAX_CONNECTION - 1 ; i >= (m_uid < pRule->nPlayerNum || nPlayerID ? 0 : 1); i-- )
 			apAllPlayers[i]->OnChat( nPlayerID, sChat, bSource );
 	}
 }
@@ -162,6 +164,21 @@ void CMFSM::EventChat( CMsg* pMsg, bool bSource )
 	m_csChatMsg.Unlock();
 
 	m_eNotify.SetEvent();
+}
+
+// 관전자 종료 메시지 (v4.0 : 2011.3.1)
+void CMFSM::EventSpectatorExit( int uid )
+{
+	CString msg( apAllPlayers[uid]->GetName() );
+	msg += _T("(관전자)님이 게임에서 나갔습니다");
+
+	CPlayer* todelete = apAllPlayers[uid];
+	apAllPlayers[uid] = new CPlayerDummy(uid);
+	apAllPlayers[uid]->SetPlayerNum(uid);
+	delete todelete;
+
+	// 관전자가 나간 경우 그냥 채팅인 것처럼 행동하게 함
+	EventChat( new CMsg( _T("lls"), CMsg::mmChat, uid, msg ), false );
 }
 
 // 자리를 섞는다 ( 자리 섞는 옵션이 켜진 경우에만 : 2011.2.27 )

@@ -108,8 +108,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,1,34
- PRODUCTVERSION 4,0,1,34
+ FILEVERSION 4,0,1,35
+ PRODUCTVERSION 4,0,1,35
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -125,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.1.34"
+            VALUE "FileVersion", "4.0.1.35"
             VALUE "InternalName", "Mighty Network 4.0"
-            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2010 UPnL"
+            VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2011 UPnL"
             VALUE "OriginalFilename", "Mighty40.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.1.34"
+            VALUE "ProductVersion", "4.0.1.35"
         END
     END
     BLOCK "VarFileInfo"
@@ -264,7 +264,7 @@ FONT 9, "굴림", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_HUMANNAME,7,69,80,14,ES_AUTOHSCROLL
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2010",IDC_COPYRIGHT,37,7,104,39
+    LTEXT           "Mighty Network 4.0\n마이티 네트워크 4.0\nCopyright (C) 1999 장문성\n(sw6ueyz@hitel.net)\n2006 - 2011",IDC_COPYRIGHT,37,7,104,39
     CONTROL         "소리 사용(&S)",IDC_USESOUND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,104,96,10
     CONTROL         "마이티 용어 사용(&T)",IDC_USETERM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
     CONTROL         "점수를 지지율로 표시(&U)",IDC_MONEYASSUPPORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,96,10
@@ -1356,7 +1356,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.34 (2011-03-01)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.35 (2011-03-01)"
 END
 
 STRINGTABLE

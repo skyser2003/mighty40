@@ -151,7 +151,11 @@ void CSocketBag::SockProc( long uid, CMsg* pMsg, CPlayerSocket* pSocket )
 				m_pMFSM->GetState()
 				->apAllPlayers[m_pMFSM->GetPlayerIDFromUID(realid)]
 				->GetName() );
-			m_pMFSM->EventExit( sMsg );
+			if ( uid < m_pMFSM->GetState()->pRule->nPlayerNum )
+				m_pMFSM->EventExit( sMsg );
+			else {
+				m_pMFSM->EventSpectatorExit( uid );
+			}
 		}
 		return;
 	}

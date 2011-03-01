@@ -11,7 +11,7 @@
 
 #define STANDARD_RULE_STRING _T("(0$1M&))2O%,C5%")
 
-#define BASIC_PRESETS 17
+#define BASIC_PRESETS 14
 
 // 마이티 게임 규칙
 

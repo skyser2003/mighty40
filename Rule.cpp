@@ -32,9 +32,6 @@ static LPCTSTR asPreset[][2] = {
 	{ _T(")0$1M&I7BKU.C=%"), _T("대전 6마") },
 	{ _T("(/$1M&*9P-%,C=%"), _T("광주 5마") },
 	{ _T("&/$1M&#%BK].C=%"), _T("제주 3마") },
-	{ _T("(0$1M@IYb-],C]'"), _T("SNUCSE 5마") },
-	{ _T(")1$1M@IYb-]+C]'"), _T("SNUCSE 6마") },
-	{ _T("*1$1M@IYb-]+C]'"), _T("SNUCSE 7마") },
 };
 static std::vector<CString> asUserPreset;
 
@@ -66,6 +63,7 @@ void CRule::LoadPreset()
 					switch ( szBuffer )
 					{
 					case '\t':
+					case '\r':
 					case '\n':
 						change = true;
 						break;

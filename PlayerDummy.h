@@ -16,7 +16,7 @@
 class CPlayerDummy : public CPlayer
 {
 public:
-	CPlayerDummy( int nID, CWnd* pCallback );
+	CPlayerDummy( int nID, CWnd* pCallback = NULL );
 	virtual ~CPlayerDummy();
 
 	// CPlayer 인터페이스 구현

@@ -180,6 +180,7 @@ RECT CBoard::CalcPlayerExtent( int nPlayerNum, bool* pbVert )
 
 	CRect rcScore = CalcRect( pState->nPlayers, CR_SCORE, nPlayerNum,
 					m_szCard.cx, m_szCard.cy, -1, 0, &bVert, 0 );
+	if ( nPlayerNum >= pState->nPlayers ) return rcScore;
 	CRect rcHand = CalcRect( pState->nPlayers, CR_HAND, nPlayerNum,
 					m_szCard.cx, m_szCard.cy );
 

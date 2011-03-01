@@ -37,6 +37,8 @@ public:
 	const CState* GetState() const					{ return (const CState*)this; }
 	// 소켓집합을 얻는다
 	CSocketBag* GetSockBag()						{ return m_pSockBag; }
+	// UID를 얻는다
+	int GetUID() const								{ return m_uid; }
 	// 서버인가?
 	bool IsServer() const							{ return m_uid == 0; }
 
@@ -95,10 +97,12 @@ public:
 public:
 	// 이벤트 발생을 알림
 
-	// 종료 메시지
+	// 종료 메시지 (관전자 제외)
 	void EventExit( LPCTSTR sMsg = 0 );
 	// 채팅 메시지 ( bSource 가 참이면, 채팅창에서 만들어진 메시지 )
 	void EventChat( CMsg* pMsg, bool bSource );
+	// 관전자 종료 메시지 (v4.0 : 2011.3.1)
+	void EventSpectatorExit( int uid );
 
 public:
 	// 오직 CPlayer 만 부르는 함수들

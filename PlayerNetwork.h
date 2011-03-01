@@ -79,11 +79,14 @@ protected:
 	// MFSM 이 클라이언트일 때 :
 	//    내가 서버(uid==0)와 연결되어 있고 이 메시지가
 	//    사람(id==0)이 송신자라면...
+	//    v4.0: 관전자가 보낸 메시지는 서버(0번)에게도 보낸다 (2011.3.1)
+	//    이렇게 한 이유는 관전자는 0번이 PlayerHuman이 아니기 때문이다
 	// 참을 리턴한다
 	bool NeedSendingIfIDIs( int nPlayerID ) const
 	{
 		return IsServer() && GetID() != nPlayerID
-			|| GetUID() == 0 && nPlayerID == 0;
+			|| GetUID() == 0 && nPlayerID == 0
+			|| m_pMFSM->GetUID() >= m_pMFSM->GetState()->pRule->nPlayerNum && GetUID() == 0 && nPlayerID == m_pMFSM->GetUID();
 	}
 	bool NeedSendingIfNumIs( int nPlayerNum ) const
 	{

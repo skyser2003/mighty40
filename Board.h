@@ -275,7 +275,7 @@ protected:
 	// 잡다한 기타 함수들
 
 	// 플레이어번호를 매핑한다 - 아래쪽 플레이어부터
-	// 시계 방향으로 0 ~ 5 의 표현 방법(절대값)을
+	// 시계 방향으로 0 ~ 7(v4.0) 의 표현 방법(절대값)을
 	// 실제 플레이어 번호(논리값)로 매핑하거나 역변환 한다
 	int MapAbsToLogic( int nAbsPlayer ) const;
 	int MapLogicToAbs( int nLogicalPlayer ) const;
