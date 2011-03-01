@@ -69,16 +69,20 @@ void CPlayerNetwork::OnInit( CEvent* e )
 	if ( IsServer() ) {
 
 		// 섞인 자리를 전달
-		int nPlayers = m_pMFSM->GetState()->nPlayers;
+		int nPlayers = m_pMFSM->GetState()->pRule->nPlayerNum;
 		int offset = GetID();
 		int uid;
 
 		if ( offset < nPlayers )
 			uid = m_pMFSM->GetState()->changed[offset];
-		else uid = 0;
+		else {
+			// 관전자
+			offset = 0;
+			uid = 0;
+		}
 
 		CMsg msg( _T("ll"), CMsg::mmGameSeat, 0);
-		for ( i = 0; i < m_pMFSM->GetState()->pRule->nPlayerNum; i++ )
+		for ( i = 0; i < nPlayers; i++ )
 			msg.PushLong( ( nPlayers + m_pMFSM->GetState()->changed[(i+offset)%nPlayers] - uid ) % nPlayers );
 		SendMsg( &msg );
 

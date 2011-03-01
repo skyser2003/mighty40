@@ -176,6 +176,8 @@ protected:
 	void RegisterMarks();
 	// 규칙을 등록
 	void RegisterRule();
+	// 관전자 버튼을 등록
+	void RegisterSpec();
 
 	// 채팅 메시지를 생성(new)
 	CMsg* CreateChatMsg( long uid, LPCTSTR sMsg );
@@ -258,6 +260,9 @@ public:
 	// 플레이어에 붙어있는 세모 마크 위치를 얻는다
 	CPoint GetMarkPos( long uid ) const
 	{	return DSBtoDP( CPoint( 1, ( m_rule.nPlayerNum == 6 ? 5 : m_rule.nPlayerNum == 7 ? 4 : 7 ) + uid*3 + 1 ) ); }
+	// 관전자 버튼 위치를 얻는다
+	CPoint GetSpecPos( ) const
+	{	return DSBtoDP( CPoint( 25, m_rule.nPlayerNum >= 6 ? 9 : 11 ) ); }
 	// m_pPopup 을 클리어한다
 	void ClearPopup() { m_pPopup = 0; }
 	// OnClick 을 호출한다
@@ -266,6 +271,7 @@ public:
 
 
 // DConnect 에서 나오는 선택 메뉴
+// uid가 -1인 경우는 관전자 버튼을 누른 경우이다.
 class DConnectPopup : public DSelect
 {
 public:
@@ -280,9 +286,16 @@ public:
 	void Create( long uid )
 	{
 		m_uid = uid;
-		CPoint pt = m_pOuter->GetMarkPos( uid );
 		SetModal();
-		DSelect::Create( pt.x, pt.y, s_asText, 3, 0, &m_nResult );
+		if ( uid == -1 || uid == -2 ) {
+			m_uid = -1;
+			CPoint pt = m_pOuter->GetSpecPos();
+			DSelect::Create( pt.x, pt.y, const_cast<LPCTSTR*>(uid == -1 ? s_atText1 : s_atText2), 3, 0, &m_nResult );
+		}
+		else {
+			CPoint pt = m_pOuter->GetMarkPos( uid );
+			DSelect::Create( pt.x, pt.y, s_asText, 3, 0, &m_nResult );
+		}
 	}
 
 protected:
@@ -290,7 +303,10 @@ protected:
 	long m_nResult;
 	long m_uid;
 	static LPCTSTR s_asText[];
-};
 
+public:
+	static LPTSTR s_atText1[];
+	static LPTSTR s_atText2[];
+};
 
 #endif // !defined(AFX_DCONNECT_H__2BCC6B66_8ECD_11D3_9A8E_000000000000__INCLUDED_)

@@ -17,6 +17,7 @@
 
 #include "DConnect.h"
 #include "DRule.h"
+#include "Option.h"
 #include "InfoBar.h"
 
 
@@ -123,6 +124,14 @@ static void update_addrlist( LPCTSTR sAddr )
 
 LPCTSTR DConnectPopup::s_asText[] = {
 	_T("취소"), _T("이 플레이어를 추방"), _T("이 게임에서 영구적으로 추방")
+};
+
+LPTSTR DConnectPopup::s_atText1[] = {
+	_T("취소"), _T("관전자 접속 거부"), _T("관전자 전부 추방")
+};
+
+LPTSTR DConnectPopup::s_atText2[] = {
+	_T("취소"), _T("관전자 접속 허용"), _T("관전자 전부 추방")
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -562,6 +571,7 @@ void DConnect::OnInit()
 		RegisterOk();
 		RegisterMarks();
 		RegisterRule();
+		RegisterSpec();
 	}
 
 	RegisterHotspot(
@@ -605,12 +615,14 @@ void DConnect::OnDraw(
 			25, y - 2, true, s_colWhite, s_tdShade );
 
 	// 관전자
-	PutText( pDC, _T("관전자 : "),
-			25, y + 4, true, s_colWhite, s_tdShade );
+	if ( !m_bServer )
+		PutText( pDC, _T("관전자 : "),
+				25, y + 4, true, s_colWhite, s_tdShade );
 	
 	wsprintf(m_specstr, "%d 명", m_nSpectators);
+
 	PutText( pDC, m_specstr,
-			25, y + 6, true, s_colYellow, s_tdShade );
+			25, y + 6, true, s_colWhite, s_tdShade );
 
 	// 채팅창
 	int nChatLines = (int)( m_nChatDataEnd - m_nChatDataBegin );
@@ -680,7 +692,7 @@ void DConnect::OnClick( LPVOID pVoid )
 		break;
 	}
 
-	case 0xffffffff:{	// 시작 !
+	case 0xffffffff: {	// 시작 !
 		if ( m_bServer ) {
 			CMsg msgBegin( _T("l"), CMsg::mmBeginGame );
 			SendToAll( &msgBegin );	// 모두에게 알림
@@ -712,6 +724,23 @@ void DConnect::OnClick( LPVOID pVoid )
 				// 블랙리스트에 넣는다
 				m_lBlackList.AddTail( m_aInfo[uid].sName );
 				FailedForPlayer( uid, true );
+			}
+		}
+		else if ( (int)pVoid == 1000 ) {	// 관전자 관리
+			(m_pPopup = new DConnectPopup(this,m_pBoard))
+							->Create( Mo()->bObserver ? -1 : -2 );
+		}
+		else if ( (int)pVoid >= 190 && (int)pVoid < 200 ) {
+			int result = (int)pVoid - 190;
+			if ( result == 1 ) {	// 관전자 차단/허용
+				Mo()->bObserver = !Mo()->bObserver;
+			}
+			else if ( result == 2 ) {	// 관전자 전부 추방
+				int i;
+				for ( i = m_rule.nPlayerNum; i < MAX_CONNECTION; i++ ) {
+					if ( !m_aInfo[i].bComputer )
+						FailedForPlayer ( i, true );
+				}
 			}
 		}
 		break;
@@ -765,6 +794,14 @@ void DConnect::RegisterRule()
 		25, 7 - ( m_rule.nPlayerNum >= 6 ? 2 : 0 ), -1, -1, true, 0,
 		m_sRule,
 		&s_colCyan, &s_tdShade, &s_colCyan, &s_tdOutline, (LPVOID)500 );
+}
+
+void DConnect::RegisterSpec()
+{
+	RegisterHotspot(
+		25, m_rule.nPlayerNum >= 6 ? 9 : 11, -1, -1, true, 0, _T("관전자 : "),
+		&s_colYellow, &s_tdShade,
+		&s_colYellow, &s_tdOutline, (LPVOID)( 1000 ) );
 }
 
 // 채팅 메시지를 생성(new)
@@ -1426,8 +1463,8 @@ bool DConnect::BeginClient()
 
 	// Human / Network Players 생성
 	for ( j = 0; j < MAX_CONNECTION; j++ ) {
-		int i = ( j < nPlayers ? ( m_uid + j ) % nPlayers : j );
-
+		int i = ( m_uid >= nPlayers ? j : j < nPlayers ? ( m_uid + j ) % nPlayers : j );
+		
 		if ( i == m_uid )
 			apPlayers[j] = new CPlayerHuman(
 				j, m_aInfo[i].sName, *m_pBoard );
@@ -1438,7 +1475,7 @@ bool DConnect::BeginClient()
 
 	// 돈과 전적을 배분
 	for ( j = 0; j < nPlayers; j++ ) {
-		int i = ( m_uid + j ) % nPlayers;
+		int i = m_uid >= nPlayers ? j : ( m_uid + j ) % nPlayers;
 		apPlayers[j]->SetMoney( m_aInfo[i].dfa[3] );
 		apPlayers[j]->GetAllRecord().wm = LOWORD( m_aInfo[i].dfa[0] );
 		apPlayers[j]->GetAllRecord().lm = HIWORD( m_aInfo[i].dfa[0] );

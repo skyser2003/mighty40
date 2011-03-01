@@ -196,7 +196,7 @@ void CMFSM::GetSeatFromServer( int& nBeginer )
 	CMsg* pMsg = 0;
 	AUTODELETE_MSG(pMsg);
 
-	// mmGameSeat 메시지에 덱 정보가 있다
+	// mmGameSeat 메시지에 자리 정보가 있다
 	m_pSockBag->GetMsgFor( 0, pMsg, &m_eSock );
 	WaitEvent( &m_eSock );
 
@@ -230,7 +230,8 @@ void CMFSM::GetSeatFromServer( int& nBeginer )
 				beginertemp = i;
 			apAllPlayers[i]->SetID(i);
 		}
-		m_uid = uidtemp;
+		if ( m_uid < pRule->nPlayerNum )
+			m_uid = uidtemp;
 		nBeginer = beginertemp;
 		return;
 	}
