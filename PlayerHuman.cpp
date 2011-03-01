@@ -192,14 +192,15 @@ void CPlayerHuman::PlayTurnSound()
 				s_asJokerShape[Mo()->bUseTerm?0:1][GetState()->nJokerShape-SPADE],
 				true, true, DELAY_JOKERDSB );
 		}
-		if( GetState()->lCurrent.Find(CCard::GetMighty() ) )			// 이미 마이티가 있으면 일반 카드처럼 소리냄
+		if( GetState()->lCurrent.Find(CCard::GetMighty() )
+			&& GetState()->IsEffectiveMighty() )		// 이미 효력있는 마이티가 있으면 일반 카드처럼 소리냄 (v4.0 : 2011.3.1)
 			PlaySound( IDW_CARD );
 		else PlaySound( IDW_JOKER, true );
 	}
 	// 찍기 (겐)
 	else if ( c.IsKiruda() && GetState()->lCurrent.GetCount() > 0
-		&& !(GetState()->lCurrent.Find( CCard::GetJoker() ) && !GetState()->bJokercallEffect )
-		&& !GetState()->lCurrent.Find( CCard::GetMighty() )
+		&& !(GetState()->lCurrent.Find( CCard::GetJoker() ) && GetState()->IsEffectiveJoker() )
+		&& !(GetState()->lCurrent.Find( CCard::GetMighty() ) && GetState()->IsEffectiveMighty() )
 		&& !GetState()->lCurrent.GetHead().IsKiruda() ) {
 		PlaySound( IDW_KIRUDA, true );
 	}

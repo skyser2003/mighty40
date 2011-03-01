@@ -66,6 +66,7 @@ public:
 	afx_msg void OnClicked5MA();
 	afx_msg void OnClicked6MA();
 	afx_msg void OnClicked7MA();
+//	afx_msg void OnClickedSaverule();
 };
 
 //{{AFX_INSERT_LOCATION}}

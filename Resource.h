@@ -316,6 +316,8 @@
 #define IDC_ADDRULE                     1187
 #define IDC_REMOVERULE                  1188
 #define IDC_NEWRULENAME                 1189
+#define IDC_BUTTON1                     1190
+#define IDC_SAVERULE                    1191
 #define IDD_SETTING                     10000
 #define IDC_FACTOR                      10000
 #define IDC_USESIMULATION               10001
@@ -334,7 +336,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        2002
 #define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1190
+#define _APS_NEXT_CONTROL_VALUE         1192
 #define _APS_NEXT_SYMED_VALUE           2000
 #endif
 #endif

@@ -262,7 +262,7 @@ public:
 	{	return DSBtoDP( CPoint( 1, ( m_rule.nPlayerNum == 6 ? 5 : m_rule.nPlayerNum == 7 ? 4 : 7 ) + uid*3 + 1 ) ); }
 	// 관전자 버튼 위치를 얻는다
 	CPoint GetSpecPos( ) const
-	{	return DSBtoDP( CPoint( 25, m_rule.nPlayerNum >= 6 ? 9 : 11 ) ); }
+	{	return DSBtoDP( CPoint( 25, m_rule.nPlayerNum >= 6 ? 12 : 14 ) ); }
 	// m_pPopup 을 클리어한다
 	void ClearPopup() { m_pPopup = 0; }
 	// OnClick 을 호출한다

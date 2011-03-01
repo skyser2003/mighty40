@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(PRuleGeneral, CPropertyPage)
 	ON_BN_CLICKED(IDC_6MA, OnClicked6MA)
 	ON_BN_CLICKED(IDC_7MA, OnClicked7MA)
 	//}}AFX_MSG_MAP
+//	ON_BN_CLICKED(IDC_SAVERULE, &PRuleGeneral::OnClickedSaverule)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

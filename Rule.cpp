@@ -6,6 +6,9 @@
 #include "Rule.h"
 #include "card.h"
 #include <vector>
+#include "Mighty.h"
+#include "DAddRule.h"
+#include "POptionRule.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -205,6 +208,39 @@ CString CRule::GetName( int nRule )
 
 	if ( nRule < BASIC_PRESETS ) return asPreset[nRule][1];
 	else return asUserPreset[(nRule - BASIC_PRESETS) * 2 + 1];
+}
+
+CString CRule::RuleExists( CString sRule )
+{
+	int i;
+	for ( i = 0; i < BASIC_PRESETS; i++ ) {
+		if ( sRule == asPreset[i][0] )
+			return asPreset[i][1];
+	}
+	for ( i = 0; i < asUserPreset.size() / 2; i++ ) {
+		if ( sRule == asUserPreset[i * 2] )
+			return asUserPreset[i * 2 + 1];
+	}
+	return _T("");
+}
+
+CString CRule::AttemptSaveRule( CString ruleString, CString defaultName )
+{
+	CString exists = RuleExists( ruleString );
+	if ( exists != "" ) {
+		// 규칙이 이미 존재한다
+		CString notifystr = "규칙이 이미 다음과 같은 이름으로 존재합니다: ";
+		notifystr += exists;
+		AfxMessageBox( notifystr );
+		return "";
+	}
+	else {
+		DAddRule dlg;
+		CString rulename = dlg.GetStr(defaultName);
+		if ( rulename != "" )
+			AddPreset( ruleString, rulename );
+		return rulename;
+	}
 }
 
 // 현재 룰을 스트링으로 인코드해서 리턴

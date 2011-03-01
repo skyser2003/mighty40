@@ -364,6 +364,19 @@ bool CState::IsEffectiveJokercall() const
 	return true;
 }
 
+bool CState::IsEffectiveMighty() const
+{
+	return ! ( nTurn == 0 && !pRule->bInitMightyEffect
+		|| nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastMightyEffect );
+}
+
+bool CState::IsEffectiveJoker() const
+{
+	return ! ( nTurn == 0 && !pRule->bInitJokerEffect
+			|| nTurn == ( pRule->nPlayerNum == 2 ? LAST_TURN_2MA : LAST_TURN ) && !pRule->bLastJokerEffect
+			|| bJokercallEffect );
+}
+
 // 이 게임은 네트워크를 동반한 게임인가
 bool CState::IsNetworkGame() const
 {

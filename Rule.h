@@ -39,6 +39,11 @@ struct CRule
 	static int GetPresetCount();
 	// 룰의 이름을 리턴
 	static CString GetName( int nRule );
+	// 룰의 인코딩된 스트링을 리턴
+	static CString RuleExists( CString sRule );
+	// 규칙 추가 버튼을 눌러서 규칙을 추가하려고 함
+	static CString AttemptSaveRule ( CString ruleString, CString defaultName );
+
 	// 현재 룰을 스트링으로 인코드해서 리턴
 	CString Encode() const;
 	// 스트링에서 새로운 룰을 디코드함

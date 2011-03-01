@@ -5,7 +5,6 @@
 #include "Mighty.h"
 #include "POptionRule.h"
 
-#include "DAddRule.h"
 #include "DRule.h"
 
 #ifdef _DEBUG
@@ -123,12 +122,8 @@ void POptionRule::OnOK()
 
 void POptionRule::OnClickedAddrule()
 {
-	DAddRule dlg;
-	CString rulename = dlg.GetStr(_T("규칙이름"));
-	if ( rulename != "" )
-	{
-		CRule::AddPreset( m_sRuleString, rulename );
-
+	CString rulename = CRule::AttemptSaveRule( m_sRuleString, "규칙이름" );
+	if ( rulename != "" ) {
 		m_cbRulePreset.AddString( rulename );
 		m_cbRulePreset.SetCurSel( m_cbRulePreset.GetCount() - 1 );
 		UpdateData();

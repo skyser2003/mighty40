@@ -617,12 +617,12 @@ void DConnect::OnDraw(
 	// 관전자
 	if ( !m_bServer )
 		PutText( pDC, _T("관전자 : "),
-				25, y + 4, true, s_colWhite, s_tdShade );
+				25, y + 6, true, s_colWhite, s_tdShade );
 	
 	wsprintf(m_specstr, "%d 명", m_nSpectators);
 
 	PutText( pDC, m_specstr,
-			25, y + 6, true, s_colWhite, s_tdShade );
+			25, y + 8, true, s_colWhite, s_tdShade );
 
 	// 채팅창
 	int nChatLines = (int)( m_nChatDataEnd - m_nChatDataBegin );
@@ -692,6 +692,12 @@ void DConnect::OnClick( LPVOID pVoid )
 		break;
 	}
 
+	case 600: {	// 규칙 저장
+		CString rulename = CRule::AttemptSaveRule( m_rule.Encode(), m_sRule );
+		if ( rulename != "" )
+			DeleteHotspot( (LPVOID)600 );
+		break;
+	}
 	case 0xffffffff: {	// 시작 !
 		if ( m_bServer ) {
 			CMsg msgBegin( _T("l"), CMsg::mmBeginGame );
@@ -794,14 +800,20 @@ void DConnect::RegisterRule()
 		25, 7 - ( m_rule.nPlayerNum >= 6 ? 2 : 0 ), -1, -1, true, 0,
 		m_sRule,
 		&s_colCyan, &s_tdShade, &s_colCyan, &s_tdOutline, (LPVOID)500 );
+
+	if ( CRule::RuleExists( m_rule.Encode() ) == "" )
+		RegisterHotspot(
+			25, 9 - ( m_rule.nPlayerNum >= 6 ? 2 : 0 ), -1, -1, true, 0,
+			_T("규칙 저장"),
+			&s_colYellow, &s_tdShade, &s_colYellow, &s_tdOutline, (LPVOID)600 );
 }
 
 void DConnect::RegisterSpec()
 {
 	RegisterHotspot(
-		25, m_rule.nPlayerNum >= 6 ? 9 : 11, -1, -1, true, 0, _T("관전자 : "),
-		&s_colYellow, &s_tdShade,
-		&s_colYellow, &s_tdOutline, (LPVOID)( 1000 ) );
+		25, m_rule.nPlayerNum >= 6 ? 11 : 13, -1, -1, true, 0, _T("관전자 : "),
+		&s_colCyan, &s_tdShade,
+		&s_colCyan, &s_tdOutline, (LPVOID)( 1000 ) );
 }
 
 // 채팅 메시지를 생성(new)

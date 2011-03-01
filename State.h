@@ -165,6 +165,11 @@ struct MIGHTY_EXPORT CState
 	// 현재 조커콜이 조커콜 효력을 낼 수 있는지를 검사한다
 	bool IsEffectiveJokercall() const;
 
+	// 마이티 효과가 있는가 ( v4.0: 2011.3.1 )
+	bool IsEffectiveMighty() const;
+	// 조커 효과가 있는가 ( v4.0: 2011.3.1 )
+	bool IsEffectiveJoker() const;
+
 	// 주어진 카드 리스트에 대해 승자 플레이어 번호를 알아낸다
 	// 음의 값은 현재 state 값으로 지정한다
 	// pbWinnerIsDef : 승자가 여당인가 여부를 리턴
