@@ -298,8 +298,9 @@ bool CPlayerHuman::ProcessSpecialCards( CCard c, int* eff )
 void CPlayerHuman::ChatProc( LPCTSTR s, DWORD dwUser )
 {
 	CPlayerHuman* pThis = (CPlayerHuman*)(LPVOID)dwUser;
-	CMsg* pMsg = new CMsg( _T("lls"), CMsg::mmChat,
-		pThis->m_pMFSM->GetPlayerUIDFromID( pThis->GetID() ), s );
+	CMsg* pMsg = new CMsg( _T("llss"), CMsg::mmChat,
+		pThis->m_pMFSM->GetPlayerUIDFromID( pThis->GetID() ),
+		pThis->GetName(), s );
 	pThis->m_pMFSM->EventChat( pMsg, true );
 }
 
@@ -846,8 +847,17 @@ void CPlayerHuman::OnTerminate( LPCTSTR sReason )
 }
 
 // 채팅 메시지 (bSource : 채팅창이 소스)
-void CPlayerHuman::OnChat( int nPlayerID, LPCTSTR sMsg, bool bSource )
+void CPlayerHuman::OnChat( int nPlayerID, LPCTSTR sNick, LPCTSTR sMsg, bool bSource )
 {
 	bSource;	// unused
-	m_pBoard->FloatSayDSB( nPlayerID, sMsg );
+	
+	// v4.0에서 수정 (2011.3.1)
+
+	int i;
+
+	if ( m_pMFSM->GetState()->apAllPlayers[nPlayerID]->GetName() == sNick ) i = nPlayerID;
+	else for ( i = 0; i < m_pMFSM->GetState()->pRule->nPlayerNum; i++ )
+		if ( m_pMFSM->GetState()->apAllPlayers[i]->GetName() == sNick ) break;
+
+	m_pBoard->FloatSayDSB( i, sMsg );
 }

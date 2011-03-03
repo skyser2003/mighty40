@@ -123,7 +123,7 @@ void CPlayerNetwork::OnElecting( int nPlayerID, int nKiruda,
 	int nMinScore, CEvent* e )
 {
 	// mmGameElection 메시지를 전달한다
-	if ( NeedSendingIfIDIs( nPlayerID ) ) {
+	if ( NeedSendingIfNumIs( nPlayerID ) ) {
 
 		CMsg msg( _T("lllll"), CMsg::mmGameElection,
 			GetPlayerUIDFromID( nPlayerID ), (long)nKiruda,
@@ -308,14 +308,11 @@ void CPlayerNetwork::OnTurn( CCard c, int eff, int nHandIndex, CEvent* e )
 }
 
 // 채팅 메시지 (bSource : 채팅창이 소스)
-void CPlayerNetwork::OnChat( int nPlayerID, LPCTSTR sMsg, bool bSource )
+void CPlayerNetwork::OnChat( int nPlayerID, LPCTSTR sNick, LPCTSTR sMsg, bool bSource )
 {
 	// mmChat 메시지를 전달한다
-	if ( NeedSendingIfIDIs( nPlayerID ) ) {
-
-		CMsg msg( _T("lls"), CMsg::mmChat,
-			GetPlayerUIDFromID( nPlayerID ), sMsg );
-		SendMsg( &msg );
-	}
+	CMsg msg( _T("llss"), CMsg::mmChat,
+		GetPlayerUIDFromID( nPlayerID ), sNick, sMsg );
+	SendMsg( &msg );
 	bSource;	//unused
 }

@@ -248,7 +248,7 @@ protected:
 	// 채팅창 관련
 
 	// 채팅 화면에 sMsg 를 그린다 (uid==-1 이면 전역 메시지)
-	void Chat( LPCTSTR sMsg, long uid = -1, bool bUpdate = true );
+	void Chat( LPCTSTR sNick, LPCTSTR sMsg, long uid = -1, bool bUpdate = true );
 
 	// 채팅창 핸들러
 	static void ChatProc( LPCTSTR sMsg, DWORD dwUser );

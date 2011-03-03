@@ -61,7 +61,7 @@ public:
 	// nHandIndex 는 이 카드가 손에든 카드중 몇번째 인덱스의 카드였는가
 	virtual void OnTurn( CCard c, int eff, int nHandIndex, CEvent* e );
 	// 채팅 메시지 (bSource : 채팅창이 소스)
-	virtual void OnChat( int nPlayerID, LPCTSTR sMsg, bool bSource );
+	virtual void OnChat( int nPlayerID, LPCTSTR sNick, LPCTSTR sMsg, bool bSource );
 
 protected:
 	CSocketBag* GetSB()								{ return m_pMFSM->GetSockBag(); }
@@ -75,22 +75,23 @@ protected:
 	long GetPlayerIDFromNum( long nPlayerNum ) const	{ return m_pMFSM->GetPlayerIDFromNum(nPlayerNum); }
 
 	// 결과 메시지를 전달해야 하는가를 검사한다
-	// MFSM 이 서버일 때 : 내가 송신자(nPlayerID)가 아니라면...
+	// MFSM 이 서버일 때 : 내 이름이 송신자(sNick)가 아니라면...
 	// MFSM 이 클라이언트일 때 :
-	//    내가 서버(uid==0)와 연결되어 있고 이 메시지가
-	//    사람(id==0)이 송신자라면...
-	//    v4.0: 관전자가 보낸 메시지는 서버(0번)에게도 보낸다 (2011.3.1)
-	//    이렇게 한 이유는 관전자는 0번이 PlayerHuman이 아니기 때문이다
+	//    내가 송신자라면...
 	// 참을 리턴한다
-	bool NeedSendingIfIDIs( int nPlayerID ) const
+	// v4.0에서 nPlayerID 대신 sNick으로 비교하는 것으로 바뀌었다. (2011.3.3)
+	bool NeedSendingIfIDIs( int nPlayerID, LPCTSTR sNick ) const
 	{
-		return IsServer() && GetID() != nPlayerID
-			|| GetUID() == 0 && nPlayerID == 0
-			|| m_pMFSM->GetUID() >= m_pMFSM->GetState()->pRule->nPlayerNum && GetUID() == 0 && nPlayerID == m_pMFSM->GetUID();
+		return IsServer() && GetName() != sNick
+			|| !IsServer() && GetName() == sNick;
 	}
 	bool NeedSendingIfNumIs( int nPlayerNum ) const
 	{
-		return NeedSendingIfIDIs( GetPlayerIDFromNum( nPlayerNum ) );
+		int nPlayerID = GetPlayerIDFromNum( nPlayerNum );
+
+		return IsServer() && GetID() != nPlayerID
+			|| GetUID() == 0 && nPlayerID == 0
+			|| m_pMFSM->GetUID() >= m_pMFSM->GetState()->pRule->nPlayerNum && GetUID() == 0 && nPlayerID == m_pMFSM->GetUID();
 	}
 
 	// 에러 발생 - MFSM 에게 알린다

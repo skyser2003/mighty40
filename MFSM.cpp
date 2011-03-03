@@ -116,8 +116,8 @@ void CMFSM::RebuildPlayerArray()
 
 	ASSERT( nPlayers >= 6 );
 
-	apPlayers[5] = 0;
-	apPlayers[6] = 0;
+	apPlayers[5] = apAllPlayers[nDeadID[0]];
+	if ( pRule->nPlayerNum >= 7 ) apPlayers[6] = apAllPlayers[nDeadID[1]];
 	nPlayers = 5;	// 5 명이라는 확신이 있음
 }
 

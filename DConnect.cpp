@@ -516,7 +516,7 @@ void DConnect::Create( CPlayerSocket* pServerSocket, long players, bool spectato
 			Mo()->anPlayerState[m_rule.nPlayerNum-2][1], 
 			Mo()->anPlayerState[m_rule.nPlayerNum-2][2],
 			false );
-		Chat( sEnterMsg, -1, false );
+		Chat( m_aInfo[0].sName, sEnterMsg, -1, false );
 
 		UpdateMarks();
 	}
@@ -819,7 +819,7 @@ void DConnect::RegisterSpec()
 // 채팅 메시지를 생성(new)
 CMsg* DConnect::CreateChatMsg( long uid, LPCTSTR sMsg )
 {
-	return new CMsg( _T("lls"), CMsg::mmChat, uid, sMsg );
+	return new CMsg( _T("llss"), CMsg::mmChat, uid, uid == -1 ? "" : m_aInfo[uid].sName, sMsg );
 }
 
 // uid 위치의 플레이어를 컴퓨터로 치환
@@ -959,7 +959,7 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 				break;
 		}
 		// 같은 닉네임 불가인데 같은 닉네임이 존재하면
-		else if ( !Mo()->bSameName && m_aInfo[uid].sName == sName ) return -2;
+		else if ( m_aInfo[uid].sName == sName ) return -2;
 	}
 	// 관전 가능한 경우 20명, 불가능한 경우 플레이어 수보다 많은 경우 자리가 꽉찼다는 표시
 	if ( uid >= 20 || (( !Mo()->bObserver) && uid >= m_rule.nPlayerNum ) )
@@ -982,7 +982,7 @@ long DConnect::AddPlayer( CMsg* pMsg, CPlayerSocket* pSocket )
 
 	SendToAll( pEnterMsg );
 
-	Chat( sEnterMsg, -1, false );
+	Chat( m_aInfo[uid].sName, sEnterMsg, -1, false );
 	
 	if(uid >= m_rule.nPlayerNum)
 		m_nSpectators++;
@@ -1020,7 +1020,7 @@ void DConnect::RemovePlayer( long uid, bool bAccessDenied )
 	AUTODELETE_MSG(pChatMsg);
 	SendToAll( pChatMsg );
 
-	Chat( sOutMsg, -1, false );
+	Chat( sName, sOutMsg, -1, false );
 
 	// 화면을 Update
 	UpdateMarks();
@@ -1241,11 +1241,13 @@ bool DConnect::ReceivePlayerInfoMsg( CMsg* pMsg )
 bool DConnect::ReceiveChatMsg( CMsg* pMsg )
 {
 	long uid;
+	CString sNick;
 	CString sMsg;
 	if ( !pMsg->PumpLong( uid )
 		|| !pMsg->PumpLong( uid )
+		|| !pMsg->PumpString( sNick )
 		|| !pMsg->PumpString( sMsg ) ) return false;
-	Chat( sMsg, uid );
+	Chat( sNick, sMsg, uid );
 	return true;
 }
 
@@ -1321,7 +1323,7 @@ void DConnect::ChatProc( LPCTSTR sMsg )
 	if ( m_bServer ) { 	// 서버라면 모두에게 보낸다
 		SendToAll( pChatMsg );
 		// 자신에게는 안보내지므로 직접 그린다
-		Chat( sMsg, m_uid );
+		Chat( m_aInfo[m_uid].sName, sMsg, m_uid );
 	}
 	else {	// 클라이언트라면, mmChat 메시지로 메아리될것이다
 		m_pServerSocket->SendMsg( pChatMsg );
@@ -1329,14 +1331,14 @@ void DConnect::ChatProc( LPCTSTR sMsg )
 }
 
 // 채팅 화면에 sMsg 를 그린다 (uid==-1 이면 전역 메시지)
-void DConnect::Chat( LPCTSTR sMsg, long uid, bool bUpdate )
+void DConnect::Chat( LPCTSTR sNick, LPCTSTR sMsg, long uid, bool bUpdate )
 {
 	int i;
 
 	CString sFullMsg;
 	if ( uid == -1 )
 		sFullMsg = CString(_T("## ")) + sMsg + _T(" ##");
-	else sFullMsg = m_aInfo[uid].sName + _T(": ") + sMsg;
+	else sFullMsg = CString(sNick) + _T(": ") + sMsg;
 
 	// 다음줄로 넘어가기도 하므로, Parse 하여 실제 필요한 라인 수를 구한다
 	size_t nMaxWidth;	// 라인의 최대 폭

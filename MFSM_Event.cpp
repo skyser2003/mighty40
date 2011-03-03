@@ -126,21 +126,35 @@ void CMFSM::ProcessChatMessage()
 		// 뽑아온 메시지 정보
 		bool bSource = ci.bSource;
 		CMsg* pMsg = ci.pMsg;
-		long uid; CString sChat;
+		long uid; CString sNick, sChat;
 
 		AUTODELETE_MSG(pMsg);
 
 		if ( !pMsg->PumpLong( uid )
 			|| !pMsg->PumpLong( uid )
+			|| !pMsg->PumpString( sNick )
 			|| !pMsg->PumpString( sChat ) )
 			continue;	// 잘못된 메시지
 
 		long nPlayerID = GetPlayerIDFromUID( uid );
+		long nServerID = GetPlayerIDFromUID( 0 );
+		long nMyID = GetPlayerIDFromUID( m_uid );
 
-		// 모두에게 뿌린다
-		// v4.0에서 추가: 관전자라면 서버에게 전달할 필요가 없다 (2011.3.1)
-		for ( int i = MAX_CONNECTION - 1 ; i >= (m_uid < pRule->nPlayerNum || nPlayerID ? 0 : 1); i-- )
-			apAllPlayers[i]->OnChat( nPlayerID, sChat, bSource );
+
+		// v4.0에서 바꿈 (2010.3.4)
+		if ( IsServer() ) {
+			// 내가 서버라면 채팅을 보내지 않은 사람에게 보낸다
+			for ( int i = MAX_CONNECTION - 1 ; i >= 0; i-- )
+				if ( i == 0 || apAllPlayers[i]->GetName() != sNick )
+					apAllPlayers[i]->OnChat( nPlayerID, sNick, sChat, bSource );
+		}
+		else {
+			// 내가 송신자라면 나와 서버에게도 보낸다
+			if ( sNick == apAllPlayers[nMyID]->GetName() )
+				apAllPlayers[nServerID]->OnChat( nPlayerID, sNick, sChat, bSource );
+			// 나에게는 무조건 보낸다
+			apAllPlayers[nMyID]->OnChat( nPlayerID, sNick, sChat, bSource );
+		}
 	}
 }
 
@@ -178,7 +192,7 @@ void CMFSM::EventSpectatorExit( int uid )
 	delete todelete;
 
 	// 관전자가 나간 경우 그냥 채팅인 것처럼 행동하게 함
-	EventChat( new CMsg( _T("lls"), CMsg::mmChat, uid, msg ), false );
+	EventChat( new CMsg( _T("llss"), CMsg::mmChat, uid, _T("System"), msg ), false );
 }
 
 // 자리를 섞는다 ( 자리 섞는 옵션이 켜진 경우에만 : 2011.2.27 )
@@ -187,6 +201,7 @@ void CMFSM::SuffleSeat( int& nBeginer )
 	if ( pRule->bRandomSeat )
 	{
 		int i;
+		int beginertemp = 0;
 		for ( i = 1; i < pRule->nPlayerNum; i++ ) {
 			int j = pRule->nPlayerNum - ( rand() % ( pRule->nPlayerNum - i ) ) - 1;
 			CPlayer* temp = apAllPlayers[i];
@@ -194,12 +209,13 @@ void CMFSM::SuffleSeat( int& nBeginer )
 			apAllPlayers[j] = temp;
 			apAllPlayers[i]->SetPlayerNum(i);
 			if ( apAllPlayers[i]->GetID() == nBeginer )
-				nBeginer = i;
+				beginertemp = i;
 			changed[i] = apAllPlayers[i]->GetID();
 			apAllPlayers[i]->SetID(i);
 			if ( IsNetworkGame() && m_pSockBag )
 				m_pSockBag->SwapClients(i, j);
 		}
+		nBeginer = beginertemp;
 	}
 }
 
@@ -235,7 +251,7 @@ void CMFSM::GetSeatFromServer( int& nBeginer )
 			if( !pMsg->PumpLong( loc ) ) goto hell;
 			apPlayers[i] = apAllPlayers[loc];
 
-			if ( pRule->nPlayerNum - m_uid == loc )
+			if ( ( pRule->nPlayerNum - m_uid ) % pRule->nPlayerNum == loc )
 				uidtemp = pRule->nPlayerNum - i;
 
 		}

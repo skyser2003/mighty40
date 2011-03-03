@@ -134,7 +134,7 @@ public:
 	virtual void OnTerminate( LPCTSTR sReason );
 
 	// 채팅 메시지 (bSource : 채팅창이 소스)
-	virtual void OnChat( int nPlayerID, LPCTSTR sMsg, bool bSource );
+	virtual void OnChat( int nPlayerID, LPCTSTR sNick, LPCTSTR sMsg, bool bSource );
 
 protected:
 	// 헬퍼 멤버 & 함수

@@ -123,8 +123,6 @@ struct COption
 
 	// 관전 가능 여부
 	bool bObserver;
-	// 같은 이름 허용 여부
-	bool bSameName;
 	// 서버가 될 때 포트 번호
 	int nPort;
 	// 서버가 될 때 바인드 할 주소

@@ -185,8 +185,8 @@ public:
 	// sReason : 종료되는 이유 (0 이면 즉시 종료)
 	virtual void OnTerminate( LPCTSTR sReason )				{ sReason; }
 	// 채팅 메시지 (bSource : 채팅창이 소스)
-	virtual void OnChat( int nPlayerID, LPCTSTR sMsg,
-						bool bSource )						{ nPlayerID, sMsg, bSource; }
+	virtual void OnChat( int nPlayerID, LPCTSTR sNick, LPCTSTR sMsg,
+						bool bSource )						{ nPlayerID, sNick, sMsg, bSource; }
 
 protected:
 	int m_nID;

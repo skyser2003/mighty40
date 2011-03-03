@@ -93,7 +93,6 @@ void COption::Save() const
 	sSection = _T("Communication");
 
 	SYNC_OPTION_B( _T("Observer"), bObserver, true );
-	SYNC_OPTION_B( _T("SameName"), bSameName, false );
 	SYNC_OPTION_I( _T("Port"), nPort, 4111 );
 	SYNC_OPTION_S( _T("Address"), sAddress, _T("") );
 	for ( i = 0; i < ADDRESSBOOK_SIZE; i++ ) {
@@ -216,7 +215,6 @@ void COption::Load()
 	sSection = _T("Communication");
 
 	SYNC_OPTION_B( _T("Observer"), bObserver, true );
-	SYNC_OPTION_B( _T("SameName"), bSameName, true );
 	SYNC_OPTION_I( _T("Port"), nPort, 4111 );
 	SYNC_OPTION_S( _T("Address"), sAddress, _T("") );
 	int j = 0;
