@@ -232,6 +232,10 @@ SOURCE=.\Option.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PlayerDummy.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PlayerHuman.cpp
 # End Source File
 # Begin Source File
@@ -449,6 +453,10 @@ SOURCE=.\Play.h
 # Begin Source File
 
 SOURCE=.\Player.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PlayerDummy.h
 # End Source File
 # Begin Source File
 

@@ -325,9 +325,12 @@ RECT DSB::RegisterHotspot(
 void DSB::DeleteHotspot( LPVOID pVoid )
 {
 	POSITION pos = m_lHotspot.GetHeadPosition();
-	for (; pos; m_lHotspot.GetNext(pos) )
-		if ( m_lHotspot.GetAt(pos).pVoid == pVoid )
+	for (; pos; m_lHotspot.GetNext(pos) ) {
+		if ( m_lHotspot.GetAt(pos).pVoid == pVoid ) {
 			m_lHotspot.RemoveAt(pos);
+			return;
+		}
+	}
 }
 
 // 주어진 pVoid 값을 가지는 핫 스팟을 찾는다

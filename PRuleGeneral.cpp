@@ -57,7 +57,7 @@ void PRuleGeneral::DoDataExchange(CDataExchange* pDX)
 
 	if ( pDX->m_bSaveAndValidate ) {
 		m_pRule->nPlayerNum = m_nPlayerNum + 2;
-		m_pRule->bFriend = !!m_bFriend && (m_nPlayerNum > 2);
+		m_pRule->bFriend = !!m_bFriend && (m_nPlayerNum > 0);
 		m_pRule->bJokerFriend = !!m_bJokerFriend;
 		m_pRule->bShowFriend = !!m_bShowFriend;
 		m_pRule->bFriendGetsBeginer = !!m_bFriendGetsBeginer;
