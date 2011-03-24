@@ -200,9 +200,11 @@ void CPlayerHuman::PlayTurnSound()
 	}
 	// ¬Ô±‚ (∞’)
 	else if ( c.IsKiruda() && GetState()->lCurrent.GetCount() > 0
-		&& !(GetState()->lCurrent.Find( CCard::GetJoker() ) && GetState()->IsEffectiveJoker() )
-		&& !(GetState()->lCurrent.Find( CCard::GetMighty() ) && GetState()->IsEffectiveMighty() )
-		&& !GetState()->lCurrent.GetHead().IsKiruda() ) {
+		&& !( GetState()->lCurrent.Find( CCard::GetJoker() ) && GetState()->IsEffectiveJoker() )
+		&& !( GetState()->lCurrent.Find( CCard::GetMighty() ) && GetState()->IsEffectiveMighty() )
+		&& !( GetState()->lCurrent.GetHead().IsKiruda()
+		||  ( GetState()->lCurrent.GetHead().IsJoker() && GetState()->nJokerShape == c.GetShape() ) ) )
+	{
 		PlaySound( IDW_KIRUDA, true );
 	}
 	// ¿œπ›

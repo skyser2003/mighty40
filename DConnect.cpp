@@ -70,6 +70,7 @@ static void parse_address( CComboBox& combo, CString& sAddr, UINT& uPort )
 {
 	CString sFull;
 	combo.GetWindowText( sFull );
+	sFull.TrimLeft();
 
 	LPCTSTR sColon = _tcschr( sFull, _T(':') );
 	if ( !sColon ) {
@@ -832,10 +833,10 @@ void DConnect::SetComputer( long uid, int money )
 
 	if(!m_aInfo[uid].bComputer)
 	{
+		if(uid >= m_rule.nPlayerNum) m_nSpectators--;
 		m_aInfo[uid].bComputer = true;
-		if(m_nSpectators > 0) m_nSpectators--;
 	}
-	if(uid < MAX_PLAYERS)
+	if(uid < m_rule.nPlayerNum)
 	{
 		m_aInfo[uid].sName = Mo()->aPlayer[uid].sName + _T(" (컴퓨터)");
 		m_aInfo[uid].sInfo = get_name( Mo()->aPlayer[uid].sAIDLL );
@@ -843,7 +844,7 @@ void DConnect::SetComputer( long uid, int money )
 	else
 	{
 		m_aInfo[uid].sName = _T("관전 Dummy");
-		m_aInfo[uid].sInfo = get_name( Mo()->aPlayer[0].sAIDLL );
+		m_aInfo[uid].sInfo = _T("Dummy");
 	}
 	m_aInfo[uid].pSocket = 0;
 

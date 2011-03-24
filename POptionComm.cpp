@@ -36,7 +36,6 @@ void POptionComm::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(POptionComm)
 	DDX_Check(pDX, IDC_OBSERVER, m_bObserver);
-	DDX_Check(pDX, IDC_SAMENAME, m_bSameName);
 	DDX_Text(pDX, IDC_PORT, m_nPort);
 	DDX_Text(pDX, IDC_ADDRESS, m_sAddress);
 	DDX_Slider(pDX, IDC_CHATDSBTIMEOUT, m_nChatDSBTimeOut);

@@ -380,7 +380,7 @@ bool CState::IsEffectiveJoker() const
 // 이 게임은 네트워크를 동반한 게임인가
 bool CState::IsNetworkGame() const
 {
-	for ( int i = 0; i < nPlayers; i++ )
+	for ( int i = 0; i < pRule->nPlayerNum; i++ )
 		if ( apPlayers[i]->IsNetwork() ) return true;
 	return false;
 }

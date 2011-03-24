@@ -108,8 +108,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 4,0,1,37
- PRODUCTVERSION 4,0,1,37
+ FILEVERSION 4,0,1,38
+ PRODUCTVERSION 4,0,1,38
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -125,12 +125,12 @@ BEGIN
         BLOCK "041203b5"
         BEGIN
             VALUE "FileDescription", "마이티 네트워크 4.0"
-            VALUE "FileVersion", "4.0.1.37"
+            VALUE "FileVersion", "4.0.1.38"
             VALUE "InternalName", "Mighty Network 4.0"
             VALUE "LegalCopyright", "Copyright (C) 1999 장문성(sw6ueyz@hitel.net), 2006 - 2011 UPnL"
             VALUE "OriginalFilename", "Mighty40.EXE"
             VALUE "ProductName", "마이티 네트워크 4.0"
-            VALUE "ProductVersion", "4.0.1.37"
+            VALUE "ProductVersion", "4.0.1.38"
         END
     END
     BLOCK "VarFileInfo"
@@ -1355,7 +1355,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "소켓을 초기화 할 수 없습니다 !"
-    IDR_MAINFRAME           "마이티 네트워크 4.0.1.37 (2011-03-06)"
+    IDR_MAINFRAME           "마이티 네트워크 4.0.1.38 (2011-03-19)"
 END
 
 STRINGTABLE
@@ -1454,7 +1454,6 @@ END
 STRINGTABLE
 BEGIN
     IDC_OBSERVER            "관전자의 접속을 허용할지 결정합니다"
-    IDC_SAMENAME            "같은 닉네임을 가진 두 사람이 한 방에 접속하여 게임할 수 있는지 여부를 결정합니다"
     IDC_PORT                "다른 사람들과의 게임에서 사용할 TCP 포트를 정합니다 - 4111 이 디폴트 값입니다"
     IDC_CHATDSBTIMEOUT      "다른 사람의 채팅 대화상자를 어느 정도 동안 유지시켰다가 없앨지를 정합니다"
     IDC_ADDRESS             "서버가 될 때 접속을 허용할 주소 범위를 지정합니다."

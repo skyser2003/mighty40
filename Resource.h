@@ -216,7 +216,6 @@
 #define IDC_RESETPATH                   1087
 #define IDC_CHANGEOPTION                1088
 #define IDC_OBSERVER                    1089
-#define IDC_SAMENAME                    1090
 #define IDC_PORT                        1091
 #define IDC_CHATDSBTIMEOUT              1092
 #define IDC_ADDRESS                     1093
