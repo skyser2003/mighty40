@@ -768,7 +768,7 @@ int DSB::ParseString( LPTSTR* asLine, int cLine,
 			size_t chars = _tcslen( pHead );
 			if ( nMaxWidth < chars+1 ) nMaxWidth = chars+1;
 			if ( asLine ) {
-				strcpy( asLine[nCurLine], pHead );
+				wcscpy( asLine[nCurLine], pHead );
 			}
 			nCurLine++;
 		}

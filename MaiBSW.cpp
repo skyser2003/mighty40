@@ -299,15 +299,15 @@ protected:
 void CMaiBSW::MaiGetInfo( MAIDLL_INFO* pInfo )
 {
 	pInfo->sName = _T("'검은 양떼 벽' 알고리즘 (V2.17)");
-	pInfo->sExplain = _T("미리 정의된 '벌점 테이블'을 바탕으로, "
-						"가능한 모든 경우에 대한 벌점을 계산하여 "
-						"이 중 가장 적은 벌점을 가지는 해를 구한다 : "
-						"일종의 'Greedy' 알고리즘으로, "
-						"이론적으로는 최적 해를 구하지만 "
-						"지나친 지레 짐작이 늘 좋은 것만은 아니라는 "
-						"사실을 새삼 까닫게 된다 : 주의: "
-						"이 알고리즘은 다른 사람의 패를 모두 "
-						"읽을 수 있다 !");
+	pInfo->sExplain = L"미리 정의된 '벌점 테이블'을 바탕으로, "
+						L"가능한 모든 경우에 대한 벌점을 계산하여 "
+						L"이 중 가장 적은 벌점을 가지는 해를 구한다 : "
+						L"일종의 'Greedy' 알고리즘으로, "
+						L"이론적으로는 최적 해를 구하지만 "
+						L"지나친 지레 짐작이 늘 좋은 것만은 아니라는 "
+						L"사실을 새삼 까닫게 된다 : 주의: "
+						L"이 알고리즘은 다른 사람의 패를 모두 "
+						L"읽을 수 있다 !";
 }
 
 // 옵션 스트링을 가지고 CPlay 객체를 얻는다
@@ -1508,7 +1508,7 @@ CMaiBSWWrap::CMaiBSWWrap( LPCTSTR sOption, MAIDLL_UPDATE* pUpdate )
 	m_pUpdate = pUpdate;
 	m_pState = 0;
 
-	if ( !sOption || sscanf( sOption, _T("%d %d %d"),
+	if ( !sOption || swscanf_s( sOption, _T("%d %d %d"),
 		&m_bGoalMode, &m_bUseSimulation, &m_nPrideFac ) != 3 ) {
 
 		m_nPrideFac = 5;
@@ -1538,7 +1538,7 @@ const CCardList* CMaiBSWWrap::GetHand() const
 void CMaiBSWWrap::SetOption( HWND hWnd )
 {
 	CMaiBSWSetting dlg( CWnd::FromHandle(hWnd) );
-	if ( sscanf( m_sOption, _T("%d %d %d"),
+	if ( swscanf_s( m_sOption, _T("%d %d %d"),
 		&dlg.m_bGoalMode, &dlg.m_bUseSimulation, &dlg.m_nFactor )
 		!= 3 ) {
 		dlg.m_bGoalMode = m_bGoalMode ? TRUE : FALSE;
@@ -1548,7 +1548,7 @@ void CMaiBSWWrap::SetOption( HWND hWnd )
 
 	if ( dlg.DoModal() == IDOK ) {
 
-		sprintf( m_sOption.GetBuffer(16), _T("%d %d %d"),
+		swprintf( m_sOption.GetBuffer(16), _T("%d %d %d"),
 			dlg.m_bGoalMode, dlg.m_bUseSimulation, dlg.m_nFactor );
 		m_sOption.ReleaseBuffer();
 

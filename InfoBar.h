@@ -62,7 +62,7 @@ protected:
 	virtual void DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct );
 	afx_msg void OnSize( UINT nType, int cx, int cy );
 	virtual BOOL OnCommand( WPARAM wParam, LPARAM lParam );
-	virtual int OnToolHitTest( CPoint point, TOOLINFO* pTI ) const;
+	virtual INT_PTR OnToolHitTest(CPoint point, TOOLINFO* pTI) const;
 	virtual BOOL PreTranslateMessage( MSG *pMsg );
 	afx_msg BOOL OnToolTipNeedTextW( UINT id, NMHDR * pNMHDR, LRESULT * pResult );
 	afx_msg BOOL OnToolTipNeedTextA( UINT id, NMHDR * pNMHDR, LRESULT * pResult );

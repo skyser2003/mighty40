@@ -620,7 +620,7 @@ void DConnect::OnDraw(
 		PutText( pDC, _T("관전자 : "),
 				25, y + 6, true, s_colWhite, s_tdShade );
 	
-	wsprintf(m_specstr, "%d 명", m_nSpectators);
+	wsprintf(m_specstr, L"%d 명", m_nSpectators);
 
 	PutText( pDC, m_specstr,
 			25, y + 8, true, s_colWhite, s_tdShade );
@@ -1353,7 +1353,7 @@ void DConnect::Chat( LPCTSTR sNick, LPCTSTR sMsg, long uid, bool bUpdate )
 	// 각 라인을 추가한다
 	for ( i = 0; i < n; i++ ) {
 
-		strcpy( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
+		wcscpy_s( m_asChatData[m_nChatDataEnd % CHAT_LINES], asMsg[i] );
 		m_acolChatData[m_nChatDataEnd % CHAT_LINES] =
 			uid == -1 ? s_colCyan
 			: uid == m_uid ? s_colYellow

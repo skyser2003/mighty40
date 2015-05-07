@@ -187,7 +187,7 @@ bool CBoard::CanSelect() const
 	else return true;
 }
 
-int CBoard::OnToolHitTest( CPoint point, TOOLINFO* pTI ) const
+INT_PTR CBoard::OnToolHitTest(CPoint point, TOOLINFO* pTI) const
 {
 	__declspec(thread) static int s_cLastTooltipCard = 0;
 
@@ -313,7 +313,7 @@ BOOL CBoard::OnToolTipNeedText( UINT /*id*/, NMHDR * pNMHDR, LRESULT* /*pResult*
 
 	else return FALSE;
 
-	strcpy( s_sBuff, s );
+	wcscpy_s( s_sBuff, s );
 	pTTT->lpszText=s_sBuff;
 	return TRUE;
 }

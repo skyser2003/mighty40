@@ -117,7 +117,7 @@ void CMsg::PushString( LPCTSTR s )
 
 	int len = strlen( buf ) + 1;
 	EnsureBufferLength( GetLength() + len );
-	_mbscpy( m_wptr, buf );
+	strcpy( m_wptr, buf );
 	m_wptr += len;
 	*m_pLen += len;
 

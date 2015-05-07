@@ -348,7 +348,7 @@ void CInfoBar::DrawMainPane( CDC* pDC )
 }
 
 // 이상하게 CStatusBar 는 TTN_NEEDTEXT 가 아니라 TTN_NEEDTEXTW 를 보낸다!!!
-int CInfoBar::OnToolHitTest( CPoint point, TOOLINFO* pTI ) const
+INT_PTR CInfoBar::OnToolHitTest(CPoint point, TOOLINFO* pTI) const
 {
 	CRect rc; GetClientRect( &rc );
 	if ( !rc.PtInRect(point) ) return -1;

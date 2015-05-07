@@ -16,7 +16,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-static const LPCTSTR presetFileName = "rule.txt";
+static const LPCTSTR presetFileName = L"rule.txt";
 static LPCTSTR asPreset[][2] = {
 	{ STANDARD_RULE_STRING, _T("표준 5마") },
 	{ _T("'1$1M&%)2K%,C5%"), _T("표준 4마") },

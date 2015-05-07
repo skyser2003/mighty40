@@ -436,7 +436,7 @@ BOOL CBoard::OnSetCursor(CWnd* /*pWnd*/, UINT /*nHitTest*/, UINT /*message*/)
 	return TRUE;
 }
 
-void CBoard::OnTimer(UINT nIDEvent) 
+void CBoard::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: Add your message handler code here and/or call default
 
